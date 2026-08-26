@@ -1,0 +1,262 @@
+\documentclass[12pt]{article}
+
+% Codificación e idioma
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,mexico]{babel}
+
+% Matemáticas
+\usepackage{amsmath,amssymb}
+
+% Formato y utilidades
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+
+% Márgenes
+\geometry{letterpaper,margin=2.5cm}
+
+% Listas
+\setlist[itemize]{leftmargin=1.5em}
+\setlist[enumerate]{leftmargin=1.8em}
+
+% Enlaces
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+    citecolor=blue
+}
+
+% Encabezados y pies de página
+\pagestyle{fancy}
+\fancyhf{}
+
+% ---------- Encabezado ----------
+\fancyhead[L]{Tecnológico Nacional de México}
+\fancyhead[R]{Cálculo Integral}
+
+% ---------- Pie de página ----------
+\fancyfoot[L]{Carlos Ernesto Martínez Rodríguez}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{mrdgzcarlose@gmail.com}
+
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% Título y subtítulo
+\title{
+    \textbf{Cálculo Integral}\\[0.5em]
+    \large\textit{Tecnológico Nacional de México}
+}
+
+\author{Carlos E. Martínez Rodríguez}
+\date{}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section*{Información del Curso}
+
+\begin{itemize}
+    \item \textbf{Asignatura:} Cálculo Integral.
+    \item \textbf{Clave:} ACF--0902.
+    \item \textbf{Horas teoría--práctica--créditos:} 3--2--5.
+    \item \textbf{Periodo:} Agosto--Diciembre 2026.
+\end{itemize}
+
+% ============================================================
+% CÓDIGO QR DEL TEMARIO
+% ============================================================
+%
+% Coloca el archivo PNG del código QR en la misma carpeta que
+% este archivo .tex y sustituye, si es necesario, el nombre
+% QR_Temario_Calculo_Integral_TNM.png por el nombre real.
+%
+% Ejemplo:
+%
+% \begin{center}
+%     \includegraphics[width=0.22\textwidth]
+%     {QR_Temario_Calculo_Integral_TNM.png}
+%
+%     \small
+%     Escanea el código QR para consultar el temario del curso.
+% \end{center}
+%
+% ============================================================
+
+\section*{Objetivo general del curso}
+
+El curso tiene como propósito que el estudiante \textbf{aplique la definición de integral y las técnicas de integración para resolver problemas de ingeniería}.
+
+\section{Teorema fundamental del cálculo}
+
+\textbf{Objetivos:} Comprender los dos teoremas fundamentales del cálculo para establecer la relación entre el cálculo diferencial y el cálculo integral, y aplicar los teoremas y propiedades de la integral para evaluar integrales definidas.
+
+\subsection{Subtemas}
+
+\begin{enumerate}
+    \item Introducción histórica al cálculo integral.
+    \item El problema del área.
+    \item Aproximación del área de regiones planas.
+    \item Particiones de un intervalo.
+    \item Sumas de Riemann.
+    \item Aproximaciones por extremo izquierdo.
+    \item Aproximaciones por extremo derecho.
+    \item Aproximaciones mediante el punto medio.
+    \item Definición de integral definida.
+    \item Condiciones de existencia de la integral definida.
+    \item Propiedades de la integral definida.
+    \item Teorema del valor intermedio.
+    \item Primer Teorema Fundamental del Cálculo.
+    \item Segundo Teorema Fundamental del Cálculo.
+    \item Evaluación de integrales definidas.
+    \item Interpretación geométrica de la integral definida.
+\end{enumerate}
+
+\textbf{Tiempo previsto:} La planeación considera \textbf{20 horas} para esta unidad, distribuidas en 12 horas teóricas y 8 horas prácticas, equivalentes a aproximadamente cuatro semanas.
+
+\section{Integral indefinida y métodos de integración}
+
+\textbf{Objetivos:} Identificar el método de integración más adecuado para resolver una integral indefinida y utilizar diferentes técnicas de integración en funciones algebraicas, trigonométricas, exponenciales y logarítmicas.
+
+\subsection{Subtemas}
+
+\begin{enumerate}
+    \item Concepto de función primitiva o antiderivada.
+    \item Integral indefinida.
+    \item Constante de integración.
+    \item Propiedades de la integral indefinida.
+    \item Integración directa.
+    \item Cambio de variable o sustitución.
+    \item Integración por partes.
+    \item Integrales de funciones trigonométricas.
+    \item Sustituciones trigonométricas.
+    \item Integración de funciones racionales.
+    \item Descomposición en fracciones parciales.
+    \item Integrales de funciones exponenciales.
+    \item Integrales de funciones logarítmicas.
+    \item Selección del método de integración adecuado.
+    \item Uso de herramientas computacionales para verificar integrales.
+\end{enumerate}
+
+\textbf{Tiempo previsto:} La planeación considera \textbf{20 horas} para esta unidad, distribuidas en 12 horas teóricas y 8 horas prácticas, equivalentes a aproximadamente cuatro semanas.
+
+\section{Aplicaciones de la integral}
+
+\textbf{Objetivos:} Utilizar las definiciones de integral y las técnicas de integración para resolver problemas geométricos y problemas aplicados en ingeniería.
+
+\subsection{Subtemas}
+
+\begin{enumerate}
+    \item Área bajo una curva.
+    \item Área entre curvas.
+    \item Volúmenes de sólidos de revolución.
+    \item Método de discos y arandelas.
+    \item Método de cascarones cilíndricos.
+    \item Longitud de arco.
+    \item Área de superficies de revolución.
+    \item Trabajo.
+    \item Centro de masa.
+    \item Integrales impropias.
+    \item Aplicaciones de la integral en problemas de ingeniería.
+    \item Uso de software para plantear, resolver y verificar problemas de aplicación.
+\end{enumerate}
+
+\textbf{Tiempo previsto:} La planeación considera \textbf{20 horas} para esta unidad, distribuidas en 12 horas teóricas y 8 horas prácticas, equivalentes a aproximadamente cuatro semanas.
+
+\section{Series}
+
+\textbf{Objetivos:} Aplicar sucesiones y series para analizar procesos de convergencia y utilizar series de potencias, de Taylor y de Maclaurin para aproximar funciones e integrales especiales.
+
+\subsection{Subtemas}
+
+\begin{enumerate}
+    \item Sucesiones.
+    \item Series finitas e infinitas.
+    \item Convergencia y divergencia.
+    \item Criterios de convergencia.
+    \item Criterios de divergencia.
+    \item Series de potencias.
+    \item Intervalo de convergencia.
+    \item Radio de convergencia.
+    \item Derivación de series de potencias.
+    \item Integración de series de potencias.
+    \item Serie de Taylor.
+    \item Serie de Maclaurin.
+    \item Representación de funciones mediante series.
+    \item Aproximación de funciones mediante polinomios de Taylor.
+    \item Evaluación aproximada de integrales mediante series de Taylor.
+    \item Uso de software para visualizar aproximaciones mediante series.
+\end{enumerate}
+
+\textbf{Tiempo previsto:} La planeación considera \textbf{20 horas} para esta unidad, distribuidas en 12 horas teóricas y 8 horas prácticas, equivalentes a aproximadamente cuatro semanas.
+
+\section{Planeación}
+
+\begin{center}
+\begin{tabular}{>{\raggedright\arraybackslash}p{8cm}c}
+\toprule
+\textbf{Unidad} & \textbf{Horas previstas} \\
+\midrule
+1. Teorema fundamental del cálculo & 20 \\
+2. Integral indefinida y métodos de integración & 20 \\
+3. Aplicaciones de la integral & 20 \\
+4. Series & 20 \\
+\midrule
+\textbf{Total} & \textbf{80} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Criterios generales de evaluación}
+
+En cada unidad se establece, de manera general, la siguiente ponderación:
+
+\begin{itemize}
+    \item \textbf{70\%}: evaluación escrita y presencial.
+    \item \textbf{30\%}: actividades de aprendizaje a criterio del docente.
+\end{itemize}
+
+Las actividades de enseñanza y aprendizaje contemplan, entre otras, la participación activa en clase, trabajo individual y en equipo, resolución de ejercicios, trabajo extra-clase, uso de herramientas computacionales, atención de dudas y evaluación escrita.
+
+\section{Bibliografía básica}
+
+\begin{itemize}
+    \item Stewart, James. \textit{Cálculo de una variable}. 8a. edición. Cengage Learning.
+    \item Larson, Ron y Hostetler, Robert. \textit{Cálculo}. 8a. edición. McGraw-Hill.
+    \item Leithold, Louis. \textit{El Cálculo}. Oxford University Press.
+    \item Purcell, Edwin J. y Dale Varberg. \textit{Cálculo}. Prentice Hall.
+    \item Zill, Dennis G. \textit{Cálculo: trascendentes tempranas}. 4a. edición. McGraw-Hill.
+\end{itemize}
+
+\newpage
+
+\section{Material complementario del curso}
+
+% ============================================================
+% AMBIENTE PARA INSERTAR CÓDIGOS QR DE NOTAS O MATERIAL
+% ============================================================
+%
+% Ejemplo de uso:
+%
+% \begin{center}
+%     \includegraphics[width=0.22\textwidth]{QR_Notas_CI_Unidad1.png}
+%
+%     \small
+%     Escanea el código QR para acceder a las notas de la Unidad 1.
+% \end{center}
+%
+% Puedes repetir este bloque para cada unidad o documento.
+%
+% ============================================================
+
+\end{document}
