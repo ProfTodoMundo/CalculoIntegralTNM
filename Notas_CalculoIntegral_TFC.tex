@@ -25,7 +25,11 @@
 \usepackage{xcolor}
 \usepackage{hyperref}
 \usepackage{fancyhdr}
-
+% Gráficas
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{patterns}
 % ============================================================
 % Formato de párrafos
 % ============================================================
@@ -96,16 +100,16 @@
 
 \maketitle
 \tableofcontents
-\newpage
 
 
 \begin{center}
-    \includegraphics[width=0.75\textwidth]{QR_Notas_CI_TFC.png}
+    \includegraphics[width=0.70\textwidth]{QR_Notas_CI_TFC.png}
 
     \small
     Escanea el código QR para acceder a las notas de esta unidad.
 \end{center}
 
+\newpage
 
 
 % ============================================================
@@ -186,6 +190,1259 @@ mediante una operación inversa.
 
 Esta relación es precisamente el contenido del Teorema Fundamental del
 Cálculo.
+
+% ============================================================
+\subsection{Ejemplos de aproximación de áreas mediante sumas de Riemann}
+% ============================================================
+
+\begin{Ejem}
+
+Determine el área de la región limitada por la curva
+
+\[
+y=x^2,
+\]
+
+el eje $x$ y la recta
+
+\[
+x=3,
+\]
+
+utilizando rectángulos inscritos.
+
+\textbf{Solución.}
+
+Consideremos el intervalo
+
+\[
+[0,3].
+\]
+
+Lo dividimos en $n$ subintervalos de igual longitud. Entonces
+
+\[
+\Delta x
+=
+\frac{3-0}{n}
+=
+\frac{3}{n}.
+\]
+
+Los puntos de la partición son
+
+\[
+x_0=0,\qquad
+x_1=\Delta x,\qquad
+x_2=2\Delta x,\qquad
+\ldots,\qquad
+x_i=i\Delta x,
+\]
+
+y finalmente
+
+\[
+x_n=3.
+\]
+
+Como la función
+
+\[
+f(x)=x^2
+\]
+
+es creciente en $[0,3]$, para construir rectángulos inscritos tomamos
+como altura el valor de la función en el extremo izquierdo de cada
+subintervalo.
+
+Así,
+
+\[
+x_{i-1}=(i-1)\Delta x.
+\]
+
+La suma de Riemann correspondiente es
+
+\[
+A
+=
+\lim_{n\to\infty}
+\sum_{i=1}^{n}
+f(x_{i-1})\Delta x.
+\]
+
+Como
+
+\[
+f(x)=x^2,
+\]
+
+tenemos
+
+\[
+f(x_{i-1})
+=
+\left[(i-1)\Delta x\right]^2.
+\]
+
+Por tanto,
+
+\begin{align*}
+\sum_{i=1}^{n}
+f(x_{i-1})\Delta x
+&=
+\sum_{i=1}^{n}
+(i-1)^2(\Delta x)^3.
+\end{align*}
+
+Como
+
+\[
+\Delta x=\frac{3}{n},
+\]
+
+se obtiene
+
+\[
+(\Delta x)^3
+=
+\frac{27}{n^3}.
+\]
+
+Entonces
+
+\[
+\sum_{i=1}^{n}
+f(x_{i-1})\Delta x
+=
+\frac{27}{n^3}
+\sum_{i=1}^{n}(i-1)^2.
+\]
+
+Desarrollando,
+
+\[
+(i-1)^2=i^2-2i+1,
+\]
+
+por lo que
+
+\[
+\sum_{i=1}^{n}(i-1)^2
+=
+\sum_{i=1}^{n}i^2
+-
+2\sum_{i=1}^{n}i
++
+\sum_{i=1}^{n}1.
+\]
+
+Utilizamos las identidades
+
+\[
+\sum_{i=1}^{n}i
+=
+\frac{n(n+1)}{2},
+\]
+
+\[
+\sum_{i=1}^{n}i^2
+=
+\frac{n(n+1)(2n+1)}{6},
+\]
+
+y
+
+\[
+\sum_{i=1}^{n}1=n.
+\]
+
+Por tanto,
+
+\begin{align*}
+\sum_{i=1}^{n}
+f(x_{i-1})\Delta x
+&=
+\frac{27}{n^3}
+\left[
+\frac{n(n+1)(2n+1)}{6}
+-
+2\frac{n(n+1)}{2}
++n
+\right].
+\end{align*}
+
+Simplificando,
+
+\[
+\sum_{i=1}^{n}
+f(x_{i-1})\Delta x
+=
+\frac{9}{2}
+\frac{2n^2-3n+1}{n^2}.
+\]
+
+Por tanto,
+
+\begin{align*}
+A
+&=
+\lim_{n\to\infty}
+\frac{9}{2}
+\frac{2n^2-3n+1}{n^2}\\
+&=
+\frac{9}{2}
+\lim_{n\to\infty}
+\left(
+2-\frac{3}{n}+\frac{1}{n^2}
+\right).
+\end{align*}
+
+Finalmente,
+
+\[
+A
+=
+\frac{9}{2}(2)
+=
+\boxed{9}.
+\]
+
+Por tanto, el área de la región es
+
+\[
+\boxed{9\text{ unidades cuadradas}}.
+\]
+
+\begin{figure}[htbp]
+\centering
+
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines=middle,
+    xmin=-0.2, xmax=3.4,
+    ymin=-0.5, ymax=10,
+    xlabel={$x$},
+    ylabel={$y$},
+    width=10cm,
+    height=7cm,
+    samples=200,
+    xtick={0,0.5,1,1.5,2,2.5,3},
+    ytick={0,2,4,6,8,9},
+    domain=0:3
+]
+
+% Rectángulos inscritos: n=6
+\addplot[ybar interval, fill=gray!30, draw=black]
+coordinates {
+    (0,0)
+    (0.5,0.25)
+    (1,1)
+    (1.5,2.25)
+    (2,4)
+    (2.5,6.25)
+    (3,6.25)
+};
+
+% Curva
+\addplot[thick, domain=0:3] {x^2};
+
+\node at (axis cs:2.45,8.2) {$y=x^2$};
+
+\end{axis}
+\end{tikzpicture}
+
+\caption{Aproximación del área bajo $y=x^2$ mediante
+rectángulos inscritos.}
+\end{figure}
+\end{Ejem}
+
+% ============================================================
+
+\begin{Ejem}
+
+Calcule el área de la misma región del ejemplo anterior, limitada por
+
+\[
+y=x^2,
+\qquad
+0\leq x\leq3,
+\]
+
+utilizando rectángulos circunscritos.
+
+\textbf{Solución.}
+
+Nuevamente dividimos el intervalo
+
+\[
+[0,3]
+\]
+
+en $n$ subintervalos iguales.
+
+Entonces
+
+\[
+\Delta x
+=
+\frac{3}{n}.
+\]
+
+Como
+
+\[
+f(x)=x^2
+\]
+
+es creciente en $[0,3]$, para obtener rectángulos circunscritos utilizamos
+el extremo derecho de cada subintervalo.
+
+Por tanto,
+
+\[
+x_i=i\Delta x.
+\]
+
+La suma correspondiente es
+
+\[
+A
+=
+\lim_{n\to\infty}
+\sum_{i=1}^{n}
+f(x_i)\Delta x.
+\]
+
+Como
+
+\[
+f(x_i)
+=
+(i\Delta x)^2,
+\]
+
+tenemos
+
+\begin{align*}
+\sum_{i=1}^{n}
+f(x_i)\Delta x
+&=
+\sum_{i=1}^{n}
+i^2(\Delta x)^3.
+\end{align*}
+
+Como
+
+\[
+\Delta x=\frac{3}{n},
+\]
+
+se obtiene
+
+\[
+\sum_{i=1}^{n}
+f(x_i)\Delta x
+=
+\frac{27}{n^3}
+\sum_{i=1}^{n}i^2.
+\]
+
+Usando
+
+\[
+\sum_{i=1}^{n}i^2
+=
+\frac{n(n+1)(2n+1)}{6},
+\]
+
+resulta
+
+\begin{align*}
+\sum_{i=1}^{n}
+f(x_i)\Delta x
+&=
+\frac{27}{n^3}
+\frac{n(n+1)(2n+1)}{6}\\
+&=
+\frac{9}{2}
+\frac{2n^2+3n+1}{n^2}.
+\end{align*}
+
+Por tanto,
+
+\begin{align*}
+A
+&=
+\lim_{n\to\infty}
+\frac{9}{2}
+\left(
+2+\frac{3}{n}+\frac{1}{n^2}
+\right)\\
+&=
+\frac{9}{2}(2).
+\end{align*}
+
+Así,
+
+\[
+\boxed{A=9}.
+\]
+
+Por tanto, tanto las aproximaciones mediante rectángulos inscritos como
+las aproximaciones mediante rectángulos circunscritos convergen al mismo
+valor:
+
+\[
+\boxed{9\text{ unidades cuadradas}}.
+\]
+\begin{figure}[htbp]
+\centering
+
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines=middle,
+    xmin=-0.2, xmax=3.4,
+    ymin=-0.5, ymax=10,
+    xlabel={$x$},
+    ylabel={$y$},
+    width=10cm,
+    height=7cm,
+    samples=200,
+    xtick={0,0.5,1,1.5,2,2.5,3},
+    ytick={0,2,4,6,8,9},
+    domain=0:3
+]
+
+% Rectángulos circunscritos: n=6
+\addplot[ybar interval, fill=gray!30, draw=black]
+coordinates {
+    (0,0.25)
+    (0.5,1)
+    (1,2.25)
+    (1.5,4)
+    (2,6.25)
+    (2.5,9)
+    (3,9)
+};
+
+% Curva
+\addplot[thick, domain=0:3] {x^2};
+
+\node at (axis cs:2.4,8.0) {$y=x^2$};
+
+\end{axis}
+\end{tikzpicture}
+
+\caption{Aproximación del área bajo $y=x^2$ mediante
+rectángulos circunscritos.}
+\end{figure}
+\end{Ejem}
+
+% ============================================================
+
+\begin{Ejem}
+
+Calcule el área de la región trapezoidal limitada por las rectas
+
+\[
+x=1,
+\qquad
+x=3,
+\]
+
+el eje $x$ y la recta
+
+\[
+2x+y=8,
+\]
+
+utilizando una suma de Riemann.
+
+\textbf{Solución.}
+
+Despejamos $y$ de la ecuación de la recta:
+
+\[
+2x+y=8,
+\]
+
+por lo que
+
+\[
+y=-2x+8.
+\]
+
+Así,
+
+\[
+f(x)=-2x+8.
+\]
+
+La región se encuentra sobre el intervalo
+
+\[
+[1,3].
+\]
+
+Dividimos dicho intervalo en $n$ subintervalos iguales. Entonces
+
+\[
+\Delta x
+=
+\frac{3-1}{n}
+=
+\frac{2}{n}.
+\]
+
+Los puntos de la partición son
+
+\[
+x_0=1,
+\]
+
+\[
+x_1=1+\Delta x,
+\]
+
+y, en general,
+
+\[
+x_i=1+i\Delta x.
+\]
+
+Como la función
+
+\[
+f(x)=-2x+8
+\]
+
+es decreciente en $[1,3]$, el valor mínimo en cada subintervalo
+$[x_{i-1},x_i]$ se obtiene en el extremo derecho $x_i$.
+
+Por tanto,
+
+\[
+f(x_i)
+=
+-2(1+i\Delta x)+8.
+\]
+
+Simplificando,
+
+\[
+f(x_i)
+=
+6-2i\Delta x.
+\]
+
+El área se obtiene mediante
+
+\[
+A
+=
+\lim_{n\to\infty}
+\sum_{i=1}^{n}
+f(x_i)\Delta x.
+\]
+
+Sustituyendo,
+
+\[
+A
+=
+\lim_{n\to\infty}
+\sum_{i=1}^{n}
+\left(
+6-2i\Delta x
+\right)\Delta x.
+\]
+
+Así,
+
+\[
+A
+=
+\lim_{n\to\infty}
+\sum_{i=1}^{n}
+\left[
+6\Delta x
+-
+2i(\Delta x)^2
+\right].
+\]
+
+Como
+
+\[
+\Delta x=\frac{2}{n},
+\]
+
+tenemos
+
+\[
+6\Delta x
+=
+\frac{12}{n}
+\]
+
+y
+
+\[
+2(\Delta x)^2
+=
+2\left(\frac{2}{n}\right)^2
+=
+\frac{8}{n^2}.
+\]
+
+Por tanto,
+
+\[
+A
+=
+\lim_{n\to\infty}
+\left[
+\frac{12}{n}
+\sum_{i=1}^{n}1
+-
+\frac{8}{n^2}
+\sum_{i=1}^{n}i
+\right].
+\]
+
+Utilizando
+
+\[
+\sum_{i=1}^{n}1=n
+\]
+
+y
+
+\[
+\sum_{i=1}^{n}i
+=
+\frac{n(n+1)}{2},
+\]
+
+obtenemos
+
+\begin{align*}
+A
+&=
+\lim_{n\to\infty}
+\left[
+\frac{12}{n}n
+-
+\frac{8}{n^2}
+\frac{n(n+1)}{2}
+\right]\\
+&=
+\lim_{n\to\infty}
+\left[
+12
+-
+4\frac{n+1}{n}
+\right].
+\end{align*}
+
+Entonces
+
+\[
+A
+=
+12-4
+=
+\boxed{8}.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+A=8\text{ unidades cuadradas}.
+}
+\]
+
+Podemos verificar el resultado mediante geometría elemental.
+
+Las alturas del trapecio son
+
+\[
+f(1)=6
+\]
+
+y
+
+\[
+f(3)=2,
+\]
+
+mientras que la distancia entre $x=1$ y $x=3$ es
+
+\[
+3-1=2.
+\]
+
+La fórmula del área de un trapecio es
+
+\[
+A
+=
+\frac12 h(b_1+b_2).
+\]
+
+Por tanto,
+
+\[
+A
+=
+\frac12(2)(6+2)
+=
+8.
+\]
+
+Así, ambos procedimientos coinciden:
+
+\[
+\boxed{A=8}.
+\]
+\begin{figure}[htbp]
+\centering
+
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines=middle,
+    xmin=-0.2, xmax=4.5,
+    ymin=-0.5, ymax=9,
+    xlabel={$x$},
+    ylabel={$y$},
+    width=10cm,
+    height=7cm,
+    samples=200,
+    xtick={0,1,2,3,4},
+    ytick={0,2,4,6,8},
+    domain=0:4
+]
+
+% Región trapezoidal
+\addplot[
+    domain=1:3,
+    fill=gray!15,
+    draw=none
+] {-2*x+8} \closedcycle;
+
+% Recta
+\addplot[thick, domain=0:4] {-2*x+8};
+
+% Límites verticales
+\addplot[dashed] coordinates {(1,0) (1,6)};
+\addplot[dashed] coordinates {(3,0) (3,2)};
+
+\node at (axis cs:2.8,3.2) {$y=-2x+8$};
+
+\end{axis}
+\end{tikzpicture}
+
+\caption{Región limitada por $x=1$, $x=3$, el eje $x$
+y la recta $y=-2x+8$.}
+\end{figure}
+
+
+\begin{figure}[htbp]
+\centering
+
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines=middle,
+    xmin=0.5, xmax=3.5,
+    ymin=-0.5, ymax=7,
+    xlabel={$x$},
+    ylabel={$y$},
+    width=10cm,
+    height=7cm,
+    samples=200,
+    xtick={1,1.5,2,2.5,3},
+    ytick={0,2,4,6},
+    domain=1:3
+]
+
+% Rectángulos con extremos derechos, n=4
+\addplot[ybar interval, fill=gray!30, draw=black]
+coordinates {
+    (1,5)
+    (1.5,4)
+    (2,3)
+    (2.5,2)
+    (3,2)
+};
+
+% Recta
+\addplot[thick, domain=1:3] {-2*x+8};
+
+\node at (axis cs:2.55,3.5) {$y=-2x+8$};
+
+\end{axis}
+\end{tikzpicture}
+
+\caption{Suma de Riemann utilizando extremos derechos para
+$f(x)=-2x+8$ en $[1,3]$.}
+\end{figure}
+\end{Ejem}
+% ============================================================
+\subsection{Sumas de Riemann sobre particiones no uniformes}
+% ============================================================
+
+Hasta ahora hemos considerado principalmente particiones en las que
+todos los subintervalos tienen la misma longitud. Sin embargo, esta
+condición no es necesaria.
+
+Sea
+
+\[
+P=\{x_0,x_1,\ldots,x_n\}
+\]
+
+una partición del intervalo $[a,b]$, es decir,
+
+\[
+a=x_0<x_1<x_2<\cdots<x_n=b.
+\]
+
+La longitud del $i$-ésimo subintervalo es
+
+\[
+\Delta x_i=x_i-x_{i-1}.
+\]
+
+Obsérvese que, en general,
+
+\[
+\Delta x_1,\Delta x_2,\ldots,\Delta x_n
+\]
+
+no tienen por qué ser iguales.
+
+Para cada subintervalo
+
+\[
+[x_{i-1},x_i]
+\]
+
+elegimos un punto arbitrario
+
+\[
+w_i\in[x_{i-1},x_i].
+\]
+
+La expresión
+
+\[
+\boxed{
+\sum_{i=1}^{n}f(w_i)\Delta x_i
+}
+\]
+
+recibe el nombre de \textbf{suma de Riemann} asociada a la función
+$f$, a la partición $P$ y a los puntos de muestra $w_i$.
+
+Cada término
+
+\[
+f(w_i)\Delta x_i
+\]
+
+puede interpretarse geométricamente como el área con signo de un
+rectángulo cuya base tiene longitud $\Delta x_i$ y cuya altura es
+$f(w_i)$.
+
+% ============================================================
+
+\begin{Ejem}
+
+Considere la función
+
+\[
+f(x)=10-x^2,
+\qquad
+0.25\leq x\leq 3.
+\]
+
+Sea la partición
+
+\[
+P=
+\left\{
+0.25,\,
+1,\,
+1.5,\,
+1.75,\,
+2.25,\,
+3
+\right\}.
+\]
+
+En cada uno de los cinco subintervalos se eligen los siguientes
+puntos de muestra:
+
+\[
+w_1=0.5,
+\qquad
+w_2=1.25,
+\qquad
+w_3=1.75,
+\qquad
+w_4=2,
+\qquad
+w_5=2.75.
+\]
+
+Calcule la suma de Riemann
+
+\[
+\sum_{i=1}^{5}f(w_i)\Delta x_i.
+\]
+
+\textbf{Solución.}
+
+La partición determina los cinco subintervalos
+
+\[
+[0.25,1],
+\qquad
+[1,1.5],
+\qquad
+[1.5,1.75],
+\qquad
+[1.75,2.25],
+\qquad
+[2.25,3].
+\]
+
+A diferencia de los ejemplos anteriores, estos subintervalos
+\textbf{no tienen todos la misma longitud}.
+
+Calculamos cada una de ellas:
+
+\[
+\Delta x_1
+=
+1-0.25
+=
+0.75,
+\]
+
+\[
+\Delta x_2
+=
+1.5-1
+=
+0.5,
+\]
+
+\[
+\Delta x_3
+=
+1.75-1.5
+=
+0.25,
+\]
+
+\[
+\Delta x_4
+=
+2.25-1.75
+=
+0.5,
+\]
+
+y
+
+\[
+\Delta x_5
+=
+3-2.25
+=
+0.75.
+\]
+
+Por tanto,
+
+\[
+\begin{aligned}
+\Delta x_1&=0.75,\\
+\Delta x_2&=0.50,\\
+\Delta x_3&=0.25,\\
+\Delta x_4&=0.50,\\
+\Delta x_5&=0.75.
+\end{aligned}
+\]
+
+Ahora evaluamos la función
+
+\[
+f(x)=10-x^2
+\]
+
+en cada uno de los puntos de muestra.
+
+Para $w_1=0.5$,
+
+\[
+f(w_1)
+=
+f(0.5)
+=
+10-(0.5)^2
+=
+9.75.
+\]
+
+Para $w_2=1.25$,
+
+\[
+f(w_2)
+=
+f(1.25)
+=
+10-(1.25)^2
+=
+8.4375.
+\]
+
+Para $w_3=1.75$,
+
+\[
+f(w_3)
+=
+f(1.75)
+=
+10-(1.75)^2
+=
+6.9375.
+\]
+
+Para $w_4=2$,
+
+\[
+f(w_4)
+=
+f(2)
+=
+10-2^2
+=
+6.
+\]
+
+Finalmente, para $w_5=2.75$,
+
+\[
+f(w_5)
+=
+f(2.75)
+=
+10-(2.75)^2
+=
+2.4375.
+\]
+
+La suma de Riemann es
+
+\[
+\sum_{i=1}^{5}f(w_i)\Delta x_i.
+\]
+
+Escribiendo cada término explícitamente,
+
+\[
+\begin{aligned}
+\sum_{i=1}^{5}f(w_i)\Delta x_i
+={}&
+f(w_1)\Delta x_1
++
+f(w_2)\Delta x_2\\
+&+
+f(w_3)\Delta x_3
++
+f(w_4)\Delta x_4
++
+f(w_5)\Delta x_5.
+\end{aligned}
+\]
+
+Sustituyendo los puntos de muestra y las longitudes de los
+subintervalos,
+
+\[
+\begin{aligned}
+\sum_{i=1}^{5}f(w_i)\Delta x_i
+={}&
+f(0.5)(1-0.25)
++
+f(1.25)(1.5-1)\\
+&+
+f(1.75)(1.75-1.5)
++
+f(2)(2.25-1.75)\\
+&+
+f(2.75)(3-2.25).
+\end{aligned}
+\]
+
+Por tanto,
+
+\[
+\begin{aligned}
+\sum_{i=1}^{5}f(w_i)\Delta x_i
+={}&
+(9.75)(0.75)
++
+(8.4375)(0.5)\\
+&+
+(6.9375)(0.25)
++
+(6)(0.5)
++
+(2.4375)(0.75).
+\end{aligned}
+\]
+
+Calculando cada producto,
+
+\[
+\begin{aligned}
+(9.75)(0.75)&=7.3125,\\
+(8.4375)(0.5)&=4.21875,\\
+(6.9375)(0.25)&=1.734375,\\
+(6)(0.5)&=3,\\
+(2.4375)(0.75)&=1.828125.
+\end{aligned}
+\]
+
+Así,
+
+\[
+\begin{aligned}
+\sum_{i=1}^{5}f(w_i)\Delta x_i
+&=
+7.3125
++4.21875
++1.734375
++3
++1.828125\\
+&=
+\boxed{18.09375}.
+\end{aligned}
+\]
+
+Por tanto, la suma de Riemann asociada a esta partición y a estos
+puntos de muestra es
+
+\[
+\boxed{18.09375}.
+\]
+
+\begin{figure}[htbp]
+\centering
+
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines=middle,
+    xmin=0, xmax=3.3,
+    ymin=-0.5, ymax=11,
+    xlabel={$x$},
+    ylabel={$y$},
+    width=11cm,
+    height=7.5cm,
+    samples=200,
+    xtick={0.25,1,1.5,1.75,2.25,3},
+    ytick={0,2,4,6,8,10},
+    domain=0.25:3
+]
+
+% Rectángulo 1
+\addplot[
+    fill=gray!25,
+    draw=black
+] coordinates {
+    (0.25,0)
+    (0.25,9.75)
+    (1,9.75)
+    (1,0)
+} \closedcycle;
+
+% Rectángulo 2
+\addplot[
+    fill=gray!25,
+    draw=black
+] coordinates {
+    (1,0)
+    (1,8.4375)
+    (1.5,8.4375)
+    (1.5,0)
+} \closedcycle;
+
+% Rectángulo 3
+\addplot[
+    fill=gray!25,
+    draw=black
+] coordinates {
+    (1.5,0)
+    (1.5,6.9375)
+    (1.75,6.9375)
+    (1.75,0)
+} \closedcycle;
+
+% Rectángulo 4
+\addplot[
+    fill=gray!25,
+    draw=black
+] coordinates {
+    (1.75,0)
+    (1.75,6)
+    (2.25,6)
+    (2.25,0)
+} \closedcycle;
+
+% Rectángulo 5
+\addplot[
+    fill=gray!25,
+    draw=black
+] coordinates {
+    (2.25,0)
+    (2.25,2.4375)
+    (3,2.4375)
+    (3,0)
+} \closedcycle;
+
+% Función
+\addplot[very thick, domain=0.25:3] {10-x^2};
+
+% Puntos de muestra
+\addplot[
+    only marks,
+    mark=*,
+    mark size=1.8pt
+] coordinates {
+    (0.5,9.75)
+    (1.25,8.4375)
+    (1.75,6.9375)
+    (2,6)
+    (2.75,2.4375)
+};
+
+\node at (axis cs:2.45,5.2) {$f(x)=10-x^2$};
+
+\end{axis}
+\end{tikzpicture}
+
+\caption{Suma de Riemann para $f(x)=10-x^2$ utilizando una
+partición no uniforme y puntos de muestra arbitrarios.}
+\end{figure}
+
+\end{Ejem}
+
+
 
 % ============================================================
 \subsection{El problema del área}
