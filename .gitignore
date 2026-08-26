@@ -1,0 +1,16 @@
+# Archivos auxiliares de LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+# Archivos temporales
+*.tmp
+*.bak
+*~
+
+# macOS
+.DS_Store
