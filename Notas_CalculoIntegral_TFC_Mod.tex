@@ -1,0 +1,6220 @@
+\documentclass[12pt]{article}
+
+% ============================================================
+% Codificación e idioma
+% ============================================================
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+% ============================================================
+% Matemáticas
+% ============================================================
+
+\usepackage{amsmath,amssymb,amsfonts}
+
+% ============================================================
+% Formato y utilidades
+% ============================================================
+
+\usepackage[letterpaper,margin=2.5cm]{geometry}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+% Gráficas
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{patterns}
+\usepackage{tocloft}
+% ============================================================
+% Formato de párrafos
+% ============================================================
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.6em}
+
+% Compatibilidad con listas provenientes de Pandoc
+\providecommand{\tightlist}{
+  \setlength{\itemsep}{0pt}
+  \setlength{\parskip}{0pt}
+}
+
+% ============================================================
+% Entorno para ejemplos
+% ============================================================
+
+\newenvironment{Ejem}
+{\par\medskip\noindent\textbf{Ejemplo.}\ }
+{\par\medskip}
+
+% ============================================================
+% Hipervínculos
+% ============================================================
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  urlcolor=blue,
+  citecolor=blue
+}
+
+% ============================================================
+% Encabezados y pies de página
+% ============================================================
+
+\setlength{\headheight}{15pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+
+% Encabezado
+\fancyhead[L]{Tecnológico Nacional de México}
+\fancyhead[R]{Cálculo Integral}
+
+% Pie de página
+\fancyfoot[L]{Carlos Ernesto Martínez}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{mrdgzcarlose@gmail.com}
+
+% Líneas
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\newtheorem{Prop}{Proposici\'on}
+\newtheorem{Def}{Definici\'on}
+\newtheorem{Teo}{Teorema}
+\newtheorem{Coro}{Corolario}
+
+% ============================================================
+% Datos del documento
+% ============================================================
+
+\title{
+    Notas para el curso de Cálculo Integral\\[0.5em]
+    \large Unidad 1: Teorema Fundamental del Cálculo
+}
+
+\author{Carlos Ernesto Martínez}
+\date{}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+
+\begin{center}
+    \includegraphics[width=0.70\textwidth]{QR_Notas_CI_TFC.png}
+
+    \small
+    Escanea el código QR para acceder a las notas de esta unidad.
+\end{center}
+
+\newpage
+
+
+% ============================================================
+\section{Teorema Fundamental del Cálculo}
+% ============================================================
+
+El cálculo integral surge históricamente de diversos problemas geométricos
+y físicos. Entre ellos destacan el cálculo de áreas, volúmenes, longitudes
+de arco, centros de masa y, posteriormente, problemas relacionados con
+movimiento y acumulación.
+
+La idea fundamental que desarrollaremos en esta unidad consiste en construir
+una noción rigurosa de área bajo la gráfica de una función y mostrar que
+este problema está íntimamente relacionado con el problema de encontrar
+antiderivadas.
+
+Esta relación constituye uno de los resultados centrales de todo el cálculo:
+
+\[
+\boxed{\text{Teorema Fundamental del Cálculo}}
+\]
+
+El teorema establece, esencialmente, que los procesos de derivación e
+integración son operaciones inversas entre sí.
+
+Antes de formularlo y demostrarlo será necesario construir cuidadosamente
+el concepto de integral definida.
+
+% ============================================================
+\subsection{Introducción histórica al cálculo integral}
+% ============================================================
+
+El problema de determinar áreas y volúmenes es considerablemente anterior
+al desarrollo moderno del cálculo.
+
+Desde la antigüedad se conocían fórmulas para calcular el área de figuras
+geométricas sencillas, como rectángulos, triángulos y círculos. Sin embargo,
+el cálculo de áreas delimitadas por curvas requería procedimientos mucho
+más sofisticados.
+
+Uno de los antecedentes más importantes fue el llamado
+\emph{método de agotamiento}, utilizado por matemáticos griegos como
+Eudoxo y Arquímedes.
+
+La idea fundamental consistía en aproximar una figura complicada mediante
+figuras más sencillas cuyas áreas pudieran calcularse exactamente.
+
+Por ejemplo, para aproximar el área de un círculo pueden construirse
+polígonos regulares inscritos y circunscritos. Al aumentar el número de
+lados de los polígonos, sus áreas proporcionan aproximaciones cada vez
+más precisas del área del círculo.
+
+En términos modernos, este procedimiento contiene ya una de las ideas
+esenciales del cálculo integral:
+
+\[
+\boxed{
+\text{aproximar una cantidad mediante una sucesión de aproximaciones}
+}
+\]
+
+y posteriormente estudiar el límite de dichas aproximaciones.
+
+Durante los siglos XVII y XVIII, los trabajos de Newton y Leibniz
+establecieron una relación profunda entre dos problemas que inicialmente
+parecían distintos:
+
+\begin{enumerate}
+    \item encontrar la pendiente de la recta tangente a una curva;
+    \item calcular el área bajo una curva.
+\end{enumerate}
+
+El primer problema condujo al cálculo diferencial, mientras que el segundo
+condujo al cálculo integral.
+
+El descubrimiento fundamental fue que ambos problemas están relacionados
+mediante una operación inversa.
+
+Esta relación es precisamente el contenido del Teorema Fundamental del
+Cálculo.
+
+% ============================================================
+\subsection{Ejemplos de aproximación de áreas mediante sumas de Riemann}
+% ============================================================
+
+\begin{Ejem}
+
+Determine el área de la región limitada por la curva
+
+\[
+y=x^2,
+\]
+
+el eje $x$ y la recta
+
+\[
+x=3,
+\]
+
+utilizando rectángulos inscritos.
+
+\textbf{Solución.}
+
+Consideremos el intervalo
+
+\[
+[0,3].
+\]
+
+Lo dividimos en $n$ subintervalos de igual longitud. Entonces
+
+\[
+\Delta x
+=
+\frac{3-0}{n}
+=
+\frac{3}{n}.
+\]
+
+Los puntos de la partición son
+
+\[
+x_0=0,\qquad
+x_1=\Delta x,\qquad
+x_2=2\Delta x,\qquad
+\ldots,\qquad
+x_i=i\Delta x,
+\]
+
+y finalmente
+
+\[
+x_n=3.
+\]
+
+Como la función
+
+\[
+f(x)=x^2
+\]
+
+es creciente en $[0,3]$, para construir rectángulos inscritos tomamos
+como altura el valor de la función en el extremo izquierdo de cada
+subintervalo.
+
+Así,
+
+\[
+x_{i-1}=(i-1)\Delta x.
+\]
+
+La suma de Riemann correspondiente es
+
+\[
+A
+=
+\lim_{n\to\infty}
+\sum_{i=1}^{n}
+f(x_{i-1})\Delta x.
+\]
+
+Como
+
+\[
+f(x)=x^2,
+\]
+
+tenemos
+
+\[
+f(x_{i-1})
+=
+\left[(i-1)\Delta x\right]^2.
+\]
+
+Por tanto,
+
+\begin{align*}
+\sum_{i=1}^{n}
+f(x_{i-1})\Delta x
+&=
+\sum_{i=1}^{n}
+(i-1)^2(\Delta x)^3.
+\end{align*}
+
+Como
+
+\[
+\Delta x=\frac{3}{n},
+\]
+
+se obtiene
+
+\[
+(\Delta x)^3
+=
+\frac{27}{n^3}.
+\]
+
+Entonces
+
+\[
+\sum_{i=1}^{n}
+f(x_{i-1})\Delta x
+=
+\frac{27}{n^3}
+\sum_{i=1}^{n}(i-1)^2.
+\]
+
+Desarrollando,
+
+\[
+(i-1)^2=i^2-2i+1,
+\]
+
+por lo que
+
+\[
+\sum_{i=1}^{n}(i-1)^2
+=
+\sum_{i=1}^{n}i^2
+-
+2\sum_{i=1}^{n}i
++
+\sum_{i=1}^{n}1.
+\]
+
+Utilizamos las identidades
+
+\[
+\sum_{i=1}^{n}i
+=
+\frac{n(n+1)}{2},
+\]
+
+\[
+\sum_{i=1}^{n}i^2
+=
+\frac{n(n+1)(2n+1)}{6},
+\]
+
+y
+
+\[
+\sum_{i=1}^{n}1=n.
+\]
+
+Por tanto,
+
+\begin{align*}
+\sum_{i=1}^{n}
+f(x_{i-1})\Delta x
+&=
+\frac{27}{n^3}
+\left[
+\frac{n(n+1)(2n+1)}{6}
+-
+2\frac{n(n+1)}{2}
++n
+\right].
+\end{align*}
+
+Simplificando,
+
+\[
+\sum_{i=1}^{n}
+f(x_{i-1})\Delta x
+=
+\frac{9}{2}
+\frac{2n^2-3n+1}{n^2}.
+\]
+
+Por tanto,
+
+\begin{align*}
+A
+&=
+\lim_{n\to\infty}
+\frac{9}{2}
+\frac{2n^2-3n+1}{n^2}\\
+&=
+\frac{9}{2}
+\lim_{n\to\infty}
+\left(
+2-\frac{3}{n}+\frac{1}{n^2}
+\right).
+\end{align*}
+
+Finalmente,
+
+\[
+A
+=
+\frac{9}{2}(2)
+=
+\boxed{9}.
+\]
+
+Por tanto, el área de la región es
+
+\[
+\boxed{9\text{ unidades cuadradas}}.
+\]
+
+\begin{figure}[htbp]
+\centering
+
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines=middle,
+    xmin=-0.2, xmax=3.4,
+    ymin=-0.5, ymax=10,
+    xlabel={$x$},
+    ylabel={$y$},
+    width=10cm,
+    height=7cm,
+    samples=200,
+    xtick={0,0.5,1,1.5,2,2.5,3},
+    ytick={0,2,4,6,8,9},
+    domain=0:3
+]
+
+% Rectángulos inscritos: n=6
+\addplot[ybar interval, fill=gray!30, draw=black]
+coordinates {
+    (0,0)
+    (0.5,0.25)
+    (1,1)
+    (1.5,2.25)
+    (2,4)
+    (2.5,6.25)
+    (3,6.25)
+};
+
+% Curva
+\addplot[thick, domain=0:3] {x^2};
+
+\node at (axis cs:2.45,8.2) {$y=x^2$};
+
+\end{axis}
+\end{tikzpicture}
+
+\caption{Aproximación del área bajo $y=x^2$ mediante
+rectángulos inscritos.}
+\end{figure}
+\end{Ejem}
+
+% ============================================================
+
+\begin{Ejem}
+
+Calcule el área de la misma región del ejemplo anterior, limitada por
+
+\[
+y=x^2,
+\qquad
+0\leq x\leq3,
+\]
+
+utilizando rectángulos circunscritos.
+
+\textbf{Solución.}
+
+Nuevamente dividimos el intervalo
+
+\[
+[0,3]
+\]
+
+en $n$ subintervalos iguales.
+
+Entonces
+
+\[
+\Delta x
+=
+\frac{3}{n}.
+\]
+
+Como
+
+\[
+f(x)=x^2
+\]
+
+es creciente en $[0,3]$, para obtener rectángulos circunscritos utilizamos
+el extremo derecho de cada subintervalo.
+
+Por tanto,
+
+\[
+x_i=i\Delta x.
+\]
+
+La suma correspondiente es
+
+\[
+A
+=
+\lim_{n\to\infty}
+\sum_{i=1}^{n}
+f(x_i)\Delta x.
+\]
+
+Como
+
+\[
+f(x_i)
+=
+(i\Delta x)^2,
+\]
+
+tenemos
+
+\begin{align*}
+\sum_{i=1}^{n}
+f(x_i)\Delta x
+&=
+\sum_{i=1}^{n}
+i^2(\Delta x)^3.
+\end{align*}
+
+Como
+
+\[
+\Delta x=\frac{3}{n},
+\]
+
+se obtiene
+
+\[
+\sum_{i=1}^{n}
+f(x_i)\Delta x
+=
+\frac{27}{n^3}
+\sum_{i=1}^{n}i^2.
+\]
+
+Usando
+
+\[
+\sum_{i=1}^{n}i^2
+=
+\frac{n(n+1)(2n+1)}{6},
+\]
+
+resulta
+
+\begin{align*}
+\sum_{i=1}^{n}
+f(x_i)\Delta x
+&=
+\frac{27}{n^3}
+\frac{n(n+1)(2n+1)}{6}\\
+&=
+\frac{9}{2}
+\frac{2n^2+3n+1}{n^2}.
+\end{align*}
+
+Por tanto,
+
+\begin{align*}
+A
+&=
+\lim_{n\to\infty}
+\frac{9}{2}
+\left(
+2+\frac{3}{n}+\frac{1}{n^2}
+\right)\\
+&=
+\frac{9}{2}(2).
+\end{align*}
+
+Así,
+
+\[
+\boxed{A=9}.
+\]
+
+Por tanto, tanto las aproximaciones mediante rectángulos inscritos como
+las aproximaciones mediante rectángulos circunscritos convergen al mismo
+valor:
+
+\[
+\boxed{9\text{ unidades cuadradas}}.
+\]
+\begin{figure}[htbp]
+\centering
+
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines=middle,
+    xmin=-0.2, xmax=3.4,
+    ymin=-0.5, ymax=10,
+    xlabel={$x$},
+    ylabel={$y$},
+    width=10cm,
+    height=7cm,
+    samples=200,
+    xtick={0,0.5,1,1.5,2,2.5,3},
+    ytick={0,2,4,6,8,9},
+    domain=0:3
+]
+
+% Rectángulos circunscritos: n=6
+\addplot[ybar interval, fill=gray!30, draw=black]
+coordinates {
+    (0,0.25)
+    (0.5,1)
+    (1,2.25)
+    (1.5,4)
+    (2,6.25)
+    (2.5,9)
+    (3,9)
+};
+
+% Curva
+\addplot[thick, domain=0:3] {x^2};
+
+\node at (axis cs:2.4,8.0) {$y=x^2$};
+
+\end{axis}
+\end{tikzpicture}
+
+\caption{Aproximación del área bajo $y=x^2$ mediante
+rectángulos circunscritos.}
+\end{figure}
+\end{Ejem}
+
+% ============================================================
+
+\begin{Ejem}
+
+Calcule el área de la región trapezoidal limitada por las rectas
+
+\[
+x=1,
+\qquad
+x=3,
+\]
+
+el eje $x$ y la recta
+
+\[
+2x+y=8,
+\]
+
+utilizando una suma de Riemann.
+
+\textbf{Solución.}
+
+Despejamos $y$ de la ecuación de la recta:
+
+\[
+2x+y=8,
+\]
+
+por lo que
+
+\[
+y=-2x+8.
+\]
+
+Así,
+
+\[
+f(x)=-2x+8.
+\]
+
+La región se encuentra sobre el intervalo
+
+\[
+[1,3].
+\]
+
+Dividimos dicho intervalo en $n$ subintervalos iguales. Entonces
+
+\[
+\Delta x
+=
+\frac{3-1}{n}
+=
+\frac{2}{n}.
+\]
+
+Los puntos de la partición son
+
+\[
+x_0=1,
+\]
+
+\[
+x_1=1+\Delta x,
+\]
+
+y, en general,
+
+\[
+x_i=1+i\Delta x.
+\]
+
+Como la función
+
+\[
+f(x)=-2x+8
+\]
+
+es decreciente en $[1,3]$, el valor mínimo en cada subintervalo
+$[x_{i-1},x_i]$ se obtiene en el extremo derecho $x_i$.
+
+Por tanto,
+
+\[
+f(x_i)
+=
+-2(1+i\Delta x)+8.
+\]
+
+Simplificando,
+
+\[
+f(x_i)
+=
+6-2i\Delta x.
+\]
+
+El área se obtiene mediante
+
+\[
+A
+=
+\lim_{n\to\infty}
+\sum_{i=1}^{n}
+f(x_i)\Delta x.
+\]
+
+Sustituyendo,
+
+\[
+A
+=
+\lim_{n\to\infty}
+\sum_{i=1}^{n}
+\left(
+6-2i\Delta x
+\right)\Delta x.
+\]
+
+Así,
+
+\[
+A
+=
+\lim_{n\to\infty}
+\sum_{i=1}^{n}
+\left[
+6\Delta x
+-
+2i(\Delta x)^2
+\right].
+\]
+
+Como
+
+\[
+\Delta x=\frac{2}{n},
+\]
+
+tenemos
+
+\[
+6\Delta x
+=
+\frac{12}{n}
+\]
+
+y
+
+\[
+2(\Delta x)^2
+=
+2\left(\frac{2}{n}\right)^2
+=
+\frac{8}{n^2}.
+\]
+
+Por tanto,
+
+\[
+A
+=
+\lim_{n\to\infty}
+\left[
+\frac{12}{n}
+\sum_{i=1}^{n}1
+-
+\frac{8}{n^2}
+\sum_{i=1}^{n}i
+\right].
+\]
+
+Utilizando
+
+\[
+\sum_{i=1}^{n}1=n
+\]
+
+y
+
+\[
+\sum_{i=1}^{n}i
+=
+\frac{n(n+1)}{2},
+\]
+
+obtenemos
+
+\begin{align*}
+A
+&=
+\lim_{n\to\infty}
+\left[
+\frac{12}{n}n
+-
+\frac{8}{n^2}
+\frac{n(n+1)}{2}
+\right]\\
+&=
+\lim_{n\to\infty}
+\left[
+12
+-
+4\frac{n+1}{n}
+\right].
+\end{align*}
+
+Entonces
+
+\[
+A
+=
+12-4
+=
+\boxed{8}.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+A=8\text{ unidades cuadradas}.
+}
+\]
+
+Podemos verificar el resultado mediante geometría elemental.
+
+Las alturas del trapecio son
+
+\[
+f(1)=6
+\]
+
+y
+
+\[
+f(3)=2,
+\]
+
+mientras que la distancia entre $x=1$ y $x=3$ es
+
+\[
+3-1=2.
+\]
+
+La fórmula del área de un trapecio es
+
+\[
+A
+=
+\frac12 h(b_1+b_2).
+\]
+
+Por tanto,
+
+\[
+A
+=
+\frac12(2)(6+2)
+=
+8.
+\]
+
+Así, ambos procedimientos coinciden:
+
+\[
+\boxed{A=8}.
+\]
+\begin{figure}[htbp]
+\centering
+
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines=middle,
+    xmin=-0.2, xmax=4.5,
+    ymin=-0.5, ymax=9,
+    xlabel={$x$},
+    ylabel={$y$},
+    width=10cm,
+    height=7cm,
+    samples=200,
+    xtick={0,1,2,3,4},
+    ytick={0,2,4,6,8},
+    domain=0:4
+]
+
+% Región trapezoidal
+\addplot[
+    domain=1:3,
+    fill=gray!15,
+    draw=none
+] {-2*x+8} \closedcycle;
+
+% Recta
+\addplot[thick, domain=0:4] {-2*x+8};
+
+% Límites verticales
+\addplot[dashed] coordinates {(1,0) (1,6)};
+\addplot[dashed] coordinates {(3,0) (3,2)};
+
+\node at (axis cs:2.8,3.2) {$y=-2x+8$};
+
+\end{axis}
+\end{tikzpicture}
+
+\caption{Región limitada por $x=1$, $x=3$, el eje $x$
+y la recta $y=-2x+8$.}
+\end{figure}
+
+
+\begin{figure}[htbp]
+\centering
+
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines=middle,
+    xmin=0.5, xmax=3.5,
+    ymin=-0.5, ymax=7,
+    xlabel={$x$},
+    ylabel={$y$},
+    width=10cm,
+    height=7cm,
+    samples=200,
+    xtick={1,1.5,2,2.5,3},
+    ytick={0,2,4,6},
+    domain=1:3
+]
+
+% Rectángulos con extremos derechos, n=4
+\addplot[ybar interval, fill=gray!30, draw=black]
+coordinates {
+    (1,5)
+    (1.5,4)
+    (2,3)
+    (2.5,2)
+    (3,2)
+};
+
+% Recta
+\addplot[thick, domain=1:3] {-2*x+8};
+
+\node at (axis cs:2.55,3.5) {$y=-2x+8$};
+
+\end{axis}
+\end{tikzpicture}
+
+\caption{Suma de Riemann utilizando extremos derechos para
+$f(x)=-2x+8$ en $[1,3]$.}
+\end{figure}
+\end{Ejem}
+% ============================================================
+\subsection{Sumas de Riemann sobre particiones no uniformes}
+% ============================================================
+
+Hasta ahora hemos considerado principalmente particiones en las que
+todos los subintervalos tienen la misma longitud. Sin embargo, esta
+condición no es necesaria.
+
+Sea
+
+\[
+P=\{x_0,x_1,\ldots,x_n\}
+\]
+
+una partición del intervalo $[a,b]$, es decir,
+
+\[
+a=x_0<x_1<x_2<\cdots<x_n=b.
+\]
+
+La longitud del $i$-ésimo subintervalo es
+
+\[
+\Delta x_i=x_i-x_{i-1}.
+\]
+
+Obsérvese que, en general,
+
+\[
+\Delta x_1,\Delta x_2,\ldots,\Delta x_n
+\]
+
+no tienen por qué ser iguales.
+
+Para cada subintervalo
+
+\[
+[x_{i-1},x_i]
+\]
+
+elegimos un punto arbitrario
+
+\[
+w_i\in[x_{i-1},x_i].
+\]
+
+La expresión
+
+\[
+\boxed{
+\sum_{i=1}^{n}f(w_i)\Delta x_i
+}
+\]
+
+recibe el nombre de \textbf{suma de Riemann} asociada a la función
+$f$, a la partición $P$ y a los puntos de muestra $w_i$.
+
+Cada término
+
+\[
+f(w_i)\Delta x_i
+\]
+
+puede interpretarse geométricamente como el área con signo de un
+rectángulo cuya base tiene longitud $\Delta x_i$ y cuya altura es
+$f(w_i)$.
+
+% ============================================================
+
+\begin{Ejem}
+
+Considere la función
+
+\[
+f(x)=10-x^2,
+\qquad
+0.25\leq x\leq 3.
+\]
+
+Sea la partición
+
+\[
+P=
+\left\{
+0.25,\,
+1,\,
+1.5,\,
+1.75,\,
+2.25,\,
+3
+\right\}.
+\]
+
+En cada uno de los cinco subintervalos se eligen los siguientes
+puntos de muestra:
+
+\[
+w_1=0.5,
+\qquad
+w_2=1.25,
+\qquad
+w_3=1.75,
+\qquad
+w_4=2,
+\qquad
+w_5=2.75.
+\]
+
+Calcule la suma de Riemann
+
+\[
+\sum_{i=1}^{5}f(w_i)\Delta x_i.
+\]
+
+\textbf{Solución.}
+
+La partición determina los cinco subintervalos
+
+\[
+[0.25,1],
+\qquad
+[1,1.5],
+\qquad
+[1.5,1.75],
+\qquad
+[1.75,2.25],
+\qquad
+[2.25,3].
+\]
+
+A diferencia de los ejemplos anteriores, estos subintervalos
+\textbf{no tienen todos la misma longitud}.
+
+Calculamos cada una de ellas:
+
+\[
+\Delta x_1
+=
+1-0.25
+=
+0.75,
+\]
+
+\[
+\Delta x_2
+=
+1.5-1
+=
+0.5,
+\]
+
+\[
+\Delta x_3
+=
+1.75-1.5
+=
+0.25,
+\]
+
+\[
+\Delta x_4
+=
+2.25-1.75
+=
+0.5,
+\]
+
+y
+
+\[
+\Delta x_5
+=
+3-2.25
+=
+0.75.
+\]
+
+Por tanto,
+
+\[
+\begin{aligned}
+\Delta x_1&=0.75,\\
+\Delta x_2&=0.50,\\
+\Delta x_3&=0.25,\\
+\Delta x_4&=0.50,\\
+\Delta x_5&=0.75.
+\end{aligned}
+\]
+
+Ahora evaluamos la función
+
+\[
+f(x)=10-x^2
+\]
+
+en cada uno de los puntos de muestra.
+
+Para $w_1=0.5$,
+
+\[
+f(w_1)
+=
+f(0.5)
+=
+10-(0.5)^2
+=
+9.75.
+\]
+
+Para $w_2=1.25$,
+
+\[
+f(w_2)
+=
+f(1.25)
+=
+10-(1.25)^2
+=
+8.4375.
+\]
+
+Para $w_3=1.75$,
+
+\[
+f(w_3)
+=
+f(1.75)
+=
+10-(1.75)^2
+=
+6.9375.
+\]
+
+Para $w_4=2$,
+
+\[
+f(w_4)
+=
+f(2)
+=
+10-2^2
+=
+6.
+\]
+
+Finalmente, para $w_5=2.75$,
+
+\[
+f(w_5)
+=
+f(2.75)
+=
+10-(2.75)^2
+=
+2.4375.
+\]
+
+La suma de Riemann es
+
+\[
+\sum_{i=1}^{5}f(w_i)\Delta x_i.
+\]
+
+Escribiendo cada término explícitamente,
+
+\[
+\begin{aligned}
+\sum_{i=1}^{5}f(w_i)\Delta x_i
+={}&
+f(w_1)\Delta x_1
++
+f(w_2)\Delta x_2\\
+&+
+f(w_3)\Delta x_3
++
+f(w_4)\Delta x_4
++
+f(w_5)\Delta x_5.
+\end{aligned}
+\]
+
+Sustituyendo los puntos de muestra y las longitudes de los
+subintervalos,
+
+\[
+\begin{aligned}
+\sum_{i=1}^{5}f(w_i)\Delta x_i
+={}&
+f(0.5)(1-0.25)
++
+f(1.25)(1.5-1)\\
+&+
+f(1.75)(1.75-1.5)
++
+f(2)(2.25-1.75)\\
+&+
+f(2.75)(3-2.25).
+\end{aligned}
+\]
+
+Por tanto,
+
+\[
+\begin{aligned}
+\sum_{i=1}^{5}f(w_i)\Delta x_i
+={}&
+(9.75)(0.75)
++
+(8.4375)(0.5)\\
+&+
+(6.9375)(0.25)
++
+(6)(0.5)
++
+(2.4375)(0.75).
+\end{aligned}
+\]
+
+Calculando cada producto,
+
+\[
+\begin{aligned}
+(9.75)(0.75)&=7.3125,\\
+(8.4375)(0.5)&=4.21875,\\
+(6.9375)(0.25)&=1.734375,\\
+(6)(0.5)&=3,\\
+(2.4375)(0.75)&=1.828125.
+\end{aligned}
+\]
+
+Así,
+
+\[
+\begin{aligned}
+\sum_{i=1}^{5}f(w_i)\Delta x_i
+&=
+7.3125
++4.21875
++1.734375
++3
++1.828125\\
+&=
+\boxed{18.09375}.
+\end{aligned}
+\]
+
+Por tanto, la suma de Riemann asociada a esta partición y a estos
+puntos de muestra es
+
+\[
+\boxed{18.09375}.
+\]
+
+\begin{figure}[htbp]
+\centering
+
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines=middle,
+    xmin=0, xmax=3.3,
+    ymin=-0.5, ymax=11,
+    xlabel={$x$},
+    ylabel={$y$},
+    width=11cm,
+    height=7.5cm,
+    samples=200,
+    xtick={0.25,1,1.5,1.75,2.25,3},
+    ytick={0,2,4,6,8,10},
+    domain=0.25:3
+]
+
+% Rectángulo 1
+\addplot[
+    fill=gray!25,
+    draw=black
+] coordinates {
+    (0.25,0)
+    (0.25,9.75)
+    (1,9.75)
+    (1,0)
+} \closedcycle;
+
+% Rectángulo 2
+\addplot[
+    fill=gray!25,
+    draw=black
+] coordinates {
+    (1,0)
+    (1,8.4375)
+    (1.5,8.4375)
+    (1.5,0)
+} \closedcycle;
+
+% Rectángulo 3
+\addplot[
+    fill=gray!25,
+    draw=black
+] coordinates {
+    (1.5,0)
+    (1.5,6.9375)
+    (1.75,6.9375)
+    (1.75,0)
+} \closedcycle;
+
+% Rectángulo 4
+\addplot[
+    fill=gray!25,
+    draw=black
+] coordinates {
+    (1.75,0)
+    (1.75,6)
+    (2.25,6)
+    (2.25,0)
+} \closedcycle;
+
+% Rectángulo 5
+\addplot[
+    fill=gray!25,
+    draw=black
+] coordinates {
+    (2.25,0)
+    (2.25,2.4375)
+    (3,2.4375)
+    (3,0)
+} \closedcycle;
+
+% Función
+\addplot[very thick, domain=0.25:3] {10-x^2};
+
+% Puntos de muestra
+\addplot[
+    only marks,
+    mark=*,
+    mark size=1.8pt
+] coordinates {
+    (0.5,9.75)
+    (1.25,8.4375)
+    (1.75,6.9375)
+    (2,6)
+    (2.75,2.4375)
+};
+
+\node at (axis cs:2.45,5.2) {$f(x)=10-x^2$};
+
+\end{axis}
+\end{tikzpicture}
+
+\caption{Suma de Riemann para $f(x)=10-x^2$ utilizando una
+partición no uniforme y puntos de muestra arbitrarios.}
+\end{figure}
+
+\end{Ejem}
+
+
+
+% ============================================================
+\subsection{El problema del área}
+% ============================================================
+
+Consideremos una función
+\[
+f:[a,b]\longrightarrow\mathbb{R}
+\]
+continua y no negativa en el intervalo $[a,b]$.
+
+Queremos determinar el área de la región limitada por
+
+\begin{itemize}
+    \item la gráfica de $y=f(x)$,
+    \item el eje $x$,
+    \item la recta vertical $x=a$,
+    \item la recta vertical $x=b$.
+\end{itemize}
+
+Denotaremos esta región por $R$.
+
+Si $f$ es una función constante,
+\[
+f(x)=c,
+\qquad c>0,
+\]
+la región es simplemente un rectángulo de base $b-a$ y altura $c$.
+
+Por tanto,
+
+\[
+A=c(b-a).
+\]
+
+De manera equivalente,
+
+\[
+A=f(x)(b-a).
+\]
+
+El problema aparece cuando $f$ no es constante.
+
+Por ejemplo, consideremos
+
+\[
+f(x)=x^2,
+\qquad 0\leq x\leq1.
+\]
+
+La región bajo la curva
+
+\[
+y=x^2
+\]
+
+no corresponde a ninguna figura elemental cuya área podamos calcular
+directamente mediante las fórmulas de geometría básica.
+
+La estrategia consistirá entonces en aproximar esta región utilizando
+rectángulos.
+
+% ============================================================
+\subsection{Aproximación del área mediante rectángulos}
+% ============================================================
+
+Dividamos el intervalo $[a,b]$ en varios subintervalos.
+
+En cada uno de estos subintervalos construiremos un rectángulo cuya altura
+estará determinada por algún valor de la función.
+
+La suma de las áreas de estos rectángulos proporcionará una aproximación
+del área bajo la curva.
+
+Si dividimos el intervalo en $n$ partes iguales, cada subintervalo tendrá
+longitud
+
+\[
+\Delta x=\frac{b-a}{n}.
+\]
+
+Los puntos de división serán
+
+\[
+x_0=a,
+\]
+
+\[
+x_1=a+\Delta x,
+\]
+
+\[
+x_2=a+2\Delta x,
+\]
+
+y en general
+
+\[
+x_i=a+i\Delta x.
+\]
+
+Finalmente,
+
+\[
+x_n=b.
+\]
+
+Por tanto,
+
+\[
+a=x_0<x_1<x_2<\cdots<x_n=b.
+\]
+
+En cada intervalo
+
+\[
+[x_{i-1},x_i]
+\]
+
+seleccionamos un punto
+
+\[
+x_i^*\in[x_{i-1},x_i].
+\]
+
+La altura del rectángulo correspondiente será
+
+\[
+f(x_i^*),
+\]
+
+y su base tendrá longitud
+
+\[
+\Delta x.
+\]
+
+Por tanto, el área del $i$-ésimo rectángulo es aproximadamente
+
+\[
+f(x_i^*)\Delta x.
+\]
+
+Sumando las áreas de todos los rectángulos obtenemos
+
+\[
+A_n
+=
+\sum_{i=1}^{n}
+f(x_i^*)\Delta x.
+\]
+
+Esta expresión constituye una aproximación del área bajo la curva.
+
+La idea fundamental consiste en aumentar el número de rectángulos.
+Al hacerlo, su anchura
+
+\[
+\Delta x=\frac{b-a}{n}
+\]
+
+se hace cada vez más pequeña.
+
+Intuitivamente esperamos que
+
+\[
+A
+=
+\lim_{n\to\infty}
+\sum_{i=1}^{n}
+f(x_i^*)\Delta x.
+\]
+
+Esta expresión será precisamente la base para definir la integral
+definida.
+
+% ============================================================
+\subsection{Una primera interpretación de la integral}
+% ============================================================
+
+De manera todavía informal, podemos escribir
+
+\[
+\boxed{
+\int_a^b f(x)\,dx
+=
+\lim_{n\to\infty}
+\sum_{i=1}^{n}
+f(x_i^*)\Delta x
+}
+\]
+
+cuando dicho límite existe.
+
+El símbolo
+
+\[
+\int
+\]
+
+fue introducido por Leibniz y corresponde históricamente a una
+``S'' alargada, utilizada para representar la idea de una suma.
+
+La expresión
+
+\[
+f(x)\,dx
+\]
+
+puede interpretarse intuitivamente como el área de un rectángulo
+infinitamente delgado cuya altura es $f(x)$ y cuya base es $dx$.
+
+Aunque esta interpretación es útil desde el punto de vista intuitivo,
+la definición rigurosa de integral se construirá utilizando límites
+de sumas finitas.
+
+Estas sumas reciben el nombre de \emph{sumas de Riemann}.
+
+% ============================================================
+\subsection{Particiones de un intervalo}
+% ============================================================
+
+Para formalizar el procedimiento de aproximación del área bajo una curva,
+necesitamos precisar qué significa dividir un intervalo en subintervalos.
+
+\textbf{Definición.}
+Sea $[a,b]$ un intervalo cerrado. Una \emph{partición} $P$ de $[a,b]$
+es un conjunto finito de puntos
+
+\[
+P=\{x_0,x_1,x_2,\ldots,x_n\}
+\]
+
+tales que
+
+\[
+a=x_0<x_1<x_2<\cdots<x_n=b.
+\]
+
+Estos puntos dividen al intervalo $[a,b]$ en los subintervalos
+
+\[
+[x_0,x_1],\,
+[x_1,x_2],\,
+\ldots,\,
+[x_{n-1},x_n].
+\]
+
+La longitud del $i$-ésimo subintervalo se denota por
+
+\[
+\Delta x_i=x_i-x_{i-1},
+\qquad i=1,\ldots,n.
+\]
+
+Por tanto,
+
+\[
+\sum_{i=1}^{n}\Delta x_i=b-a.
+\]
+
+En general, los subintervalos no tienen que tener la misma longitud.
+
+% ============================================================
+\subsection{Particiones regulares}
+% ============================================================
+
+Un caso particularmente importante ocurre cuando todos los subintervalos
+tienen la misma longitud.
+
+\textbf{Definición.}
+Una partición $P$ de $[a,b]$ se denomina \emph{regular} si
+
+\[
+\Delta x_1=\Delta x_2=\cdots=\Delta x_n.
+\]
+
+En este caso escribimos simplemente
+
+\[
+\Delta x=\frac{b-a}{n}.
+\]
+
+Los puntos de la partición están dados por
+
+\[
+x_i=a+i\Delta x,
+\qquad i=0,1,\ldots,n.
+\]
+
+Es decir,
+
+\[
+x_i
+=
+a+i\frac{b-a}{n}.
+\]
+
+Esta será la partición que utilizaremos con mayor frecuencia en los
+primeros ejemplos.
+
+% ============================================================
+\subsection{Norma de una partición}
+% ============================================================
+
+Para estudiar qué tan fina es una partición necesitamos medir la longitud
+del mayor de sus subintervalos.
+
+\textbf{Definición.}
+Sea
+
+\[
+P=\{x_0,x_1,\ldots,x_n\}
+\]
+
+una partición de $[a,b]$. Se define la \emph{norma} de $P$ como
+
+\[
+\boxed{
+\|P\|
+=
+\max_{1\leq i\leq n}
+\Delta x_i
+}
+\]
+
+o, equivalentemente,
+
+\[
+\|P\|
+=
+\max_{1\leq i\leq n}
+(x_i-x_{i-1}).
+\]
+
+La norma representa la longitud del subintervalo más grande de la
+partición.
+
+Por tanto, decir que
+
+\[
+\|P\|\longrightarrow0
+\]
+
+significa que todos los subintervalos de la partición se hacen
+arbitrariamente pequeños.
+
+En el caso de una partición regular,
+
+\[
+\|P\|=\Delta x=\frac{b-a}{n}.
+\]
+
+Por consiguiente,
+
+\[
+n\longrightarrow\infty
+\qquad\Longrightarrow\qquad
+\|P\|\longrightarrow0.
+\]
+
+% ============================================================
+\subsection{Puntos de muestra}
+% ============================================================
+
+Consideremos una función
+
+\[
+f:[a,b]\longrightarrow\mathbb{R}
+\]
+
+y una partición
+
+\[
+P=\{x_0,x_1,\ldots,x_n\}.
+\]
+
+En cada subintervalo
+
+\[
+[x_{i-1},x_i]
+\]
+
+seleccionamos un punto arbitrario
+
+\[
+\xi_i\in[x_{i-1},x_i].
+\]
+
+El punto $\xi_i$ recibe el nombre de \emph{punto de muestra} del
+$i$-ésimo subintervalo.
+
+Utilizamos el valor
+
+\[
+f(\xi_i)
+\]
+
+como altura de un rectángulo cuya base es
+
+\[
+\Delta x_i.
+\]
+
+El área con signo de este rectángulo es
+
+\[
+f(\xi_i)\Delta x_i.
+\]
+
+Al sumar las contribuciones de todos los subintervalos obtenemos una
+aproximación de la acumulación total de la función sobre $[a,b]$.
+
+% ============================================================
+\subsection{Sumas de Riemann}
+% ============================================================
+
+\textbf{Definición.}
+Sea $f:[a,b]\to\mathbb{R}$ una función acotada, sea
+
+\[
+P=\{x_0,x_1,\ldots,x_n\}
+\]
+
+una partición de $[a,b]$, y sea
+
+\[
+\xi_i\in[x_{i-1},x_i]
+\]
+
+un punto de muestra en cada subintervalo.
+
+La expresión
+
+\[
+\boxed{
+S(f,P)
+=
+\sum_{i=1}^{n}
+f(\xi_i)\Delta x_i
+}
+\]
+
+se denomina \emph{suma de Riemann} de $f$ asociada a la partición $P$
+y a los puntos de muestra $\xi_i$.
+
+Desarrollando la sumatoria,
+
+\[
+S(f,P)
+=
+f(\xi_1)\Delta x_1
++
+f(\xi_2)\Delta x_2
++
+\cdots
++
+f(\xi_n)\Delta x_n.
+\]
+
+Cada término
+
+\[
+f(\xi_i)\Delta x_i
+\]
+
+puede interpretarse geométricamente como el área con signo de un
+rectángulo.
+
+Si
+
+\[
+f(\xi_i)>0,
+\]
+
+la contribución es positiva; si
+
+\[
+f(\xi_i)<0,
+\]
+
+la contribución es negativa.
+
+Por esta razón, una suma de Riemann no representa necesariamente un área
+geométrica ordinaria, sino una \emph{acumulación con signo}.
+
+% ============================================================
+\subsection{Sumas de Riemann para particiones regulares}
+% ============================================================
+
+Si la partición es regular, entonces
+
+\[
+\Delta x_i=\Delta x=\frac{b-a}{n}.
+\]
+
+Por tanto,
+
+\[
+S_n
+=
+\sum_{i=1}^{n}
+f(\xi_i)\Delta x.
+\]
+
+Como $\Delta x$ es constante, podemos escribir
+
+\[
+\boxed{
+S_n
+=
+\Delta x
+\sum_{i=1}^{n}f(\xi_i)
+}
+\]
+
+o equivalentemente,
+
+\[
+S_n
+=
+\frac{b-a}{n}
+\sum_{i=1}^{n}f(\xi_i).
+\]
+
+La elección de los puntos $\xi_i$ produce diferentes tipos de
+aproximaciones.
+
+% ============================================================
+\subsection{Suma por extremos izquierdos}
+% ============================================================
+
+Si en cada subintervalo
+
+\[
+[x_{i-1},x_i]
+\]
+
+elegimos como punto de muestra el extremo izquierdo,
+
+\[
+\xi_i=x_{i-1},
+\]
+
+obtenemos la \emph{suma por extremos izquierdos}.
+
+La suma correspondiente es
+
+\[
+L_n
+=
+\sum_{i=1}^{n}
+f(x_{i-1})\Delta x.
+\]
+
+Para una partición regular,
+
+\[
+x_{i-1}
+=
+a+(i-1)\Delta x.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+L_n
+=
+\Delta x
+\sum_{i=1}^{n}
+f\left(a+(i-1)\Delta x\right)
+}
+\]
+
+con
+
+\[
+\Delta x=\frac{b-a}{n}.
+\]
+
+Si $f$ es creciente y no negativa, esta suma tiende a subestimar el área
+bajo la curva.
+
+% ============================================================
+\subsection{Suma por extremos derechos}
+% ============================================================
+
+Si elegimos como punto de muestra el extremo derecho de cada subintervalo,
+
+\[
+\xi_i=x_i,
+\]
+
+obtenemos la \emph{suma por extremos derechos}:
+
+\[
+R_n
+=
+\sum_{i=1}^{n}
+f(x_i)\Delta x.
+\]
+
+Como
+
+\[
+x_i=a+i\Delta x,
+\]
+
+tenemos
+
+\[
+\boxed{
+R_n
+=
+\Delta x
+\sum_{i=1}^{n}
+f\left(a+i\Delta x\right)
+}
+\]
+
+con
+
+\[
+\Delta x=\frac{b-a}{n}.
+\]
+
+Si $f$ es creciente y no negativa, esta suma tiende a sobreestimar el área
+bajo la curva.
+
+% ============================================================
+\subsection{Suma por puntos medios}
+% ============================================================
+
+Otra elección natural consiste en utilizar el punto medio de cada
+subintervalo.
+
+El punto medio del intervalo
+
+\[
+[x_{i-1},x_i]
+\]
+
+es
+
+\[
+m_i
+=
+\frac{x_{i-1}+x_i}{2}.
+\]
+
+Para una partición regular,
+
+\[
+m_i
+=
+a+\left(i-\frac{1}{2}\right)\Delta x.
+\]
+
+La suma correspondiente es
+
+\[
+M_n
+=
+\sum_{i=1}^{n}
+f(m_i)\Delta x.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+M_n
+=
+\Delta x
+\sum_{i=1}^{n}
+f\left(
+a+\left(i-\frac{1}{2}\right)\Delta x
+\right)
+}
+\]
+
+con
+
+\[
+\Delta x=\frac{b-a}{n}.
+\]
+
+La regla del punto medio suele producir aproximaciones considerablemente
+mejores que las obtenidas utilizando solamente extremos izquierdos o
+derechos.
+
+% ============================================================
+\subsection{Ejemplo: aproximación del área bajo $f(x)=x^2$}
+% ============================================================
+
+Consideremos nuevamente
+
+\[
+f(x)=x^2,
+\qquad
+0\leq x\leq1.
+\]
+
+Dividamos $[0,1]$ en $n$ subintervalos iguales.
+
+Entonces
+
+\[
+\Delta x=\frac{1}{n}
+\]
+
+y
+
+\[
+x_i=\frac{i}{n}.
+\]
+
+Utilizando extremos derechos,
+
+\[
+R_n
+=
+\sum_{i=1}^{n}
+f\left(\frac{i}{n}\right)\frac{1}{n}.
+\]
+
+Como
+
+\[
+f\left(\frac{i}{n}\right)
+=
+\left(\frac{i}{n}\right)^2,
+\]
+
+obtenemos
+
+\[
+R_n
+=
+\sum_{i=1}^{n}
+\left(\frac{i}{n}\right)^2
+\frac{1}{n}.
+\]
+
+Por tanto,
+
+\[
+R_n
+=
+\frac{1}{n^3}
+\sum_{i=1}^{n}i^2.
+\]
+
+Utilizando la identidad
+
+\[
+\sum_{i=1}^{n}i^2
+=
+\frac{n(n+1)(2n+1)}{6},
+\]
+
+resulta
+
+\[
+R_n
+=
+\frac{1}{n^3}
+\frac{n(n+1)(2n+1)}{6}.
+\]
+
+Simplificando,
+
+\[
+R_n
+=
+\frac{(n+1)(2n+1)}{6n^2}.
+\]
+
+Para obtener el área exacta hacemos que el número de rectángulos tienda
+a infinito:
+
+\[
+A
+=
+\lim_{n\to\infty}R_n.
+\]
+
+Así,
+
+\[
+A
+=
+\lim_{n\to\infty}
+\frac{(n+1)(2n+1)}{6n^2}.
+\]
+
+Dividiendo numerador y denominador entre $n^2$,
+
+\[
+A
+=
+\frac{1}{6}
+\lim_{n\to\infty}
+\left(1+\frac{1}{n}\right)
+\left(2+\frac{1}{n}\right).
+\]
+
+Por tanto,
+
+\[
+\boxed{
+A=\frac{1}{3}.
+}
+\]
+
+Así hemos obtenido, sin utilizar todavía el Teorema Fundamental del
+Cálculo,
+
+\[
+\int_0^1x^2\,dx=\frac{1}{3}.
+\]
+
+Este ejemplo muestra la idea esencial de la integración de Riemann:
+
+\[
+\boxed{
+\text{aproximaciones finitas}
+\longrightarrow
+\text{sumas de Riemann}
+\longrightarrow
+\text{límite}
+\longrightarrow
+\text{integral}.
+}
+\]
+
+% ============================================================
+\subsection{Hacia la definición de integral definida}
+% ============================================================
+
+Las sumas anteriores dependen de tres elementos:
+
+\begin{enumerate}
+
+    \item la función $f$;
+
+    \item la partición $P$ del intervalo $[a,b]$;
+
+    \item los puntos de muestra $\xi_i$.
+
+\end{enumerate}
+
+La cuestión fundamental es determinar si, al hacer cada vez más fina la
+partición,
+
+\[
+\|P\|\longrightarrow0,
+\]
+
+las sumas de Riemann
+
+\[
+\sum_{i=1}^{n}f(\xi_i)\Delta x_i
+\]
+
+se aproximan a un único número, independientemente de la manera en que se
+elijan los puntos de muestra.
+
+Si dicho número existe, éste será precisamente la integral definida de
+$f$ sobre $[a,b]$.
+
+Esta observación conduce a la definición formal de integral de Riemann,
+que estudiaremos a continuación.
+
+% ============================================================
+\subsection{Definición de integral definida}
+% ============================================================
+
+Las sumas de Riemann permiten aproximar la acumulación de los valores de
+una función sobre un intervalo. La integral definida se obtiene cuando
+estas sumas convergen a un mismo número al hacer cada vez más fina la
+partición.
+
+\textbf{Definición.}
+Sea
+\[
+f:[a,b]\longrightarrow\mathbb{R}
+\]
+una función acotada.
+
+Decimos que $f$ es \emph{integrable en el sentido de Riemann} sobre
+$[a,b]$ si existe un número $I\in\mathbb{R}$ con la siguiente propiedad:
+
+para todo $\varepsilon>0$ existe $\delta>0$ tal que, para toda partición
+
+\[
+P=\{x_0,x_1,\ldots,x_n\}
+\]
+
+de $[a,b]$ cuya norma satisface
+
+\[
+\|P\|<\delta,
+\]
+
+y para cualquier elección de puntos de muestra
+
+\[
+\xi_i\in[x_{i-1},x_i],
+\]
+
+se cumple
+
+\[
+\left|
+\sum_{i=1}^{n}f(\xi_i)\Delta x_i-I
+\right|
+<\varepsilon.
+\]
+
+En este caso escribimos
+
+\[
+\boxed{
+I=\int_a^b f(x)\,dx
+}
+\]
+
+y llamamos a $I$ la \emph{integral definida} de $f$ sobre el intervalo
+$[a,b]$.
+
+De manera equivalente, escribimos
+
+\[
+\boxed{
+\int_a^b f(x)\,dx
+=
+\lim_{\|P\|\to0}
+\sum_{i=1}^{n}f(\xi_i)\Delta x_i.
+}
+\]
+
+En esta expresión:
+
+\begin{itemize}
+    \item $a$ se denomina \emph{límite inferior de integración};
+    \item $b$ se denomina \emph{límite superior de integración};
+    \item $f$ se denomina \emph{integrando};
+    \item $x$ es la \emph{variable de integración}.
+\end{itemize}
+
+La variable de integración es una variable muda. Por tanto,
+
+\[
+\int_a^b f(x)\,dx
+=
+\int_a^b f(t)\,dt
+=
+\int_a^b f(u)\,du.
+\]
+
+% ============================================================
+\subsection{Existencia de la integral}
+% ============================================================
+
+No toda función arbitraria es necesariamente integrable. Es necesario
+establecer condiciones que garanticen la existencia de la integral.
+
+Uno de los resultados fundamentales es el siguiente.
+
+\textbf{Teorema.}
+Si
+\[
+f:[a,b]\longrightarrow\mathbb{R}
+\]
+es continua en $[a,b]$, entonces $f$ es integrable en $[a,b]$.
+
+En consecuencia,
+
+\[
+\boxed{
+f\text{ continua en }[a,b]
+\quad\Longrightarrow\quad
+f\text{ integrable en }[a,b].
+}
+\]
+
+Este resultado será suficiente para la mayor parte de las funciones que
+aparecerán en este curso.
+
+La continuidad es una condición suficiente, pero no necesaria. Existen
+funciones discontinuas que también son integrables.
+
+Por ejemplo, una función acotada con un número finito de discontinuidades
+en $[a,b]$ es integrable en el sentido de Riemann.
+
+% ============================================================
+\subsection{Integral definida y área}
+% ============================================================
+
+Es importante distinguir entre los conceptos de \emph{integral definida}
+y \emph{área geométrica}.
+
+Si
+
+\[
+f(x)\geq0
+\]
+
+para todo $x\in[a,b]$, entonces
+
+\[
+\int_a^b f(x)\,dx
+\]
+
+representa el área de la región comprendida entre la gráfica de $f$, el
+eje $x$ y las rectas $x=a$ y $x=b$.
+
+Sin embargo, si
+
+\[
+f(x)<0
+\]
+
+en alguna región, la integral correspondiente contribuye negativamente.
+
+Por tanto, la integral definida representa un \emph{área con signo} o,
+más generalmente, una \emph{acumulación neta}.
+
+Si deseamos calcular el área geométrica total entre la gráfica y el eje
+$x$, debemos considerar
+
+\[
+\boxed{
+A=\int_a^b |f(x)|\,dx.
+}
+\]
+
+% ============================================================
+\subsection{Propiedades de la integral definida}
+% ============================================================
+
+Sean $f$ y $g$ funciones integrables sobre $[a,b]$.
+
+La integral definida satisface las siguientes propiedades.
+
+\subsubsection*{Integral sobre un intervalo degenerado}
+
+\[
+\boxed{
+\int_a^a f(x)\,dx=0.
+}
+\]
+
+Esto es natural, pues un intervalo de longitud cero no produce acumulación.
+
+% ------------------------------------------------------------
+
+\subsubsection*{Cambio de orientación}
+
+\[
+\boxed{
+\int_a^b f(x)\,dx
+=
+-\int_b^a f(x)\,dx.
+}
+\]
+
+Por definición,
+
+\[
+\int_b^a f(x)\,dx
+=
+-\int_a^b f(x)\,dx.
+\]
+
+% ------------------------------------------------------------
+
+\subsubsection*{Linealidad}
+
+Si $\alpha,\beta\in\mathbb{R}$, entonces
+
+\[
+\boxed{
+\int_a^b
+\left[
+\alpha f(x)+\beta g(x)
+\right]dx
+=
+\alpha\int_a^b f(x)\,dx
++
+\beta\int_a^b g(x)\,dx.
+}
+\]
+
+En particular,
+
+\[
+\int_a^b [f(x)+g(x)]\,dx
+=
+\int_a^b f(x)\,dx
++
+\int_a^b g(x)\,dx
+\]
+
+y
+
+\[
+\int_a^b cf(x)\,dx
+=
+c\int_a^b f(x)\,dx.
+\]
+
+% ------------------------------------------------------------
+
+\subsubsection*{Aditividad respecto al intervalo}
+
+Si
+
+\[
+a<c<b,
+\]
+
+entonces
+
+\[
+\boxed{
+\int_a^b f(x)\,dx
+=
+\int_a^c f(x)\,dx
++
+\int_c^b f(x)\,dx.
+}
+\]
+
+Esta propiedad expresa que la acumulación sobre un intervalo puede
+descomponerse como la suma de las acumulaciones sobre subintervalos.
+
+% ------------------------------------------------------------
+
+\subsubsection*{Preservación del orden}
+
+Si
+
+\[
+f(x)\leq g(x)
+\]
+
+para todo $x\in[a,b]$, entonces
+
+\[
+\boxed{
+\int_a^b f(x)\,dx
+\leq
+\int_a^b g(x)\,dx.
+}
+\]
+
+En particular, si
+
+\[
+f(x)\geq0,
+\]
+
+entonces
+
+\[
+\int_a^b f(x)\,dx\geq0.
+\]
+
+% ------------------------------------------------------------
+
+\subsubsection*{Acotación de la integral}
+
+Si existen constantes $m$ y $M$ tales que
+
+\[
+m\leq f(x)\leq M
+\]
+
+para todo $x\in[a,b]$, entonces
+
+\[
+\boxed{
+m(b-a)
+\leq
+\int_a^b f(x)\,dx
+\leq
+M(b-a).
+}
+\]
+
+Esta desigualdad tendrá un papel fundamental en la demostración del
+Teorema del Valor Medio para integrales.
+
+% ============================================================
+\subsection{Teorema del Valor Medio para integrales}
+% ============================================================
+
+El siguiente resultado establece que el valor promedio de una función
+continua sobre un intervalo es alcanzado por la propia función en algún
+punto del intervalo.
+
+\textbf{Teorema del Valor Medio para integrales.}
+
+Sea
+
+\[
+f:[a,b]\longrightarrow\mathbb{R}
+\]
+
+continua. Entonces existe al menos un punto
+
+\[
+c\in[a,b]
+\]
+
+tal que
+
+\[
+\boxed{
+\int_a^b f(x)\,dx
+=
+f(c)(b-a).
+}
+\]
+
+\textbf{Demostración.}
+
+Como $f$ es continua en el intervalo cerrado y acotado $[a,b]$, por el
+Teorema de los Valores Extremos existen números
+
+\[
+m=\min_{x\in[a,b]}f(x)
+\]
+
+y
+
+\[
+M=\max_{x\in[a,b]}f(x).
+\]
+
+Por tanto,
+
+\[
+m\leq f(x)\leq M
+\]
+
+para todo $x\in[a,b]$.
+
+Integrando esta desigualdad,
+
+\[
+m(b-a)
+\leq
+\int_a^b f(x)\,dx
+\leq
+M(b-a).
+\]
+
+Como $b-a>0$, podemos dividir entre $b-a$:
+
+\[
+m
+\leq
+\frac{1}{b-a}
+\int_a^b f(x)\,dx
+\leq
+M.
+\]
+
+Definamos
+
+\[
+\mu
+=
+\frac{1}{b-a}
+\int_a^b f(x)\,dx.
+\]
+
+Entonces
+
+\[
+m\leq\mu\leq M.
+\]
+
+Como $f$ es continua, por el Teorema del Valor Intermedio existe
+$c\in[a,b]$ tal que
+
+\[
+f(c)=\mu.
+\]
+
+Por tanto,
+
+\[
+f(c)
+=
+\frac{1}{b-a}
+\int_a^b f(x)\,dx.
+\]
+
+Multiplicando por $b-a$,
+
+\[
+\boxed{
+\int_a^b f(x)\,dx
+=
+f(c)(b-a).
+}
+\]
+
+\hfill$\square$
+
+% ============================================================
+\subsection{Valor promedio de una función}
+% ============================================================
+
+El resultado anterior motiva la siguiente definición.
+
+\textbf{Definición.}
+El \emph{valor promedio} de una función integrable $f$ sobre $[a,b]$ se
+define mediante
+
+\[
+\boxed{
+f_{\mathrm{prom}}
+=
+\frac{1}{b-a}
+\int_a^b f(x)\,dx.
+}
+\]
+
+Si $f$ es continua, el Teorema del Valor Medio garantiza la existencia de
+$c\in[a,b]$ tal que
+
+\[
+f(c)=f_{\mathrm{prom}}.
+\]
+
+Geométricamente,
+
+\[
+\int_a^b f(x)\,dx
+=
+f_{\mathrm{prom}}(b-a).
+\]
+
+Es decir, existe un rectángulo de base $b-a$ y altura
+$f_{\mathrm{prom}}$ cuya área con signo coincide con la integral de $f$.
+
+% ============================================================
+\subsection{Función de acumulación}
+% ============================================================
+
+Estamos ahora en condiciones de establecer la conexión entre integración
+y derivación.
+
+Sea $f$ continua en $[a,b]$. Definamos
+
+\[
+F(x)
+=
+\int_a^x f(t)\,dt.
+\]
+
+Obsérvese que ahora el límite superior de integración es variable.
+
+La función $F$ mide la acumulación de $f$ desde el punto fijo $a$ hasta
+el punto variable $x$.
+
+La pregunta fundamental es:
+
+\[
+\boxed{\text{¿Cuál es la derivada de }F(x)?}
+\]
+
+La respuesta constituye la primera parte del Teorema Fundamental del
+Cálculo.
+% ============================================================
+\subsection{El problema inverso de la derivación}
+% ============================================================
+
+Hasta este momento hemos construido la integral definida a partir de un
+problema de acumulación. Partimos de aproximaciones mediante rectángulos,
+construimos sumas de Riemann y, mediante un proceso de límite, llegamos a
+
+\[
+\int_a^b f(x)\,dx.
+\]
+
+Sin embargo, existe otra idea fundamental que debemos recuperar del
+Cálculo Diferencial.
+
+Supongamos que conocemos la derivada de una función:
+
+\[
+F'(x)=3x^2.
+\]
+
+Podemos plantearnos el problema inverso:
+
+\[
+\boxed{
+\text{Si conocemos }F'(x),\text{ ¿podemos recuperar }F(x)?
+}
+\]
+
+Sabemos, por ejemplo, que
+
+\[
+\frac{d}{dx}(x^3)=3x^2.
+\]
+
+Pero también
+
+\[
+\frac{d}{dx}(x^3+5)=3x^2
+\]
+
+y, en general,
+
+\[
+\frac{d}{dx}(x^3+C)=3x^2
+\]
+
+para cualquier constante $C\in\mathbb{R}$.
+
+Esto conduce al concepto de antiderivada.
+
+\textbf{Definición.}
+Sea $f$ una función definida en un intervalo $I$. Una función $F$ se
+denomina \emph{antiderivada} o \emph{primitiva} de $f$ en $I$ si
+
+\[
+F'(x)=f(x)
+\]
+
+para todo $x\in I$.
+
+Si $F$ es una antiderivada de $f$, entonces todas las funciones
+
+\[
+F(x)+C,
+\qquad C\in\mathbb{R},
+\]
+
+también son antiderivadas de $f$.
+
+Recíprocamente, si $F$ y $G$ son dos antiderivadas de $f$ sobre un
+intervalo, entonces
+
+\[
+F'(x)=G'(x),
+\]
+
+por lo que
+
+\[
+(F-G)'(x)=0.
+\]
+
+En consecuencia,
+
+\[
+F(x)-G(x)=C
+\]
+
+para alguna constante $C$. Por tanto,
+
+\[
+\boxed{
+G(x)=F(x)+C.
+}
+\]
+
+Una antiderivada no es, entonces, una sola función, sino una familia de
+funciones que difieren entre sí por una constante.
+
+Utilizamos la notación
+
+\[
+\boxed{
+\int f(x)\,dx=F(x)+C
+}
+\]
+
+para representar la familia de todas las antiderivadas de $f$.
+
+Por ejemplo,
+
+\[
+\boxed{
+\int 3x^2\,dx=x^3+C.
+}
+\]
+
+A esta expresión se le denomina \emph{integral indefinida}.
+
+En este punto aparecen aparentemente dos conceptos diferentes:
+
+\[
+\text{integral definida}
+\qquad\text{e}\qquad
+\text{integral indefinida}.
+\]
+
+La primera fue construida como límite de sumas de Riemann:
+
+\[
+\int_a^b f(x)\,dx
+=
+\lim_{\|P\|\to0}
+\sum_{i=1}^{n}f(\xi_i)\Delta x_i,
+\]
+
+mientras que la segunda representa una familia de antiderivadas:
+
+\[
+\int f(x)\,dx=F(x)+C.
+\]
+
+Una de las grandes ideas del Cálculo consiste en que estos dos conceptos,
+que inicialmente parecen surgir de problemas diferentes, están
+profundamente relacionados.
+
+El resultado que establece esta relación es el
+\emph{Teorema Fundamental del Cálculo}.
+
+% ============================================================
+\subsection{Primer Teorema Fundamental del Cálculo}
+% ============================================================
+
+\textbf{Teorema.}
+Sea
+\[
+f:[a,b]\longrightarrow\mathbb{R}
+\]
+una función continua y definamos la función de acumulación
+
+\[
+F(x)=\int_a^x f(t)\,dt.
+\]
+
+Entonces $F$ es derivable en $(a,b)$ y
+
+\[
+\boxed{
+F'(x)=f(x).
+}
+\]
+
+Equivalentemente,
+
+\[
+\boxed{
+\frac{d}{dx}
+\left(
+\int_a^x f(t)\,dt
+\right)
+=f(x).
+}
+\]
+
+\textbf{Demostración.}
+
+Fijemos $x\in(a,b)$. Por definición de derivada,
+
+\[
+F'(x)
+=
+\lim_{h\to0}
+\frac{F(x+h)-F(x)}{h}.
+\]
+
+Por la definición de $F$,
+
+\[
+F(x+h)=\int_a^{x+h}f(t)\,dt
+\]
+
+y
+
+\[
+F(x)=\int_a^x f(t)\,dt.
+\]
+
+Utilizando la aditividad de la integral,
+
+\begin{align*}
+F(x+h)-F(x)
+&=
+\int_a^{x+h}f(t)\,dt
+-
+\int_a^x f(t)\,dt\\
+&=
+\int_x^{x+h}f(t)\,dt.
+\end{align*}
+
+Por tanto,
+
+\[
+\frac{F(x+h)-F(x)}{h}
+=
+\frac{1}{h}
+\int_x^{x+h}f(t)\,dt.
+\]
+
+Queremos demostrar que este cociente converge a $f(x)$. Para ello,
+consideremos
+
+\begin{align*}
+\frac{F(x+h)-F(x)}{h}-f(x)
+&=
+\frac{1}{h}\int_x^{x+h}f(t)\,dt
+-
+\frac{1}{h}\int_x^{x+h}f(x)\,dt\\
+&=
+\frac{1}{h}
+\int_x^{x+h}
+\bigl(f(t)-f(x)\bigr)\,dt.
+\end{align*}
+
+Tomando valores absolutos,
+
+\[
+\left|
+\frac{F(x+h)-F(x)}{h}-f(x)
+\right|
+\leq
+\frac{1}{|h|}
+\left|
+\int_x^{x+h}
+\bigl(f(t)-f(x)\bigr)\,dt
+\right|.
+\]
+
+Sea $I_h$ el intervalo cuyos extremos son $x$ y $x+h$. Utilizando las
+propiedades de la integral,
+
+\[
+\left|
+\frac{F(x+h)-F(x)}{h}-f(x)
+\right|
+\leq
+\frac{1}{|h|}
+\int_{I_h}
+|f(t)-f(x)|\,dt.
+\]
+
+Sea ahora $\varepsilon>0$.
+
+Como $f$ es continua en $x$, existe $\delta>0$ tal que
+
+\[
+|t-x|<\delta
+\quad\Longrightarrow\quad
+|f(t)-f(x)|<\varepsilon.
+\]
+
+Si
+
+\[
+0<|h|<\delta,
+\]
+
+entonces todo $t\in I_h$ satisface
+
+\[
+|t-x|<\delta.
+\]
+
+Por tanto,
+
+\[
+|f(t)-f(x)|<\varepsilon.
+\]
+
+En consecuencia,
+
+\begin{align*}
+\left|
+\frac{F(x+h)-F(x)}{h}-f(x)
+\right|
+&\leq
+\frac{1}{|h|}
+\int_{I_h}|f(t)-f(x)|\,dt\\
+&<
+\frac{1}{|h|}
+\int_{I_h}\varepsilon\,dt\\
+&=
+\frac{\varepsilon |h|}{|h|}\\
+&=
+\varepsilon.
+\end{align*}
+
+Hemos demostrado que para todo $\varepsilon>0$ existe $\delta>0$ tal que
+
+\[
+0<|h|<\delta
+\]
+
+implica
+
+\[
+\left|
+\frac{F(x+h)-F(x)}{h}-f(x)
+\right|
+<\varepsilon.
+\]
+
+Por definición de límite,
+
+\[
+\lim_{h\to0}
+\frac{F(x+h)-F(x)}{h}
+=
+f(x).
+\]
+
+Por tanto,
+
+\[
+\boxed{
+F'(x)=f(x).
+}
+\]
+
+\hfill$\square$
+% ============================================================
+\subsection{Primer Teorema Fundamental del Cálculo}
+% ============================================================
+
+\textbf{Teorema.}
+Sea
+
+\[
+f:[a,b]\longrightarrow\mathbb{R}
+\]
+
+una función continua y definamos
+
+\[
+F(x)=\int_a^x f(t)\,dt.
+\]
+
+Entonces $F$ es derivable en $(a,b)$ y
+
+\[
+\boxed{
+F'(x)=f(x).
+}
+\]
+
+Equivalentemente,
+
+\[
+\boxed{
+\frac{d}{dx}
+\left(
+\int_a^x f(t)\,dt
+\right)
+=
+f(x).
+}
+\]
+
+\textbf{Demostración.}
+
+Por definición de derivada,
+
+\[
+F'(x)
+=
+\lim_{h\to0}
+\frac{F(x+h)-F(x)}{h}.
+\]
+
+Utilizando la definición de $F$,
+
+\[
+F(x+h)
+=
+\int_a^{x+h}f(t)\,dt
+\]
+
+y
+
+\[
+F(x)
+=
+\int_a^x f(t)\,dt.
+\]
+
+Por tanto,
+
+\[
+F(x+h)-F(x)
+=
+\int_a^{x+h}f(t)\,dt
+-
+\int_a^x f(t)\,dt.
+\]
+
+Por la propiedad de aditividad,
+
+\[
+\int_a^{x+h}f(t)\,dt
+=
+\int_a^x f(t)\,dt
++
+\int_x^{x+h}f(t)\,dt.
+\]
+
+De donde
+
+\[
+F(x+h)-F(x)
+=
+\int_x^{x+h}f(t)\,dt.
+\]
+
+Así,
+
+\[
+F'(x)
+=
+\lim_{h\to0}
+\frac{1}{h}
+\int_x^{x+h}f(t)\,dt.
+\]
+
+Por el Teorema del Valor Medio para integrales, existe un punto $c_h$
+entre $x$ y $x+h$ tal que
+
+\[
+\int_x^{x+h}f(t)\,dt
+=
+f(c_h)h.
+\]
+
+Por consiguiente,
+
+\[
+\frac{1}{h}
+\int_x^{x+h}f(t)\,dt
+=
+f(c_h).
+\]
+
+Cuando
+
+\[
+h\to0,
+\]
+
+el punto $c_h$ queda atrapado entre $x$ y $x+h$, por lo que
+
+\[
+c_h\to x.
+\]
+
+Como $f$ es continua,
+
+\[
+\lim_{h\to0}f(c_h)=f(x).
+\]
+
+Por tanto,
+
+\[
+\boxed{
+F'(x)=f(x).
+}
+\]
+
+\hfill$\square$
+
+Este resultado establece una conexión extraordinaria: si acumulamos los
+valores de una función mediante una integral y posteriormente derivamos
+esa acumulación, recuperamos la función original.
+
+% ============================================================
+\subsection{Segundo Teorema Fundamental del Cálculo}
+% ============================================================
+
+El primer teorema permite demostrar el procedimiento que utilizamos para
+evaluar integrales definidas mediante antiderivadas.
+
+\textbf{Teorema.}
+Sea $f$ continua en $[a,b]$ y sea $F$ cualquier antiderivada de $f$, es
+decir,
+
+\[
+F'(x)=f(x).
+\]
+
+Entonces
+
+\[
+\boxed{
+\int_a^b f(x)\,dx
+=
+F(b)-F(a).
+}
+\]
+
+Esta expresión suele escribirse como
+
+\[
+\boxed{
+\int_a^b f(x)\,dx
+=
+\left.F(x)\right|_a^b
+=
+F(b)-F(a).
+}
+\]
+
+\textbf{Demostración.}
+
+Definamos
+
+\[
+G(x)
+=
+\int_a^x f(t)\,dt.
+\]
+
+Por el Primer Teorema Fundamental del Cálculo,
+
+\[
+G'(x)=f(x).
+\]
+
+Pero por hipótesis,
+
+\[
+F'(x)=f(x).
+\]
+
+Por tanto,
+
+\[
+F'(x)=G'(x).
+\]
+
+De aquí,
+
+\[
+(F-G)'(x)=0.
+\]
+
+Una función cuya derivada es cero en un intervalo es constante. Por tanto,
+existe $C\in\mathbb{R}$ tal que
+
+\[
+F(x)-G(x)=C.
+\]
+
+Es decir,
+
+\[
+G(x)=F(x)-C.
+\]
+
+Evaluando en $x=a$,
+
+\[
+G(a)
+=
+\int_a^a f(t)\,dt
+=
+0.
+\]
+
+Por tanto,
+
+\[
+0=F(a)-C,
+\]
+
+de donde
+
+\[
+C=F(a).
+\]
+
+Así,
+
+\[
+G(x)=F(x)-F(a).
+\]
+
+Finalmente, evaluando en $x=b$,
+
+\[
+G(b)=F(b)-F(a).
+\]
+
+Pero
+
+\[
+G(b)
+=
+\int_a^b f(t)\,dt.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+\int_a^b f(x)\,dx
+=
+F(b)-F(a).
+}
+\]
+
+\hfill$\square$
+
+% ============================================================
+\subsection{Interpretación del Teorema Fundamental del Cálculo}
+% ============================================================
+
+Los dos resultados anteriores muestran que derivación e integración están
+íntimamente relacionadas.
+
+El Primer Teorema Fundamental establece que
+
+\[
+\boxed{
+\frac{d}{dx}
+\int_a^x f(t)\,dt
+=
+f(x).
+}
+\]
+
+Es decir,
+
+\[
+\text{integrar}
+\longrightarrow
+\text{derivar}
+\longrightarrow
+\text{recuperar }f.
+\]
+
+El Segundo Teorema Fundamental establece que, si
+
+\[
+F'=f,
+\]
+
+entonces
+
+\[
+\boxed{
+\int_a^b f(x)\,dx
+=
+F(b)-F(a).
+}
+\]
+
+Por tanto, un problema definido originalmente mediante el límite de sumas
+
+\[
+\lim_{\|P\|\to0}
+\sum_{i=1}^{n}f(\xi_i)\Delta x_i
+\]
+
+puede resolverse encontrando una antiderivada.
+
+Ésta es la razón por la cual el Teorema Fundamental del Cálculo constituye
+el puente entre el cálculo diferencial y el cálculo integral.
+
+% ============================================================
+\subsection{Evaluación de integrales definidas}
+% ============================================================
+
+\begin{Ejem}
+
+Calculemos
+
+\[
+\int_0^1 x^2\,dx.
+\]
+
+Una antiderivada de
+
+\[
+f(x)=x^2
+\]
+
+es
+
+\[
+F(x)=\frac{x^3}{3}.
+\]
+
+Por el Teorema Fundamental del Cálculo,
+
+\[
+\int_0^1x^2\,dx
+=
+\left[
+\frac{x^3}{3}
+\right]_0^1.
+\]
+
+Por tanto,
+
+\[
+\int_0^1x^2\,dx
+=
+\frac{1^3}{3}
+-
+\frac{0^3}{3}
+=
+\boxed{\frac13}.
+\]
+
+Este resultado coincide exactamente con el obtenido anteriormente mediante
+el límite de las sumas de Riemann.
+
+\end{Ejem}
+
+Esta coincidencia es precisamente una manifestación del Teorema
+Fundamental del Cálculo.
+
+% ============================================================
+
+\begin{Ejem}
+
+Calculemos
+
+\[
+\int_1^3(2x+1)\,dx.
+\]
+
+Una antiderivada es
+
+\[
+F(x)=x^2+x.
+\]
+
+Por tanto,
+
+\[
+\int_1^3(2x+1)\,dx
+=
+\left[x^2+x\right]_1^3.
+\]
+
+Así,
+
+\[
+=
+(3^2+3)-(1^2+1)
+\]
+
+y finalmente
+
+\[
+\boxed{
+\int_1^3(2x+1)\,dx=10.
+}
+\]
+
+\end{Ejem}
+
+% ============================================================
+\subsection{Interpretación geométrica de la integral definida}
+% ============================================================
+
+La integral definida representa una acumulación neta.
+
+Si
+
+\[
+f(x)\geq0
+\]
+
+en todo $[a,b]$, entonces
+
+\[
+\int_a^b f(x)\,dx
+\]
+
+coincide con el área geométrica bajo la curva.
+
+Si la función cambia de signo, debemos separar el intervalo en los puntos
+donde
+
+\[
+f(x)=0.
+\]
+
+Por ejemplo, si $c\in(a,b)$ y
+
+\[
+f(x)\geq0
+\qquad\text{en }[a,c],
+\]
+
+mientras que
+
+\[
+f(x)\leq0
+\qquad\text{en }[c,b],
+\]
+
+entonces
+
+\[
+\int_a^b f(x)\,dx
+=
+\int_a^c f(x)\,dx
++
+\int_c^b f(x)\,dx.
+\]
+
+La primera integral representa una contribución positiva y la segunda una
+contribución negativa.
+
+Por tanto,
+
+\[
+\boxed{
+\text{integral definida}
+=
+\text{área positiva}
+-
+\text{área negativa}.
+}
+\]
+
+En cambio, el área geométrica total es
+
+\[
+\boxed{
+A
+=
+\int_a^b |f(x)|\,dx.
+}
+\]
+
+% ============================================================
+\subsection{Resumen de la unidad}
+% ============================================================
+
+La construcción desarrollada en esta unidad puede resumirse mediante el
+siguiente esquema:
+
+\[
+\boxed{
+\begin{array}{c}
+\text{Problema del área}
+\\[0.3cm]
+\downarrow
+\\[0.3cm]
+\text{Partición del intervalo}
+\\[0.3cm]
+\downarrow
+\\[0.3cm]
+\text{Rectángulos de aproximación}
+\\[0.3cm]
+\downarrow
+\\[0.3cm]
+\text{Sumas de Riemann}
+\\[0.3cm]
+\downarrow
+\\[0.3cm]
+\text{Límite}
+\\[0.3cm]
+\downarrow
+\\[0.3cm]
+\text{Integral definida}
+\\[0.3cm]
+\downarrow
+\\[0.3cm]
+\text{Teorema Fundamental del Cálculo}
+\\[0.3cm]
+\downarrow
+\\[0.3cm]
+F(b)-F(a)
+\end{array}
+}
+\]
+
+El punto conceptual central es que comenzamos con un problema geométrico
+de aproximación mediante sumas,
+
+\[
+\sum_{i=1}^{n}f(\xi_i)\Delta x_i,
+\]
+
+pasamos al límite,
+
+\[
+\int_a^b f(x)\,dx,
+\]
+
+y el Teorema Fundamental del Cálculo transforma finalmente este problema
+en uno de antiderivación:
+
+\[
+\boxed{
+\int_a^b f(x)\,dx=F(b)-F(a),
+\qquad F'=f.
+}
+\]
+
+\renewcommand{\thesection}{A\arabic{section} }
+
+
+\setlength{\cftsecnumwidth}{3.5em}
+\setlength{\cftsubsecnumwidth}{4.5em}
+\setlength{\cftsubsubsecnumwidth}{5.5em}
+\setcounter{section}{0}
+
+\part{Ap\'endice: Ap\'endice: Apuntes del Leithold}
+
+% ============================================================
+% Notas de Cálculo Integral
+% Sección: Notación sigma, sumas, área e integral definida
+% Fragmento listo para incorporarse al documento maestro.
+%
+% Requiere al menos:
+% \usepackage{amsmath,amssymb,amsthm}
+% \usepackage{enumitem}
+% ============================================================
+\setcounter{section}{0}
+% ============================================================
+\section*{Notación sigma, sumas y aproximación del área}
+% ============================================================
+La integral definida surge de un proceso de acumulación. Antes de construirla
+formalmente conviene desarrollar una notación compacta para representar sumas,
+estudiar sus propiedades algebraicas y analizar el comportamiento de ciertas
+sumas cuando aumenta el número de términos.
+% ============================================================
+\subsection*{Notación sigma}
+% ============================================================
+La letra griega sigma mayúscula,
+\[
+\Sigma,
+\]
+se utiliza para representar una suma de términos que siguen una regla
+determinada.
+
+\begin{Def}[Notación sigma]
+Sean $m,n\in\mathbb{Z}$ con $m\leq n$, y sea $F$ una función definida para
+los enteros $m,m+1,\dots,n$. Se define
+\[
+\sum_{i=m}^{n} F(i)
+=
+F(m)+F(m+1)+F(m+2)+\cdots+F(n-1)+F(n).
+\]
+El entero $m$ se denomina \emph{límite inferior}, $n$ se denomina
+\emph{límite superior} e $i$ es el \emph{índice de sumación}.
+\end{Def}
+
+El índice de sumación es una variable ficticia: puede sustituirse por cualquier
+otra letra siempre que no se altere la expresión de los términos. Por ejemplo,
+\[
+\sum_{k=3}^{5} k^2
+=
+3^2+4^2+5^2
+=
+\sum_{i=3}^{5} i^2.
+\]
+
+El número de términos de la suma
+\[
+\sum_{i=m}^{n}F(i)
+\]
+es
+\[
+n-m+1.
+\]
+% ============================================================
+\subsubsection*{Ejemplos elementales}
+% ============================================================
+\begin{align*}
+\sum_{i=1}^{5} i^2
+&=
+1^2+2^2+3^2+4^2+5^2,\\[1ex]
+\sum_{i=-2}^{2}(3i+2)
+&=
+[3(-2)+2]+[3(-1)+2]+[3(0)+2]+[3(1)+2]+[3(2)+2]\\
+&=
+-4-1+2+5+8,\\[1ex]
+\sum_{j=1}^{n}j^3
+&=
+1^3+2^3+3^3+\cdots+n^3,\\[1ex]
+\sum_{k=3}^{8}\frac{1}{k}
+&=
+\frac13+\frac14+\frac15+\frac16+\frac17+\frac18.
+\end{align*}
+
+También es posible que los términos contengan subíndices. Por ejemplo,
+\[
+\sum_{i=1}^{n} A_i=A_1+A_2+\cdots+A_n,
+\]
+y
+\[
+\sum_{k=4}^{9} kb_k
+=
+4b_4+5b_5+6b_6+7b_7+8b_8+9b_9.
+\]
+
+Una expresión que será fundamental en el desarrollo de la integral definida es
+\[
+\sum_{i=1}^{n} f(x_i)\,\Delta x,
+\]
+que representa la suma
+\[
+f(x_1)\Delta x+f(x_2)\Delta x+\cdots+f(x_n)\Delta x.
+\]
+% ============================================================
+\subsection*{Propiedades algebraicas de la notación sigma}
+% ============================================================
+Las propiedades siguientes permiten manipular sumas de manera análoga a como
+se manipulan expresiones algebraicas ordinarias.
+
+\begin{Teo}[Suma de una constante]
+Si $c$ es constante y $n\in\mathbb{N}$, entonces
+\[
+\sum_{i=1}^{n} c = cn.
+\]
+\end{Teo}
+
+\textbf{proof}
+Por definición,
+\[
+\sum_{i=1}^{n}c
+=
+\underbrace{c+c+\cdots+c}_{n\text{ términos}}
+=
+cn.
+\]
+
+
+Más generalmente, si el índice comienza en $m$,
+\[
+\sum_{i=m}^{n}c=c(n-m+1).
+\]
+\hfill$\square$
+
+\begin{Teo}[Factor constante]
+Si $c$ es una constante, entonces
+\[
+\sum_{i=1}^{n}cF(i)
+=
+c\sum_{i=1}^{n}F(i).
+\]
+\end{Teo}
+
+\textbf{proof}
+Al desarrollar la suma,
+\begin{align*}
+\sum_{i=1}^{n}cF(i)
+&=
+cF(1)+cF(2)+\cdots+cF(n)\\
+&=
+c\bigl[F(1)+F(2)+\cdots+F(n)\bigr]\\
+&=
+c\sum_{i=1}^{n}F(i).
+\end{align*}
+\hfill$\square$
+
+\begin{Teo}[Linealidad respecto de la suma]
+Para cualesquiera funciones $F$ y $G$ definidas sobre los índices considerados,
+\[
+\sum_{i=1}^{n}\bigl(F(i)+G(i)\bigr)
+=
+\sum_{i=1}^{n}F(i)
++
+\sum_{i=1}^{n}G(i).
+\]
+\end{Teo}
+
+\textbf{proof}
+Por definición,
+\begin{align*}
+\sum_{i=1}^{n}\bigl(F(i)+G(i)\bigr)
+&=
+[F(1)+G(1)]+\cdots+[F(n)+G(n)]\\
+&=
+[F(1)+\cdots+F(n)]
++
+[G(1)+\cdots+G(n)]\\
+&=
+\sum_{i=1}^{n}F(i)+\sum_{i=1}^{n}G(i).
+\end{align*}
+\hfill$\square$
+
+Como consecuencia, para constantes $a$ y $b$,
+\[
+\sum_{i=1}^{n}\bigl(aF(i)+bG(i)\bigr)
+=
+a\sum_{i=1}^{n}F(i)
++
+b\sum_{i=1}^{n}G(i).
+\]
+% ============================================================
+\subsection*{Cambio de índice}
+% ============================================================
+En muchas ocasiones es útil desplazar el índice de una suma. La idea esencial
+es que el valor de la suma no depende del nombre ni del origen del índice,
+siempre que se modifiquen de manera coherente los límites y el término general.
+
+\begin{Teo}[Desplazamiento del índice]
+Sea $c\in\mathbb{Z}$. Entonces
+\[
+\sum_{i=a}^{b}F(i)
+=
+\sum_{i=a+c}^{b+c}F(i-c),
+\]
+y también
+\[
+\sum_{i=a}^{b}F(i)
+=
+\sum_{i=a-c}^{b-c}F(i+c).
+\]
+\end{Teo}
+
+\begin{Ejem}
+Aplicando un desplazamiento de $2$ unidades,
+\[
+\sum_{i=3}^{10}F(i)
+=
+\sum_{i=5}^{12}F(i-2).
+\]
+En efecto, cuando el nuevo índice toma el valor $5$, el argumento es
+$5-2=3$, y cuando toma el valor $12$, el argumento es $12-2=10$.
+\end{Ejem}
+
+De forma similar,
+\[
+\sum_{i=6}^{11}i^2
+=
+\sum_{i=7}^{12}(i-1)^2.
+\]
+
+También puede desplazarse el índice en la dirección contraria:
+\[
+\sum_{i=3}^{10}F(i)
+=
+\sum_{i=1}^{8}F(i+2),
+\]
+y
+\[
+\sum_{i=6}^{11}i^2
+=
+\sum_{i=1}^{6}(i+5)^2.
+\]
+% ============================================================
+\subsection*{Sumas telescópicas}
+% ============================================================
+Un caso especialmente importante ocurre cuando los términos consecutivos se
+cancelan.
+
+\begin{Teo}[Suma telescópica]
+Para una función $F$ definida en los enteros $0,1,\dots,n$,
+\[
+\sum_{i=1}^{n}\bigl(F(i)-F(i-1)\bigr)
+=
+F(n)-F(0).
+\]
+\end{Teo}
+
+\textbf{proof}
+Al desarrollar la suma se obtiene
+\begin{align*}
+\sum_{i=1}^{n}\bigl(F(i)-F(i-1)\bigr)
+&=
+[F(1)-F(0)]
++[F(2)-F(1)]\\
+&\qquad+\cdots+
+[F(n)-F(n-1)].
+\end{align*}
+Todos los términos intermedios se cancelan:
+\[
+-F(1)+F(1),\quad -F(2)+F(2),\quad \dots,
+\]
+por lo que solamente permanecen
+\[
+F(n)-F(0).
+\]
+\hfill$\square$
+
+\begin{Ejem}
+Si $F(i)=4^i$, entonces
+\[
+\sum_{i=1}^{n}\left(4^i-4^{i-1}\right)
+=
+4^n-4^0
+=
+4^n-1.
+\]
+\end{Ejem}
+
+Otro ejemplo clásico es
+\[
+\sum_{k=1}^{100}
+\left(
+\frac1k-\frac1{k+1}
+\right).
+\]
+Al desarrollar,
+\[
+\left(1-\frac12\right)
++
+\left(\frac12-\frac13\right)
++\cdots+
+\left(\frac1{100}-\frac1{101}\right),
+\]
+los términos intermedios se cancelan y resulta
+\[
+1-\frac1{101}
+=
+\frac{100}{101}.
+\]
+% ============================================================
+\subsection*{Fórmulas fundamentales de sumación}
+% ============================================================
+Para $n\in\mathbb{N}$ se tienen las identidades:
+\begin{align}
+\sum_{i=1}^{n}i
+&=
+\frac{n(n+1)}{2},
+\label{eq:suma_i}\\[1ex]
+\sum_{i=1}^{n}i^2
+&=
+\frac{n(n+1)(2n+1)}{6},
+\label{eq:suma_i2}\\[1ex]
+\sum_{i=1}^{n}i^3
+&=
+\left(\frac{n(n+1)}{2}\right)^2,
+\label{eq:suma_i3}\\[1ex]
+\sum_{i=1}^{n}i^4
+&=
+\frac{n(n+1)(2n+1)(3n^2+3n-1)}{30}.
+\label{eq:suma_i4}
+\end{align}
+
+Estas fórmulas permiten evaluar de manera cerrada sumas polinomiales y serán
+especialmente útiles cuando se calculen límites de sumas de Riemann.
+
+\begin{Ejem}
+Calculemos
+\[
+\sum_{i=1}^{n} i(3i-2).
+\]
+Primero desarrollamos:
+\[
+i(3i-2)=3i^2-2i.
+\]
+Por linealidad,
+\[
+\sum_{i=1}^{n} i(3i-2)
+=
+3\sum_{i=1}^{n}i^2
+-
+2\sum_{i=1}^{n}i.
+\]
+Usando \eqref{eq:suma_i} y \eqref{eq:suma_i2},
+\begin{align*}
+\sum_{i=1}^{n} i(3i-2)
+&=
+3\frac{n(n+1)(2n+1)}{6}
+-
+2\frac{n(n+1)}{2}\\[1ex]
+&=
+\frac{n(n+1)(2n+1)}{2}
+-
+n(n+1)\\[1ex]
+&=
+\frac{n(n+1)(2n-1)}{2}\\[1ex]
+&=
+\frac{2n^3+n^2-n}{2}.
+\end{align*}
+\end{Ejem}
+% ============================================================
+\subsection*{Del sumatorio al área}
+% ============================================================
+La idea geométrica central de la integral definida consiste en aproximar el
+área bajo una curva mediante rectángulos.
+
+Sea $f$ continua y no negativa en un intervalo cerrado $[a,b]$. Dividimos el
+intervalo en $n$ subintervalos de igual longitud,
+\[
+\Delta x=\frac{b-a}{n}.
+\]
+Los puntos de la partición son
+\[
+x_i=a+i\Delta x,
+\qquad i=0,1,\dots,n.
+\]
+
+En cada subintervalo $[x_{i-1},x_i]$ puede elegirse un punto $c_i$. El área del
+rectángulo correspondiente se aproxima mediante
+\[
+f(c_i)\Delta x.
+\]
+La suma de las áreas de los $n$ rectángulos es
+\[
+\sum_{i=1}^{n}f(c_i)\Delta x.
+\]
+
+Si se eligen los mínimos de $f$ en cada subintervalo se obtienen rectángulos
+inscritos; si se eligen los máximos se obtienen rectángulos circunscritos.
+Cuando el número de subintervalos aumenta y, por tanto, $\Delta x\to0$, ambas
+aproximaciones convergen al área exacta bajo ciertas hipótesis.
+
+\begin{Def}[Área de una región bajo una curva]
+Sea $f$ continua en $[a,b]$ y supóngase que $f(x)\ge0$ para todo
+$x\in[a,b]$. Sea $R$ la región limitada por la gráfica $y=f(x)$, el eje $x$ y
+las rectas $x=a$ y $x=b$.
+
+Si el intervalo se divide en $n$ subintervalos de igual longitud y $c_i$ es un
+punto adecuado del $i$-ésimo subintervalo, el área se define mediante el límite
+\[
+A
+=
+\lim_{n\to\infty}
+\sum_{i=1}^{n}f(c_i)\Delta x,
+\qquad
+\Delta x=\frac{b-a}{n},
+\]
+si dicho límite existe.
+\end{Def}
+
+La interpretación importante es la siguiente:
+\[
+\boxed{
+\text{área exacta}
+=
+\lim_{\substack{\text{número de}\\\text{rectángulos}\to\infty}}
+\text{suma de áreas aproximadas}
+}
+\]
+
+En términos de precisión, decir que
+\[
+A=\lim_{n\to\infty}\sum_{i=1}^{n}f(c_i)\Delta x
+\]
+significa que para todo $\varepsilon>0$ existe un entero $N$ tal que, si
+$n>N$, entonces
+\[
+\left|
+\sum_{i=1}^{n}f(c_i)\Delta x-A
+\right|
+<\varepsilon.
+\]
+% ============================================================
+\subsection*{Particiones y sumas de Riemann}
+% ============================================================
+Para formular la integral definida en general no es necesario que todos los
+subintervalos tengan la misma longitud.
+
+\begin{Def}[Partición]
+Una partición $\Delta$ del intervalo $[a,b]$ es un conjunto de puntos
+\[
+a=x_0<x_1<x_2<\cdots<x_n=b.
+\]
+La longitud del $i$-ésimo subintervalo es
+\[
+\Delta_i x=x_i-x_{i-1}.
+\]
+\end{Def}
+
+La \emph{norma} de la partición es
+\[
+\|\Delta\|
+=
+\max_{1\le i\le n}\Delta_i x.
+\]
+
+Si se elige un punto
+\[
+w_i\in[x_{i-1},x_i]
+\]
+en cada subintervalo, entonces
+\[
+\sum_{i=1}^{n}f(w_i)\Delta_i x
+\]
+se denomina una \emph{suma de Riemann} asociada a $f$ y a la partición
+$\Delta$.
+
+\begin{Def}[Función integrable en un intervalo cerrado]
+Sea $f$ una función definida en $[a,b]$. Se dice que $f$ es
+\emph{integrable en $[a,b]$} si existe un número real $L$ tal que para todo
+$\varepsilon>0$ existe $\delta>0$ con la propiedad de que, para toda partición
+$\Delta$ de $[a,b]$ que satisfaga
+\[
+\|\Delta\|<\delta
+\]
+y para cualquier elección de puntos
+\[
+w_i\in[x_{i-1},x_i],
+\]
+se cumple
+\[
+\left|
+\sum_{i=1}^{n}f(w_i)\Delta_i x-L
+\right|
+<\varepsilon.
+\]
+En tal caso se escribe
+\[
+\lim_{\|\Delta\|\to0}
+\sum_{i=1}^{n}f(w_i)\Delta_i x
+=
+L.
+\]
+\end{Def}
+
+La condición anterior es más fuerte que simplemente considerar una sucesión
+particular de particiones. El valor $L$ debe ser el mismo para todas las
+particiones suficientemente finas y para cualquier elección de los puntos
+$w_i$ dentro de los subintervalos.
+
+\begin{Def}[Integral definida]
+Si $f$ es integrable en $[a,b]$, la integral definida de $f$ desde $a$ hasta
+$b$ se define por
+\[
+\boxed{
+\int_a^b f(x)\,dx
+=
+\lim_{\|\Delta\|\to0}
+\sum_{i=1}^{n}f(w_i)\Delta_i x
+}
+\]
+si el límite existe.
+\end{Def}
+
+En la expresión
+\[
+\int_a^b f(x)\,dx,
+\]
+$f(x)$ se denomina \emph{integrando}, $a$ es el \emph{límite inferior} y
+$b$ es el \emph{límite superior} de integración. La variable $x$ es una
+variable ficticia; por ejemplo,
+\[
+\int_a^b f(x)\,dx
+=
+\int_a^b f(t)\,dt.
+\]
+
+El símbolo $\int$ puede interpretarse históricamente como una ``S'' alargada,
+pues la integral definida se construye como límite de sumas.
+
+\begin{Teo}[Continuidad implica integrabilidad]
+Si $f$ es continua en el intervalo cerrado $[a,b]$, entonces $f$ es integrable
+en $[a,b]$.
+\end{Teo}
+
+Este resultado proporciona una condición suficiente muy importante: toda
+función continua sobre un intervalo cerrado posee integral definida en ese
+intervalo. La continuidad no es necesaria; existen funciones discontinuas que
+también son integrables.
+% ============================================================
+\subsection*{Lectura conceptual para clase}
+% ============================================================
+Conviene destacar ante los estudiantes la secuencia lógica:
+
+\[
+\boxed{
+\text{notación sigma}
+\longrightarrow
+\text{sumas finitas}
+\longrightarrow
+\text{rectángulos}
+\longrightarrow
+\text{sumas de Riemann}
+\longrightarrow
+\text{límite}
+\longrightarrow
+\text{integral definida}
+}
+\]
+
+La integral definida no debe presentarse inicialmente como una operación
+puramente simbólica. Su estructura esencial es
+\[
+\int_a^b f(x)\,dx
+=
+\lim
+\left(
+\text{suma de contribuciones pequeñas}
+\right).
+\]
+En el caso geométrico, cada contribución es aproximadamente el área de un
+rectángulo,
+\[
+f(w_i)\Delta_i x.
+\]
+% ============================================================
+\subsection*{Ejemplos sugeridos para el pizarrón}
+% ============================================================
+\begin{Ejem}
+Expanda la suma
+\[
+\sum_{i=3}^{6}\frac{i^2}{i+1}.
+\]
+Se obtiene
+\[
+\frac{3^2}{3+1}
++
+\frac{4^2}{4+1}
++
+\frac{5^2}{5+1}
++
+\frac{6^2}{6+1}.
+\]
+\end{Ejem}
+
+\begin{Ejem}
+Calcule
+\[
+\sum_{i=1}^{6}(3i-2).
+\]
+Por las propiedades de la sumatoria,
+\begin{align*}
+\sum_{i=1}^{6}(3i-2)
+&=
+3\sum_{i=1}^{6}i
+-
+2\sum_{i=1}^{6}1\\
+&=
+3\frac{6(7)}{2}-2(6)\\
+&=
+63-12\\
+&=
+51.
+\end{align*}
+\end{Ejem}
+
+\begin{Ejem}
+Evalúe la suma telescópica
+\[
+\sum_{k=1}^{n}\left(2^k-2^{k-1}\right).
+\]
+Usando el teorema telescópico con $F(k)=2^k$,
+\[
+\sum_{k=1}^{n}\left(2^k-2^{k-1}\right)
+=
+2^n-1.
+\]
+\end{Ejem}
+
+\begin{Ejem}[Preparación para sumas de Riemann]
+Sea $f(x)=x^2$ en $[0,2]$. Dividamos el intervalo en $n$ partes iguales:
+\[
+\Delta x=\frac{2}{n}.
+\]
+Si elegimos los extremos derechos,
+\[
+x_i=\frac{2i}{n}.
+\]
+La suma de Riemann es
+\[
+\sum_{i=1}^{n}
+f\left(\frac{2i}{n}\right)\frac{2}{n}
+=
+\sum_{i=1}^{n}
+\left(\frac{2i}{n}\right)^2\frac{2}{n}
+=
+\frac{8}{n^3}\sum_{i=1}^{n}i^2.
+\]
+Usando
+\[
+\sum_{i=1}^{n}i^2
+=
+\frac{n(n+1)(2n+1)}{6},
+\]
+resulta
+\[
+\frac{8}{n^3}
+\frac{n(n+1)(2n+1)}{6}.
+\]
+Por tanto,
+\[
+\lim_{n\to\infty}
+\frac{8n(n+1)(2n+1)}{6n^3}
+=
+\frac{8}{3}.
+\]
+Así,
+\[
+\int_0^2x^2\,dx=\frac83.
+\]
+\end{Ejem}
+% ============================================================
+\subsection*{Observaciones}
+% ============================================================
+\begin{itemize}[leftmargin=1.5em]
+    \item Es importante distinguir entre una \emph{suma finita} y el
+    \emph{límite de una suma}. La integral definida pertenece a la segunda
+    categoría.
+
+    \item El índice de sumación es ficticio. Cambiar $i$ por $k$ no modifica la
+    suma, siempre que el cambio sea consistente.
+
+    \item En un cambio de índice deben modificarse simultáneamente los límites
+    y el término general.
+
+    \item Las sumas telescópicas permiten anticipar una idea central del
+    Teorema Fundamental del Cálculo: la cancelación de contribuciones
+    interiores deja únicamente información en los extremos.
+
+    \item Las fórmulas para
+    $\sum i$, $\sum i^2$, $\sum i^3$ y $\sum i^4$ son herramientas
+    algebraicas para calcular límites de sumas de Riemann sin utilizar todavía
+    antiderivadas.
+
+    \item En una suma de Riemann, el factor $\Delta_i x$ representa el ancho
+    del subintervalo y $f(w_i)$ representa la altura del rectángulo
+    correspondiente.
+
+    \item La condición $\|\Delta\|\to0$ significa que el subintervalo más largo
+    de la partición tiende a cero. No basta con que aumente simplemente el
+    número de subintervalos si alguno de ellos permanece grande.
+
+    \item La continuidad de $f$ en $[a,b]$ garantiza integrabilidad, pero no es
+    una condición necesaria.
+\end{itemize}
+% ============================================================
+\subsection*{Punto de transición hacia el Teorema Fundamental del Cálculo}
+% ============================================================
+Hasta este punto la integral definida se ha construido a partir de sumas y
+límites:
+\[
+\int_a^b f(x)\,dx
+=
+\lim_{\|\Delta\|\to0}
+\sum_{i=1}^{n}f(w_i)\Delta_i x.
+\]
+
+El siguiente problema natural es determinar si existe una manera más eficiente
+de calcular esta cantidad. La respuesta conduce al Teorema Fundamental del
+Cálculo, que establece la conexión entre dos ideas que, en principio, parecen
+distintas:
+\[
+\boxed{
+\text{acumulación mediante una integral}
+\quad\longleftrightarrow\quad
+\text{antiderivación}
+}
+\]
+
+Esta conexión permitirá sustituir, bajo las hipótesis apropiadas, el cálculo de
+un límite de sumas por la evaluación de una antiderivada en los extremos del
+intervalo.
+
+% ============================================================
+% CONTINUACIÓN: INTEGRAL DEFINIDA, INTERPRETACIÓN Y PROPIEDADES
+% ============================================================
+% ============================================================
+\section*{Integral definida: interpretación geométrica y propiedades}
+% ============================================================
+
+% ============================================================
+\subsection*{Particiones regulares y una forma práctica de las sumas de Riemann}
+% ============================================================
+Recordemos que una partición de $[a,b]$ es un conjunto de puntos
+\[
+a=x_0<x_1<\cdots <x_n=b.
+\]
+Cuando todos los subintervalos tienen la misma longitud, la partición se llama
+\emph{regular}. En este caso,
+\[
+\Delta x=\frac{b-a}{n},
+\qquad
+x_i=a+i\Delta x,
+\]
+y la norma de la partición coincide con $\Delta x$.
+
+Por tanto, si $f$ es integrable en $[a,b]$, la definición general
+\[
+\int_a^b f(x)\,dx
+=
+\lim_{\|\Delta\|\to0}
+\sum_{i=1}^n f(w_i)\Delta_i x
+\]
+puede escribirse, para particiones regulares, como
+\[
+\boxed{
+\int_a^b f(x)\,dx
+=
+\lim_{n\to\infty}
+\sum_{i=1}^n f(w_i)\Delta x
+}
+\qquad
+\left(\Delta x=\frac{b-a}{n}\right).
+\]
+
+La equivalencia entre $\Delta x\to0^+$ y $n\to\infty$ se obtiene de
+\[
+n=\frac{b-a}{\Delta x}.
+\]
+Así, refinar indefinidamente una partición regular equivale a aumentar sin
+límite el número de subintervalos.
+
+\begin{quote}
+\textbf{Nota didáctica.} La expresión anterior es la forma de la definición que
+se utiliza con mayor frecuencia en los primeros cálculos de integrales mediante
+sumas de Riemann. Sin embargo, la definición de integrabilidad es más fuerte:
+el límite debe ser independiente de la elección de los puntos de muestra
+$w_i\in[x_{i-1},x_i]$.
+\end{quote}
+% ============================================================
+\subsection*{Continuidad e integrabilidad}
+% ============================================================
+\begin{Teo}[Continuidad implica integrabilidad]
+Si $f$ es continua en el intervalo cerrado $[a,b]$, entonces $f$ es integrable
+en $[a,b]$.
+\end{Teo}
+
+La continuidad es, por tanto, una condición \emph{suficiente} para la
+integrabilidad de Riemann. No es una condición necesaria: existen funciones
+con discontinuidades que también son integrables.
+
+Este resultado es fundamental en un primer curso de cálculo porque garantiza
+que todas las funciones elementales continuas que aparecen habitualmente
+--polinomios, funciones trigonométricas, exponenciales, etc., restringidas a
+intervalos cerrados de su dominio-- poseen integral definida.
+% ============================================================
+\subsection*{La integral definida como área}
+% ============================================================
+Supongamos que $f$ es continua en $[a,b]$ y
+\[
+f(x)\geq0\qquad\text{para todo }x\in[a,b].
+\]
+Si $R$ es la región limitada por la gráfica $y=f(x)$, el eje $x$ y las rectas
+$x=a$ y $x=b$, entonces la medida de su área es
+\[
+\boxed{
+A(R)=\int_a^b f(x)\,dx.
+}
+\]
+
+Esta igualdad enlaza la construcción geométrica mediante rectángulos con la
+noción analítica de integral definida. Los rectángulos producen aproximaciones
+finitas; el límite de esas aproximaciones produce el área exacta.
+% ============================================================
+\subsubsection*{Ejemplo: región triangular}
+% ============================================================
+
+Para $f(x)=x$ en $[0,3]$, la región bajo la gráfica es un triángulo de base $3$
+y altura $3$. Por geometría,
+\[
+A=\frac12(3)(3)=\frac92.
+\]
+En consecuencia,
+\[
+\boxed{\int_0^3 x\,dx=\frac92.}
+\]
+
+\subsubsection*{Ejemplo: una semicircunferencia}
+La función
+\[
+g(x)=\sqrt{9-x^2},\qquad -3\leq x\leq3,
+\]
+describe la semicircunferencia superior de radio $3$. Por tanto,
+\[
+\int_{-3}^{3}\sqrt{9-x^2}\,dx
+=\frac12\pi(3)^2
+=\boxed{\frac{9\pi}{2}}.
+\]
+% ============================================================
+\subsubsection*{Ejemplo: función con valor absoluto}
+% ============================================================
+Considérese
+\[
+h(x)=2-|x|,\qquad -2\leq x\leq2.
+\]
+Su gráfica encierra con el eje $x$ un triángulo de base $4$ y altura $2$; de
+ahí,
+\[
+\int_{-2}^{2}(2-|x|)\,dx
+=\frac12(4)(2)
+=\boxed{4}.
+\]
+% ============================================================
+\subsection*{Integral definida y área con signo}
+% ============================================================
+La interpretación anterior como \emph{área geométrica} requiere $f\geq0$.
+Cuando la función cambia de signo, la integral definida representa un
+\emph{área algebraica} o \emph{área con signo}:
+\begin{itemize}
+    \item las regiones situadas por encima del eje $x$ contribuyen positivamente;
+    \item las regiones situadas por debajo del eje $x$ contribuyen negativamente.
+\end{itemize}
+
+Por ejemplo, para $f(x)=\sin x$ en $[0,2\pi]$, las regiones en $[0,\pi]$ y
+$[\pi,2\pi]$ tienen la misma área geométrica, pero signos opuestos. Así,
+\[
+\int_0^{2\pi}\sin x\,dx=A_1-A_2=0.
+\]
+
+Es importante distinguir
+\[
+\boxed{\int_a^b f(x)\,dx}
+\quad\text{de}\quad
+\boxed{\int_a^b |f(x)|\,dx}.
+\]
+La primera es área con signo; la segunda proporciona el área geométrica total
+entre la gráfica y el eje $x$, siempre que las hipótesis correspondientes se
+cumplan.
+% ============================================================
+\subsection*{Cambio del orden de los límites de integración}
+% ============================================================
+La integral se extiende naturalmente al caso en que el límite inferior sea
+mayor que el superior mediante la definición
+\[
+\boxed{
+\int_a^b f(x)\,dx=-\int_b^a f(x)\,dx.
+}
+\]
+Por ejemplo, como
+\[
+\int_0^3 x^2\,dx=9,
+\]
+se tiene
+\[
+\int_3^0 x^2\,dx=-9.
+\]
+
+Asimismo, si ambos límites coinciden,
+\[
+\boxed{\int_a^a f(x)\,dx=0.}
+\]
+Geométricamente, el intervalo tiene longitud cero y no existe región de área
+positiva entre dos extremos distintos.
+% ============================================================
+\subsection*{Una identidad básica para las longitudes de una partición}
+% ============================================================
+\begin{Teo}
+Sea
+\[
+\Delta=\{x_0,x_1,\ldots,x_n\}
+\]
+una partición de $[a,b]$ y $\Delta_i x=x_i-x_{i-1}$. Entonces
+\[
+\sum_{i=1}^n\Delta_i x=b-a.
+\]
+En particular,
+\[
+\lim_{\|\Delta\|\to0}\sum_{i=1}^n\Delta_i x=b-a.
+\]
+\end{Teo}
+
+\text{proof}
+La suma es telescópica:
+\begin{align*}
+\sum_{i=1}^n\Delta_i x
+&=(x_1-x_0)+(x_2-x_1)+\cdots +(x_n-x_{n-1})\\
+&=x_n-x_0\\
+&=b-a.
+\end{align*}
+La igualdad vale para toda partición; por consiguiente, su límite también es
+$b-a$.
+\hfill$\square$
+
+Este resultado explica por qué una función constante produce el área de un
+rectángulo.
+% ============================================================
+\subsection*{Integral de una función constante}
+% ============================================================
+\begin{Teo}
+Si $k$ es constante, entonces
+\[
+\boxed{\int_a^b k\,dx=k(b-a).}
+\]
+\end{Teo}
+
+\textbf{proof}
+Para $a<b$, utilizando la definición mediante sumas de Riemann,
+\begin{align*}
+\int_a^b k\,dx
+&=\lim_{\|\Delta\|\to0}\sum_{i=1}^n k\,\Delta_i x\\
+&=k\lim_{\|\Delta\|\to0}\sum_{i=1}^n\Delta_i x\\
+&=k(b-a).
+\end{align*}
+La extensión a $a>b$ es consistente con la inversión de límites, y para $a=b$
+ambos miembros son cero.
+\hfill$\square$
+
+Por ejemplo,
+\[
+\int_{-3}^{5}4\,dx=4[5-(-3)]=\boxed{32}.
+\]
+% ============================================================
+\subsection*{Linealidad de la integral definida}
+% ============================================================
+Una de las propiedades estructurales más importantes de la integral es su
+linealidad.
+
+\begin{Teo}[Multiplicación por una constante]
+Si $f$ es integrable en $[a,b]$ y $k$ es una constante, entonces
+\[
+\boxed{
+\int_a^b kf(x)\,dx=k\int_a^b f(x)\,dx.
+}
+\]
+\end{Teo}
+
+\textbf{proof}
+Por la definición de integral y las propiedades de los límites,
+\begin{align*}
+\int_a^b kf(x)\,dx
+&=\lim_{\|\Delta\|\to0}\sum_{i=1}^n kf(w_i)\Delta_i x\\
+&=k\lim_{\|\Delta\|\to0}\sum_{i=1}^n f(w_i)\Delta_i x\\
+&=k\int_a^b f(x)\,dx.
+\end{align*}
+
+
+\begin{Teo}[Aditividad respecto del integrando]
+Si $f$ y $g$ son integrables en $[a,b]$, entonces
+\[
+\boxed{
+\int_a^b[f(x)+g(x)]\,dx
+=\int_a^b f(x)\,dx+\int_a^b g(x)\,dx.
+}
+\]
+\end{Teo}
+
+Combinando ambos resultados se obtiene, para constantes $\alpha,\beta$,
+\[
+\boxed{
+\int_a^b[\alpha f(x)+\beta g(x)]\,dx
+=\alpha\int_a^b f(x)\,dx
++\beta\int_a^b g(x)\,dx.
+}
+\]
+Más generalmente, para una combinación lineal finita,
+\[
+\int_a^b\left(\sum_{j=1}^m c_jf_j(x)\right)dx
+=\sum_{j=1}^m c_j\int_a^b f_j(x)\,dx.
+\]
+
+\subsubsection*{Ejemplo de linealidad}
+Supongamos conocidos los valores
+\[
+\int_0^3x^2\,dx=9,
+\qquad
+\int_0^3x\,dx=\frac92.
+\]
+Entonces
+\begin{align*}
+\int_0^3(4x^2-2x+5)\,dx
+&=4\int_0^3x^2\,dx-2\int_0^3x\,dx+5\int_0^3 1\,dx\\
+&=4(9)-2\left(\frac92\right)+5(3)\\
+&=\boxed{42}.
+\end{align*}
+% ============================================================
+\subsection*{Aditividad respecto del intervalo}
+% ============================================================
+La integral también es aditiva respecto del intervalo de integración.
+
+\begin{Teo}[Aditividad de intervalos]
+Si $f$ es integrable en un intervalo que contiene a $a$, $b$ y $c$, entonces
+\[
+\boxed{
+\int_a^b f(x)\,dx
+=\int_a^c f(x)\,dx+\int_c^b f(x)\,dx.
+}
+\]
+La identidad es válida independientemente del orden de $a$, $b$ y $c$.
+\end{Teo}
+
+Cuando $a<c<b$, la interpretación geométrica es inmediata: el área algebraica
+en $[a,b]$ se descompone en las contribuciones correspondientes a $[a,c]$ y
+$[c,b]$.
+
+Para comprender por qué la fórmula permanece válida para cualquier orden,
+considérese, por ejemplo, $a<b<c$. La aditividad usual da
+\[
+\int_a^c f(x)\,dx
+=\int_a^b f(x)\,dx+\int_b^c f(x)\,dx.
+\]
+Como
+\[
+\int_c^b f(x)\,dx=-\int_b^c f(x)\,dx,
+\]
+se obtiene
+\[
+\int_a^b f(x)\,dx
+=\int_a^c f(x)\,dx+\int_c^b f(x)\,dx.
+\]
+Los demás órdenes se verifican de forma análoga. Si dos de los puntos
+coinciden, interviene la identidad $\int_a^a f=0$.
+% ============================================================
+\subsection*{Resumen de propiedades básicas}
+% ============================================================
+Para funciones integrables y constantes $\alpha,\beta$, conviene reunir las
+propiedades anteriores en una sola lista:
+\[
+\boxed{
+\begin{aligned}
+\int_a^a f(x)\,dx&=0,\\[1mm]
+\int_a^b f(x)\,dx&=-\int_b^a f(x)\,dx,\\[1mm]
+\int_a^b k\,dx&=k(b-a),\\[1mm]
+\int_a^b[\alpha f(x)+\beta g(x)]\,dx
+&=\alpha\int_a^b f(x)\,dx+\beta\int_a^b g(x)\,dx,\\[1mm]
+\int_a^b f(x)\,dx
+&=\int_a^c f(x)\,dx+\int_c^b f(x)\,dx.
+\end{aligned}}
+\]
+
+Estas propiedades son esenciales porque permiten manipular integrales antes de
+disponer de una técnica general de evaluación por antiderivadas.
+% ============================================================
+\subsection*{Aproximación numérica y significado del resultado}
+% ============================================================
+Una integral definida puede aproximarse numéricamente mediante sumas de
+Riemann u otros métodos de cuadratura. Sin embargo, el valor numérico debe
+interpretarse de acuerdo con el signo de la función. Por ejemplo,
+\[
+\int_0^{2\pi}\sin x\,dx=0
+\]
+no significa que la región entre $y=\sin x$ y el eje $x$ tenga área geométrica
+cero. Significa que las contribuciones positiva y negativa se cancelan.
+
+En aplicaciones computacionales se escribe conceptualmente
+\[
+\int_a^b f(x)\,dx\approx I_{\mathrm{num}},
+\]
+donde la precisión depende del algoritmo, de la tolerancia y del comportamiento
+de $f$. Esta aproximación no modifica la definición matemática de la integral;
+solamente proporciona una estrategia computacional para estimar su valor.
+% ============================================================
+\subsection*{Puente hacia el Teorema Fundamental del Cálculo}
+% ============================================================
+La definición de integral como límite de sumas es conceptualmente fundamental,
+pero evaluar cada integral directamente a partir de
+\[
+\lim_{\|\Delta\|\to0}\sum_{i=1}^n f(w_i)\Delta_i x
+\]
+resultaría poco práctico.
+
+La pregunta central es entonces:
+\[
+\boxed{
+\text{¿Existe una manera de calcular una integral definida sin reconstruir cada vez su suma de Riemann?}
+}
+\]
+La respuesta es afirmativa. El Teorema Fundamental del Cálculo mostrará que,
+bajo hipótesis apropiadas, la operación de integración está íntimamente ligada
+a la derivación y permitirá evaluar integrales definidas mediante
+antiderivadas.
+
+% ============================================================
+% Continuación: bloque 3 — Sección 4.6 del material de referencia
+% ============================================================
+
+% ============================================================
+\section*{Teorema del valor medio para integrales}
+% ============================================================
+Las propiedades de orden de la integral definida permiten pasar de una
+interpretación puramente geométrica a resultados de existencia. El objetivo
+central de esta sección es demostrar que, si $f$ es continua en $[a,b]$, su
+valor promedio en el intervalo coincide con $f(c)$ para al menos un punto
+$c\in[a,b]$. Este resultado será una pieza esencial en la demostración del
+Teorema Fundamental del Cálculo.
+% ============================================================
+\subsection*{Monotonía de la integral}
+% ============================================================
+La primera propiedad expresa que la integral preserva el orden entre
+funciones.
+
+\begin{Teo}[Propiedad de comparación]
+Sean $f$ y $g$ funciones integrables en $[a,b]$. Si
+\[
+f(x)\ge g(x)\qquad\text{para todo }x\in[a,b],
+\]
+entonces
+\[
+\boxed{\int_a^b f(x)\,dx\ge \int_a^b g(x)\,dx.}
+\]
+\end{Teo}
+
+\textbf{proof}
+Definamos
+\[
+h(x)=f(x)-g(x).
+\]
+Por hipótesis, $h(x)\ge0$ para todo $x\in[a,b]$. Además, por linealidad,
+\[
+\int_a^b h(x)\,dx
+=\int_a^b f(x)\,dx-\int_a^b g(x)\,dx.
+\]
+Toda suma de Riemann de $h$ tiene la forma
+\[
+\sum_{i=1}^n h(w_i)\Delta_i x.
+\]
+Como $h(w_i)\ge0$ y $\Delta_i x>0$, cada término es no negativo y, por tanto,
+la suma completa es no negativa. Al pasar al límite,
+\[
+\int_a^b h(x)\,dx\ge0.
+\]
+Así,
+\[
+\int_a^b f(x)\,dx-\int_a^b g(x)\,dx\ge0,
+\]
+de donde se concluye el resultado.
+\hfill$\square$
+
+Un caso particular importante es
+\[
+f(x)\ge0\quad\Longrightarrow\quad \int_a^b f(x)\,dx\ge0.
+\]
+La hipótesis puntual $f\ge g$ se convierte, después de integrar, en una
+comparación entre las acumulaciones totales de ambas funciones.
+% ============================================================
+\subsection*{Acotación de una integral mediante extremos absolutos}
+% ============================================================
+Si $f$ es continua en un intervalo cerrado, el Teorema del Valor Extremo
+garantiza que alcanza un mínimo absoluto $m$ y un máximo absoluto $M$.
+Entonces
+\[
+m\le f(x)\le M\qquad (a\le x\le b).
+\]
+
+\begin{Teo}[Cotas para la integral]
+Sea $f$ continua en $[a,b]$, con $a<b$, y sean
+\[
+m=\min_{x\in[a,b]}f(x),
+\qquad
+M=\max_{x\in[a,b]}f(x).
+\]
+Entonces
+\[
+\boxed{
+m(b-a)\le \int_a^b f(x)\,dx\le M(b-a).
+}
+\]
+\end{Teo}
+
+\textbf{proof}
+De
+\[
+m\le f(x)\le M
+\]
+y la propiedad de comparación se obtiene
+\[
+\int_a^b m\,dx
+\le
+\int_a^b f(x)\,dx
+\le
+\int_a^b M\,dx.
+\]
+Como la integral de una constante satisface
+\[
+\int_a^b k\,dx=k(b-a),
+\]
+resulta
+\[
+m(b-a)\le \int_a^b f(x)\,dx\le M(b-a).
+\]
+\hfill$\square$
+
+Geométricamente, cuando $f\ge0$, la región bajo la gráfica queda contenida
+entre dos rectángulos de base $b-a$: uno de altura $m$ y otro de altura $M$.
+El teorema sigue siendo válido aunque $f$ tome valores negativos; en ese caso
+la interpretación correcta es en términos de integral o área algebraica.
+% ============================================================
+\subsubsection*{Ejemplo: encerrar el valor de una integral}
+% ============================================================
+Considérese
+\[
+f(x)=x^3-6x^2+9x+1,
+\qquad x\in[0.5,4].
+\]
+En este intervalo, el mínimo absoluto es $m=1$ y el máximo absoluto es $M=5$.
+Por tanto,
+\[
+1(4-0.5)
+\le
+\int_{0.5}^{4}(x^3-6x^2+9x+1)\,dx
+\le
+5(4-0.5),
+\]
+es decir,
+\[
+\boxed{
+3.5\le
+\int_{0.5}^{4}(x^3-6x^2+9x+1)\,dx
+\le17.5.
+}
+\]
+La utilidad del resultado es conceptual: podemos garantizar un intervalo que
+contiene el valor de la integral sin haberla evaluado todavía.
+% ============================================================
+\subsubsection*{Ejemplo: una cota trigonométrica}
+% ============================================================
+Sea
+\[
+f(x)=\sqrt{\sin x},
+\qquad x\in\left[\frac{\pi}{4},\frac{3\pi}{4}\right].
+\]
+En dicho intervalo,
+\[
+M=1,
+\qquad
+m=\sqrt{\frac{\sqrt2}{2}}=2^{-1/4}\approx0.8409.
+\]
+Como la longitud del intervalo es $\pi/2$,
+\[
+\frac{\pi}{2}\,2^{-1/4}
+\le
+\int_{\pi/4}^{3\pi/4}\sqrt{\sin x}\,dx
+\le
+\frac{\pi}{2}.
+\]
+Numéricamente,
+\[
+1.321\lesssim
+\int_{\pi/4}^{3\pi/4}\sqrt{\sin x}\,dx
+\le1.571.
+\]
+% ============================================================
+\subsection*{Teorema del valor medio para integrales}
+% ============================================================
+La desigualdad anterior contiene una idea más profunda. Al dividir entre la
+longitud positiva $b-a$, obtenemos
+\[
+m\le
+\frac{1}{b-a}\int_a^b f(x)\,dx
+\le M.
+\]
+El número central está, por tanto, entre el mínimo y el máximo de $f$. Si $f$
+es continua, el Teorema del Valor Intermedio garantiza que la función debe
+tomar ese valor en algún punto del intervalo.
+
+\begin{Teo}[Teorema del valor medio para integrales]
+Si $f$ es continua en el intervalo cerrado $[a,b]$, con $a<b$, entonces existe
+al menos un punto $c\in[a,b]$ tal que
+\[
+\boxed{
+\int_a^b f(x)\,dx=f(c)(b-a).
+}
+\]
+Equivalentemente,
+\[
+\boxed{
+f(c)=\frac{1}{b-a}\int_a^b f(x)\,dx.}
+\]
+\end{Teo}
+
+\textbf{proof}
+Como $f$ es continua en el compacto $[a,b]$, alcanza un mínimo absoluto $m$ y
+un máximo absoluto $M$. Por el teorema anterior,
+\[
+m(b-a)\le\int_a^b f(x)\,dx\le M(b-a).
+\]
+Dado que $b-a>0$, podemos dividir sin invertir las desigualdades:
+\[
+m\le\frac{1}{b-a}\int_a^b f(x)\,dx\le M.
+\]
+Sean $x_m,x_M\in[a,b]$ tales que
+\[
+f(x_m)=m,
+\qquad
+f(x_M)=M.
+\]
+El número
+\[
+L=\frac{1}{b-a}\int_a^b f(x)\,dx
+\]
+se encuentra entre $f(x_m)$ y $f(x_M)$. Por continuidad y por el Teorema del
+Valor Intermedio, existe un punto $c$ entre $x_m$ y $x_M$ tal que
+\[
+f(c)=L.
+\]
+Por consiguiente,
+\[
+f(c)=\frac{1}{b-a}\int_a^b f(x)\,dx,
+\]
+y multiplicando por $b-a$ se obtiene
+\[
+\int_a^b f(x)\,dx=f(c)(b-a).
+\]
+\hfill$\square$
+
+\paragraph{Observación importante.}
+El teorema es un resultado de \emph{existencia}. No afirma que el punto $c$
+sea único ni proporciona, por sí solo, un algoritmo para encontrarlo. Si la
+función toma su valor promedio en varios puntos, todos ellos satisfacen la
+conclusión.
+% ============================================================
+\subsection*{Interpretación geométrica}
+% ============================================================
+Cuando $f(x)\ge0$ en $[a,b]$, la igualdad
+\[
+\int_a^b f(x)\,dx=f(c)(b-a)
+\]
+dice que el área bajo la curva $y=f(x)$ es exactamente igual al área de un
+rectángulo cuya base es $b-a$ y cuya altura es $f(c)$.
+
+Así, aunque la altura de la gráfica cambie de un punto a otro, existe al menos
+una altura representativa que produce un rectángulo de la misma área total.
+Esta altura es precisamente el \emph{valor promedio} de la función.
+% ============================================================
+\subsection*{Valor promedio de una función}
+% ============================================================
+La media aritmética de $n$ valores
+\[
+f(x_1),\ldots,f(x_n)
+\]
+es
+\[
+\frac1n\sum_{i=1}^n f(x_i).
+\]
+Para pasar de una colección finita de valores a todos los valores de una
+función en un intervalo, considérese una partición regular con
+\[
+\Delta x=\frac{b-a}{n}.
+\]
+Entonces
+\[
+\frac1n\sum_{i=1}^n f(w_i)
+=
+\frac{1}{b-a}\sum_{i=1}^n f(w_i)\Delta x.
+\]
+Al tomar el límite cuando $n\to\infty$, la suma de Riemann converge a la
+integral, lo cual motiva la definición siguiente.
+
+\begin{Def}[Valor promedio de una función]
+Si $f$ es integrable en $[a,b]$, con $a<b$, su valor promedio es
+\[
+\boxed{
+f_{\mathrm{prom}}
+=\frac{1}{b-a}\int_a^b f(x)\,dx.
+}
+\]
+\end{Def}
+
+El Teorema del Valor Medio para integrales puede escribirse entonces como
+\[
+\boxed{f(c)=f_{\mathrm{prom}}}
+\]
+para algún $c\in[a,b]$, siempre que $f$ sea continua.
+
+\subsubsection*{Ejemplo: $f(x)=x^2$ en $[1,3]$}
+El valor exacto de la integral es
+\[
+\int_1^3x^2\,dx
+=\left.\frac{x^3}{3}\right|_1^3
+=\frac{26}{3}.
+\]
+Por tanto,
+\[
+f_{\mathrm{prom}}
+=\frac{1}{3-1}\frac{26}{3}
+=\boxed{\frac{13}{3}}.
+\]
+El punto o los puntos garantizados por el teorema satisfacen
+\[
+c^2=\frac{13}{3}.
+\]
+Como $c\in[1,3]$, se toma la raíz positiva:
+\[
+\boxed{c=\sqrt{\frac{13}{3}}\approx2.08.}
+\]
+Por consiguiente,
+\[
+\int_1^3x^2\,dx
+=f(c)(3-1).
+\]
+Geométricamente, el rectángulo de base $2$ y altura $13/3$ tiene exactamente
+la misma área que la región bajo $y=x^2$ entre $x=1$ y $x=3$.
+% ============================================================
+\subsection*{Conexión lógica entre los resultados}
+% ============================================================
+La estructura de esta sección puede resumirse en la cadena
+\[
+\boxed{
+\text{orden puntual}
+\Longrightarrow
+\text{comparación de integrales}
+\Longrightarrow
+\text{cotas por }m\text{ y }M
+\Longrightarrow
+\text{valor promedio}
+\Longrightarrow
+\text{existencia de }c.
+}
+\]
+Más explícitamente:
+\begin{enumerate}[label=\arabic*.]
+\item Si $f\ge g$, entonces $\int f\ge\int g$.
+\item Si $m\le f\le M$, entonces
+\[
+m(b-a)\le\int_a^b f\le M(b-a).
+\]
+\item Dividiendo entre $b-a$,
+\[
+m\le f_{\mathrm{prom}}\le M.
+\]
+\item Por continuidad, $f$ toma todos los valores entre $m$ y $M$.
+\item En particular, existe $c$ tal que $f(c)=f_{\mathrm{prom}}$.
+\end{enumerate}
+% ============================================================
+\subsection*{Observaciones didácticas y conceptuales}
+% ============================================================
+\begin{itemize}
+\item El valor promedio de una función no es, en general,
+\[
+\frac{f(a)+f(b)}{2}.
+\]
+Esa expresión solamente promedia dos valores; el valor promedio integral
+incorpora el comportamiento de la función en todo el intervalo.
+
+\item El punto $c$ no es necesariamente el punto medio $(a+b)/2$.
+
+\item El valor promedio puede ser negativo si predomina la contribución
+negativa de la función.
+
+\item La continuidad es crucial para garantizar la existencia de un punto
+$c$ donde se alcance el promedio. La fórmula que define $f_{\mathrm{prom}}$
+tiene sentido para cualquier función integrable, pero una función integrable
+discontinua puede no tomar ese valor.
+
+\item El teorema no requiere que $f$ sea no negativa. La interpretación como
+``rectángulo de igual área geométrica'' es especialmente intuitiva cuando
+$f\ge0$; en general debe hablarse de acumulación o área algebraica.
+\end{itemize}
+% ============================================================
+\subsection*{Puente hacia el Teorema Fundamental del Cálculo}
+% ============================================================
+El Teorema del Valor Medio para integrales proporciona exactamente el tipo de
+punto intermedio que se necesita al estudiar una función de acumulación como
+\[
+F(x)=\int_a^x f(t)\,dt.
+\]
+En efecto, para un incremento $h\ne0$,
+\[
+\frac{F(x+h)-F(x)}{h}
+=
+\frac1h\int_x^{x+h}f(t)\,dt.
+\]
+El miembro derecho es el valor promedio de $f$ sobre el pequeño intervalo
+entre $x$ y $x+h$. El Teorema del Valor Medio para integrales permitirá
+escribirlo como $f(c_h)$ para algún punto $c_h$ de ese intervalo. Cuando
+$h\to0$, dicho punto queda forzado a aproximarse a $x$; si $f$ es continua,
+$f(c_h)\to f(x)$. Esta es la idea esencial detrás de la relación
+\[
+\frac{d}{dx}\int_a^x f(t)\,dt=f(x),
+\]
+que se formalizará mediante el Teorema Fundamental del Cálculo.
+
+% ============================================================
+% PAQUETE 4
+% Teoremas Fundamentales del Cálculo
+% Material reconstruido a partir del cuarto bloque de imágenes.
+% ============================================================
+% ============================================================
+\section*{Teoremas fundamentales del Cálculo}
+% ============================================================
+La construcción de la integral definida mediante sumas de Riemann permite
+comprender qué significa acumular cantidades infinitesimales. Sin embargo,
+calcular cada integral definida directamente a partir del límite de una suma
+sería, en la práctica, demasiado laborioso. Los Teoremas Fundamentales del
+Cálculo establecen la conexión esencial entre integración y derivación.
+% ============================================================
+\subsection*{Una función definida mediante una integral}
+% ============================================================
+Antes de enunciar el primer teorema fundamental, consideremos
+\[
+F(x)=\int_0^x t^2\,dt.
+\]
+
+Para $x>0$, dividimos el intervalo $[0,x]$ en $n$ subintervalos de igual
+longitud:
+\[
+\Delta t=\frac{x}{n}.
+\]
+Tomando los extremos derechos,
+\[
+w_i=i\Delta t=\frac{ix}{n}.
+\]
+Por la definición de integral como límite de sumas de Riemann,
+\begin{align*}
+F(x)
+&=\lim_{n\to\infty}\sum_{i=1}^n f(w_i)\Delta t\\
+&=\lim_{n\to\infty}\sum_{i=1}^n
+\left(i\Delta t\right)^2\Delta t\\
+&=\lim_{n\to\infty}\sum_{i=1}^n i^2(\Delta t)^3.
+\end{align*}
+Como $\Delta t=x/n$,
+\begin{align*}
+F(x)
+&=\lim_{n\to\infty}\sum_{i=1}^n i^2\left(\frac{x}{n}\right)^3\\
+&=x^3\lim_{n\to\infty}\frac{1}{n^3}\sum_{i=1}^n i^2.
+\end{align*}
+Utilizando
+\[
+\sum_{i=1}^n i^2=\frac{n(n+1)(2n+1)}{6},
+\]
+se obtiene
+\begin{align*}
+F(x)
+&=x^3\lim_{n\to\infty}
+\frac{n(n+1)(2n+1)}{6n^3}\\
+&=x^3\lim_{n\to\infty}
+\frac{2+\frac{3}{n}+\frac{1}{n^2}}{6}\\
+&=\frac{x^3}{3}.
+\end{align*}
+Por tanto,
+\[
+F'(x)=x^2.
+\]
+
+La función que aparece como derivada de $F$ es exactamente el integrando.
+Este fenómeno es general.
+% ============================================================
+\subsection*{Primer Teorema Fundamental del Cálculo}
+% ============================================================
+\begin{Teo}[Primer Teorema Fundamental del Cálculo]
+Sea $f$ continua en el intervalo cerrado $[a,b]$. Para $x\in[a,b]$,
+definamos
+\[
+F(x)=\int_a^x f(t)\,dt.
+\]
+Entonces $F$ es derivable en $(a,b)$ y
+\[
+\boxed{F'(x)=f(x).}
+\]
+Equivalentemente,
+\[
+\boxed{
+\frac{d}{dx}\int_a^x f(t)\,dt=f(x).
+}
+\]
+En los extremos pueden considerarse las derivadas laterales correspondientes.
+\end{Teo}
+
+\textbf{proof}
+Sea $x\in(a,b)$ y sea $h$ suficientemente pequeño para que $x+h\in[a,b]$.
+Entonces
+\[
+F(x+h)=\int_a^{x+h}f(t)\,dt
+\qquad\text{y}\qquad
+F(x)=\int_a^x f(t)\,dt.
+\]
+Por la propiedad aditiva de la integral,
+\[
+\int_a^{x+h}f(t)\,dt
+=
+\int_a^x f(t)\,dt
++
+\int_x^{x+h}f(t)\,dt.
+\]
+Por tanto,
+\[
+F(x+h)-F(x)
+=
+\int_x^{x+h}f(t)\,dt.
+\]
+Dividiendo entre $h\ne0$,
+\[
+\frac{F(x+h)-F(x)}{h}
+=
+\frac{1}{h}\int_x^{x+h}f(t)\,dt.
+\]
+Por el Teorema del Valor Medio para Integrales, existe un punto $c_h$ entre
+$x$ y $x+h$ tal que
+\[
+\int_x^{x+h}f(t)\,dt=f(c_h)h.
+\]
+En consecuencia,
+\[
+\frac{F(x+h)-F(x)}{h}=f(c_h).
+\]
+Cuando $h\to0$, tanto $x$ como $x+h$ tienden a $x$, y como $c_h$ se encuentra
+entre ambos,
+\[
+c_h\to x.
+\]
+La continuidad de $f$ implica
+\[
+f(c_h)\to f(x).
+\]
+Luego
+\[
+F'(x)
+=
+\lim_{h\to0}\frac{F(x+h)-F(x)}{h}
+=
+f(x).
+\]
+\hfill$\square$
+
+\paragraph{Interpretación geométrica.}
+Si
+\[
+F(x)=\int_a^x f(t)\,dt,
+\]
+entonces $F(x)$ representa acumulación. Un incremento pequeño $h$ produce
+\[
+F(x+h)-F(x)=\int_x^{x+h}f(t)\,dt.
+\]
+Para $h$ pequeño, esta integral es aproximadamente
+\[
+f(x)h,
+\]
+por lo que
+\[
+\frac{F(x+h)-F(x)}{h}\approx f(x).
+\]
+El primer TFC hace exacta esta intuición en el límite.
+% ============================================================
+\subsubsection*{Ejemplos de derivación de integrales}
+% ============================================================
+\begin{Ejem}
+Calcule
+\[
+\frac{d}{dx}\int_1^x\frac{1}{t^3+1}\,dt.
+\]
+Por el primer TFC,
+\[
+\boxed{
+\frac{d}{dx}\int_1^x\frac{1}{t^3+1}\,dt
+=
+\frac{1}{x^3+1}.
+}
+\]
+\end{Ejem}
+
+\begin{Ejem}
+Calcule
+\[
+\frac{d}{dx}\int_3^{x^2}\sqrt{\cos t}\,dt.
+\]
+Sea
+\[
+u=x^2.
+\]
+Por el primer TFC y la regla de la cadena,
+\[
+\frac{d}{dx}\int_3^{x^2}\sqrt{\cos t}\,dt
+=
+\sqrt{\cos(x^2)}\,2x.
+\]
+Así,
+\[
+\boxed{
+\frac{d}{dx}\int_3^{x^2}\sqrt{\cos t}\,dt
+=
+2x\sqrt{\cos(x^2)}.
+}
+\]
+\end{Ejem}
+
+En general, si $g$ es derivable,
+\[
+\boxed{
+\frac{d}{dx}\int_a^{g(x)}f(t)\,dt
+=
+f(g(x))g'(x).
+}
+\]
+
+Si ambos límites dependen de $x$,
+\[
+\boxed{
+\frac{d}{dx}\int_{g(x)}^{h(x)}f(t)\,dt
+=
+f(h(x))h'(x)-f(g(x))g'(x).
+}
+\]
+% ============================================================
+\subsection*{Segundo Teorema Fundamental del Cálculo}
+% ============================================================
+\begin{Teo}[Segundo Teorema Fundamental del Cálculo]
+Sea $f$ continua en $[a,b]$ y sea $G$ una antiderivada de $f$ en dicho
+intervalo, es decir,
+\[
+G'(x)=f(x).
+\]
+Entonces
+\[
+\boxed{
+\int_a^b f(x)\,dx=G(b)-G(a).
+}
+\]
+También se escribe
+\[
+\boxed{
+\int_a^b f(x)\,dx=\left[G(x)\right]_a^b.
+}
+\]
+\end{Teo}
+
+\textbf{proof}
+Definamos
+\[
+F(x)=\int_a^x f(t)\,dt.
+\]
+Por el primer TFC,
+\[
+F'(x)=f(x).
+\]
+Como además
+\[
+G'(x)=f(x),
+\]
+las funciones $F$ y $G$ tienen la misma derivada. Por tanto, difieren en una
+constante:
+\[
+G(x)=F(x)+C.
+\]
+Evaluando en $x=b$,
+\[
+G(b)=F(b)+C,
+\]
+y en $x=a$,
+\[
+G(a)=F(a)+C.
+\]
+Restando,
+\[
+G(b)-G(a)=F(b)-F(a).
+\]
+Pero
+\[
+F(b)=\int_a^b f(t)\,dt
+\]
+y
+\[
+F(a)=\int_a^a f(t)\,dt=0.
+\]
+Por consiguiente,
+\[
+G(b)-G(a)=\int_a^b f(t)\,dt.
+\]
+\hfill$\square$
+% ============================================================
+\subsection*{Integral definida e integral indefinida}
+% ============================================================
+Es importante distinguir:
+\[
+\int f(x)\,dx
+\]
+representa una familia de antiderivadas:
+\[
+\int f(x)\,dx=F(x)+C,
+\]
+mientras que
+\[
+\int_a^b f(x)\,dx
+\]
+es un número.
+
+Por ejemplo,
+\[
+\int x^2\,dx=\frac{x^3}{3}+C,
+\]
+pero
+\[
+\int_1^2x^2\,dx
+=
+\left[\frac{x^3}{3}\right]_1^2
+=
+\frac73.
+\]
+
+En una integral definida no es necesario escribir la constante $C$, porque
+cualquier constante se cancela:
+\[
+[F(b)+C]-[F(a)+C]=F(b)-F(a).
+\]
+% ============================================================
+\subsection*{Evaluación de integrales definidas}
+% ============================================================
+\begin{Ejem}
+Evalúe
+\[
+\int_1^2x^4\,dx.
+\]
+Una antiderivada de $x^4$ es
+\[
+G(x)=\frac{x^5}{5}.
+\]
+Por el segundo TFC,
+\[
+\int_1^2x^4\,dx
+=
+\left[\frac{x^5}{5}\right]_1^2
+=
+\frac{32}{5}-\frac15
+=
+\boxed{\frac{31}{5}}.
+\]
+\end{Ejem}
+
+\begin{Ejem}
+Evalúe
+\[
+\int_{-1}^{1}\left(x^{4/3}+4x^{1/3}\right)\,dx.
+\]
+Una antiderivada es
+\[
+\frac{3}{7}x^{7/3}+3x^{4/3}.
+\]
+Entonces
+\begin{align*}
+\int_{-1}^{1}\left(x^{4/3}+4x^{1/3}\right)\,dx
+&=
+\left[
+\frac{3}{7}x^{7/3}+3x^{4/3}
+\right]_{-1}^{1}\\
+&=
+\left(\frac37+3\right)
+-
+\left(-\frac37+3\right)\\
+&=
+\boxed{\frac67}.
+\end{align*}
+\end{Ejem}
+
+\begin{Ejem}
+Evalúe
+\[
+\int_0^2 2x^2\sqrt{x^3+1}\,dx.
+\]
+Sea
+\[
+u=x^3+1,
+\qquad
+du=3x^2\,dx.
+\]
+Cuando $x=0$, $u=1$, y cuando $x=2$, $u=9$. Por tanto,
+\begin{align*}
+\int_0^2 2x^2\sqrt{x^3+1}\,dx
+&=
+\frac23\int_1^9u^{1/2}\,du\\
+&=
+\frac23\left[\frac23u^{3/2}\right]_1^9\\
+&=
+\frac49(27-1)\\
+&=
+\boxed{\frac{104}{9}}.
+\end{align*}
+\end{Ejem}
+% ============================================================
+\subsection*{Cambio de variable en integrales definidas}
+% ============================================================
+Si $u=g(x)$ y $du=g'(x)\,dx$, entonces los límites también deben transformarse:
+\[
+x=a\quad\Longrightarrow\quad u=g(a),
+\]
+\[
+x=b\quad\Longrightarrow\quad u=g(b).
+\]
+Así,
+\[
+\boxed{
+\int_a^b f(g(x))g'(x)\,dx
+=
+\int_{g(a)}^{g(b)}f(u)\,du.
+}
+\]
+
+\begin{Ejem}
+Evalúe
+\[
+\int_0^{\pi/2}\sin^3x\cos x\,dx.
+\]
+Sea
+\[
+u=\sin x,
+\qquad
+du=\cos x\,dx.
+\]
+Los nuevos límites son
+\[
+x=0\Rightarrow u=0,
+\qquad
+x=\frac{\pi}{2}\Rightarrow u=1.
+\]
+Por tanto,
+\[
+\int_0^{\pi/2}\sin^3x\cos x\,dx
+=
+\int_0^1u^3\,du
+=
+\left[\frac{u^4}{4}\right]_0^1
+=
+\boxed{\frac14}.
+\]
+\end{Ejem}
+
+\begin{Ejem}
+Evalúe
+\[
+\int_0^3x\sqrt{1+x}\,dx.
+\]
+Sea
+\[
+u=\sqrt{1+x}.
+\]
+Entonces
+\[
+u^2=1+x,\qquad x=u^2-1,\qquad dx=2u\,du.
+\]
+Cuando $x=0$, $u=1$; cuando $x=3$, $u=2$. Por tanto,
+\begin{align*}
+\int_0^3x\sqrt{1+x}\,dx
+&=
+2\int_1^2(u^4-u^2)\,du\\
+&=
+\left[\frac25u^5-\frac23u^3\right]_1^2\\
+&=
+\boxed{\frac{116}{15}}.
+\end{align*}
+\end{Ejem}
+% ============================================================
+\subsection*{Integrales con valor absoluto}
+% ============================================================
+Cuando el integrando contiene valor absoluto, debe localizarse primero dónde
+cambia de signo la expresión interior.
+
+\begin{Ejem}
+Evalúe
+\[
+\int_{-3}^{4}|x+2|\,dx.
+\]
+Como $x+2=0$ en $x=-2$,
+\[
+|x+2|=
+\begin{cases}
+-x-2,&x\le-2,\\
+x+2,&x\ge-2.
+\end{cases}
+\]
+Por tanto,
+\begin{align*}
+\int_{-3}^{4}|x+2|\,dx
+&=
+\int_{-3}^{-2}(-x-2)\,dx
++
+\int_{-2}^{4}(x+2)\,dx\\
+&=
+\frac12+18\\
+&=
+\boxed{\frac{37}{2}}.
+\end{align*}
+\end{Ejem}
+% ============================================================
+\subsection*{Aplicación: valor promedio}
+% ============================================================
+El valor promedio de una función integrable $f$ en $[a,b]$ es
+\[
+\boxed{
+f_{\mathrm{prom}}
+=
+\frac{1}{b-a}\int_a^b f(x)\,dx.
+}
+\]
+
+\begin{Ejem}[Fuerza electromotriz promedio]
+Supóngase que la fuerza electromotriz está dada por
+\[
+E(t)=2\sin\left(\frac{2\pi}{3}t\right),
+\qquad 0\le t\le4.
+\]
+Entonces
+\[
+E_{\mathrm{prom}}
+=
+\frac14\int_0^4
+2\sin\left(\frac{2\pi}{3}t\right)\,dt.
+\]
+Una antiderivada es
+\[
+-\frac{3}{\pi}
+\cos\left(\frac{2\pi}{3}t\right).
+\]
+Por tanto,
+\[
+E_{\mathrm{prom}}
+=
+\frac{3}{4\pi}
+\left(
+-\cos\frac{8\pi}{3}
++\cos0
+\right)
+=
+\frac{3}{4\pi}\left(\frac12+1\right).
+\]
+Así,
+\[
+\boxed{
+E_{\mathrm{prom}}
+=
+\frac{9}{8\pi}
+\approx0.358.
+}
+\]
+
+\end{Ejem}
+% ============================================================
+\subsection*{Resumen conceptual de los dos teoremas fundamentales}
+% ============================================================
+El primer TFC afirma:
+\[
+\boxed{
+\frac{d}{dx}
+\int_a^x f(t)\,dt=f(x).
+}
+\]
+
+El segundo TFC afirma:
+\[
+\boxed{
+\int_a^b f(x)\,dx
+=
+F(b)-F(a),
+\qquad F'=f.
+}
+\]
+
+
+La derivación recupera la tasa instantánea a partir de la acumulación, mientras
+que la integración definida obtiene una acumulación neta a partir de una
+antiderivada.
+
+% ============================================================
+% EJERCICIOS DEL BLOQUE 4.6
+% Se incluyen los que son legibles en las imágenes compartidas.
+% ============================================================
+% ============================================================
+\section*{Ejercicios de repaso: Teorema del Valor Medio para Integrales}
+% ============================================================
+\subsection*{Comparación de integrales}
+% ============================================================
+En los ejercicios siguientes, determine cuál símbolo $\le$, $\ge$ o $=$
+produce una proposición verdadera.
+
+\begin{enumerate}
+\item
+\[
+\int_{-1}^{3}(2x^2-4)\,dx
+\quad\underline{\hspace{1cm}}\quad
+\int_{-1}^{3}(x^2-6)\,dx.
+\]
+
+\item
+\[
+\int_4^5\sqrt{6-x}\,dx
+\quad\underline{\hspace{1cm}}\quad
+\int_4^5\sqrt{x-2}\,dx.
+\]
+
+\item
+\[
+\int_{3\pi/4}^{5\pi/4}\sin^2x\,dx
+\quad\underline{\hspace{1cm}}\quad
+\int_{3\pi/4}^{5\pi/4}\cos^2x\,dx.
+\]
+
+\item
+\[
+\int_0^{\pi/4}\cos x\,dx
+\quad\underline{\hspace{1cm}}\quad
+\int_0^{\pi/4}\sin x\,dx.
+\]
+\end{enumerate}
+
+\subsection*{Cotas para integrales}
+
+Aplique las cotas
+\[
+m(b-a)\le\int_a^b f(x)\,dx\le M(b-a)
+\]
+para encontrar un intervalo cerrado que contenga el valor de cada integral.
+
+\begin{enumerate}[resume]
+\item $\displaystyle \int_0^{0.5}x^2\,dx$.
+\item $\displaystyle \int_{-0.5}^{1}x^3\,dx$.
+\item $\displaystyle \int_{-1}^{1}\sqrt{2+x}\,dx$.
+\item $\displaystyle \int_{-2}^{1}(x+1)^{2/3}\,dx$.
+\item $\displaystyle \int_{\pi/6}^{\pi/3}\sin x\,dx$.
+\item $\displaystyle \int_{-\pi/3}^{2\pi/3}\cos x\,dx$.
+\item $\displaystyle \int_{1.5}^{3}|x-2|\,dx$.
+\item $\displaystyle \int_{-1}^{2}\sqrt{x^2+5}\,dx$.
+\item $\displaystyle \int_{-0.5}^{1.5}\left(\frac14x^4-x^3+x^2\right)\,dx$.
+\item $\displaystyle \int_0^{1.5}(x-3x^{1/3})\,dx$.
+\item $\displaystyle \int_1^2x\sqrt{5-x^2}\,dx$.
+\item $\displaystyle \int_{1.5}^{2.5}x\sqrt{3-x}\,dx$.
+\item $\displaystyle \int_{-1}^{1}\frac{x}{x+2}\,dx$.
+\item $\displaystyle \int_0^1\frac{x+5}{x-3}\,dx$.
+\item $\displaystyle \int_{-\pi/3}^{\pi/2}(4\cos^3x-9\cos x)\,dx$.
+\item $\displaystyle \int_{-\pi/6}^{\pi/6}\sin^3x\,dx$.
+\end{enumerate}
+% ============================================================
+\subsection*{Puntos del Teorema del Valor Medio}
+% ============================================================
+Determine, con aproximación de centésimos, un valor de $c$ que satisfaga
+\[
+\int_a^b f(x)\,dx=f(c)(b-a).
+\]
+
+\begin{enumerate}[resume]
+\item $\displaystyle \int_1^2x^3\,dx$.
+\item $\displaystyle \int_0^5(x^3-1)\,dx$.
+\item $\displaystyle \int_1^4(x^2+4x+5)\,dx$.
+\item $\displaystyle \int_0^4(x^2+x-6)\,dx$.
+\item $\displaystyle \int_{-2}^{2}(x^3+1)\,dx$.
+\item $\displaystyle \int_{-2}^{1}x^4\,dx$.
+\item $\displaystyle \int_2^4\frac{1}{x^2-3}\,dx$.
+\item $\displaystyle \int_{-1}^3\frac{1}{x^2+5}\,dx$.
+\item $\displaystyle \int_{\pi/6}^{\pi/4}\tan x\,dx$.
+\item $\displaystyle \int_{2\pi/3}^{5\pi/6}\cot x\,dx$.
+\end{enumerate}
+% ============================================================
+\subsection*{Desigualdades}
+% ============================================================
+Utilice el Teorema del Valor Medio para Integrales o las cotas por mínimos y
+máximos para justificar:
+
+\begin{align*}
+\int_0^2\frac{1}{x^2+4}\,dx&\le\frac12,\\
+\int_{-3}^3\frac{1}{x^2+6}\,dx&\le1,\\
+\int_{-\pi/6}^{\pi/6}\cos(x^2)\,dx&\le\frac{\pi}{3},\\
+\int_0^\pi\sin(\sqrt{x})\,dx&\le\pi,\\
+0\le\int_0^5\frac{1}{x^3+1}\,dx&\le\frac13,\\
+\sqrt2\le\int_5^9\frac{1}{\sqrt{x-1}}\,dx&\le2,\\
+0\le\int_0^2\sin\left(\frac{\pi x}{2}\right)\,dx&\le2,\\
+0\le\int_{-1/2}^{1/2}\cos(\pi x)\,dx&\le1.
+\end{align*}
+% ============================================================
+\subsection*{Valor promedio}
+% ============================================================
+\begin{enumerate}
+\item Dado que
+\[
+\int_{-1}^{2}x\,dx=\frac32,
+\]
+calcule el valor promedio de la función identidad en $[-1,2]$ y determine
+dónde se alcanza.
+
+\item Si $f(x)=x^2$ en $[-1,2]$ y
+\[
+\int_{-1}^{2}x^2\,dx=3,
+\]
+calcule el valor promedio y determine los puntos del intervalo donde se
+alcanza.
+
+\item Dado que
+\[
+\int_0^\pi\sin x\,dx=2,
+\]
+calcule el valor promedio de $\sin x$ en $[0,\pi]$ y determine el menor valor
+de $x$ donde se alcanza.
+\end{enumerate}
+
+% ============================================================
+% EJERCICIOS DEL BLOQUE 4.7
+% ============================================================
+% ============================================================
+\section*{Ejercicios de repaso: Teoremas Fundamentales del Cálculo}
+% ============================================================
+% ============================================================
+\subsection*{Evaluación de integrales definidas}
+% ============================================================
+Evalúe las siguientes integrales.
+
+\begin{enumerate}
+\item $\displaystyle \int_0^3(3x^2-4x+1)\,dx$.
+\item $\displaystyle \int_0^4(x^3-x^2+1)\,dx$.
+\item $\displaystyle \int_3^6(x^2-2x)\,dx$.
+\item $\displaystyle \int_{-1}^3(3x^2+5x-1)\,dx$.
+\item $\displaystyle \int_1^2\frac{x^2+1}{x^2}\,dx$.
+\item $\displaystyle \int_{-3}^5(y^3-4y)\,dy$.
+\item $\displaystyle \int_0^1\frac{z}{(z^2+1)^3}\,dz$.
+\item $\displaystyle \int_1^4\sqrt{x}(2+x)\,dx$.
+\item $\displaystyle \int_1^{10}\sqrt{5x-1}\,dx$.
+\item $\displaystyle \int_0^{\sqrt5}t\sqrt{t^2+1}\,dt$.
+\item $\displaystyle \int_{-2}^{0}3w\sqrt{4-w^2}\,dw$.
+\item $\displaystyle \int_{-1}^{3}\frac{1}{(y+2)^3}\,dy$.
+\item $\displaystyle \int_0^{\pi/2}\sin2x\,dx$.
+\item $\displaystyle \int_0^\pi\cos\frac{x}{2}\,dx$.
+\item $\displaystyle \int_1^2t^2\sqrt{t^3+1}\,dt$.
+\item $\displaystyle \int_1^3\frac{x}{(3x^2-1)^3}\,dx$.
+\item $\displaystyle \int_0^1\frac{y^2+2y}{\sqrt[3]{y^3+3y^2+4}}\,dy$.
+\item $\displaystyle \int_2^4\frac{w^4-w}{w^3}\,dw$.
+\item $\displaystyle \int_0^{15}\frac{w}{(1+w)^{3/4}}\,dw$.
+\item $\displaystyle \int_4^5x^2\sqrt{x-4}\,dx$.
+\item $\displaystyle \int_{-2}^{5}|x-3|\,dx$.
+\item $\displaystyle \int_{-4}^{4}|x-2|\,dx$.
+\item $\displaystyle \int_{-1}^{1}\sqrt{|x|-x}\,dx$.
+\item $\displaystyle \int_{-3}^{3}\sqrt{3+|x|}\,dx$.
+\item $\displaystyle \int_0^3(x+2)\sqrt{x+1}\,dx$.
+\item $\displaystyle \int_{-2}^{1}(x+1)\sqrt{x+3}\,dx$.
+\item $\displaystyle \int_0^1\frac{x^3+1}{x+1}\,dx$.
+\item $\displaystyle \int_1^4\frac{x^5-x}{3x^3}\,dx$.
+\item $\displaystyle \int_1^{64}\left(\sqrt t-\frac1{\sqrt t}+\sqrt[3]t\right)\,dt$.
+\item $\displaystyle \int_0^1\sqrt x\sqrt{1+x\sqrt x}\,dx$.
+\item $\displaystyle \int_0^1\sin(\pi x)\cos(\pi x)\,dx$.
+\item $\displaystyle \int_0^{\pi/6}(\sin2x+\cos3x)\,dx$.
+\item $\displaystyle \int_{\pi/8}^{\pi/4}3\csc^2(2x)\,dx$.
+\item $\displaystyle \int_0^{1/2}\sec^2\left(\frac{\pi t}{2}\right)
+\tan\left(\frac{\pi t}{2}\right)\,dt$.
+\end{enumerate}
+% ============================================================
+\subsection*{Derivadas de funciones definidas por integrales}
+% ============================================================
+Obtenga la derivada.
+
+\begin{enumerate}
+\item
+\[
+\frac{d}{dx}\int_0^x\sqrt{4+t^6}\,dt.
+\]
+
+\item
+\[
+\frac{d}{dx}\int_x^3\sqrt{1+t^4}\,dt.
+\]
+
+\item
+\[
+\frac{d}{dx}\int_x^3\sqrt{\sin t}\,dt.
+\]
+
+\item
+\[
+\frac{d}{dx}\int_2^x\frac{1}{t^4+4}\,dt.
+\]
+
+\item
+\[
+\frac{d}{dx}\int_{-x}^{x}\frac{1}{3+t^2}\,dt.
+\]
+
+\item
+\[
+\frac{d}{dx}\int_{-x}^{x}\cos(t^2+1)\,dt.
+\]
+
+\item
+\[
+\frac{d}{dx}\int_1^{x^3}\sqrt[3]{t^2+1}\,dt.
+\]
+
+\item
+\[
+\frac{d}{dx}\int_x^{x^2}\frac{1}{\sqrt{t^2+1}}\,dt.
+\]
+
+\item
+\[
+\frac{d}{dx}\int_2^{\tan x}\frac{1}{1+t^2}\,dt.
+\]
+
+\item
+\[
+\frac{d}{dx}\int_3^{\sin x}\frac{1}{1-t^2}\,dt.
+\]
+\end{enumerate}
+% ============================================================
+\subsection*{Valor promedio y aplicaciones}
+% ============================================================
+\begin{enumerate}
+\item Determine el valor promedio de
+\[
+f(x)=9-x^2
+\]
+en $[0,3]$ y los puntos donde se alcanza.
+
+\item Determine el valor promedio de
+\[
+f(x)=8x-x^2
+\]
+en $[0,4]$ y los puntos donde se alcanza.
+
+\item Determine el valor promedio de
+\[
+f(x)=3x\sqrt{x^2-16}
+\]
+en $[4,5]$.
+
+\item Determine el valor promedio de
+\[
+f(x)=x^2\sqrt{x-3}
+\]
+en $[7,12]$.
+
+\item Si $E(t)=2\sin\left(\frac{2\pi}{3}t\right)$, determine el valor promedio
+de $E(t)^2$ en el intervalo indicado.
+
+\item Si
+\[
+f(x)=\sec^2x,
+\]
+determine el valor promedio en
+\[
+\left[-\frac{\pi}{4},\frac{\pi}{4}\right].
+\]
+\end{enumerate}
+% ============================================================
+\subsection*{Problemas teóricos adicionales}
+% ============================================================
+\begin{enumerate}
+\item Sea
+\[
+F(x)=\int_0^x\frac{1}{1+t^2}\,dt
++
+\int_0^{1/x}\frac{1}{1+t^2}\,dt,
+\qquad x\ne0.
+\]
+Demuestre que $F$ es constante en los intervalos $(-\infty,0)$ y
+$(0,\infty)$.
+
+\item Encuentre una función $f$ tal que
+\[
+\int_0^x f(t)\,dt
+=
+\frac{\cos x}{1+x^2}-1.
+\]
+Sugerencia: derive ambos miembros.
+
+\item Si $m,n$ son enteros positivos, demuestre que
+\[
+\int_0^1x^n(1-x)^m\,dx
+=
+\int_0^1x^m(1-x)^n\,dx.
+\]
+Sugerencia: use el cambio de variable $u=1-x$.
+\end{enumerate}
+% ============================================================
+\subsection*{Cierre de la unidad}
+% ============================================================
+Los resultados de esta unidad pueden resumirse mediante el siguiente esquema:
+\[
+\boxed{
+\begin{array}{c}
+\text{sumas finitas}
+\\[1mm]\downarrow\\[1mm]
+\text{sumas de Riemann}
+\\[1mm]\downarrow\\[1mm]
+\text{integral definida}
+\\[1mm]\downarrow\\[1mm]
+\text{propiedades y valor promedio}
+\\[1mm]\downarrow\\[1mm]
+\text{Primer Teorema Fundamental}
+\\[1mm]\downarrow\\[1mm]
+\text{Segundo Teorema Fundamental}
+\end{array}
+}
+\]
+
+La construcción comienza con una suma y culmina con una conexión profunda:
+\[
+\boxed{
+\text{derivación e integración son operaciones inversas en sentido fundamental}.
+}
+\]
+
+
+
+
+\end{document}
