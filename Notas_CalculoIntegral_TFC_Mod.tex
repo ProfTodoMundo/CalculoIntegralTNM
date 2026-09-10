@@ -31,6 +31,11 @@
 \pgfplotsset{compat=1.18}
 \usetikzlibrary{patterns}
 \usepackage{tocloft}
+
+% Espacio entre la numeración y el título en el índice
+\cftsetindents{section}{0em}{2.3em}
+\cftsetindents{subsection}{2em}{3.2em}
+\cftsetindents{subsubsection}{4em}{4.0em}
 % ============================================================
 % Formato de párrafos
 % ============================================================
@@ -100,7 +105,8 @@
 
 \author{Carlos Ernesto Martínez}
 \date{}
-
+% ============================================================
+% ============================================================
 \begin{document}
 
 \maketitle
@@ -4592,12 +4598,14 @@ Calcule:
 
 % =====================================================
 % =====================================================
-\part{Ap\'endice: Apuntes del Leithold}
+\part{Ap\'endices}
 % =====================================================
 % =====================================================
 \setcounter{section}{0}
 % =====================================================
-\section*{Notación sigma, sumas y aproximación del área}
+\section{Apuntes del Leithold}
+
+\subsection*{Notación sigma, sumas y aproximación del área}
 % ============================================================
 La integral definida surge de un proceso de acumulación. Antes de construirla formalmente conviene desarrollar una notación compacta para representar sumas, estudiar sus propiedades algebraicas y analizar el comportamiento de ciertas sumas cuando aumenta el número de términos.
 % ============================================================
@@ -4641,7 +4649,7 @@ $
 n-m+1.
 $
 % ============================================================
-\subsubsection*{Ejemplos elementales}
+\subsection*{Ejemplos elementales}
 % ============================================================
 \begin{align*}
 \sum_{i=1}^{5} i^2
@@ -5309,7 +5317,7 @@ intervalo.
 % CONTINUACIÓN: INTEGRAL DEFINIDA, INTERPRETACIÓN Y PROPIEDADES
 % ============================================================
 % ============================================================
-\section*{Integral definida: interpretación geométrica y propiedades}
+\subsection*{Integral definida: interpretación geométrica y propiedades}
 % ============================================================
 
 % ============================================================
@@ -5592,7 +5600,7 @@ $
 =\sum_{j=1}^m c_j\int_a^b f_j(x)\,dx.
 $
 
-\subsubsection*{Ejemplo de linealidad}
+\subsection*{Ejemplo de linealidad}
 Supongamos conocidos los valores
 $
 \int_0^3x^2\,dx=9,
@@ -5708,7 +5716,7 @@ antiderivadas.
 % ============================================================
 
 % ============================================================
-\section*{Teorema del valor medio para integrales}
+\subsection*{Teorema del valor medio para integrales}
 % ============================================================
 Las propiedades de orden de la integral definida permiten pasar de una
 interpretación puramente geométrica a resultados de existencia. El objetivo
@@ -6109,7 +6117,7 @@ que se formalizará mediante el Teorema Fundamental del Cálculo.
 % Material reconstruido a partir del cuarto bloque de imágenes.
 % ============================================================
 % ============================================================
-\section*{Teoremas fundamentales del Cálculo}
+\subsection*{Teoremas fundamentales del Cálculo}
 % ============================================================
 La construcción de la integral definida mediante sumas de Riemann permite
 comprender qué significa acumular cantidades infinitesimales. Sin embargo,
@@ -6681,7 +6689,7 @@ que la integración definida obtiene una acumulación neta a partir de una
 antiderivada.
 
 % ============================================================
-\section{M\'as ejercicios}
+\subsection*{Ejercicios adicionales}
 % ============================================================
 
 Aplique el teorema correspondiente para determinar un intervalo cerrado que contenga el valor de la integral definida.
@@ -6789,8 +6797,11418 @@ Obtenga la derivada.
 \item $\displaystyle \frac{d}{dx}\int_1^{x^3}\sqrt[3]{t^2+1}\,dt$.
 \item $\displaystyle \frac{d}{dx}\int_x^{x^2}\frac1{\sqrt{t^2+1}}\,dt$.
 \end{enumerate}
+\newpage
+%========================================================
+\section{Solución de ejercicios}
+%========================================================
+%--------------------------------------------------------
+\subsection*{Ejercicio 87}
+%--------------------------------------------------------
+Calcule la suma de Riemann de $f(x)=x^2$ en el intervalo $[0,2]$, con la partición $P=\{0,0.5,1,1.5,2\}$, utilizando primero extremos derechos, después extremos izquierdos y, finalmente, puntos medios. La partición determina los subintervalos
+\[
+[0,0.5],\qquad
+[0.5,1],\qquad
+[1,1.5],\qquad
+[1.5,2].
+\]
+
+En todos los casos, la longitud de cada subintervalo es
+\[
+\Delta x=0.5=\frac12.
+\]
+
+La forma general de una suma de Riemann es
+\[
+S=\sum_{i=1}^{n}f(\xi_i)\Delta x_i.
+\]
+
+%--------------------------------------------------------
+\subsubsection*{a) Utilizando extremos derechos}
+%--------------------------------------------------------
+Los extremos derechos son
+\[
+x_1=0.5,\qquad x_2=1,\qquad x_3=1.5,\qquad x_4=2.
+\]
+
+Por tanto,
+\[
+R_4
+=
+\frac12
+\left[
+f(0.5)+f(1)+f(1.5)+f(2)
+\right].
+\]
+
+Como \(f(x)=x^2\),
+\[
+R_4
+=
+\frac12
+\left[
+(0.5)^2+1^2+(1.5)^2+2^2
+\right].
+\]
+
+Calculando cada término,
+\[
+R_4
+=
+\frac12
+\left[
+\frac14+1+\frac94+4
+\right].
+\]
+
+Expresando todos los términos con denominador \(4\),
+\[
+R_4
+=
+\frac12
+\left[
+\frac14+\frac44+\frac94+\frac{16}{4}
+\right].
+\]
+
+Entonces
+\[
+R_4
+=
+\frac12
+\left(
+\frac{30}{4}
+\right)
+=
+\frac{15}{4}.
+\]
+
+Por tanto,
+\[
+\boxed{R_4=\frac{15}{4}=3.75}.
+\]
+
+%--------------------------------------------------------
+\subsubsection*{b) Utilizando extremos izquierdos}
+%--------------------------------------------------------
+Los extremos izquierdos son \[x_0=0,\qquad x_1=0.5,\qquad x_2=1,\qquad x_3=1.5\].
+
+Así,
+\[
+L_4
+=
+\frac12
+\left[
+f(0)+f(0.5)+f(1)+f(1.5)
+\right].
+\]
+
+Sustituyendo,
+\[
+L_4
+=
+\frac12
+\left[
+0^2+(0.5)^2+1^2+(1.5)^2
+\right].
+\]
+
+Entonces
+\[
+L_4
+=
+\frac12
+\left[
+0+\frac14+1+\frac94
+\right].
+\]
+
+Por tanto,
+\[
+L_4
+=
+\frac12
+\left(
+\frac{14}{4}
+\right)
+=
+\frac{7}{4}.
+\]
+
+Así,
+\[
+\boxed{L_4=\frac74=1.75}.
+\]
+
+%--------------------------------------------------------
+\subsubsection*{c) Utilizando puntos medios}
+%--------------------------------------------------------
+Los puntos medios de los cuatro subintervalos son
+\[
+m_1=\frac{0+0.5}{2}=0.25,
+\]
+\[
+m_2=\frac{0.5+1}{2}=0.75,
+\]
+\[
+m_3=\frac{1+1.5}{2}=1.25,
+\]
+\[
+m_4=\frac{1.5+2}{2}=1.75.
+\]
+
+Por tanto,
+\[
+M_4
+=
+\frac12
+\left[
+f(0.25)+f(0.75)+f(1.25)+f(1.75)
+\right].
+\]
+
+Sustituyendo \(f(x)=x^2\),
+\[
+M_4
+=
+\frac12
+\left[
+(0.25)^2+(0.75)^2+(1.25)^2+(1.75)^2
+\right].
+\]
+
+En forma fraccionaria,
+\[
+M_4
+=
+\frac12
+\left[
+\left(\frac14\right)^2+
+\left(\frac34\right)^2+
+\left(\frac54\right)^2+
+\left(\frac74\right)^2
+\right].
+\]
+
+Entonces
+\[
+M_4
+=
+\frac12
+\left[
+\frac1{16}+\frac9{16}+\frac{25}{16}+\frac{49}{16}
+\right].
+\]
+
+Sumando,
+\[
+M_4
+=
+\frac12
+\left(
+\frac{84}{16}
+\right)
+=
+\frac{42}{16}
+=
+\frac{21}{8}.
+\]
+
+Por tanto,
+\[
+\boxed{M_4=\frac{21}{8}=2.625}.
+\]
+
+En resumen,
+\[
+\boxed{
+L_4=\frac74,\qquad
+M_4=\frac{21}{8},\qquad
+R_4=\frac{15}{4}
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 89}
+%========================================================
+Calcule una suma de Riemann para
+\[
+f(x)=10-x^2
+\]
+con la partición
+\[
+P=\{0.25,1,1.5,1.75,2.25,3\}
+\]
+y puntos de muestra
+\[
+0.5,\quad 1.25,\quad 1.75,\quad 2,\quad 2.75.
+\]
+
+La suma de Riemann para una partición no uniforme está dada por
+\[
+S=\sum_{i=1}^{n}f(\xi_i)\Delta x_i,
+\]
+donde
+\[
+\Delta x_i=x_i-x_{i-1}.
+\]
+
+Los subintervalos son
+\[
+[0.25,1],\qquad
+[1,1.5],\qquad
+[1.5,1.75],\qquad
+[1.75,2.25],\qquad
+[2.25,3].
+\]
+
+Sus longitudes son
+\[
+\Delta x_1=1-0.25=0.75=\frac34,
+\]
+\[
+\Delta x_2=1.5-1=0.5=\frac12,
+\]
+\[
+\Delta x_3=1.75-1.5=0.25=\frac14,
+\]
+\[
+\Delta x_4=2.25-1.75=0.5=\frac12,
+\]
+\[
+\Delta x_5=3-2.25=0.75=\frac34.
+\]
+
+Los puntos de muestra correspondientes son
+\[
+\xi_1=0.5,\quad
+\xi_2=1.25,\quad
+\xi_3=1.75,\quad
+\xi_4=2,\quad
+\xi_5=2.75.
+\]
+
+Evaluamos la función en cada uno:
+
+\[
+f(0.5)=10-(0.5)^2
+=10-\frac14
+=\frac{39}{4},
+\]
+
+\[
+f(1.25)
+=
+10-\left(\frac54\right)^2
+=
+10-\frac{25}{16}
+=
+\frac{135}{16},
+\]
+
+\[
+f(1.75)
+=
+10-\left(\frac74\right)^2
+=
+10-\frac{49}{16}
+=
+\frac{111}{16},
+\]
+
+\[
+f(2)=10-4=6,
+\]
+
+\[
+f(2.75)
+=
+10-\left(\frac{11}{4}\right)^2
+=
+10-\frac{121}{16}
+=
+\frac{39}{16}.
+\]
+
+Por tanto,
+
+\[
+S=
+\frac{39}{4}\left(\frac34\right)
++
+\frac{135}{16}\left(\frac12\right)
++
+\frac{111}{16}\left(\frac14\right)
++
+6\left(\frac12\right)
++
+\frac{39}{16}\left(\frac34\right).
+\]
+
+Calculando cada producto,
+
+\[
+S
+=
+\frac{117}{16}
++
+\frac{135}{32}
++
+\frac{111}{64}
++
+3
++
+\frac{117}{64}.
+\]
+
+Con denominador común \(64\),
+
+\[
+S
+=
+\frac{468}{64}
++
+\frac{270}{64}
++
+\frac{111}{64}
++
+\frac{192}{64}
++
+\frac{117}{64}.
+\]
+
+Así,
+
+\[
+S
+=
+\frac{1158}{64}
+=
+\frac{579}{32}.
+\]
+
+Por lo tanto,
+
+\[
+\boxed{
+S=\frac{579}{32}\approx18.09375
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 91}
+
+Para
+\[
+f(x)=\frac1x
+\]
+en el intervalo
+\[
+[1,4],
+\]
+se utiliza la partición
+\[
+P=\{1,1.5,2,3,4\}.
+\]
+
+Se pide seleccionar arbitrariamente un punto de muestra en cada
+subintervalo.
+
+Los subintervalos son
+\[
+[1,1.5],\qquad
+[1.5,2],\qquad
+[2,3],\qquad
+[3,4].
+\]
+
+Elegiremos, por comodidad, los puntos medios:
+
+\[
+\xi_1=1.25=\frac54,
+\]
+\[
+\xi_2=1.75=\frac74,
+\]
+\[
+\xi_3=2.5=\frac52,
+\]
+\[
+\xi_4=3.5=\frac72.
+\]
+
+Las longitudes de los subintervalos son
+
+\[
+\Delta x_1=1.5-1=\frac12,
+\]
+\[
+\Delta x_2=2-1.5=\frac12,
+\]
+\[
+\Delta x_3=3-2=1,
+\]
+\[
+\Delta x_4=4-3=1.
+\]
+
+La suma de Riemann es
+
+\[
+S
+=
+f\left(\frac54\right)\frac12
++
+f\left(\frac74\right)\frac12
++
+f\left(\frac52\right)(1)
++
+f\left(\frac72\right)(1).
+\]
+
+Como
+\[
+f(x)=\frac1x,
+\]
+tenemos
+
+\[
+f\left(\frac54\right)=\frac45,
+\]
+\[
+f\left(\frac74\right)=\frac47,
+\]
+\[
+f\left(\frac52\right)=\frac25,
+\]
+\[
+f\left(\frac72\right)=\frac27.
+\]
+
+Entonces
+
+\[
+S
+=
+\frac45\left(\frac12\right)
++
+\frac47\left(\frac12\right)
++
+\frac25
++
+\frac27.
+\]
+
+Por tanto,
+
+\[
+S
+=
+\frac25+\frac27+\frac25+\frac27.
+\]
+
+Agrupando,
+
+\[
+S
+=
+\frac45+\frac47.
+\]
+
+El denominador común es \(35\), de modo que
+
+\[
+S
+=
+\frac{28}{35}+\frac{20}{35}
+=
+\frac{48}{35}.
+\]
+
+Así,
+
+\[
+\boxed{
+S=\frac{48}{35}\approx1.37143
+}.
+\]
+
+\textbf{Observación.}
+Como el problema permite seleccionar arbitrariamente los puntos de
+muestra, existen muchas sumas de Riemann correctas. El resultado depende
+de los puntos elegidos.
+
+%========================================================
+\subsection*{Ejercicio 93}
+
+Explique por qué los extremos izquierdo, derecho y el punto medio son
+casos particulares de una suma de Riemann.
+
+Sea una partición del intervalo
+\[
+[a,b]
+\]
+dada por
+
+\[
+P=\{x_0,x_1,\ldots,x_n\},
+\]
+donde
+\[
+a=x_0<x_1<\cdots<x_n=b.
+\]
+
+Una suma de Riemann tiene la forma general
+
+\[
+\boxed{
+S(P,f)=
+\sum_{i=1}^{n}
+f(\xi_i)\Delta x_i
+}
+\]
+donde
+
+\[
+\Delta x_i=x_i-x_{i-1}
+\]
+y el punto de muestra \(\xi_i\) puede ser cualquier punto del
+subintervalo
+
+\[
+\xi_i\in[x_{i-1},x_i].
+\]
+
+Por tanto, los diferentes tipos de sumas corresponden simplemente a
+elecciones particulares de \(\xi_i\).
+
+\subsubsection*{Extremos izquierdos}
+
+Si se elige
+
+\[
+\xi_i=x_{i-1},
+\]
+entonces
+
+\[
+L_n
+=
+\sum_{i=1}^{n}
+f(x_{i-1})\Delta x_i.
+\]
+
+Esta es la suma de Riemann por extremos izquierdos.
+
+\subsubsection*{Extremos derechos}
+
+Si se elige
+
+\[
+\xi_i=x_i,
+\]
+se obtiene
+
+\[
+R_n
+=
+\sum_{i=1}^{n}
+f(x_i)\Delta x_i.
+\]
+
+Esta es la suma de Riemann por extremos derechos.
+
+\subsubsection*{Puntos medios}
+
+Si se elige como punto de muestra el centro de cada subintervalo,
+
+\[
+\xi_i=
+\frac{x_{i-1}+x_i}{2},
+\]
+entonces
+
+\[
+M_n
+=
+\sum_{i=1}^{n}
+f\left(
+\frac{x_{i-1}+x_i}{2}
+\right)\Delta x_i.
+\]
+
+Por consiguiente, las sumas por extremos izquierdos, extremos derechos y
+puntos medios no son métodos diferentes en esencia, sino casos
+particulares de la suma de Riemann general.
+
+En todos ellos se utiliza la expresión
+
+\[
+\boxed{
+\sum_{i=1}^{n}f(\xi_i)\Delta x_i
+}
+\]
+
+y únicamente cambia la forma en que se seleccionan los puntos
+\(\xi_i\).
+
+%========================================================
+\subsection*{Ejercicio 95}
+
+Escriba la forma general de una suma de Riemann para una partición no
+regular.
+
+Sea
+
+\[
+P=
+\{x_0,x_1,\ldots,x_n\}
+\]
+una partición del intervalo \([a,b]\), donde
+
+\[
+a=x_0<x_1<x_2<\cdots<x_n=b.
+\]
+
+Cuando la partición no es regular, los subintervalos no necesariamente
+tienen la misma longitud.
+
+Para cada subintervalo
+
+\[
+[x_{i-1},x_i],
+\]
+se define
+
+\[
+\Delta x_i=x_i-x_{i-1}.
+\]
+
+Se selecciona además un punto de muestra
+
+\[
+\xi_i\in[x_{i-1},x_i].
+\]
+
+La suma de Riemann correspondiente es
+
+\[
+\boxed{
+S(P,f)
+=
+\sum_{i=1}^{n}
+f(\xi_i)\Delta x_i
+}
+\]
+
+o, de manera explícita,
+
+\[
+\boxed{
+S(P,f)
+=
+f(\xi_1)(x_1-x_0)
++
+f(\xi_2)(x_2-x_1)
++\cdots+
+f(\xi_n)(x_n-x_{n-1})
+}.
+\]
+
+A diferencia de una partición regular, en general
+
+\[
+\Delta x_1\neq
+\Delta x_2\neq
+\cdots\neq
+\Delta x_n.
+\]
+
+Por tanto, cada término debe multiplicarse por el ancho particular del
+subintervalo al cual pertenece.
+
+%========================================================
+\subsection*{Ejercicio 97}
+
+Sea
+
+\[
+f(x)=x^2,
+\qquad
+0\leq x\leq 3,
+\]
+con la partición
+
+\[
+x_0=0,\qquad
+x_1=0.5,\qquad
+x_2=1.25,\qquad
+x_3=2.25,\qquad
+x_4=3,
+\]
+
+y los puntos de muestra
+
+\[
+w_1=0.25,\qquad
+w_2=1,\qquad
+w_3=1.5,\qquad
+w_4=2.5.
+\]
+
+La suma de Riemann es
+
+\[
+S=
+\sum_{i=1}^{4}
+f(w_i)\Delta x_i.
+\]
+
+Primero calculamos las longitudes de los subintervalos.
+
+\[
+\Delta x_1
+=
+x_1-x_0
+=
+0.5-0
+=
+0.5
+=
+\frac12.
+\]
+
+\[
+\Delta x_2
+=
+x_2-x_1
+=
+1.25-0.5
+=
+0.75
+=
+\frac34.
+\]
+
+\[
+\Delta x_3
+=
+x_3-x_2
+=
+2.25-1.25
+=
+1.
+\]
+
+\[
+\Delta x_4
+=
+x_4-x_3
+=
+3-2.25
+=
+0.75
+=
+\frac34.
+\]
+
+Ahora evaluamos \(f(x)=x^2\) en los puntos de muestra:
+
+\[
+f(0.25)
+=
+(0.25)^2
+=
+\frac1{16},
+\]
+
+\[
+f(1)=1,
+\]
+
+\[
+f(1.5)
+=
+(1.5)^2
+=
+\frac94,
+\]
+
+\[
+f(2.5)
+=
+(2.5)^2
+=
+\frac{25}{4}.
+\]
+
+Por tanto,
+
+\[
+S
+=
+\frac1{16}\left(\frac12\right)
++
+1\left(\frac34\right)
++
+\frac94(1)
++
+\frac{25}{4}\left(\frac34\right).
+\]
+
+Calculando los productos,
+
+\[
+S
+=
+\frac1{32}
++
+\frac34
++
+\frac94
++
+\frac{75}{16}.
+\]
+
+Utilizando denominador común \(32\),
+
+\[
+S
+=
+\frac1{32}
++
+\frac{24}{32}
++
+\frac{72}{32}
++
+\frac{150}{32}.
+\]
+
+Entonces,
+
+\[
+S
+=
+\frac{247}{32}.
+\]
+
+Por lo tanto,
+
+\[
+\boxed{
+S=\frac{247}{32}=7.71875
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 99}
+
+Sea
+
+\[
+f(x)=\frac1x,
+\qquad
+1\leq x\leq 3,
+\]
+con la partición
+
+\[
+x_0=1,\qquad
+x_1=1.67,\qquad
+x_2=2.25,\qquad
+x_3=2.67,\qquad
+x_4=3,
+\]
+
+y puntos de muestra
+
+\[
+w_1=1.25,\qquad
+w_2=2,\qquad
+w_3=2.5,\qquad
+w_4=2.75.
+\]
+
+La suma de Riemann es
+
+\[
+S=
+\sum_{i=1}^{4}
+f(w_i)\Delta x_i.
+\]
+
+Calculamos primero los anchos.
+
+\[
+\Delta x_1
+=
+1.67-1
+=
+0.67,
+\]
+
+\[
+\Delta x_2
+=
+2.25-1.67
+=
+0.58,
+\]
+
+\[
+\Delta x_3
+=
+2.67-2.25
+=
+0.42,
+\]
+
+\[
+\Delta x_4
+=
+3-2.67
+=
+0.33.
+\]
+
+Ahora evaluamos la función:
+
+\[
+f(1.25)
+=
+\frac{1}{1.25}
+=
+0.8,
+\]
+
+\[
+f(2)=\frac12=0.5,
+\]
+
+\[
+f(2.5)
+=
+\frac1{2.5}
+=
+0.4,
+\]
+
+\[
+f(2.75)
+=
+\frac{1}{2.75}
+=
+\frac4{11}.
+\]
+
+La suma es
+
+\[
+S
+=
+(0.8)(0.67)
++
+(0.5)(0.58)
++
+(0.4)(0.42)
++
+\left(\frac4{11}\right)(0.33).
+\]
+
+Calculando término por término,
+
+\[
+(0.8)(0.67)=0.536,
+\]
+
+\[
+(0.5)(0.58)=0.29,
+\]
+
+\[
+(0.4)(0.42)=0.168,
+\]
+
+y como
+\[
+0.33=\frac{33}{100},
+\]
+se tiene
+
+\[
+\left(\frac4{11}\right)(0.33)
+=
+\frac4{11}\frac{33}{100}
+=
+\frac{132}{1100}
+=
+0.12.
+\]
+
+Por tanto,
+
+\[
+S
+=
+0.536+0.29+0.168+0.12.
+\]
+
+Así,
+
+\[
+S=1.114.
+\]
+
+Por lo tanto,
+
+\[
+\boxed{
+S=1.114
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 101}
+
+Sea
+
+\[
+f(x)=\sin x,
+\qquad
+0\leq x\leq\pi,
+\]
+con la partición
+
+\[
+x_0=0,\qquad
+x_1=\frac{\pi}{4},\qquad
+x_2=\frac{\pi}{2},\qquad
+x_3=\frac{2\pi}{3},\qquad
+x_4=\frac{3\pi}{4},\qquad
+x_5=\pi,
+\]
+
+y los puntos de muestra
+
+\[
+w_1=\frac{\pi}{6},\qquad
+w_2=\frac{\pi}{3},\qquad
+w_3=\frac{\pi}{2},\qquad
+w_4=\frac{3\pi}{4},\qquad
+w_5=\frac{5\pi}{6}.
+\]
+
+La suma de Riemann es
+
+\[
+S=
+\sum_{i=1}^{5}
+f(w_i)\Delta x_i.
+\]
+
+Calculamos las longitudes de los subintervalos.
+
+Para el primero,
+
+\[
+\Delta x_1
+=
+\frac{\pi}{4}-0
+=
+\frac{\pi}{4}.
+\]
+
+Para el segundo,
+
+\[
+\Delta x_2
+=
+\frac{\pi}{2}-\frac{\pi}{4}
+=
+\frac{\pi}{4}.
+\]
+
+Para el tercero,
+
+\[
+\Delta x_3
+=
+\frac{2\pi}{3}-\frac{\pi}{2}.
+\]
+
+Utilizando denominador común \(6\),
+
+\[
+\Delta x_3
+=
+\frac{4\pi}{6}-\frac{3\pi}{6}
+=
+\frac{\pi}{6}.
+\]
+
+Para el cuarto,
+
+\[
+\Delta x_4
+=
+\frac{3\pi}{4}-\frac{2\pi}{3}.
+\]
+
+Con denominador común \(12\),
+
+\[
+\Delta x_4
+=
+\frac{9\pi}{12}-\frac{8\pi}{12}
+=
+\frac{\pi}{12}.
+\]
+
+Finalmente,
+
+\[
+\Delta x_5
+=
+\pi-\frac{3\pi}{4}
+=
+\frac{\pi}{4}.
+\]
+
+Ahora evaluamos \(f(x)=\sin x\) en los puntos de muestra:
+
+\[
+\sin\left(\frac{\pi}{6}\right)=\frac12,
+\]
+
+\[
+\sin\left(\frac{\pi}{3}\right)=\frac{\sqrt3}{2},
+\]
+
+\[
+\sin\left(\frac{\pi}{2}\right)=1,
+\]
+
+\[
+\sin\left(\frac{3\pi}{4}\right)=\frac{\sqrt2}{2},
+\]
+
+\[
+\sin\left(\frac{5\pi}{6}\right)=\frac12.
+\]
+
+Por tanto,
+
+\[
+S
+=
+\frac12\left(\frac{\pi}{4}\right)
++
+\frac{\sqrt3}{2}
+\left(\frac{\pi}{4}\right)
++
+1\left(\frac{\pi}{6}\right)
++
+\frac{\sqrt2}{2}
+\left(\frac{\pi}{12}\right)
++
+\frac12\left(\frac{\pi}{4}\right).
+\]
+
+Simplificando cada término,
+
+\[
+S
+=
+\frac{\pi}{8}
++
+\frac{\pi\sqrt3}{8}
++
+\frac{\pi}{6}
++
+\frac{\pi\sqrt2}{24}
++
+\frac{\pi}{8}.
+\]
+
+Los dos primeros términos racionales iguales producen
+
+\[
+\frac{\pi}{8}+\frac{\pi}{8}
+=
+\frac{\pi}{4}.
+\]
+
+Así,
+
+\[
+S
+=
+\frac{\pi}{4}
++
+\frac{\pi}{6}
++
+\frac{\pi\sqrt3}{8}
++
+\frac{\pi\sqrt2}{24}.
+\]
+
+Sumando
+
+\[
+\frac{\pi}{4}+\frac{\pi}{6}
+=
+\frac{3\pi}{12}+\frac{2\pi}{12}
+=
+\frac{5\pi}{12}.
+\]
+
+Por tanto,
+
+\[
+S
+=
+\frac{5\pi}{12}
++
+\frac{\pi\sqrt3}{8}
++
+\frac{\pi\sqrt2}{24}.
+\]
+
+Tomando como denominador común \(24\),
+
+\[
+S
+=
+\frac{10\pi}{24}
++
+\frac{3\pi\sqrt3}{24}
++
+\frac{\pi\sqrt2}{24}.
+\]
+
+Finalmente,
+
+\[
+\boxed{
+S
+=
+\frac{\pi}{24}
+\left(
+10+3\sqrt3+\sqrt2
+\right)
+}.
+\]
+
+Numéricamente,
+
+\[
+\boxed{
+S\approx2.17429
+}.
+\]
+%========================================================
+\subsection*{Ejercicio 103}
+%========================================================
+
+Aproxime la integral
+
+\[
+\int_{2}^{5}\frac{1}{x^2}\,dx
+\]
+
+mediante una suma de Riemann con partición regular,
+\[
+n=9,
+\]
+utilizando extremos derechos.
+
+La función es
+
+\[
+f(x)=\frac{1}{x^2},
+\]
+
+y el intervalo de integración es
+
+\[
+[a,b]=[2,5].
+\]
+
+\subsubsection*{Paso 1. Calcular el ancho de cada subintervalo}
+
+Como la partición es regular,
+
+\[
+\Delta x=\frac{b-a}{n}.
+\]
+
+Por tanto,
+
+\[
+\Delta x
+=
+\frac{5-2}{9}
+=
+\frac{3}{9}
+=
+\frac13.
+\]
+
+Así,
+
+\[
+\boxed{\Delta x=\frac13}.
+\]
+
+\subsubsection*{Paso 2. Determinar los extremos derechos}
+
+Para una partición regular, los puntos de la partición son
+
+\[
+x_i=a+i\Delta x.
+\]
+
+En este caso,
+
+\[
+x_i
+=
+2+\frac{i}{3}.
+\]
+
+Como utilizaremos extremos derechos, tomamos \(i=1,\ldots,9\).
+
+Así,
+
+\[
+x_1=2+\frac13=\frac73,
+\]
+
+\[
+x_2=2+\frac23=\frac83,
+\]
+
+\[
+x_3=3,
+\]
+
+\[
+x_4=\frac{10}{3},
+\]
+
+\[
+x_5=\frac{11}{3},
+\]
+
+\[
+x_6=4,
+\]
+
+\[
+x_7=\frac{13}{3},
+\]
+
+\[
+x_8=\frac{14}{3},
+\]
+
+\[
+x_9=5.
+\]
+
+\subsubsection*{Paso 3. Construir la suma de Riemann}
+
+La suma por extremos derechos es
+
+\[
+R_9
+=
+\sum_{i=1}^{9} f(x_i)\Delta x.
+\]
+
+Como
+
+\[
+f(x)=\frac1{x^2},
+\]
+
+tenemos
+
+\[
+R_9
+=
+\frac13
+\left[
+f\left(\frac73\right)
++
+f\left(\frac83\right)
++
+f(3)
++
+f\left(\frac{10}{3}\right)
++
+f\left(\frac{11}{3}\right)
++
+f(4)
++
+f\left(\frac{13}{3}\right)
++
+f\left(\frac{14}{3}\right)
++
+f(5)
+\right].
+\]
+
+Evaluamos cada término:
+
+\[
+f\left(\frac73\right)
+=
+\frac{1}{(7/3)^2}
+=
+\frac9{49},
+\]
+
+\[
+f\left(\frac83\right)
+=
+\frac9{64},
+\]
+
+\[
+f(3)=\frac19,
+\]
+
+\[
+f\left(\frac{10}{3}\right)
+=
+\frac9{100},
+\]
+
+\[
+f\left(\frac{11}{3}\right)
+=
+\frac9{121},
+\]
+
+\[
+f(4)=\frac1{16},
+\]
+
+\[
+f\left(\frac{13}{3}\right)
+=
+\frac9{169},
+\]
+
+\[
+f\left(\frac{14}{3}\right)
+=
+\frac9{196},
+\]
+
+\[
+f(5)=\frac1{25}.
+\]
+
+Por tanto,
+
+\[
+R_9
+=
+\frac13
+\left[
+\frac9{49}
++
+\frac9{64}
++
+\frac19
++
+\frac9{100}
++
+\frac9{121}
++
+\frac1{16}
++
+\frac9{169}
++
+\frac9{196}
++
+\frac1{25}
+\right].
+\]
+
+Equivalentemente,
+
+\[
+R_9
+=
+3\left[
+\frac1{7^2}
++\frac1{8^2}
++\frac1{9^2}
++\frac1{10^2}
++\frac1{11^2}
++\frac1{12^2}
++\frac1{13^2}
++\frac1{14^2}
++\frac1{15^2}
+\right].
+\]
+
+Calculando numéricamente,
+
+\[
+R_9\approx 0.267154.
+\]
+
+Por lo tanto,
+
+\[
+\boxed{
+\int_{2}^{5}\frac1{x^2}\,dx
+\approx 0.267154
+}
+\]
+
+mediante una suma de Riemann con \(n=9\) y extremos derechos.
+
+%========================================================
+\subsection*{Ejercicio 105}
+%========================================================
+
+Aproxime
+
+\[
+\int_{-\pi/3}^{\pi/3}\sec x\,dx
+\]
+
+mediante una suma de Riemann con
+
+\[
+n=8
+\]
+
+y extremos izquierdos.
+
+Tenemos
+
+\[
+f(x)=\sec x.
+\]
+
+\subsubsection*{Paso 1. Calcular \(\Delta x\)}
+
+El intervalo es
+
+\[
+\left[-\frac{\pi}{3},\frac{\pi}{3}\right].
+\]
+
+Por tanto,
+
+\[
+\Delta x
+=
+\frac{\frac{\pi}{3}-\left(-\frac{\pi}{3}\right)}{8}.
+\]
+
+Entonces,
+
+\[
+\Delta x
+=
+\frac{\frac{2\pi}{3}}{8}
+=
+\frac{\pi}{12}.
+\]
+
+Así,
+
+\[
+\boxed{\Delta x=\frac{\pi}{12}}.
+\]
+
+\subsubsection*{Paso 2. Determinar los extremos izquierdos}
+
+Los extremos izquierdos son
+
+\[
+x_i
+=
+-\frac{\pi}{3}
++i\frac{\pi}{12},
+\qquad
+i=0,1,\ldots,7.
+\]
+
+Por tanto,
+
+\[
+x_0=-\frac{\pi}{3},
+\]
+
+\[
+x_1=-\frac{\pi}{4},
+\]
+
+\[
+x_2=-\frac{\pi}{6},
+\]
+
+\[
+x_3=-\frac{\pi}{12},
+\]
+
+\[
+x_4=0,
+\]
+
+\[
+x_5=\frac{\pi}{12},
+\]
+
+\[
+x_6=\frac{\pi}{6},
+\]
+
+\[
+x_7=\frac{\pi}{4}.
+\]
+
+\subsubsection*{Paso 3. Construir la suma}
+
+La suma por extremos izquierdos es
+
+\[
+L_8
+=
+\frac{\pi}{12}
+\left[
+\sec\left(-\frac{\pi}{3}\right)
++
+\sec\left(-\frac{\pi}{4}\right)
++
+\sec\left(-\frac{\pi}{6}\right)
++
+\sec\left(-\frac{\pi}{12}\right)
++
+\sec(0)
++
+\sec\left(\frac{\pi}{12}\right)
++
+\sec\left(\frac{\pi}{6}\right)
++
+\sec\left(\frac{\pi}{4}\right)
+\right].
+\]
+
+Como el coseno es una función par,
+
+\[
+\cos(-x)=\cos x,
+\]
+
+también
+
+\[
+\sec(-x)=\sec x.
+\]
+
+Por tanto,
+
+\[
+L_8
+=
+\frac{\pi}{12}
+\left[
+\sec\left(\frac{\pi}{3}\right)
++
+\sec\left(\frac{\pi}{4}\right)
++
+\sec\left(\frac{\pi}{6}\right)
++
+\sec\left(\frac{\pi}{12}\right)
++
+1
++
+\sec\left(\frac{\pi}{12}\right)
++
+\sec\left(\frac{\pi}{6}\right)
++
+\sec\left(\frac{\pi}{4}\right)
+\right].
+\]
+
+Utilizamos
+
+\[
+\sec\left(\frac{\pi}{3}\right)=2,
+\]
+
+\[
+\sec\left(\frac{\pi}{4}\right)=\sqrt{2},
+\]
+
+\[
+\sec\left(\frac{\pi}{6}\right)
+=
+\frac{2}{\sqrt3},
+\]
+
+y
+
+\[
+\sec\left(\frac{\pi}{12}\right)
+=
+\sec(15^\circ)
+=
+\sqrt6-\sqrt2.
+\]
+
+Así,
+
+\[
+L_8
+=
+\frac{\pi}{12}
+\left[
+2
++\sqrt2
++\frac{2}{\sqrt3}
++(\sqrt6-\sqrt2)
++1
++(\sqrt6-\sqrt2)
++\frac{2}{\sqrt3}
++\sqrt2
+\right].
+\]
+
+Agrupando términos,
+
+\[
+L_8
+=
+\frac{\pi}{12}
+\left[
+3
++\frac{4}{\sqrt3}
++2\sqrt6
+\right].
+\]
+
+Racionalizando,
+
+\[
+\frac4{\sqrt3}
+=
+\frac{4\sqrt3}{3}.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+L_8
+=
+\frac{\pi}{12}
+\left(
+3+\frac{4\sqrt3}{3}+2\sqrt6
+\right)
+}.
+\]
+
+Numéricamente,
+
+\[
+\boxed{
+L_8\approx 2.67255
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 107}
+%========================================================
+
+Determine el valor exacto de
+
+\[
+\int_{1}^{3}(x-1)\,dx
+\]
+
+interpretando la integral como el área de una región plana.
+
+La función es
+
+\[
+f(x)=x-1.
+\]
+
+Es una recta con pendiente \(1\).
+
+En \(x=1\),
+
+\[
+f(1)=1-1=0.
+\]
+
+En \(x=3\),
+
+\[
+f(3)=3-1=2.
+\]
+
+En el intervalo \([1,3]\), la gráfica se encuentra por encima del eje
+\(x\), por lo que la integral coincide con el área geométrica.
+
+La región formada es un triángulo rectángulo cuya base es
+
+\[
+b=3-1=2
+\]
+
+y cuya altura es
+
+\[
+h=2.
+\]
+
+El área de un triángulo es
+
+\[
+A=\frac12 bh.
+\]
+
+Entonces,
+
+\[
+A
+=
+\frac12(2)(2)
+=
+2.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+\int_{1}^{3}(x-1)\,dx=2
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 109}
+%========================================================
+
+Determine
+
+\[
+\int_{0}^{2}\sqrt{4-x^2}\,dx
+\]
+
+interpretando la integral como área.
+
+Consideremos
+
+\[
+y=\sqrt{4-x^2}.
+\]
+
+Elevando al cuadrado,
+
+\[
+y^2=4-x^2,
+\]
+
+de donde
+
+\[
+x^2+y^2=4.
+\]
+
+Esta es la ecuación de un círculo con centro en el origen y radio
+
+\[
+r=2.
+\]
+
+Como
+
+\[
+y=\sqrt{4-x^2}\geq 0,
+\]
+
+la función representa la semicircunferencia superior.
+
+El intervalo
+
+\[
+0\leq x\leq 2
+\]
+
+corresponde únicamente al primer cuadrante.
+
+Por tanto, la región es un cuarto de círculo de radio \(2\).
+
+El área de un círculo es
+
+\[
+A=\pi r^2.
+\]
+
+Así,
+
+\[
+A_{\text{círculo}}
+=
+\pi(2)^2
+=
+4\pi.
+\]
+
+La cuarta parte es
+
+\[
+A=\frac14(4\pi)=\pi.
+\]
+
+Por consiguiente,
+
+\[
+\boxed{
+\int_{0}^{2}\sqrt{4-x^2}\,dx=\pi
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 111}
+%========================================================
+
+Determine
+
+\[
+\int_{-2}^{4}x\,dx
+\]
+
+interpretándola como área.
+
+La gráfica
+
+\[
+y=x
+\]
+
+es una recta que atraviesa el origen.
+
+Debemos recordar que una integral definida representa
+\emph{área con signo}.
+
+En el intervalo
+
+\[
+[-2,0],
+\]
+
+la función es negativa.
+
+La región es un triángulo con base
+
+\[
+2
+\]
+
+y altura
+
+\[
+2.
+\]
+
+Su área geométrica es
+
+\[
+A_1
+=
+\frac12(2)(2)
+=
+2.
+\]
+
+Como está debajo del eje \(x\), contribuye
+
+\[
+-2.
+\]
+
+En el intervalo
+
+\[
+[0,4],
+\]
+
+la función es positiva.
+
+La región es un triángulo de base \(4\) y altura \(4\):
+
+\[
+A_2
+=
+\frac12(4)(4)
+=
+8.
+\]
+
+Por tanto,
+
+\[
+\int_{-2}^{4}x\,dx
+=
+-2+8.
+\]
+
+Finalmente,
+
+\[
+\boxed{
+\int_{-2}^{4}x\,dx=6
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 113}
+%========================================================
+
+Determine
+
+\[
+\int_{-1}^{2}(5-2x)\,dx
+\]
+
+interpretando la integral geométricamente.
+
+La función
+
+\[
+f(x)=5-2x
+\]
+
+es una recta.
+
+Evaluamos en los extremos:
+
+\[
+f(-1)=5-2(-1)=7,
+\]
+
+y
+
+\[
+f(2)=5-4=1.
+\]
+
+Toda la gráfica se encuentra por encima del eje \(x\) en el intervalo
+\([-1,2]\).
+
+La región bajo la recta es un trapecio.
+
+Sus lados paralelos tienen longitudes
+
+\[
+7
+\qquad\text{y}\qquad
+1.
+\]
+
+La distancia entre ellos es
+
+\[
+2-(-1)=3.
+\]
+
+El área de un trapecio es
+
+\[
+A
+=
+\frac{B+b}{2}h.
+\]
+
+Entonces,
+
+\[
+A
+=
+\frac{7+1}{2}(3)
+=
+4(3)
+=
+12.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+\int_{-1}^{2}(5-2x)\,dx=12
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 115}
+%========================================================
+
+Determine
+
+\[
+\int_{-2}^{4}|x|\,dx.
+\]
+
+La función valor absoluto está dada por
+
+\[
+|x|
+=
+\begin{cases}
+-x, & x<0,\\
+x, & x\geq 0.
+\end{cases}
+\]
+
+Geométricamente, la gráfica tiene forma de \(V\).
+
+En el intervalo
+
+\[
+[-2,0],
+\]
+
+se forma un triángulo con base \(2\) y altura \(2\).
+
+Por tanto,
+
+\[
+A_1
+=
+\frac12(2)(2)
+=
+2.
+\]
+
+En el intervalo
+
+\[
+[0,4],
+\]
+
+se forma otro triángulo con base \(4\) y altura \(4\):
+
+\[
+A_2
+=
+\frac12(4)(4)
+=
+8.
+\]
+
+Como \(|x|\geq0\), ambas áreas contribuyen positivamente.
+
+Así,
+
+\[
+\int_{-2}^{4}|x|\,dx
+=
+2+8.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+\int_{-2}^{4}|x|\,dx=10
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 117}
+%========================================================
+
+Determine
+
+\[
+\int_{0}^{5}(|x+3|-5)\,dx.
+\]
+
+Para
+
+\[
+0\leq x\leq5,
+\]
+
+se cumple
+
+\[
+x+3>0.
+\]
+
+Por tanto,
+
+\[
+|x+3|=x+3.
+\]
+
+Así, la función se simplifica a
+
+\[
+f(x)=x+3-5=x-2.
+\]
+
+Entonces debemos interpretar
+
+\[
+\int_0^5(x-2)\,dx.
+\]
+
+La recta cruza el eje \(x\) cuando
+
+\[
+x-2=0,
+\]
+
+es decir,
+
+\[
+x=2.
+\]
+
+\subsubsection*{Región de \(0\) a \(2\)}
+
+La función está debajo del eje \(x\).
+
+Se forma un triángulo cuya base es
+
+\[
+2
+\]
+
+y cuya altura es
+
+\[
+|f(0)|=|-2|=2.
+\]
+
+Su área es
+
+\[
+A_1
+=
+\frac12(2)(2)
+=
+2.
+\]
+
+Como está debajo del eje,
+
+\[
+\text{contribución}=-2.
+\]
+
+\subsubsection*{Región de \(2\) a \(5\)}
+
+La función está por encima del eje.
+
+En \(x=5\),
+
+\[
+f(5)=5-2=3.
+\]
+
+Se forma un triángulo con base
+
+\[
+5-2=3
+\]
+
+y altura
+
+\[
+3.
+\]
+
+Su área es
+
+\[
+A_2
+=
+\frac12(3)(3)
+=
+\frac92.
+\]
+
+Por tanto,
+
+\[
+\int_0^5(|x+3|-5)\,dx
+=
+-2+\frac92.
+\]
+
+Entonces,
+
+\[
+-2+\frac92
+=
+-\frac42+\frac92
+=
+\frac52.
+\]
+
+Por consiguiente,
+
+\[
+\boxed{
+\int_0^5(|x+3|-5)\,dx
+=
+\frac52
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 119}
+%========================================================
+
+Determine
+
+\[
+\int_0^8\left(6-|x-2|\right)\,dx.
+\]
+
+Debemos analizar el valor absoluto.
+
+Sabemos que
+
+\[
+|x-2|
+=
+\begin{cases}
+2-x, & x<2,\\
+x-2, & x\geq2.
+\end{cases}
+\]
+
+Por tanto,
+
+\[
+6-|x-2|
+=
+\begin{cases}
+6-(2-x)=4+x, & 0\leq x<2,\\
+6-(x-2)=8-x, & 2\leq x\leq8.
+\end{cases}
+\]
+
+\subsubsection*{Región de \(0\) a \(2\)}
+
+En este intervalo,
+
+\[
+f(x)=4+x.
+\]
+
+Tenemos
+
+\[
+f(0)=4,
+\]
+
+y
+
+\[
+f(2)=6.
+\]
+
+La región es un trapecio de base \(2\) y lados paralelos \(4\) y \(6\).
+
+Por tanto,
+
+\[
+A_1
+=
+\frac{4+6}{2}(2)
+=
+5(2)
+=
+10.
+\]
+
+\subsubsection*{Región de \(2\) a \(8\)}
+
+Aquí,
+
+\[
+f(x)=8-x.
+\]
+
+Tenemos
+
+\[
+f(2)=6,
+\]
+
+y
+
+\[
+f(8)=0.
+\]
+
+La región es un triángulo con base
+
+\[
+8-2=6
+\]
+
+y altura
+
+\[
+6.
+\]
+
+Entonces,
+
+\[
+A_2
+=
+\frac12(6)(6)
+=
+18.
+\]
+
+Toda la función es no negativa en \([0,8]\), de modo que
+
+\[
+\int_0^8(6-|x-2|)\,dx
+=
+A_1+A_2.
+\]
+
+Por tanto,
+
+\[
+\int_0^8(6-|x-2|)\,dx
+=
+10+18.
+\]
+
+Finalmente,
+
+\[
+\boxed{
+\int_0^8(6-|x-2|)\,dx=28
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 121}
+%========================================================
+
+Determine
+
+\[
+\int_0^2\sqrt{2x-x^2}\,dx
+\]
+
+interpretando la integral como área.
+
+La función es
+
+\[
+y=\sqrt{2x-x^2}.
+\]
+
+Elevando al cuadrado,
+
+\[
+y^2=2x-x^2.
+\]
+
+Reordenamos:
+
+\[
+x^2-2x+y^2=0.
+\]
+
+Completamos el cuadrado en \(x\):
+
+\[
+x^2-2x+1+y^2=1.
+\]
+
+Por tanto,
+
+\[
+(x-1)^2+y^2=1.
+\]
+
+Esta es la ecuación de un círculo con centro
+
+\[
+(1,0)
+\]
+
+y radio
+
+\[
+r=1.
+\]
+
+Como
+
+\[
+y=\sqrt{2x-x^2}\geq0,
+\]
+
+la función representa la semicircunferencia superior.
+
+El intervalo
+
+\[
+0\leq x\leq2
+\]
+
+recorre toda la semicircunferencia superior.
+
+El área de un círculo de radio \(1\) es
+
+\[
+A=\pi(1)^2=\pi.
+\]
+
+Por tanto, el área de la semicircunferencia es
+
+\[
+\frac{\pi}{2}.
+\]
+
+Así,
+
+\[
+\boxed{
+\int_0^2\sqrt{2x-x^2}\,dx
+=
+\frac{\pi}{2}
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 123}
+%========================================================
+
+Determine
+
+\[
+\int_{-\pi}^{\pi}\cos x\,dx
+\]
+
+interpretando la integral como área con signo.
+
+La función
+
+\[
+f(x)=\cos x
+\]
+
+es positiva en
+
+\[
+\left[-\frac{\pi}{2},\frac{\pi}{2}\right]
+\]
+
+y negativa en
+
+\[
+\left[-\pi,-\frac{\pi}{2}\right]
+\]
+
+y
+
+\[
+\left[\frac{\pi}{2},\pi\right].
+\]
+
+La región central contribuye positivamente, mientras que las regiones
+laterales contribuyen negativamente.
+
+Por simetría,
+
+\[
+\int_{-\pi}^{\pi}\cos x\,dx
+=
+2\int_0^\pi\cos x\,dx.
+\]
+
+Podemos separar
+
+\[
+\int_0^\pi\cos x\,dx
+=
+\int_0^{\pi/2}\cos x\,dx
++
+\int_{\pi/2}^\pi\cos x\,dx.
+\]
+
+Geométricamente, ambas regiones tienen la misma magnitud de área, pero
+signos opuestos.
+
+La primera contribuye
+
+\[
+1,
+\]
+
+mientras que la segunda contribuye
+
+\[
+-1.
+\]
+
+Así,
+
+\[
+\int_0^\pi\cos x\,dx=1-1=0.
+\]
+
+Por simetría,
+
+\[
+\boxed{
+\int_{-\pi}^{\pi}\cos x\,dx=0
+}.
+\]
+
+También puede observarse que la región positiva total tiene área \(2\),
+mientras que la región negativa total tiene área \(-2\):
+
+\[
+2+(-2)=0.
+\]
+
+%========================================================
+\subsection*{Ejercicio 125}
+%========================================================
+
+Determine
+
+\[
+\int_2^5 4\,dx.
+\]
+
+Utilizamos la propiedad de la integral de una función constante:
+
+\[
+\int_a^b c\,dx
+=
+c(b-a).
+\]
+
+En este caso,
+
+\[
+c=4,
+\qquad
+a=2,
+\qquad
+b=5.
+\]
+
+Por tanto,
+
+\[
+\int_2^5 4\,dx
+=
+4(5-2).
+\]
+
+Así,
+
+\[
+\int_2^5 4\,dx
+=
+4(3)
+=
+12.
+\]
+
+Por lo tanto,
+
+\[
+\boxed{
+\int_2^5 4\,dx=12
+}.
+\]
+
+Geométricamente, este resultado corresponde al área de un rectángulo
+cuya base es
+
+\[
+5-2=3
+\]
+
+y cuya altura es
+
+\[
+4.
+\]
+
+Por tanto,
+
+\[
+A=(3)(4)=12.
+\]
+
+%========================================================
+\subsection*{Ejercicio 127}
+%========================================================
+
+Determine
+
+\[
+\int_{-5}^{-10}dx.
+\]
+
+Podemos escribir
+
+\[
+\int_{-5}^{-10}1\,dx.
+\]
+
+Utilizando
+
+\[
+\int_a^b c\,dx=c(b-a),
+\]
+
+obtenemos
+
+\[
+\int_{-5}^{-10}1\,dx
+=
+1[-10-(-5)].
+\]
+
+Por tanto,
+
+\[
+=
+-10+5
+=
+-5.
+\]
+
+Así,
+
+\[
+\boxed{
+\int_{-5}^{-10}dx=-5
+}.
+\]
+
+Observe que el límite superior es menor que el límite inferior.
+
+Utilizando la propiedad
+
+\[
+\int_a^b f(x)\,dx
+=
+-\int_b^a f(x)\,dx,
+\]
+
+también tenemos
+
+\[
+\int_{-5}^{-10}dx
+=
+-\int_{-10}^{-5}dx
+=
+-(5)
+=
+-5.
+\]
+
+%========================================================
+\subsection*{Ejercicio 129}
+%========================================================
+
+Determine
+
+\[
+\int_{-2}^{2}\sqrt5\,dx.
+\]
+
+La función
+
+\[
+f(x)=\sqrt5
+\]
+
+es constante.
+
+Utilizamos
+
+\[
+\int_a^b c\,dx
+=
+c(b-a).
+\]
+
+Por tanto,
+
+\[
+\int_{-2}^{2}\sqrt5\,dx
+=
+\sqrt5\left[2-(-2)\right].
+\]
+
+Entonces,
+
+\[
+=
+\sqrt5(4).
+\]
+
+Por consiguiente,
+
+\[
+\boxed{
+\int_{-2}^{2}\sqrt5\,dx
+=
+4\sqrt5
+}.
+\]
+
+Geométricamente, corresponde al área de un rectángulo con base \(4\)
+y altura \(\sqrt5\).
+
+%========================================================
+\subsection*{Ejercicio 131}
+%========================================================
+
+Determine exactamente
+
+\[
+\int_0^\pi 3\cos^2x\,dx.
+\]
+
+Sacamos la constante fuera de la integral:
+
+\[
+\int_0^\pi3\cos^2x\,dx
+=
+3\int_0^\pi\cos^2x\,dx.
+\]
+
+Utilizamos la identidad trigonométrica
+
+\[
+\cos^2x
+=
+\frac{1+\cos(2x)}{2}.
+\]
+
+Entonces,
+
+\[
+3\int_0^\pi\cos^2x\,dx
+=
+3\int_0^\pi
+\frac{1+\cos(2x)}{2}\,dx.
+\]
+
+Distribuyendo,
+
+\[
+=
+\frac32
+\left[
+\int_0^\pi1\,dx
++
+\int_0^\pi\cos(2x)\,dx
+\right].
+\]
+
+La primera integral es
+
+\[
+\int_0^\pi1\,dx=\pi.
+\]
+
+Para la segunda,
+
+\[
+\int_0^\pi\cos(2x)\,dx=0,
+\]
+
+pues en un intervalo de longitud \(\pi\), la función \(\cos(2x)\)
+completa un periodo entero y sus áreas positivas y negativas se
+cancelan.
+
+Por tanto,
+
+\[
+\int_0^\pi3\cos^2x\,dx
+=
+\frac32(\pi+0).
+\]
+
+Finalmente,
+
+\[
+\boxed{
+\int_0^\pi3\cos^2x\,dx
+=
+\frac{3\pi}{2}
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 133}
+%========================================================
+
+Determine el valor exacto de
+
+\[
+\int_\pi^0(\sin x-2)^2\,dx.
+\]
+
+Primero observamos que los límites de integración están invertidos.
+
+Utilizando la propiedad
+
+\[
+\int_a^b f(x)\,dx
+=
+-\int_b^a f(x)\,dx,
+\]
+
+tenemos
+
+\[
+\int_\pi^0(\sin x-2)^2\,dx
+=
+-\int_0^\pi(\sin x-2)^2\,dx.
+\]
+
+Desarrollamos el cuadrado:
+
+\[
+(\sin x-2)^2
+=
+\sin^2x-4\sin x+4.
+\]
+
+Entonces,
+
+\[
+\int_\pi^0(\sin x-2)^2\,dx
+=
+-
+\int_0^\pi
+\left(
+\sin^2x-4\sin x+4
+\right)\,dx.
+\]
+
+Por linealidad,
+
+\[
+=
+-
+\left[
+\int_0^\pi\sin^2x\,dx
+-
+4\int_0^\pi\sin x\,dx
++
+4\int_0^\pi dx
+\right].
+\]
+
+Calcularemos cada integral por separado.
+
+\subsubsection*{Primera integral}
+
+Utilizamos
+
+\[
+\sin^2x
+=
+\frac{1-\cos(2x)}{2}.
+\]
+
+Por tanto,
+
+\[
+\int_0^\pi\sin^2x\,dx
+=
+\frac{\pi}{2}.
+\]
+
+\subsubsection*{Segunda integral}
+
+Sabemos que
+
+\[
+\int_0^\pi\sin x\,dx=2.
+\]
+
+Así,
+
+\[
+-4\int_0^\pi\sin x\,dx
+=
+-4(2)
+=
+-8.
+\]
+
+\subsubsection*{Tercera integral}
+
+Tenemos
+
+\[
+4\int_0^\pi dx
+=
+4\pi.
+\]
+
+Por tanto,
+
+\[
+\int_0^\pi(\sin x-2)^2\,dx
+=
+\frac{\pi}{2}-8+4\pi.
+\]
+
+Agrupando los términos con \(\pi\),
+
+\[
+\frac{\pi}{2}+4\pi
+=
+\frac{\pi}{2}+\frac{8\pi}{2}
+=
+\frac{9\pi}{2}.
+\]
+
+Entonces,
+
+\[
+\int_0^\pi(\sin x-2)^2\,dx
+=
+\frac{9\pi}{2}-8.
+\]
+
+Finalmente, recordando que los límites originales estaban invertidos,
+
+\[
+\int_\pi^0(\sin x-2)^2\,dx
+=
+-\left(
+\frac{9\pi}{2}-8
+\right).
+\]
+
+Por consiguiente,
+
+\[
+\boxed{
+\int_\pi^0(\sin x-2)^2\,dx
+=
+8-\frac{9\pi}{2}
+}.
+\]
 
 
+%========================================================
+\section*{Solución de los ejercicios impares}
+%========================================================
 
+%========================================================
+\subsection*{Ejercicio 179}
+%========================================================
+
+Determine, con aproximación de centésimos, un valor de \(c\) que satisfaga
+
+\[
+\int_a^b f(x)\,dx=f(c)(b-a)
+\]
+
+para
+
+\[
+\int_1^2 x^3\,dx.
+\]
+
+La función es
+
+\[
+f(x)=x^3,
+\]
+
+continua en \([1,2]\). Por el Teorema del Valor Medio para integrales,
+existe al menos un \(c\in[1,2]\) tal que
+
+\[
+\int_1^2 x^3\,dx=f(c)(2-1).
+\]
+
+\subsubsection*{Paso 1. Calcular la integral}
+
+Tenemos
+
+\[
+\int_1^2x^3\,dx
+=
+\left[\frac{x^4}{4}\right]_1^2.
+\]
+
+Por tanto,
+
+\[
+=
+\frac{2^4}{4}-\frac{1^4}{4}
+=
+\frac{16}{4}-\frac14
+=
+\frac{15}{4}.
+\]
+
+Como
+
+\[
+b-a=2-1=1,
+\]
+
+se requiere que
+
+\[
+f(c)=\frac{15}{4}.
+\]
+
+Puesto que
+
+\[
+f(c)=c^3,
+\]
+
+tenemos
+
+\[
+c^3=\frac{15}{4}.
+\]
+
+Entonces
+
+\[
+c=\sqrt[3]{\frac{15}{4}}.
+\]
+
+Numéricamente,
+
+\[
+c\approx1.5536.
+\]
+
+Con aproximación a centésimos,
+
+\[
+\boxed{c\approx1.55}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 181}
+%========================================================
+
+Determine un valor de \(c\) que satisfaga
+
+\[
+\int_1^4(x^2+4x+5)\,dx
+=
+f(c)(4-1).
+\]
+
+La función es
+
+\[
+f(x)=x^2+4x+5.
+\]
+
+Al ser un polinomio, es continua en \([1,4]\), por lo que podemos
+aplicar el Teorema del Valor Medio para integrales.
+
+\subsubsection*{Paso 1. Calcular la integral}
+
+Tenemos
+
+\[
+\int_1^4(x^2+4x+5)\,dx
+=
+\left[
+\frac{x^3}{3}+2x^2+5x
+\right]_1^4.
+\]
+
+Evaluando en \(x=4\),
+
+\[
+\frac{4^3}{3}+2(4)^2+5(4)
+=
+\frac{64}{3}+32+20.
+\]
+
+Como
+
+\[
+32+20=52=\frac{156}{3},
+\]
+
+se obtiene
+
+\[
+\frac{220}{3}.
+\]
+
+Evaluando en \(x=1\),
+
+\[
+\frac13+2+5
+=
+\frac13+7
+=
+\frac{22}{3}.
+\]
+
+Por tanto,
+
+\[
+\int_1^4(x^2+4x+5)\,dx
+=
+\frac{220}{3}-\frac{22}{3}
+=
+\frac{198}{3}
+=
+66.
+\]
+
+\subsubsection*{Paso 2. Obtener el valor promedio}
+
+La longitud del intervalo es
+
+\[
+b-a=4-1=3.
+\]
+
+Por tanto,
+
+\[
+f(c)=\frac{66}{3}=22.
+\]
+
+Así,
+
+\[
+c^2+4c+5=22.
+\]
+
+Reordenando,
+
+\[
+c^2+4c-17=0.
+\]
+
+Aplicando la fórmula general,
+
+\[
+c=
+\frac{-4\pm\sqrt{4^2-4(1)(-17)}}{2}.
+\]
+
+Entonces
+
+\[
+c=
+\frac{-4\pm\sqrt{16+68}}{2}
+=
+\frac{-4\pm\sqrt{84}}{2}.
+\]
+
+Como
+
+\[
+\sqrt{84}=2\sqrt{21},
+\]
+
+tenemos
+
+\[
+c=-2\pm\sqrt{21}.
+\]
+
+De las dos soluciones, solamente
+
+\[
+c=-2+\sqrt{21}
+\]
+
+pertenece al intervalo \([1,4]\).
+
+Numéricamente,
+
+\[
+c\approx2.5826.
+\]
+
+Por tanto,
+
+\[
+\boxed{c\approx2.58}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 183}
+%========================================================
+
+Determine \(c\) para
+
+\[
+\int_{-2}^{2}(x^3+1)\,dx.
+\]
+
+Tenemos
+
+\[
+f(x)=x^3+1.
+\]
+
+La función es continua en \([-2,2]\).
+
+Por el Teorema del Valor Medio,
+
+\[
+\int_{-2}^{2}(x^3+1)\,dx
+=
+f(c)\,[2-(-2)].
+\]
+
+Observemos que \(x^3\) es impar, por lo que
+
+\[
+\int_{-2}^{2}x^3\,dx=0.
+\]
+
+Además,
+
+\[
+\int_{-2}^{2}1\,dx=4.
+\]
+
+Por tanto,
+
+\[
+\int_{-2}^{2}(x^3+1)\,dx=4.
+\]
+
+Como la longitud del intervalo es
+
+\[
+2-(-2)=4,
+\]
+
+tenemos
+
+\[
+f(c)=\frac44=1.
+\]
+
+Así,
+
+\[
+c^3+1=1.
+\]
+
+Por tanto,
+
+\[
+c^3=0
+\]
+
+y
+
+\[
+\boxed{c=0}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 185}
+%========================================================
+
+Determine, con aproximación de centésimos, un valor \(c\) para
+
+\[
+\int_2^4\frac{1}{x^2-3}\,dx.
+\]
+
+La función
+
+\[
+f(x)=\frac1{x^2-3}
+\]
+
+es continua en \([2,4]\), ya que en dicho intervalo
+
+\[
+x^2-3>0.
+\]
+
+Por el Teorema del Valor Medio,
+
+\[
+\int_2^4\frac{1}{x^2-3}\,dx
+=
+f(c)(4-2).
+\]
+
+\subsubsection*{Paso 1. Calcular la integral}
+
+Utilizamos
+
+\[
+\int\frac{dx}{x^2-a^2}
+=
+\frac{1}{2a}
+\ln\left|
+\frac{x-a}{x+a}
+\right|+C.
+\]
+
+Aquí
+
+\[
+a=\sqrt3.
+\]
+
+Así,
+
+\[
+\int\frac{dx}{x^2-3}
+=
+\frac{1}{2\sqrt3}
+\ln\left|
+\frac{x-\sqrt3}{x+\sqrt3}
+\right|.
+\]
+
+Por tanto,
+
+\[
+I=
+\frac{1}{2\sqrt3}
+\left[
+\ln\left(
+\frac{4-\sqrt3}{4+\sqrt3}
+\right)
+-
+\ln\left(
+\frac{2-\sqrt3}{2+\sqrt3}
+\right)
+\right].
+\]
+
+Numéricamente,
+
+\[
+I\approx0.492687.
+\]
+
+\subsubsection*{Paso 2. Calcular el valor promedio}
+
+Como
+
+\[
+b-a=2,
+\]
+
+tenemos
+
+\[
+f(c)
+=
+\frac{I}{2}
+\approx
+0.246344.
+\]
+
+Por tanto,
+
+\[
+\frac{1}{c^2-3}
+=
+0.246344.
+\]
+
+Invertimos:
+
+\[
+c^2-3
+=
+\frac{1}{0.246344}.
+\]
+
+Entonces,
+
+\[
+c^2
+=
+3+\frac{1}{0.246344}.
+\]
+
+Así,
+
+\[
+c
+\approx2.65695.
+\]
+
+Como \(c\in[2,4]\),
+
+\[
+\boxed{c\approx2.66}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 187}
+%========================================================
+
+Determine \(c\) para
+
+\[
+\int_{\pi/6}^{\pi/4}\tan x\,dx.
+\]
+
+La función \(\tan x\) es continua en
+
+\[
+\left[\frac{\pi}{6},\frac{\pi}{4}\right].
+\]
+
+Por tanto,
+
+\[
+\int_{\pi/6}^{\pi/4}\tan x\,dx
+=
+\tan(c)
+\left(
+\frac{\pi}{4}-\frac{\pi}{6}
+\right).
+\]
+
+La longitud del intervalo es
+
+\[
+\frac{\pi}{4}-\frac{\pi}{6}
+=
+\frac{\pi}{12}.
+\]
+
+\subsubsection*{Paso 1. Calcular la integral}
+
+Sabemos que
+
+\[
+\int\tan x\,dx=-\ln|\cos x|+C.
+\]
+
+Por tanto,
+
+\[
+\int_{\pi/6}^{\pi/4}\tan x\,dx
+=
+-\ln\left(\cos\frac{\pi}{4}\right)
++
+\ln\left(\cos\frac{\pi}{6}\right).
+\]
+
+Así,
+
+\[
+=
+\ln
+\left(
+\frac{\cos(\pi/6)}{\cos(\pi/4)}
+\right).
+\]
+
+Como
+
+\[
+\cos\frac{\pi}{6}=\frac{\sqrt3}{2},
+\qquad
+\cos\frac{\pi}{4}=\frac{\sqrt2}{2},
+\]
+
+obtenemos
+
+\[
+I
+=
+\ln\left(\sqrt{\frac32}\right).
+\]
+
+Entonces,
+
+\[
+\tan c
+=
+\frac{12}{\pi}
+\ln\left(\sqrt{\frac32}\right).
+\]
+
+Por tanto,
+
+\[
+c
+=
+\arctan
+\left[
+\frac{12}{\pi}
+\ln\left(\sqrt{\frac32}\right)
+\right].
+\]
+
+Numéricamente,
+
+\[
+c\approx0.65892.
+\]
+
+Así,
+
+\[
+\boxed{c\approx0.66}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 189}
+%========================================================
+
+Dado que
+
+\[
+\int_{-1}^{2}x\,dx=\frac32,
+\]
+
+calcule el valor promedio de la función identidad en \([-1,2]\) y
+determine dónde se alcanza.
+
+El valor promedio de una función \(f\) en \([a,b]\) se define como
+
+\[
+f_{\mathrm{prom}}
+=
+\frac{1}{b-a}
+\int_a^bf(x)\,dx.
+\]
+
+En este caso,
+
+\[
+f(x)=x,
+\qquad
+a=-1,
+\qquad
+b=2.
+\]
+
+Así,
+
+\[
+f_{\mathrm{prom}}
+=
+\frac{1}{2-(-1)}
+\left(\frac32\right).
+\]
+
+Por tanto,
+
+\[
+f_{\mathrm{prom}}
+=
+\frac13\frac32
+=
+\frac12.
+\]
+
+Ahora buscamos \(c\) tal que
+
+\[
+f(c)=\frac12.
+\]
+
+Como
+
+\[
+f(c)=c,
+\]
+
+se tiene
+
+\[
+c=\frac12.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+f_{\mathrm{prom}}=\frac12,
+\qquad
+c=\frac12
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 191}
+%========================================================
+
+Dado que
+
+\[
+\int_0^\pi\sin x\,dx=2,
+\]
+
+calcule el valor promedio de \(\sin x\) en \([0,\pi]\) y determine el
+menor valor de \(x\) donde se alcanza.
+
+El valor promedio es
+
+\[
+f_{\mathrm{prom}}
+=
+\frac{1}{\pi-0}
+\int_0^\pi\sin x\,dx.
+\]
+
+Así,
+
+\[
+f_{\mathrm{prom}}
+=
+\frac{2}{\pi}.
+\]
+
+Buscamos \(c\) tal que
+
+\[
+\sin c=\frac{2}{\pi}.
+\]
+
+En \([0,\pi]\) existen dos soluciones, simétricas respecto de
+\(\pi/2\). La menor es
+
+\[
+c
+=
+\arcsin\left(\frac2\pi\right).
+\]
+
+Numéricamente,
+
+\[
+c\approx0.6901.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+f_{\mathrm{prom}}=\frac2\pi,
+\qquad
+c_{\min}\approx0.69
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 193}
+%========================================================
+
+Determine el valor promedio de
+
+\[
+f(x)=8x-x^2
+\]
+
+en \([0,4]\) y el punto donde se alcanza.
+
+El valor promedio es
+
+\[
+f_{\mathrm{prom}}
+=
+\frac14
+\int_0^4(8x-x^2)\,dx.
+\]
+
+Calculamos:
+
+\[
+\int_0^4(8x-x^2)\,dx
+=
+\left[
+4x^2-\frac{x^3}{3}
+\right]_0^4.
+\]
+
+Entonces,
+
+\[
+=
+4(16)-\frac{64}{3}
+=
+64-\frac{64}{3}.
+\]
+
+Por tanto,
+
+\[
+=
+\frac{192-64}{3}
+=
+\frac{128}{3}.
+\]
+
+Así,
+
+\[
+f_{\mathrm{prom}}
+=
+\frac14\frac{128}{3}
+=
+\frac{32}{3}.
+\]
+
+Ahora resolvemos
+
+\[
+8c-c^2=\frac{32}{3}.
+\]
+
+Multiplicando por \(3\),
+
+\[
+24c-3c^2=32.
+\]
+
+Reordenando,
+
+\[
+3c^2-24c+32=0.
+\]
+
+Aplicando la fórmula general,
+
+\[
+c
+=
+\frac{24\pm\sqrt{576-384}}{6}.
+\]
+
+Así,
+
+\[
+c
+=
+\frac{24\pm\sqrt{192}}{6}.
+\]
+
+Como
+
+\[
+\sqrt{192}=8\sqrt3,
+\]
+
+obtenemos
+
+\[
+c
+=
+4\pm\frac{4\sqrt3}{3}.
+\]
+
+La solución
+
+\[
+4+\frac{4\sqrt3}{3}>4
+\]
+
+queda fuera del intervalo. Por tanto,
+
+\[
+\boxed{
+c=
+4-\frac{4\sqrt3}{3}
+}.
+\]
+
+En consecuencia,
+
+\[
+\boxed{
+f_{\mathrm{prom}}=\frac{32}{3},
+\qquad
+c=4-\frac{4\sqrt3}{3}
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 195}
+%========================================================
+
+Determine el valor promedio de
+
+\[
+f(x)=x^2\sqrt{x-3}
+\]
+
+en el intervalo \([7,12]\).
+
+Por definición,
+
+\[
+f_{\mathrm{prom}}
+=
+\frac{1}{12-7}
+\int_7^{12}x^2\sqrt{x-3}\,dx.
+\]
+
+Así,
+
+\[
+f_{\mathrm{prom}}
+=
+\frac15
+\int_7^{12}x^2\sqrt{x-3}\,dx.
+\]
+
+Realizamos el cambio de variable
+
+\[
+u=x-3.
+\]
+
+Entonces,
+
+\[
+x=u+3,
+\qquad
+dx=du.
+\]
+
+Los límites cambian de la siguiente manera:
+
+\[
+x=7
+\quad\Longrightarrow\quad
+u=4,
+\]
+
+\[
+x=12
+\quad\Longrightarrow\quad
+u=9.
+\]
+
+Además,
+
+\[
+x^2=(u+3)^2=u^2+6u+9.
+\]
+
+Por tanto,
+
+\[
+\int_7^{12}x^2\sqrt{x-3}\,dx
+=
+\int_4^9
+(u^2+6u+9)u^{1/2}\,du.
+\]
+
+Distribuyendo,
+
+\[
+=
+\int_4^9
+\left(
+u^{5/2}
++6u^{3/2}
++9u^{1/2}
+\right)\,du.
+\]
+
+Integrando término a término,
+
+\[
+=
+\left[
+\frac{2}{7}u^{7/2}
++
+\frac{12}{5}u^{5/2}
++
+6u^{3/2}
+\right]_4^9.
+\]
+
+Al evaluar en los extremos se obtiene
+
+\[
+\int_7^{12}x^2\sqrt{x-3}\,dx
+=
+\frac{42304}{35}.
+\]
+
+Por tanto,
+
+\[
+f_{\mathrm{prom}}
+=
+\frac15
+\frac{42304}{35}.
+\]
+
+Así,
+
+\[
+\boxed{
+f_{\mathrm{prom}}
+=
+\frac{42304}{175}
+}.
+\]
+
+Numéricamente,
+
+\[
+\boxed{
+f_{\mathrm{prom}}\approx241.737
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 197}
+%========================================================
+
+Determine el valor promedio de
+
+\[
+f(x)=\sec^2x
+\]
+
+en
+
+\[
+\left[-\frac{\pi}{4},\frac{\pi}{4}\right].
+\]
+
+Por definición,
+
+\[
+f_{\mathrm{prom}}
+=
+\frac{1}{
+\frac{\pi}{4}-\left(-\frac{\pi}{4}\right)
+}
+\int_{-\pi/4}^{\pi/4}\sec^2x\,dx.
+\]
+
+La longitud del intervalo es
+
+\[
+\frac{\pi}{2}.
+\]
+
+Por tanto,
+
+\[
+f_{\mathrm{prom}}
+=
+\frac{2}{\pi}
+\int_{-\pi/4}^{\pi/4}\sec^2x\,dx.
+\]
+
+Como
+
+\[
+\int\sec^2x\,dx=\tan x,
+\]
+
+tenemos
+
+\[
+\int_{-\pi/4}^{\pi/4}\sec^2x\,dx
+=
+\tan\frac{\pi}{4}
+-
+\tan\left(-\frac{\pi}{4}\right).
+\]
+
+Así,
+
+\[
+=1-(-1)=2.
+\]
+
+Finalmente,
+
+\[
+f_{\mathrm{prom}}
+=
+\frac2\pi(2).
+\]
+
+Por tanto,
+
+\[
+\boxed{
+f_{\mathrm{prom}}=\frac4\pi
+}.
+\]
+
+%========================================================
+\section*{Teorema del Valor Intermedio}
+%========================================================
+
+%========================================================
+\subsection*{Ejercicio 199}
+%========================================================
+
+Explique geométricamente el significado del Teorema del Valor
+Intermedio.
+
+Sea \(f\) continua en un intervalo cerrado \([a,b]\).
+
+El Teorema del Valor Intermedio afirma que si un número \(L\) se
+encuentra entre \(f(a)\) y \(f(b)\), entonces existe al menos un punto
+
+\[
+c\in[a,b]
+\]
+
+tal que
+
+\[
+f(c)=L.
+\]
+
+Geométricamente, esto significa que una curva continua que comienza en
+
+\[
+(a,f(a))
+\]
+
+y termina en
+
+\[
+(b,f(b))
+\]
+
+no puede ``saltar'' ningún nivel horizontal intermedio.
+
+Si, por ejemplo,
+
+\[
+f(a)<L<f(b),
+\]
+
+la recta horizontal
+
+\[
+y=L
+\]
+
+debe intersectar a la gráfica de \(f\) al menos una vez.
+
+En símbolos,
+
+\[
+\boxed{
+f(a)<L<f(b)
+\quad\Longrightarrow\quad
+\exists\,c\in(a,b)
+\text{ tal que }f(c)=L
+}.
+\]
+
+La continuidad es la propiedad que impide que la gráfica salte por
+encima o por debajo de algún valor intermedio sin tomarlo.
+
+%========================================================
+\subsection*{Ejercicio 201}
+%========================================================
+
+Para
+
+\[
+f(x)=x^3-x-1
+\]
+
+en \([1,2]\), pruebe que existe una raíz.
+
+La función es un polinomio, por tanto es continua en todo
+\(\mathbb{R}\), y en particular en \([1,2]\).
+
+Evaluamos en los extremos:
+
+\[
+f(1)=1^3-1-1=-1.
+\]
+
+Por otro lado,
+
+\[
+f(2)=2^3-2-1=8-3=5.
+\]
+
+Así,
+
+\[
+f(1)=-1<0<5=f(2).
+\]
+
+El número \(0\) se encuentra entre \(f(1)\) y \(f(2)\).
+
+Por el Teorema del Valor Intermedio existe
+
+\[
+c\in(1,2)
+\]
+
+tal que
+
+\[
+f(c)=0.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+\text{la ecuación }x^3-x-1=0
+\text{ tiene al menos una raíz en }(1,2)
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 203}
+%========================================================
+
+Para
+
+\[
+f(x)=x^2-2
+\]
+
+en \([1,2]\), pruebe la existencia de \(\sqrt2\).
+
+La función
+
+\[
+f(x)=x^2-2
+\]
+
+es continua en \([1,2]\).
+
+Evaluamos:
+
+\[
+f(1)=1-2=-1,
+\]
+
+mientras que
+
+\[
+f(2)=4-2=2.
+\]
+
+Por tanto,
+
+\[
+f(1)<0<f(2).
+\]
+
+Por el Teorema del Valor Intermedio existe un
+
+\[
+c\in(1,2)
+\]
+
+tal que
+
+\[
+f(c)=0.
+\]
+
+Esto significa que
+
+\[
+c^2-2=0.
+\]
+
+Entonces,
+
+\[
+c^2=2.
+\]
+
+Como \(c>0\),
+
+\[
+c=\sqrt2.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+\exists\,\sqrt2\in(1,2)
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 205}
+%========================================================
+
+Construya un contraejemplo discontinuo en el que falle la conclusión
+del Teorema del Valor Intermedio.
+
+Consideremos
+
+\[
+f(x)=
+\begin{cases}
+-1, & x<0,\\[2mm]
+1, & x\geq0,
+\end{cases}
+\]
+
+en el intervalo
+
+\[
+[-1,1].
+\]
+
+Tenemos
+
+\[
+f(-1)=-1
+\]
+
+y
+
+\[
+f(1)=1.
+\]
+
+El número
+
+\[
+0
+\]
+
+se encuentra entre \(-1\) y \(1\).
+
+Sin embargo,
+
+\[
+f(x)\neq0
+\]
+
+para todo \(x\in[-1,1]\).
+
+En efecto, la función solamente toma los valores
+
+\[
+-1
+\qquad\text{y}\qquad
+1.
+\]
+
+Por tanto, no existe \(c\) tal que
+
+\[
+f(c)=0.
+\]
+
+La razón es que la función presenta una discontinuidad de salto en
+\(x=0\).
+
+Así, este ejemplo demuestra que sin continuidad la conclusión del
+Teorema del Valor Intermedio puede fallar.
+
+%========================================================
+\subsection*{Ejercicio 207}
+%========================================================
+
+Sea \(f\) continua y positiva. Explique por qué alcanza todos los
+valores entre su mínimo y su máximo.
+
+Supongamos que \(f\) es continua en un intervalo cerrado \([a,b]\).
+
+Por el Teorema del Valor Extremo, como \(f\) es continua en un intervalo
+cerrado y acotado, existen puntos \(x_m,x_M\in[a,b]\) tales que
+
+\[
+f(x_m)=m
+\]
+
+y
+
+\[
+f(x_M)=M,
+\]
+
+donde
+
+\[
+m=\min_{x\in[a,b]}f(x),
+\qquad
+M=\max_{x\in[a,b]}f(x).
+\]
+
+Sea ahora \(L\) cualquier número tal que
+
+\[
+m\leq L\leq M.
+\]
+
+Como \(f\) es continua entre los puntos \(x_m\) y \(x_M\), el Teorema
+del Valor Intermedio garantiza la existencia de un punto \(c\) entre
+ellos tal que
+
+\[
+f(c)=L.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+f \text{ toma todos los valores del intervalo }[m,M]
+}.
+\]
+
+El hecho de que \(f\) sea positiva implica además que
+
+\[
+m>0.
+\]
+
+%========================================================
+\subsection*{Ejercicio 209}
+%========================================================
+
+Explique cómo el Teorema del Valor Intermedio interviene en la
+demostración del Teorema del Valor Medio para integrales.
+
+Sea \(f\) continua en \([a,b]\).
+
+Por el Teorema del Valor Extremo, existen
+
+\[
+m=\min_{[a,b]}f,
+\qquad
+M=\max_{[a,b]}f.
+\]
+
+Entonces
+
+\[
+m\leq f(x)\leq M
+\]
+
+para todo \(x\in[a,b]\).
+
+Al integrar,
+
+\[
+m(b-a)
+\leq
+\int_a^b f(x)\,dx
+\leq
+M(b-a).
+\]
+
+Como \(b-a>0\), podemos dividir entre \(b-a\):
+
+\[
+m
+\leq
+\frac{1}{b-a}
+\int_a^b f(x)\,dx
+\leq
+M.
+\]
+
+Definamos
+
+\[
+f_{\mathrm{prom}}
+=
+\frac{1}{b-a}
+\int_a^b f(x)\,dx.
+\]
+
+Así,
+
+\[
+m\leq f_{\mathrm{prom}}\leq M.
+\]
+
+Pero, como \(f\) es continua y alcanza los valores \(m\) y \(M\), el
+Teorema del Valor Intermedio garantiza que \(f\) toma todos los valores
+comprendidos entre ellos.
+
+En particular, existe un
+
+\[
+c\in[a,b]
+\]
+
+tal que
+
+\[
+f(c)=f_{\mathrm{prom}}.
+\]
+
+Por tanto,
+
+\[
+f(c)
+=
+\frac{1}{b-a}
+\int_a^b f(x)\,dx.
+\]
+
+Multiplicando por \(b-a\),
+
+\[
+\boxed{
+\int_a^b f(x)\,dx
+=
+f(c)(b-a)
+}.
+\]
+
+Así, el Teorema del Valor Intermedio es precisamente el resultado que
+permite asegurar que la función alcanza su valor promedio.
+
+%========================================================
+\subsection*{Ejercicio 211}
+%========================================================
+
+Para
+
+\[
+f(x)=x^2
+\]
+
+en \([0,2]\), calcule el valor promedio y encuentre un \(c\)
+correspondiente.
+
+El valor promedio es
+
+\[
+f_{\mathrm{prom}}
+=
+\frac{1}{2-0}
+\int_0^2x^2\,dx.
+\]
+
+Por tanto,
+
+\[
+f_{\mathrm{prom}}
+=
+\frac12
+\left[
+\frac{x^3}{3}
+\right]_0^2.
+\]
+
+Así,
+
+\[
+f_{\mathrm{prom}}
+=
+\frac12
+\left(
+\frac83
+\right)
+=
+\frac43.
+\]
+
+Ahora buscamos \(c\in[0,2]\) tal que
+
+\[
+c^2=\frac43.
+\]
+
+Por tanto,
+
+\[
+c
+=
+\sqrt{\frac43}.
+\]
+
+Como \(c\geq0\),
+
+\[
+c
+=
+\frac{2}{\sqrt3}
+=
+\frac{2\sqrt3}{3}.
+\]
+
+Así,
+
+\[
+\boxed{
+f_{\mathrm{prom}}=\frac43,
+\qquad
+c=\frac{2\sqrt3}{3}
+}.
+\]
+
+%========================================================
+\section*{Integrabilidad de Riemann}
+%========================================================
+
+%========================================================
+\subsection*{Ejercicio 219}
+%========================================================
+
+Explique por qué una función acotada con una cantidad finita de
+discontinuidades puede ser Riemann integrable.
+
+Sea \(f:[a,b]\to\mathbb{R}\) una función acotada.
+
+Supongamos que \(f\) tiene solamente un número finito de
+discontinuidades,
+
+\[
+c_1,c_2,\ldots,c_k.
+\]
+
+Como \(f\) es acotada, existe \(M>0\) tal que
+
+\[
+|f(x)|\leq M
+\]
+
+para todo \(x\in[a,b]\).
+
+Alrededor de cada punto de discontinuidad podemos seleccionar un
+intervalo de longitud arbitrariamente pequeña.
+
+Si la suma total de las longitudes de estos intervalos es menor que
+\(\delta\), entonces su contribución a la diferencia entre la suma
+superior y la suma inferior puede hacerse menor que
+
+\[
+2M\delta.
+\]
+
+Fuera de dichos intervalos, \(f\) es continua. En los subconjuntos
+cerrados restantes, la continuidad uniforme permite escoger una
+partición suficientemente fina para hacer pequeñas las oscilaciones de
+\(f\).
+
+De esta forma, para todo \(\varepsilon>0\) puede construirse una
+partición \(P\) tal que
+
+\[
+U(f,P)-L(f,P)<\varepsilon.
+\]
+
+Por el criterio de integrabilidad de Darboux,
+
+\[
+\boxed{
+f \text{ es Riemann integrable en }[a,b]
+}.
+\]
+
+La idea esencial es que un número finito de discontinuidades afecta
+solamente regiones cuya longitud total puede hacerse arbitrariamente
+pequeña.
+
+%========================================================
+\subsection*{Ejercicio 221}
+%========================================================
+
+Construya un ejemplo de una función acotada con una discontinuidad que
+sea integrable.
+
+Consideremos
+
+\[
+f(x)=
+\begin{cases}
+0, & 0\leq x<1,\\
+1, & 1\leq x\leq2.
+\end{cases}
+\]
+
+Esta función está acotada, pues
+
+\[
+0\leq f(x)\leq1.
+\]
+
+Tiene una única discontinuidad, localizada en
+
+\[
+x=1.
+\]
+
+Sin embargo, es Riemann integrable porque posee solamente una cantidad
+finita de discontinuidades.
+
+Además,
+
+\[
+\int_0^2f(x)\,dx
+=
+\int_0^1 0\,dx
++
+\int_1^2 1\,dx.
+\]
+
+Así,
+
+\[
+\int_0^2f(x)\,dx
+=
+0+1
+=
+1.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+f \text{ es discontinua en }x=1
+\text{ pero es Riemann integrable}
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 223}
+%========================================================
+
+Explique por qué la acotación es una hipótesis natural en la definición
+de integrabilidad de Riemann.
+
+En la teoría de Riemann se utilizan, para cada subintervalo
+\(I_i=[x_{i-1},x_i]\), los valores
+
+\[
+m_i=\inf_{x\in I_i}f(x)
+\]
+
+y
+
+\[
+M_i=\sup_{x\in I_i}f(x).
+\]
+
+Las sumas inferior y superior de Darboux son
+
+\[
+L(f,P)
+=
+\sum_{i=1}^n m_i\Delta x_i
+\]
+
+y
+
+\[
+U(f,P)
+=
+\sum_{i=1}^n M_i\Delta x_i.
+\]
+
+Si la función no está acotada, alguno de los valores \(M_i\) o \(m_i\)
+puede ser infinito.
+
+En tal situación, las sumas superior e inferior dejan de ser números
+reales finitos y no es posible aplicar directamente la definición
+clásica de integral de Riemann.
+
+Por ello, la acotación garantiza que
+
+\[
+m_i,M_i\in\mathbb{R}
+\]
+
+para todos los subintervalos.
+
+En consecuencia,
+
+\[
+\boxed{
+\text{la acotación permite que las sumas de Darboux estén bien
+definidas y sean finitas}
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 225}
+%========================================================
+
+Determine si
+
+\[
+f(x)=\sqrt{x}
+\]
+
+es integrable en \([0,4]\).
+
+La función
+
+\[
+f(x)=\sqrt{x}
+\]
+
+es continua para
+
+\[
+x\geq0.
+\]
+
+En particular, es continua en todo el intervalo cerrado
+
+\[
+[0,4].
+\]
+
+Por el teorema fundamental de integrabilidad,
+
+\[
+\boxed{
+\text{toda función continua en un intervalo cerrado es Riemann
+integrable}
+}.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+f(x)=\sqrt{x}
+\text{ es Riemann integrable en }[0,4]
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 227}
+%========================================================
+
+Compare continuidad e integrabilidad:
+
+\[
+\text{¿toda función continua es integrable?}
+\]
+
+\[
+\text{¿toda función integrable es continua?}
+\]
+
+Si \(f\) es continua en un intervalo cerrado \([a,b]\), entonces
+necesariamente es Riemann integrable.
+
+Por tanto,
+
+\[
+\boxed{
+\text{continua en }[a,b]
+\Longrightarrow
+\text{Riemann integrable en }[a,b]
+}.
+\]
+
+Sin embargo, la afirmación recíproca es falsa.
+
+Por ejemplo,
+
+\[
+f(x)=
+\begin{cases}
+0, & x<0,\\
+1, & x\geq0
+\end{cases}
+\]
+
+en \([-1,1]\) tiene una discontinuidad en \(x=0\), pero es Riemann
+integrable.
+
+Por tanto,
+
+\[
+\boxed{
+\text{integrable}
+\Longrightarrow
+\text{continua}
+}.
+\]
+
+En resumen,
+
+\[
+\boxed{
+\text{continuidad es una condición suficiente, pero no necesaria,
+para la integrabilidad de Riemann}
+}.
+\]
+
+%========================================================
+\section*{Propiedades de la integral definida}
+%========================================================
+
+%========================================================
+\subsection*{Ejercicio 229}
+%========================================================
+
+Demuestre que
+
+\[
+\int_b^a f(x)\,dx
+=
+-\int_a^b f(x)\,dx.
+\]
+
+La integral definida está orientada. Por definición, invertir los
+límites de integración cambia el signo.
+
+Una manera de verlo consiste en utilizar la propiedad aditiva.
+
+Tenemos
+
+\[
+\int_a^a f(x)\,dx=0.
+\]
+
+Además,
+
+\[
+\int_a^a f(x)\,dx
+=
+\int_a^b f(x)\,dx
++
+\int_b^a f(x)\,dx.
+\]
+
+Por tanto,
+
+\[
+0
+=
+\int_a^b f(x)\,dx
++
+\int_b^a f(x)\,dx.
+\]
+
+Despejando,
+
+\[
+\boxed{
+\int_b^a f(x)\,dx
+=
+-\int_a^b f(x)\,dx
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 231}
+%========================================================
+
+Si
+
+\[
+\int_0^3f(x)\,dx=7
+\]
+
+y
+
+\[
+\int_3^5f(x)\,dx=4,
+\]
+
+calcule
+
+\[
+\int_0^5f(x)\,dx.
+\]
+
+Utilizamos la propiedad de aditividad:
+
+\[
+\int_a^c f(x)\,dx
++
+\int_c^b f(x)\,dx
+=
+\int_a^b f(x)\,dx.
+\]
+
+Así,
+
+\[
+\int_0^5f(x)\,dx
+=
+\int_0^3f(x)\,dx
++
+\int_3^5f(x)\,dx.
+\]
+
+Sustituyendo los datos,
+
+\[
+\int_0^5f(x)\,dx
+=
+7+4.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+\int_0^5f(x)\,dx=11
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 233}
+%========================================================
+
+Demuestre la linealidad de la integral para una combinación
+
+\[
+\alpha f+\beta g.
+\]
+
+Sea
+
+\[
+h(x)=\alpha f(x)+\beta g(x).
+\]
+
+Considere una partición
+
+\[
+P=\{x_0,x_1,\ldots,x_n\}
+\]
+
+con puntos de muestra \(\xi_i\).
+
+La suma de Riemann asociada es
+
+\[
+S_P(h)
+=
+\sum_{i=1}^n
+h(\xi_i)\Delta x_i.
+\]
+
+Sustituyendo \(h\),
+
+\[
+S_P(h)
+=
+\sum_{i=1}^n
+[\alpha f(\xi_i)+\beta g(\xi_i)]
+\Delta x_i.
+\]
+
+Distribuyendo,
+
+\[
+S_P(h)
+=
+\alpha
+\sum_{i=1}^n
+f(\xi_i)\Delta x_i
++
+\beta
+\sum_{i=1}^n
+g(\xi_i)\Delta x_i.
+\]
+
+Tomando el límite cuando la norma de la partición tiende a cero,
+
+\[
+\int_a^b
+[\alpha f(x)+\beta g(x)]\,dx
+=
+\alpha\int_a^bf(x)\,dx
++
+\beta\int_a^bg(x)\,dx.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+\int_a^b(\alpha f+\beta g)
+=
+\alpha\int_a^bf
++
+\beta\int_a^bg
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 235}
+%========================================================
+
+Si
+
+\[
+f(x)\leq g(x)
+\]
+
+en \([a,b]\), explique por qué
+
+\[
+\int_a^bf(x)\,dx
+\leq
+\int_a^bg(x)\,dx.
+\]
+
+Como
+
+\[
+f(x)\leq g(x),
+\]
+
+tenemos
+
+\[
+g(x)-f(x)\geq0.
+\]
+
+Por la propiedad de positividad,
+
+\[
+\int_a^b[g(x)-f(x)]\,dx\geq0.
+\]
+
+Utilizando linealidad,
+
+\[
+\int_a^bg(x)\,dx
+-
+\int_a^bf(x)\,dx
+\geq0.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+\int_a^bf(x)\,dx
+\leq
+\int_a^bg(x)\,dx
+}.
+\]
+
+Esta propiedad recibe el nombre de \emph{monotonía de la integral}.
+
+%========================================================
+\subsection*{Ejercicio 237}
+%========================================================
+
+Si
+
+\[
+m\leq f(x)\leq M
+\]
+
+en \([a,b]\), demuestre que
+
+\[
+m(b-a)
+\leq
+\int_a^bf(x)\,dx
+\leq
+M(b-a).
+\]
+
+Partimos de
+
+\[
+m\leq f(x)\leq M.
+\]
+
+Por monotonía de la integral,
+
+\[
+\int_a^bm\,dx
+\leq
+\int_a^bf(x)\,dx
+\leq
+\int_a^bM\,dx.
+\]
+
+Como \(m\) y \(M\) son constantes,
+
+\[
+\int_a^bm\,dx=m(b-a)
+\]
+
+y
+
+\[
+\int_a^bM\,dx=M(b-a).
+\]
+
+Por tanto,
+
+\[
+\boxed{
+m(b-a)
+\leq
+\int_a^bf(x)\,dx
+\leq
+M(b-a)
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 239}
+%========================================================
+
+Calcule
+
+\[
+\int_{-2}^{2}x^2\,dx
+\]
+
+utilizando la paridad de la función.
+
+La función
+
+\[
+f(x)=x^2
+\]
+
+es par porque
+
+\[
+f(-x)=(-x)^2=x^2=f(x).
+\]
+
+Para una función par,
+
+\[
+\int_{-a}^{a}f(x)\,dx
+=
+2\int_0^af(x)\,dx.
+\]
+
+Entonces,
+
+\[
+\int_{-2}^{2}x^2\,dx
+=
+2\int_0^2x^2\,dx.
+\]
+
+Calculamos:
+
+\[
+=
+2
+\left[
+\frac{x^3}{3}
+\right]_0^2.
+\]
+
+Así,
+
+\[
+=
+2\left(\frac83\right)
+=
+\frac{16}{3}.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+\int_{-2}^{2}x^2\,dx
+=
+\frac{16}{3}
+}.
+\]
+
+%========================================================
+\section*{2.13. Comparación de integrales}
+%========================================================
+
+%========================================================
+\subsection*{Ejercicio 1}
+%========================================================
+
+Determine el símbolo correcto en
+
+\[
+\int_{-1}^{3}(2x^2-4)\,dx
+\quad\_\_\_\quad
+\int_{-1}^{3}(x^2-6)\,dx.
+\]
+
+Comparamos directamente los integrandos.
+
+Tenemos
+
+\[
+(2x^2-4)-(x^2-6)
+=
+x^2+2.
+\]
+
+Como
+
+\[
+x^2+2>0
+\]
+
+para todo \(x\in[-1,3]\), se cumple
+
+\[
+2x^2-4>x^2-6.
+\]
+
+Por monotonía de la integral,
+
+\[
+\int_{-1}^{3}(2x^2-4)\,dx
+>
+\int_{-1}^{3}(x^2-6)\,dx.
+\]
+
+Por tanto, el símbolo correcto es
+
+\[
+\boxed{>}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 3}
+%========================================================
+
+Compare
+
+\[
+\int_{3\pi/4}^{5\pi/4}\sin^2x\,dx
+\]
+
+y
+
+\[
+\int_{3\pi/4}^{5\pi/4}\cos^2x\,dx.
+\]
+
+Utilizamos las identidades
+
+\[
+\sin^2x=\frac{1-\cos2x}{2},
+\]
+
+\[
+\cos^2x=\frac{1+\cos2x}{2}.
+\]
+
+Para la primera integral,
+
+\[
+\int_{3\pi/4}^{5\pi/4}\sin^2x\,dx
+=
+\left[
+\frac{x}{2}-\frac{\sin2x}{4}
+\right]_{3\pi/4}^{5\pi/4}.
+\]
+
+La diferencia de los términos \(x/2\) es
+
+\[
+\frac12
+\left(
+\frac{5\pi}{4}-\frac{3\pi}{4}
+\right)
+=
+\frac{\pi}{4}.
+\]
+
+Además,
+
+\[
+\sin\frac{5\pi}{2}=1,
+\qquad
+\sin\frac{3\pi}{2}=-1.
+\]
+
+Por tanto,
+
+\[
+\int_{3\pi/4}^{5\pi/4}\sin^2x\,dx
+=
+\frac{\pi}{4}
+-
+\frac{1-(-1)}{4}.
+\]
+
+Así,
+
+\[
+=
+\frac{\pi}{4}-\frac12.
+\]
+
+Por otra parte,
+
+\[
+\int_{3\pi/4}^{5\pi/4}\cos^2x\,dx
+=
+\frac{\pi}{4}+\frac12.
+\]
+
+Por tanto,
+
+\[
+\frac{\pi}{4}-\frac12
+<
+\frac{\pi}{4}+\frac12.
+\]
+
+Así,
+
+\[
+\boxed{
+\int_{3\pi/4}^{5\pi/4}\sin^2x\,dx
+<
+\int_{3\pi/4}^{5\pi/4}\cos^2x\,dx
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 5}
+%========================================================
+
+Justifique
+
+\[
+\int_0^2\frac{1}{x^2+4}\,dx
+\leq
+\frac12.
+\]
+
+Para \(x\in[0,2]\),
+
+\[
+x^2\geq0.
+\]
+
+Por tanto,
+
+\[
+x^2+4\geq4.
+\]
+
+Como los denominadores son positivos,
+
+\[
+\frac1{x^2+4}
+\leq
+\frac14.
+\]
+
+Así,
+
+\[
+0<
+\frac1{x^2+4}
+\leq
+\frac14.
+\]
+
+Integrando,
+
+\[
+\int_0^2\frac1{x^2+4}\,dx
+\leq
+\int_0^2\frac14\,dx.
+\]
+
+Entonces,
+
+\[
+\leq
+\frac14(2-0)
+=
+\frac12.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+\int_0^2\frac{1}{x^2+4}\,dx
+\leq\frac12
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 7}
+%========================================================
+
+Justifique
+
+\[
+\int_{-\pi/6}^{\pi/6}\cos(x^2)\,dx
+\leq
+\frac{\pi}{3}.
+\]
+
+Para todo número real,
+
+\[
+\cos(x^2)\leq1.
+\]
+
+Por tanto,
+
+\[
+\int_{-\pi/6}^{\pi/6}\cos(x^2)\,dx
+\leq
+\int_{-\pi/6}^{\pi/6}1\,dx.
+\]
+
+La longitud del intervalo es
+
+\[
+\frac{\pi}{6}-\left(-\frac{\pi}{6}\right)
+=
+\frac{\pi}{3}.
+\]
+
+Así,
+
+\[
+\int_{-\pi/6}^{\pi/6}1\,dx
+=
+\frac{\pi}{3}.
+\]
+
+Por consiguiente,
+
+\[
+\boxed{
+\int_{-\pi/6}^{\pi/6}\cos(x^2)\,dx
+\leq
+\frac{\pi}{3}
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 9}
+%========================================================
+
+El enunciado propone justificar
+
+\[
+0
+\leq
+\int_0^5\frac{1}{x^3+1}\,dx
+\leq
+\frac13.
+\]
+
+Sin embargo, esta desigualdad, tal como está escrita, es falsa.
+
+En efecto, para
+
+\[
+0\leq x\leq1,
+\]
+
+se tiene
+
+\[
+x^3\leq1,
+\]
+
+por lo que
+
+\[
+x^3+1\leq2.
+\]
+
+Entonces,
+
+\[
+\frac1{x^3+1}\geq\frac12.
+\]
+
+Por tanto,
+
+\[
+\int_0^5\frac1{x^3+1}\,dx
+\geq
+\int_0^1\frac1{x^3+1}\,dx
+\geq
+\int_0^1\frac12\,dx.
+\]
+
+Así,
+
+\[
+\int_0^5\frac1{x^3+1}\,dx
+\geq
+\frac12.
+\]
+
+Como
+
+\[
+\frac12>\frac13,
+\]
+
+resulta imposible que se cumpla
+
+\[
+\int_0^5\frac1{x^3+1}\,dx
+\leq
+\frac13.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+\text{la cota superior } \frac13
+\text{ del ejercicio es incorrecta}
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 11}
+%========================================================
+
+Justifique
+
+\[
+0
+\leq
+\int_0^2
+\sin\left(\frac{\pi x}{2}\right)\,dx
+\leq
+2.
+\]
+
+Para
+
+\[
+0\leq x\leq2,
+\]
+
+se tiene
+
+\[
+0
+\leq
+\frac{\pi x}{2}
+\leq
+\pi.
+\]
+
+En este intervalo,
+
+\[
+0\leq\sin\left(\frac{\pi x}{2}\right)\leq1.
+\]
+
+Integrando las desigualdades,
+
+\[
+0
+\leq
+\int_0^2
+\sin\left(\frac{\pi x}{2}\right)\,dx
+\leq
+\int_0^21\,dx.
+\]
+
+Finalmente,
+
+\[
+\int_0^21\,dx=2.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+0
+\leq
+\int_0^2
+\sin\left(\frac{\pi x}{2}\right)\,dx
+\leq2
+}.
+\]
+
+%========================================================
+\section*{2.14. Cotas para integrales}
+%========================================================
+
+%========================================================
+\subsection*{Ejercicio 13}
+%========================================================
+
+Encuentre un intervalo cerrado que contenga
+
+\[
+\int_0^{0.5}x^2\,dx.
+\]
+
+Utilizamos
+
+\[
+m(b-a)
+\leq
+\int_a^bf(x)\,dx
+\leq
+M(b-a).
+\]
+
+En
+
+\[
+[0,0.5],
+\]
+
+la función \(f(x)=x^2\) es creciente.
+
+Por tanto,
+
+\[
+m=f(0)=0,
+\]
+
+y
+
+\[
+M=f(0.5)=(0.5)^2=\frac14.
+\]
+
+Además,
+
+\[
+b-a=0.5=\frac12.
+\]
+
+Entonces,
+
+\[
+0\left(\frac12\right)
+\leq
+\int_0^{0.5}x^2\,dx
+\leq
+\frac14\left(\frac12\right).
+\]
+
+Así,
+
+\[
+\boxed{
+0
+\leq
+\int_0^{0.5}x^2\,dx
+\leq
+\frac18
+}.
+\]
+
+Por tanto, la integral pertenece al intervalo
+
+\[
+\boxed{
+\left[0,\frac18\right]
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 15}
+%========================================================
+
+Encuentre cotas para
+
+\[
+\int_{-1}^{1}\sqrt{2+x}\,dx.
+\]
+
+La función
+
+\[
+f(x)=\sqrt{2+x}
+\]
+
+es creciente.
+
+En \([-1,1]\), su mínimo es
+
+\[
+m=f(-1)=1,
+\]
+
+y su máximo es
+
+\[
+M=f(1)=\sqrt3.
+\]
+
+La longitud del intervalo es
+
+\[
+1-(-1)=2.
+\]
+
+Por tanto,
+
+\[
+1(2)
+\leq
+\int_{-1}^{1}\sqrt{2+x}\,dx
+\leq
+\sqrt3(2).
+\]
+
+Así,
+
+\[
+\boxed{
+2
+\leq
+\int_{-1}^{1}\sqrt{2+x}\,dx
+\leq
+2\sqrt3
+}.
+\]
+
+Por tanto, la integral pertenece a
+
+\[
+\boxed{
+[2,2\sqrt3]
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 17}
+%========================================================
+
+Encuentre cotas para
+
+\[
+\int_{\pi/6}^{\pi/3}\sin x\,dx.
+\]
+
+En
+
+\[
+\left[\frac{\pi}{6},\frac{\pi}{3}\right],
+\]
+
+la función seno es creciente.
+
+Por tanto,
+
+\[
+m
+=
+\sin\frac{\pi}{6}
+=
+\frac12,
+\]
+
+y
+
+\[
+M
+=
+\sin\frac{\pi}{3}
+=
+\frac{\sqrt3}{2}.
+\]
+
+La longitud del intervalo es
+
+\[
+\frac{\pi}{3}-\frac{\pi}{6}
+=
+\frac{\pi}{6}.
+\]
+
+Aplicando las cotas,
+
+\[
+\frac12\frac{\pi}{6}
+\leq
+\int_{\pi/6}^{\pi/3}\sin x\,dx
+\leq
+\frac{\sqrt3}{2}\frac{\pi}{6}.
+\]
+
+Así,
+
+\[
+\boxed{
+\frac{\pi}{12}
+\leq
+\int_{\pi/6}^{\pi/3}\sin x\,dx
+\leq
+\frac{\pi\sqrt3}{12}
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 19}
+%========================================================
+
+Encuentre cotas para
+
+\[
+\int_{1.5}^{3}|x-2|\,dx.
+\]
+
+La función es
+
+\[
+f(x)=|x-2|.
+\]
+
+El mínimo ocurre en
+
+\[
+x=2,
+\]
+
+donde
+
+\[
+m=0.
+\]
+
+Para encontrar el máximo, evaluamos los extremos:
+
+\[
+f(1.5)=|1.5-2|=0.5,
+\]
+
+\[
+f(3)=|3-2|=1.
+\]
+
+Por tanto,
+
+\[
+M=1.
+\]
+
+La longitud del intervalo es
+
+\[
+3-1.5=1.5=\frac32.
+\]
+
+Entonces,
+
+\[
+0
+\leq
+\int_{1.5}^3|x-2|\,dx
+\leq
+1\left(\frac32\right).
+\]
+
+Así,
+
+\[
+\boxed{
+0
+\leq
+\int_{1.5}^3|x-2|\,dx
+\leq
+\frac32
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 21}
+%========================================================
+
+Encuentre cotas para
+
+\[
+\int_{-0.5}^{1.5}
+\left(
+\frac14x^4-x^3+x^2
+\right)\,dx.
+\]
+
+Sea
+
+\[
+f(x)
+=
+\frac14x^4-x^3+x^2.
+\]
+
+Podemos factorizar:
+
+\[
+f(x)
+=
+\frac14x^2(x^2-4x+4).
+\]
+
+Como
+
+\[
+x^2-4x+4=(x-2)^2,
+\]
+
+tenemos
+
+\[
+f(x)
+=
+\frac14x^2(x-2)^2.
+\]
+
+Por tanto,
+
+\[
+f(x)\geq0.
+\]
+
+Para localizar los extremos, derivamos:
+
+\[
+f'(x)
+=
+x^3-3x^2+2x.
+\]
+
+Factorizando,
+
+\[
+f'(x)=x(x-1)(x-2).
+\]
+
+En el intervalo
+
+\[
+\left[-\frac12,\frac32\right],
+\]
+
+los puntos críticos son
+
+\[
+x=0,
+\qquad
+x=1.
+\]
+
+Evaluamos en los puntos críticos y en los extremos.
+
+En \(x=0\),
+
+\[
+f(0)=0.
+\]
+
+En \(x=1\),
+
+\[
+f(1)=\frac14.
+\]
+
+En \(x=-1/2\),
+
+\[
+f\left(-\frac12\right)
+=
+\frac14
+\left(\frac14\right)
+\left(\frac{25}{4}\right)
+=
+\frac{25}{64}.
+\]
+
+En \(x=3/2\),
+
+\[
+f\left(\frac32\right)
+=
+\frac14
+\left(\frac94\right)
+\left(\frac14\right)
+=
+\frac9{64}.
+\]
+
+Por tanto,
+
+\[
+m=0,
+\]
+
+y
+
+\[
+M=\frac{25}{64}.
+\]
+
+La longitud del intervalo es
+
+\[
+\frac32-\left(-\frac12\right)=2.
+\]
+
+Así,
+
+\[
+0
+\leq
+\int_{-0.5}^{1.5}
+\left(
+\frac14x^4-x^3+x^2
+\right)\,dx
+\leq
+\frac{25}{64}(2).
+\]
+
+Por tanto,
+
+\[
+\boxed{
+0
+\leq
+\int_{-0.5}^{1.5}
+\left(
+\frac14x^4-x^3+x^2
+\right)\,dx
+\leq
+\frac{25}{32}
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 23}
+%========================================================
+
+Encuentre cotas para
+
+\[
+\int_1^2x\sqrt{5-x^2}\,dx.
+\]
+
+Sea
+
+\[
+f(x)=x\sqrt{5-x^2}.
+\]
+
+Para determinar máximos y mínimos, derivamos.
+
+Utilizando la regla del producto,
+
+\[
+f'(x)
+=
+\sqrt{5-x^2}
++
+x\left(
+-\frac{x}{\sqrt{5-x^2}}
+\right).
+\]
+
+Por tanto,
+
+\[
+f'(x)
+=
+\frac{5-x^2-x^2}{\sqrt{5-x^2}}.
+\]
+
+Así,
+
+\[
+f'(x)
+=
+\frac{5-2x^2}{\sqrt{5-x^2}}.
+\]
+
+Los puntos críticos satisfacen
+
+\[
+5-2x^2=0.
+\]
+
+Entonces,
+
+\[
+x^2=\frac52,
+\]
+
+y
+
+\[
+x=\sqrt{\frac52}.
+\]
+
+Este punto pertenece al intervalo \([1,2]\).
+
+Evaluamos la función.
+
+En \(x=1\),
+
+\[
+f(1)
+=
+\sqrt4
+=
+2.
+\]
+
+En \(x=2\),
+
+\[
+f(2)
+=
+2\sqrt1
+=
+2.
+\]
+
+En
+
+\[
+x=\sqrt{\frac52},
+\]
+
+tenemos
+
+\[
+f\left(\sqrt{\frac52}\right)
+=
+\sqrt{\frac52}
+\sqrt{5-\frac52}.
+\]
+
+Por tanto,
+
+\[
+=
+\sqrt{\frac52}
+\sqrt{\frac52}
+=
+\frac52.
+\]
+
+Así,
+
+\[
+m=2,
+\qquad
+M=\frac52.
+\]
+
+Como la longitud del intervalo es
+
+\[
+2-1=1,
+\]
+
+obtenemos
+
+\[
+2
+\leq
+\int_1^2x\sqrt{5-x^2}\,dx
+\leq
+\frac52.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+\int_1^2x\sqrt{5-x^2}\,dx
+\in
+\left[2,\frac52\right]
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 25}
+%========================================================
+
+Encuentre cotas para
+
+\[
+\int_{-1}^{1}\frac{x}{x+2}\,dx.
+\]
+
+Sea
+
+\[
+f(x)=\frac{x}{x+2}.
+\]
+
+Derivamos:
+
+\[
+f'(x)
+=
+\frac{(x+2)-x}{(x+2)^2}.
+\]
+
+Por tanto,
+
+\[
+f'(x)
+=
+\frac{2}{(x+2)^2}>0.
+\]
+
+Así, \(f\) es creciente en \([-1,1]\).
+
+El mínimo ocurre en \(x=-1\):
+
+\[
+m=f(-1)
+=
+\frac{-1}{1}
+=
+-1.
+\]
+
+El máximo ocurre en \(x=1\):
+
+\[
+M=f(1)
+=
+\frac13.
+\]
+
+La longitud del intervalo es
+
+\[
+1-(-1)=2.
+\]
+
+Por tanto,
+
+\[
+(-1)(2)
+\leq
+\int_{-1}^{1}\frac{x}{x+2}\,dx
+\leq
+\frac13(2).
+\]
+
+Así,
+
+\[
+\boxed{
+-2
+\leq
+\int_{-1}^{1}\frac{x}{x+2}\,dx
+\leq
+\frac23
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 27}
+%========================================================
+
+Encuentre cotas para
+
+\[
+\int_{-\pi/3}^{\pi/2}
+\left(
+4\cos^3x-9\cos x
+\right)\,dx.
+\]
+
+Sea
+
+\[
+f(x)
+=
+4\cos^3x-9\cos x.
+\]
+
+Definimos
+
+\[
+u=\cos x.
+\]
+
+En el intervalo
+
+\[
+\left[-\frac{\pi}{3},\frac{\pi}{2}\right],
+\]
+
+se tiene
+
+\[
+0\leq u\leq1.
+\]
+
+Consideremos entonces
+
+\[
+g(u)=4u^3-9u.
+\]
+
+Derivando respecto de \(u\),
+
+\[
+g'(u)=12u^2-9.
+\]
+
+Los puntos críticos satisfacen
+
+\[
+12u^2-9=0.
+\]
+
+Entonces,
+
+\[
+u^2=\frac34,
+\]
+
+y como \(u\geq0\),
+
+\[
+u=\frac{\sqrt3}{2}.
+\]
+
+Evaluamos \(g\).
+
+Para \(u=0\),
+
+\[
+g(0)=0.
+\]
+
+Para \(u=1\),
+
+\[
+g(1)=4-9=-5.
+\]
+
+Para
+
+\[
+u=\frac{\sqrt3}{2},
+\]
+
+tenemos
+
+\[
+g\left(\frac{\sqrt3}{2}\right)
+=
+4\left(\frac{\sqrt3}{2}\right)^3
+-
+9\left(\frac{\sqrt3}{2}\right).
+\]
+
+Como
+
+\[
+\left(\frac{\sqrt3}{2}\right)^3
+=
+\frac{3\sqrt3}{8},
+\]
+
+obtenemos
+
+\[
+g
+=
+4\frac{3\sqrt3}{8}
+-
+\frac{9\sqrt3}{2}.
+\]
+
+Así,
+
+\[
+=
+\frac{3\sqrt3}{2}
+-
+\frac{9\sqrt3}{2}
+=
+-3\sqrt3.
+\]
+
+Por tanto,
+
+\[
+m=-3\sqrt3,
+\qquad
+M=0.
+\]
+
+La longitud del intervalo es
+
+\[
+\frac{\pi}{2}
+-
+\left(-\frac{\pi}{3}\right)
+=
+\frac{5\pi}{6}.
+\]
+
+Aplicando las cotas,
+
+\[
+(-3\sqrt3)
+\left(
+\frac{5\pi}{6}
+\right)
+\leq
+\int_{-\pi/3}^{\pi/2}
+(4\cos^3x-9\cos x)\,dx
+\leq
+0.
+\]
+
+Simplificando,
+
+\[
+-3\sqrt3\frac{5\pi}{6}
+=
+-\frac{5\pi\sqrt3}{2}.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+-\frac{5\pi\sqrt3}{2}
+\leq
+\int_{-\pi/3}^{\pi/2}
+(4\cos^3x-9\cos x)\,dx
+\leq
+0
+}.
+\]
+
+
+%========================================================
+\section*{Solución de los ejercicios impares}
+%========================================================
+
+%========================================================
+\section*{2.2. El problema del área}
+%========================================================
+
+%========================================================
+\subsection*{Ejercicio 9}
+%========================================================
+
+Explique qué se entiende por área bajo la gráfica de una función
+continua y no negativa \(f\) sobre \([a,b]\).
+
+Supongamos que
+
+\[
+f:[a,b]\longrightarrow\mathbb{R}
+\]
+
+es continua y satisface
+
+\[
+f(x)\geq 0
+\]
+
+para todo \(x\in[a,b]\).
+
+La región bajo la gráfica de \(f\) y sobre el eje \(x\) es
+
+\[
+R=
+\left\{
+(x,y)\in\mathbb{R}^2:
+a\leq x\leq b,\;
+0\leq y\leq f(x)
+\right\}.
+\]
+
+Geométricamente, dicha región está delimitada por:
+
+\[
+y=f(x),
+\]
+
+el eje \(x\),
+
+\[
+y=0,
+\]
+
+y las rectas verticales
+
+\[
+x=a
+\qquad\text{y}\qquad
+x=b.
+\]
+
+El área de esta región se define mediante un proceso de aproximación por
+rectángulos.
+
+Si
+
+\[
+P=\{x_0,x_1,\ldots,x_n\}
+\]
+
+es una partición de \([a,b]\), donde
+
+\[
+a=x_0<x_1<\cdots<x_n=b,
+\]
+
+y en cada subintervalo
+
+\[
+[x_{i-1},x_i]
+\]
+
+seleccionamos un punto de muestra \(\xi_i\), podemos formar rectángulos
+de base
+
+\[
+\Delta x_i=x_i-x_{i-1}
+\]
+
+y altura
+
+\[
+f(\xi_i).
+\]
+
+El área aproximada es entonces
+
+\[
+\sum_{i=1}^{n}f(\xi_i)\Delta x_i.
+\]
+
+Cuando las particiones se hacen cada vez más finas, es decir,
+
+\[
+\|P\|\longrightarrow 0,
+\]
+
+estas sumas convergen al área exacta:
+
+\[
+\boxed{
+A=
+\int_a^b f(x)\,dx
+}.
+\]
+
+Por tanto, para una función continua y no negativa, la integral definida
+coincide con el área geométrica comprendida bajo su gráfica.
+
+%========================================================
+\subsection*{Ejercicio 11}
+%========================================================
+
+Dibuje la región limitada por
+
+\[
+y=4-x,
+\]
+
+el eje \(x\), y las rectas
+
+\[
+x=0
+\qquad\text{y}\qquad
+x=4.
+\]
+
+La función es una recta de pendiente
+
+\[
+m=-1
+\]
+
+y ordenada al origen
+
+\[
+4.
+\]
+
+Evaluamos los extremos del intervalo:
+
+\[
+f(0)=4,
+\]
+
+y
+
+\[
+f(4)=0.
+\]
+
+Por tanto, la recta pasa por los puntos
+
+\[
+(0,4)
+\]
+
+y
+
+\[
+(4,0).
+\]
+
+La región limitada por la recta, el eje \(x\), \(x=0\) y \(x=4\)
+forma un triángulo rectángulo.
+
+Sus vértices son
+
+\[
+(0,0),\qquad
+(0,4),\qquad
+(4,0).
+\]
+
+La base mide
+
+\[
+4
+\]
+
+y la altura mide
+
+\[
+4.
+\]
+
+Por tanto, aunque el ejercicio solamente solicita identificar y dibujar
+la región, su área sería
+
+\[
+A=
+\frac12(4)(4)
+=
+8.
+\]
+
+La región puede describirse como
+
+\[
+\boxed{
+R=
+\{(x,y):0\leq x\leq4,\;0\leq y\leq4-x\}
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 13}
+%========================================================
+
+Determine mediante geometría elemental el área bajo
+
+\[
+f(x)=3
+\]
+
+en
+
+\[
+[1,5].
+\]
+
+La gráfica de
+
+\[
+f(x)=3
+\]
+
+es una recta horizontal.
+
+La región bajo la gráfica entre \(x=1\) y \(x=5\) es un rectángulo.
+
+La base del rectángulo es
+
+\[
+b=5-1=4.
+\]
+
+La altura es
+
+\[
+h=3.
+\]
+
+Por tanto,
+
+\[
+A=bh.
+\]
+
+Sustituyendo,
+
+\[
+A=(4)(3)=12.
+\]
+
+Así,
+
+\[
+\boxed{A=12}.
+\]
+
+Equivalentemente,
+
+\[
+\int_1^5 3\,dx=12.
+\]
+
+%========================================================
+\subsection*{Ejercicio 15}
+%========================================================
+
+Determine mediante geometría elemental el área bajo
+
+\[
+f(x)=6-x
+\]
+
+en el intervalo
+
+\[
+[1,4].
+\]
+
+Evaluamos la función en los extremos:
+
+\[
+f(1)=6-1=5,
+\]
+
+y
+
+\[
+f(4)=6-4=2.
+\]
+
+La región bajo la recta y sobre el eje \(x\) entre \(x=1\) y \(x=4\)
+es un trapecio.
+
+Los lados paralelos tienen longitudes
+
+\[
+5
+\qquad\text{y}\qquad
+2.
+\]
+
+La distancia entre ellos es
+
+\[
+4-1=3.
+\]
+
+El área de un trapecio es
+
+\[
+A=
+\frac{B+b}{2}h.
+\]
+
+Entonces,
+
+\[
+A=
+\frac{5+2}{2}(3).
+\]
+
+Así,
+
+\[
+A=
+\frac72(3)
+=
+\frac{21}{2}.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+A=\frac{21}{2}=10.5
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 17}
+%========================================================
+
+Compare el problema del área bajo una función constante con el problema
+del área bajo una función variable.
+
+Si
+
+\[
+f(x)=c,
+\qquad c>0,
+\]
+
+es constante en \([a,b]\), la región bajo la gráfica es exactamente un
+rectángulo.
+
+Su base es
+
+\[
+b-a
+\]
+
+y su altura es
+
+\[
+c.
+\]
+
+Por tanto, su área se obtiene directamente mediante
+
+\[
+A=c(b-a).
+\]
+
+En efecto,
+
+\[
+\int_a^b c\,dx=c(b-a).
+\]
+
+En cambio, si \(f(x)\) es una función variable, la altura de la región
+cambia conforme cambia \(x\).
+
+La frontera superior ya no es una recta horizontal, sino una curva
+
+\[
+y=f(x).
+\]
+
+En general, esta región no corresponde a una figura geométrica elemental
+como un rectángulo, triángulo o trapecio.
+
+Por ello se divide el intervalo en subintervalos pequeños y se aproxima
+la región mediante rectángulos.
+
+La suma correspondiente tiene la forma
+
+\[
+\sum_{i=1}^{n}f(\xi_i)\Delta x_i.
+\]
+
+El área exacta se obtiene mediante el límite
+
+\[
+\boxed{
+A=
+\lim_{\|P\|\to0}
+\sum_{i=1}^{n}
+f(\xi_i)\Delta x_i
+=
+\int_a^b f(x)\,dx
+}.
+\]
+
+Así, el área de una función constante es un caso elemental, mientras que
+el área bajo una función variable conduce naturalmente al concepto de
+integral definida.
+
+%========================================================
+\subsection*{Ejercicio 19}
+%========================================================
+
+Para
+
+\[
+f(x)=|x|
+\]
+
+en
+
+\[
+[-2,2],
+\]
+
+determine el área geométrica usando triángulos.
+
+Recordemos que
+
+\[
+|x|=
+\begin{cases}
+-x, & x<0,\\
+x, & x\geq0.
+\end{cases}
+\]
+
+La gráfica tiene forma de \(V\).
+
+En el intervalo
+
+\[
+[-2,0]
+\]
+
+se forma un triángulo rectángulo con base
+
+\[
+2
+\]
+
+y altura
+
+\[
+2.
+\]
+
+Por tanto,
+
+\[
+A_1=
+\frac12(2)(2)=2.
+\]
+
+En el intervalo
+
+\[
+[0,2]
+\]
+
+aparece un triángulo idéntico:
+
+\[
+A_2=
+\frac12(2)(2)=2.
+\]
+
+El área geométrica total es
+
+\[
+A=A_1+A_2.
+\]
+
+Entonces,
+
+\[
+A=2+2=4.
+\]
+
+Por tanto,
+
+\[
+\boxed{A=4}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 21}
+%========================================================
+
+Explique qué dificultad aparece cuando una función toma valores
+negativos.
+
+Para una función no negativa,
+
+\[
+f(x)\geq0,
+\]
+
+la integral
+
+\[
+\int_a^b f(x)\,dx
+\]
+
+puede interpretarse directamente como el área geométrica bajo la curva.
+
+Sin embargo, cuando
+
+\[
+f(x)<0,
+\]
+
+la gráfica se encuentra por debajo del eje \(x\).
+
+La integral definida asigna signo negativo a esas regiones.
+
+Por tanto, si una función cambia de signo, la integral no representa
+necesariamente el área geométrica total.
+
+Por ejemplo, si
+
+\[
+f(x)\geq0
+\]
+
+en \([a,c]\) y
+
+\[
+f(x)\leq0
+\]
+
+en \([c,b]\), entonces
+
+\[
+\int_a^b f(x)\,dx
+=
+\int_a^c f(x)\,dx
++
+\int_c^b f(x)\,dx.
+\]
+
+La primera integral representa un área positiva y la segunda una
+contribución negativa.
+
+En consecuencia,
+
+\[
+\boxed{
+\text{integral definida}
+=
+\text{área positiva}
+-
+\text{área situada bajo el eje }x
+}.
+\]
+
+Si se desea calcular el área geométrica total, debe utilizarse
+
+\[
+\boxed{
+A=
+\int_a^b |f(x)|\,dx
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 23}
+%========================================================
+
+Proponga una función continua sobre \([0,4]\) cuya región bajo la curva
+pueda descomponerse en un rectángulo y un triángulo, y calcule su área.
+
+Una posibilidad sencilla es
+
+\[
+f(x)=x+1,
+\qquad 0\leq x\leq4.
+\]
+
+La gráfica es una recta.
+
+Podemos escribir
+
+\[
+f(x)=1+x.
+\]
+
+Geométricamente, esto permite descomponer la región bajo la curva en:
+
+\begin{itemize}
+    \item un rectángulo de altura \(1\) y base \(4\);
+    \item un triángulo de base \(4\) y altura \(4\).
+\end{itemize}
+
+El área del rectángulo es
+
+\[
+A_R=(4)(1)=4.
+\]
+
+El área del triángulo es
+
+\[
+A_T=
+\frac12(4)(4)=8.
+\]
+
+Así,
+
+\[
+A=A_R+A_T.
+\]
+
+Por tanto,
+
+\[
+A=4+8=12.
+\]
+
+En consecuencia,
+
+\[
+\boxed{
+A=12
+}.
+\]
+
+Equivalentemente,
+
+\[
+\int_0^4(x+1)\,dx=12.
+\]
+
+%========================================================
+\section*{2.3. Aproximación del área de regiones planas}
+%========================================================
+
+%========================================================
+\subsection*{Ejercicio 25}
+%========================================================
+
+Para
+
+\[
+f(x)=x^2
+\]
+
+en \([0,2]\), aproxime el área con \(4\) rectángulos utilizando
+extremos derechos.
+
+Tenemos
+
+\[
+a=0,\qquad b=2,\qquad n=4.
+\]
+
+El ancho de cada rectángulo es
+
+\[
+\Delta x=
+\frac{b-a}{n}
+=
+\frac{2}{4}
+=
+\frac12.
+\]
+
+Los extremos derechos son
+
+\[
+x_1=\frac12,
+\qquad
+x_2=1,
+\qquad
+x_3=\frac32,
+\qquad
+x_4=2.
+\]
+
+La suma por extremos derechos es
+
+\[
+R_4
+=
+\sum_{i=1}^4 f(x_i)\Delta x.
+\]
+
+Por tanto,
+
+\[
+R_4
+=
+\frac12
+\left[
+\left(\frac12\right)^2
++
+1^2
++
+\left(\frac32\right)^2
++
+2^2
+\right].
+\]
+
+Así,
+
+\[
+R_4
+=
+\frac12
+\left[
+\frac14+1+\frac94+4
+\right].
+\]
+
+Con denominador común,
+
+\[
+R_4
+=
+\frac12
+\left(
+\frac{30}{4}
+\right).
+\]
+
+Entonces,
+
+\[
+\boxed{
+R_4=\frac{15}{4}=3.75
+}.
+\]
+
+Como \(x^2\) es creciente en \([0,2]\), esta aproximación sobreestima el
+área exacta.
+
+%========================================================
+\subsection*{Ejercicio 27}
+%========================================================
+
+Para
+
+\[
+f(x)=x+1
+\]
+
+en \([0,4]\), aproxime el área con \(4\) rectángulos por la izquierda.
+
+Tenemos
+
+\[
+\Delta x=
+\frac{4-0}{4}=1.
+\]
+
+Los extremos izquierdos son
+
+\[
+0,\quad1,\quad2,\quad3.
+\]
+
+Evaluamos:
+
+\[
+f(0)=1,
+\]
+
+\[
+f(1)=2,
+\]
+
+\[
+f(2)=3,
+\]
+
+\[
+f(3)=4.
+\]
+
+Por tanto,
+
+\[
+L_4
+=
+(1)
+\left[
+1+2+3+4
+\right].
+\]
+
+Entonces,
+
+\[
+L_4=10.
+\]
+
+Así,
+
+\[
+\boxed{L_4=10}.
+\]
+
+Como la función es creciente, la suma izquierda subestima el área.
+
+%========================================================
+\subsection*{Ejercicio 29}
+%========================================================
+
+Para
+
+\[
+f(x)=4-x
+\]
+
+en \([0,4]\), calcule las aproximaciones izquierda y derecha con
+
+\[
+n=8.
+\]
+
+El ancho es
+
+\[
+\Delta x=
+\frac{4}{8}
+=
+\frac12.
+\]
+
+La función es decreciente.
+
+\subsubsection*{Suma izquierda}
+
+Los extremos izquierdos son
+
+\[
+0,\frac12,1,\frac32,2,\frac52,3,\frac72.
+\]
+
+Las alturas son
+
+\[
+4,\frac72,3,\frac52,2,\frac32,1,\frac12.
+\]
+
+Por tanto,
+
+\[
+L_8
+=
+\frac12
+\left(
+4+\frac72+3+\frac52+2+\frac32+1+\frac12
+\right).
+\]
+
+La suma interior es
+
+\[
+18.
+\]
+
+Entonces,
+
+\[
+\boxed{L_8=9}.
+\]
+
+\subsubsection*{Suma derecha}
+
+Los extremos derechos son
+
+\[
+\frac12,1,\frac32,2,\frac52,3,\frac72,4.
+\]
+
+Las alturas correspondientes son
+
+\[
+\frac72,3,\frac52,2,\frac32,1,\frac12,0.
+\]
+
+Por tanto,
+
+\[
+R_8
+=
+\frac12
+\left(
+\frac72+3+\frac52+2+\frac32+1+\frac12+0
+\right).
+\]
+
+La suma interior es
+
+\[
+14.
+\]
+
+Así,
+
+\[
+\boxed{R_8=7}.
+\]
+
+Como \(f\) es decreciente,
+
+\[
+\boxed{
+R_8< A <L_8
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 31}
+%========================================================
+
+Para
+
+\[
+f(x)=\sqrt{x+1}
+\]
+
+en \([0,3]\), calcule las aproximaciones izquierda y derecha con
+
+\[
+n=6.
+\]
+
+El ancho es
+
+\[
+\Delta x
+=
+\frac{3-0}{6}
+=
+\frac12.
+\]
+
+Los puntos de la partición son
+
+\[
+0,\frac12,1,\frac32,2,\frac52,3.
+\]
+
+\subsubsection*{Suma izquierda}
+
+Utilizamos
+
+\[
+0,\frac12,1,\frac32,2,\frac52.
+\]
+
+Así,
+
+\[
+L_6
+=
+\frac12
+\left[
+1
++
+\sqrt{\frac32}
++
+\sqrt2
++
+\sqrt{\frac52}
++
+\sqrt3
++
+\sqrt{\frac72}
+\right].
+\]
+
+Numéricamente,
+
+\[
+\boxed{
+L_6\approx4.41149
+}.
+\]
+
+\subsubsection*{Suma derecha}
+
+Utilizamos
+
+\[
+\frac12,1,\frac32,2,\frac52,3.
+\]
+
+Por tanto,
+
+\[
+R_6
+=
+\frac12
+\left[
+\sqrt{\frac32}
++
+\sqrt2
++
+\sqrt{\frac52}
++
+\sqrt3
++
+\sqrt{\frac72}
++
+2
+\right].
+\]
+
+Numéricamente,
+
+\[
+\boxed{
+R_6\approx4.91149
+}.
+\]
+
+Como
+
+\[
+f(x)=\sqrt{x+1}
+\]
+
+es creciente,
+
+\[
+\boxed{
+L_6<A<R_6
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 33}
+%========================================================
+
+Para
+
+\[
+f(x)=e^x
+\]
+
+en \([0,1]\), calcule las aproximaciones izquierda y derecha con
+
+\[
+n=5.
+\]
+
+Tenemos
+
+\[
+\Delta x=
+\frac{1}{5}.
+\]
+
+Los puntos son
+
+\[
+0,\frac15,\frac25,\frac35,\frac45,1.
+\]
+
+\subsubsection*{Suma izquierda}
+
+\[
+L_5
+=
+\frac15
+\left[
+1
++e^{1/5}
++e^{2/5}
++e^{3/5}
++e^{4/5}
+\right].
+\]
+
+Numéricamente,
+
+\[
+\boxed{
+L_5\approx1.55218
+}.
+\]
+
+\subsubsection*{Suma derecha}
+
+\[
+R_5
+=
+\frac15
+\left[
+e^{1/5}
++e^{2/5}
++e^{3/5}
++e^{4/5}
++e
+\right].
+\]
+
+Numéricamente,
+
+\[
+\boxed{
+R_5\approx1.89583
+}.
+\]
+
+Como \(e^x\) es creciente,
+
+\[
+\boxed{
+L_5<A<R_5
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 35}
+%========================================================
+
+Explique qué ocurre con el error de aproximación cuando aumenta el
+número de rectángulos.
+
+Sea una partición regular de \([a,b]\) en \(n\) subintervalos.
+
+El ancho de cada uno es
+
+\[
+\Delta x=
+\frac{b-a}{n}.
+\]
+
+Cuando \(n\) aumenta,
+
+\[
+\Delta x\longrightarrow0.
+\]
+
+Los rectángulos se vuelven cada vez más estrechos y se ajustan mejor al
+contorno de la gráfica.
+
+Por ello, las regiones de exceso o defecto entre los rectángulos y la
+curva disminuyen.
+
+En términos de sumas de Riemann,
+
+\[
+S_n=
+\sum_{i=1}^{n}
+f(\xi_i)\Delta x.
+\]
+
+Si \(f\) es Riemann integrable,
+
+\[
+\lim_{n\to\infty}S_n
+=
+\int_a^bf(x)\,dx.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+\text{al aumentar }n,\text{ el error tiende a disminuir}
+}.
+\]
+
+En el límite,
+
+\[
+n\to\infty,
+\]
+
+la aproximación converge al valor exacto de la integral.
+
+%========================================================
+\subsection*{Ejercicio 37}
+%========================================================
+
+Para una función decreciente, indique cuál suma suele subestimar y cuál
+sobreestimar el área.
+
+Supongamos que \(f\) es decreciente en \([a,b]\).
+
+En cada subintervalo
+
+\[
+[x_{i-1},x_i],
+\]
+
+se cumple
+
+\[
+f(x_{i-1})\geq f(x)\geq f(x_i).
+\]
+
+Por tanto, el rectángulo construido con el extremo izquierdo tiene una
+altura mayor que los valores de la función en el resto del subintervalo.
+
+Así, la suma izquierda sobreestima el área:
+
+\[
+A\leq L_n.
+\]
+
+Por otro lado, el extremo derecho proporciona la menor altura del
+subintervalo.
+
+Así, la suma derecha subestima el área:
+
+\[
+R_n\leq A.
+\]
+
+En consecuencia,
+
+\[
+\boxed{
+R_n\leq A\leq L_n
+}.
+\]
+
+Por tanto, para una función decreciente:
+
+\[
+\boxed{
+\text{suma izquierda: sobreestimación}
+}
+\]
+
+y
+
+\[
+\boxed{
+\text{suma derecha: subestimación}
+}.
+\]
+
+%========================================================
+\section*{2.4. Particiones de un intervalo}
+%========================================================
+
+%========================================================
+\subsection*{Ejercicio 39}
+%========================================================
+
+Divida
+
+\[
+[0,4]
+\]
+
+en \(8\) subintervalos iguales.
+
+Para una partición regular,
+
+\[
+\Delta x=
+\frac{b-a}{n}.
+\]
+
+Entonces,
+
+\[
+\Delta x
+=
+\frac{4-0}{8}
+=
+\frac12.
+\]
+
+Los puntos son
+
+\[
+x_i=0+i\frac12.
+\]
+
+Por tanto,
+
+\[
+P=
+\left\{
+0,\frac12,1,\frac32,2,\frac52,3,\frac72,4
+\right\}.
+\]
+
+Todos los subintervalos tienen longitud
+
+\[
+\Delta x_i=\frac12.
+\]
+
+La norma de la partición es
+
+\[
+\|P\|
+=
+\max_i\Delta x_i
+=
+\frac12.
+\]
+
+Así,
+
+\[
+\boxed{
+P=
+\left\{
+0,\frac12,1,\frac32,2,\frac52,3,\frac72,4
+\right\},
+\qquad
+\|P\|=\frac12
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 41}
+%========================================================
+
+Divida
+
+\[
+[1,7]
+\]
+
+en \(12\) subintervalos iguales.
+
+Tenemos
+
+\[
+\Delta x
+=
+\frac{7-1}{12}
+=
+\frac6{12}
+=
+\frac12.
+\]
+
+Por tanto,
+
+\[
+x_i
+=
+1+\frac{i}{2},
+\qquad
+i=0,\ldots,12.
+\]
+
+Así,
+
+\[
+P=
+\left\{
+1,\frac32,2,\frac52,3,\frac72,4,
+\frac92,5,\frac{11}{2},6,\frac{13}{2},7
+\right\}.
+\]
+
+Además,
+
+\[
+\boxed{
+\Delta x_i=\frac12
+}
+\]
+
+para todo \(i\), y
+
+\[
+\boxed{
+\|P\|=\frac12
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 43}
+%========================================================
+
+Divida
+
+\[
+[0,\pi]
+\]
+
+en \(6\) subintervalos iguales.
+
+El ancho es
+
+\[
+\Delta x
+=
+\frac{\pi-0}{6}
+=
+\frac{\pi}{6}.
+\]
+
+Los puntos son
+
+\[
+x_i=
+\frac{i\pi}{6},
+\qquad
+i=0,\ldots,6.
+\]
+
+Por tanto,
+
+\[
+P=
+\left\{
+0,
+\frac{\pi}{6},
+\frac{\pi}{3},
+\frac{\pi}{2},
+\frac{2\pi}{3},
+\frac{5\pi}{6},
+\pi
+\right\}.
+\]
+
+La norma es
+
+\[
+\boxed{
+\|P\|=\frac{\pi}{6}
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 45}
+%========================================================
+
+Para una partición regular, deduzca la fórmula
+
+\[
+x_i=a+i\Delta x.
+\]
+
+Sea
+
+\[
+[a,b]
+\]
+
+dividido en \(n\) subintervalos de igual longitud.
+
+Entonces,
+
+\[
+\Delta x=
+\frac{b-a}{n}.
+\]
+
+El primer punto es
+
+\[
+x_0=a.
+\]
+
+El siguiente es
+
+\[
+x_1=a+\Delta x.
+\]
+
+Después,
+
+\[
+x_2=a+2\Delta x.
+\]
+
+De manera análoga,
+
+\[
+x_3=a+3\Delta x.
+\]
+
+Continuando el patrón, el \(i\)-ésimo punto es
+
+\[
+\boxed{
+x_i=a+i\Delta x
+}.
+\]
+
+En particular, para \(i=n\),
+
+\[
+x_n=a+n\Delta x.
+\]
+
+Como
+
+\[
+\Delta x=\frac{b-a}{n},
+\]
+
+se tiene
+
+\[
+x_n
+=
+a+n\frac{b-a}{n}
+=
+a+b-a
+=
+b.
+\]
+
+Por tanto, la fórmula genera correctamente todos los puntos de la
+partición.
+
+%========================================================
+\subsection*{Ejercicio 47}
+%========================================================
+
+Calcule la norma de la partición
+
+\[
+P=
+\left\{
+0,\frac14,\frac34,\frac32,2
+\right\}.
+\]
+
+Calculamos las longitudes:
+
+\[
+\Delta x_1
+=
+\frac14-0
+=
+\frac14,
+\]
+
+\[
+\Delta x_2
+=
+\frac34-\frac14
+=
+\frac12,
+\]
+
+\[
+\Delta x_3
+=
+\frac32-\frac34
+=
+\frac34,
+\]
+
+\[
+\Delta x_4
+=
+2-\frac32
+=
+\frac12.
+\]
+
+La norma se define como
+
+\[
+\|P\|
+=
+\max_i\Delta x_i.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+\|P\|=\frac34
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 49}
+%========================================================
+
+Determine si
+
+\[
+P=\{0,0.2,0.7,1.4,2\}
+\]
+
+es una partición regular.
+
+Calculamos las longitudes:
+
+\[
+\Delta x_1=0.2-0=0.2,
+\]
+
+\[
+\Delta x_2=0.7-0.2=0.5,
+\]
+
+\[
+\Delta x_3=1.4-0.7=0.7,
+\]
+
+\[
+\Delta x_4=2-1.4=0.6.
+\]
+
+Como
+
+\[
+0.2,\quad0.5,\quad0.7,\quad0.6
+\]
+
+no son iguales, los subintervalos no tienen la misma longitud.
+
+Por tanto,
+
+\[
+\boxed{
+P\text{ no es una partición regular}
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 51}
+%========================================================
+
+Construya una partición regular de
+
+\[
+[-2,2]
+\]
+
+con \(16\) subintervalos.
+
+Tenemos
+
+\[
+\Delta x
+=
+\frac{2-(-2)}{16}
+=
+\frac4{16}
+=
+\frac14.
+\]
+
+Por tanto,
+
+\[
+x_i
+=
+-2+\frac{i}{4},
+\qquad
+i=0,\ldots,16.
+\]
+
+La partición es
+
+\[
+P=
+\left\{
+-2,
+-\frac74,
+-\frac32,
+-\frac54,
+-1,
+-\frac34,
+-\frac12,
+-\frac14,
+0,
+\frac14,
+\frac12,
+\frac34,
+1,
+\frac54,
+\frac32,
+\frac74,
+2
+\right\}.
+\]
+
+Además,
+
+\[
+\boxed{
+\|P\|=\frac14
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 53}
+%========================================================
+
+Explique conceptualmente qué significa que una sucesión de particiones
+satisfaga
+
+\[
+\|P\|\longrightarrow0.
+\]
+
+La norma de una partición se define como
+
+\[
+\|P\|
+=
+\max_i\Delta x_i.
+\]
+
+Por tanto,
+
+\[
+\|P\|\to0
+\]
+
+significa que la longitud del subintervalo más grande tiende a cero.
+
+En consecuencia, ningún subintervalo permanece grande.
+
+Todos los subintervalos se vuelven arbitrariamente pequeños.
+
+Geométricamente, significa que estamos refinando cada vez más la
+partición.
+
+Este concepto es fundamental en la definición de la integral de
+Riemann, pues permite que los rectángulos de aproximación se ajusten cada
+vez mejor a la gráfica.
+
+Así,
+
+\[
+\boxed{
+\|P\|\to0
+\text{ significa que la partición se hace arbitrariamente fina}
+}.
+\]
+
+%========================================================
+\section*{Rectángulos inscritos y circunscritos}
+%========================================================
+
+%========================================================
+\subsection*{Ejercicio 55}
+%========================================================
+
+Sea
+
+\[
+f(x)=x^2,
+\qquad
+1\leq x\leq3.
+\]
+
+Determine las sumas de las áreas de los rectángulos inscritos y
+circunscritos para
+
+\[
+n=4
+\qquad\text{y}\qquad
+n=8.
+\]
+
+La función \(f(x)=x^2\) es creciente en \([1,3]\).
+
+Por tanto:
+
+\[
+\text{inscritos}=\text{extremos izquierdos},
+\]
+
+\[
+\text{circunscritos}=\text{extremos derechos}.
+\]
+
+\subsubsection*{Caso \(n=4\)}
+
+Tenemos
+
+\[
+\Delta x
+=
+\frac{3-1}{4}
+=
+\frac12.
+\]
+
+La suma inscrita es
+
+\[
+L_4
+=
+\frac12
+\left[
+1^2+
+\left(\frac32\right)^2+
+2^2+
+\left(\frac52\right)^2
+\right].
+\]
+
+Así,
+
+\[
+L_4
+=
+\frac12
+\left[
+1+\frac94+4+\frac{25}{4}
+\right].
+\]
+
+Entonces,
+
+\[
+\boxed{
+L_4=\frac{27}{4}=6.75
+}.
+\]
+
+La suma circunscrita es
+
+\[
+R_4
+=
+\frac12
+\left[
+\left(\frac32\right)^2+
+2^2+
+\left(\frac52\right)^2+
+3^2
+\right].
+\]
+
+Así,
+
+\[
+\boxed{
+R_4=\frac{43}{4}=10.75
+}.
+\]
+
+\subsubsection*{Caso \(n=8\)}
+
+Ahora
+
+\[
+\Delta x
+=
+\frac{2}{8}
+=
+\frac14.
+\]
+
+La suma inscrita es
+
+\[
+L_8
+=
+\frac14
+\sum_{i=0}^{7}
+\left(
+1+\frac{i}{4}
+\right)^2.
+\]
+
+Al efectuar la suma,
+
+\[
+\boxed{
+L_8=\frac{123}{16}=7.6875
+}.
+\]
+
+La suma circunscrita es
+
+\[
+R_8
+=
+\frac14
+\sum_{i=1}^{8}
+\left(
+1+\frac{i}{4}
+\right)^2.
+\]
+
+Entonces,
+
+\[
+\boxed{
+R_8=\frac{155}{16}=9.6875
+}.
+\]
+
+Como la función es creciente,
+
+\[
+\boxed{
+L_n<A<R_n
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 57}
+%========================================================
+
+Sea
+
+\[
+f(x)=2x+1,
+\qquad
+0\leq x\leq4.
+\]
+
+La función es creciente, pues su pendiente es positiva.
+
+Por tanto, los rectángulos inscritos utilizan extremos izquierdos y los
+circunscritos extremos derechos.
+
+\subsubsection*{Caso \(n=4\)}
+
+Tenemos
+
+\[
+\Delta x=1.
+\]
+
+Suma inscrita:
+
+\[
+L_4
+=
+f(0)+f(1)+f(2)+f(3).
+\]
+
+Evaluando,
+
+\[
+L_4
+=
+1+3+5+7
+=
+16.
+\]
+
+Así,
+
+\[
+\boxed{L_4=16}.
+\]
+
+Suma circunscrita:
+
+\[
+R_4
+=
+f(1)+f(2)+f(3)+f(4).
+\]
+
+Entonces,
+
+\[
+R_4
+=
+3+5+7+9
+=
+24.
+\]
+
+Así,
+
+\[
+\boxed{R_4=24}.
+\]
+
+\subsubsection*{Caso \(n=8\)}
+
+Ahora
+
+\[
+\Delta x
+=
+\frac12.
+\]
+
+La suma inscrita resulta
+
+\[
+\boxed{
+L_8=18
+}.
+\]
+
+La suma circunscrita resulta
+
+\[
+\boxed{
+R_8=22
+}.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+18<A<22
+}
+\]
+
+para \(n=8\).
+
+%========================================================
+\subsection*{Ejercicio 59}
+%========================================================
+
+Sea
+
+\[
+f(x)=9-x^2,
+\qquad
+0\leq x\leq3.
+\]
+
+La función es decreciente en \([0,3]\).
+
+Por tanto,
+
+\[
+\text{rectángulos circunscritos}
+=
+\text{extremos izquierdos},
+\]
+
+mientras que
+
+\[
+\text{rectángulos inscritos}
+=
+\text{extremos derechos}.
+\]
+
+\subsubsection*{Caso \(n=4\)}
+
+Tenemos
+
+\[
+\Delta x
+=
+\frac34.
+\]
+
+La suma inscrita es
+
+\[
+R_4
+=
+\frac34
+\sum_{i=1}^{4}
+\left[
+9-
+\left(\frac{3i}{4}\right)^2
+\right].
+\]
+
+Al calcular,
+
+\[
+\boxed{
+R_4=\frac{459}{32}\approx14.34375
+}.
+\]
+
+La suma circunscrita es
+
+\[
+L_4
+=
+\frac34
+\sum_{i=0}^{3}
+\left[
+9-
+\left(\frac{3i}{4}\right)^2
+\right].
+\]
+
+Por tanto,
+
+\[
+\boxed{
+L_4=\frac{675}{32}\approx21.09375
+}.
+\]
+
+\subsubsection*{Caso \(n=8\)}
+
+Tenemos
+
+\[
+\Delta x
+=
+\frac38.
+\]
+
+La suma inscrita es
+
+\[
+\boxed{
+R_8=
+\frac{2079}{128}
+\approx16.24219
+}.
+\]
+
+La suma circunscrita es
+
+\[
+\boxed{
+L_8=
+\frac{2511}{128}
+\approx19.61719
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 61}
+%========================================================
+
+Sea
+
+\[
+f(x)=\frac{1}{x+1},
+\qquad
+0\leq x\leq3.
+\]
+
+La función es decreciente porque
+
+\[
+f'(x)
+=
+-\frac{1}{(x+1)^2}<0.
+\]
+
+Por tanto:
+
+\[
+\text{inscritos}=\text{extremos derechos},
+\]
+
+\[
+\text{circunscritos}=\text{extremos izquierdos}.
+\]
+
+\subsubsection*{Caso \(n=4\)}
+
+Tenemos
+
+\[
+\Delta x
+=
+\frac34.
+\]
+
+La suma inscrita es
+
+\[
+R_4
+=
+\frac34
+\left[
+\frac{1}{1+\frac34}
++
+\frac{1}{1+\frac32}
++
+\frac{1}{1+\frac94}
++
+\frac14
+\right].
+\]
+
+Numéricamente,
+
+\[
+\boxed{
+R_4\approx1.14684
+}.
+\]
+
+La suma circunscrita es
+
+\[
+L_4
+=
+\frac34
+\left[
+1
++
+\frac{1}{1+\frac34}
++
+\frac{1}{1+\frac32}
++
+\frac{1}{1+\frac94}
+\right].
+\]
+
+Así,
+
+\[
+\boxed{
+L_4\approx1.70934
+}.
+\]
+
+\subsubsection*{Caso \(n=8\)}
+
+Tenemos
+
+\[
+\Delta x
+=
+\frac38.
+\]
+
+Usando los extremos derechos,
+
+\[
+R_8
+=
+\frac38
+\sum_{i=1}^{8}
+\frac{1}{1+\frac{3i}{8}}.
+\]
+
+Numéricamente,
+
+\[
+\boxed{
+R_8\approx1.25650
+}.
+\]
+
+Con extremos izquierdos,
+
+\[
+L_8
+=
+\frac38
+\sum_{i=0}^{7}
+\frac{1}{1+\frac{3i}{8}}.
+\]
+
+Entonces,
+
+\[
+\boxed{
+L_8\approx1.53775
+}.
+\]
+
+%========================================================
+\section*{Del rectángulo al área exacta}
+%========================================================
+
+En los siguientes ejercicios utilizaremos extremos derechos:
+
+\[
+c_i=x_i.
+\]
+
+%========================================================
+\subsection*{Ejercicio 63}
+%========================================================
+
+Sea
+
+\[
+y=x^2,
+\qquad
+0\leq x\leq1.
+\]
+
+Dividimos \([0,1]\) en \(n\) partes iguales.
+
+Entonces,
+
+\[
+\Delta x
+=
+\frac1n.
+\]
+
+Los extremos derechos son
+
+\[
+x_i
+=
+\frac{i}{n}.
+\]
+
+Por tanto,
+
+\[
+f(x_i)
+=
+\left(\frac{i}{n}\right)^2.
+\]
+
+El área aproximada es
+
+\[
+A_n
+=
+\sum_{i=1}^{n}
+f(x_i)\Delta x.
+\]
+
+Así,
+
+\[
+A_n
+=
+\sum_{i=1}^{n}
+\left(\frac{i}{n}\right)^2
+\frac1n.
+\]
+
+Entonces,
+
+\[
+A_n
+=
+\frac{1}{n^3}
+\sum_{i=1}^{n}i^2.
+\]
+
+Utilizamos
+
+\[
+\sum_{i=1}^{n}i^2
+=
+\frac{n(n+1)(2n+1)}{6}.
+\]
+
+Por tanto,
+
+\[
+A_n
+=
+\frac{n(n+1)(2n+1)}{6n^3}.
+\]
+
+Simplificando,
+
+\[
+A_n
+=
+\frac{(n+1)(2n+1)}{6n^2}.
+\]
+
+Ahora tomamos el límite:
+
+\[
+A
+=
+\lim_{n\to\infty}
+\frac{(n+1)(2n+1)}{6n^2}.
+\]
+
+Dividiendo entre \(n^2\),
+
+\[
+A
+=
+\frac16
+\lim_{n\to\infty}
+\left(1+\frac1n\right)
+\left(2+\frac1n\right).
+\]
+
+Así,
+
+\[
+A
+=
+\frac16(1)(2).
+\]
+
+Finalmente,
+
+\[
+\boxed{
+A=\frac13
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 65}
+%========================================================
+
+Sea
+
+\[
+y=x^3,
+\qquad
+0\leq x\leq1.
+\]
+
+Tenemos
+
+\[
+\Delta x=\frac1n,
+\]
+
+y
+
+\[
+x_i=\frac{i}{n}.
+\]
+
+Entonces,
+
+\[
+f(x_i)
+=
+\left(\frac{i}{n}\right)^3.
+\]
+
+La suma es
+
+\[
+A_n
+=
+\sum_{i=1}^{n}
+\left(\frac{i}{n}\right)^3
+\frac1n.
+\]
+
+Así,
+
+\[
+A_n
+=
+\frac{1}{n^4}
+\sum_{i=1}^{n}i^3.
+\]
+
+Sabemos que
+
+\[
+\sum_{i=1}^{n}i^3
+=
+\left[
+\frac{n(n+1)}{2}
+\right]^2.
+\]
+
+Por tanto,
+
+\[
+A_n
+=
+\frac{1}{n^4}
+\frac{n^2(n+1)^2}{4}.
+\]
+
+Simplificando,
+
+\[
+A_n
+=
+\frac{(n+1)^2}{4n^2}.
+\]
+
+Tomamos el límite:
+
+\[
+A
+=
+\lim_{n\to\infty}
+\frac{(n+1)^2}{4n^2}.
+\]
+
+Entonces,
+
+\[
+A
+=
+\frac14
+\lim_{n\to\infty}
+\left(
+1+\frac1n
+\right)^2.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+A=\frac14
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 67}
+%========================================================
+
+Sea
+
+\[
+y=5-x,
+\qquad
+1\leq x\leq4.
+\]
+
+La longitud del intervalo es
+
+\[
+4-1=3.
+\]
+
+Por tanto,
+
+\[
+\Delta x
+=
+\frac3n.
+\]
+
+Los extremos derechos son
+
+\[
+x_i
+=
+1+\frac{3i}{n}.
+\]
+
+Entonces,
+
+\[
+f(x_i)
+=
+5-
+\left(
+1+\frac{3i}{n}
+\right).
+\]
+
+Así,
+
+\[
+f(x_i)
+=
+4-\frac{3i}{n}.
+\]
+
+Por tanto,
+
+\[
+A_n
+=
+\sum_{i=1}^{n}
+\left(
+4-\frac{3i}{n}
+\right)
+\frac3n.
+\]
+
+Distribuyendo,
+
+\[
+A_n
+=
+\frac{12}{n}\sum_{i=1}^{n}1
+-
+\frac{9}{n^2}
+\sum_{i=1}^{n}i.
+\]
+
+Como
+
+\[
+\sum_{i=1}^{n}1=n
+\]
+
+y
+
+\[
+\sum_{i=1}^{n}i
+=
+\frac{n(n+1)}2,
+\]
+
+obtenemos
+
+\[
+A_n
+=
+12
+-
+\frac{9}{n^2}
+\frac{n(n+1)}2.
+\]
+
+Así,
+
+\[
+A_n
+=
+12
+-
+\frac92
+\left(
+1+\frac1n
+\right).
+\]
+
+Tomando el límite,
+
+\[
+A
+=
+12-\frac92.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+A=\frac{15}{2}
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 69}
+%========================================================
+
+Sea
+
+\[
+y=4x-x^2,
+\qquad
+0\leq x\leq4.
+\]
+
+Tenemos
+
+\[
+\Delta x
+=
+\frac4n.
+\]
+
+Los extremos derechos son
+
+\[
+x_i
+=
+\frac{4i}{n}.
+\]
+
+Evaluamos:
+
+\[
+f(x_i)
+=
+4\left(\frac{4i}{n}\right)
+-
+\left(\frac{4i}{n}\right)^2.
+\]
+
+Así,
+
+\[
+f(x_i)
+=
+\frac{16i}{n}
+-
+\frac{16i^2}{n^2}.
+\]
+
+Entonces,
+
+\[
+A_n
+=
+\sum_{i=1}^{n}
+\left(
+\frac{16i}{n}
+-
+\frac{16i^2}{n^2}
+\right)
+\frac4n.
+\]
+
+Por tanto,
+
+\[
+A_n
+=
+\frac{64}{n^2}
+\sum_{i=1}^{n}i
+-
+\frac{64}{n^3}
+\sum_{i=1}^{n}i^2.
+\]
+
+Sustituyendo las fórmulas,
+
+\[
+A_n
+=
+\frac{64}{n^2}
+\frac{n(n+1)}2
+-
+\frac{64}{n^3}
+\frac{n(n+1)(2n+1)}6.
+\]
+
+Tomando el límite,
+
+\[
+A
+=
+32
+-
+\frac{64}{6}(2).
+\]
+
+Entonces,
+
+\[
+A
+=
+32-\frac{64}{3}.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+A=\frac{32}{3}
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 71}
+%========================================================
+
+Sea
+
+\[
+y=x^3+x^2,
+\qquad
+0\leq x\leq1.
+\]
+
+Tenemos
+
+\[
+\Delta x=\frac1n
+\]
+
+y
+
+\[
+x_i=\frac{i}{n}.
+\]
+
+Entonces,
+
+\[
+f(x_i)
+=
+\left(\frac{i}{n}\right)^3
++
+\left(\frac{i}{n}\right)^2.
+\]
+
+La suma es
+
+\[
+A_n
+=
+\frac{1}{n^4}
+\sum_{i=1}^{n}i^3
++
+\frac{1}{n^3}
+\sum_{i=1}^{n}i^2.
+\]
+
+Utilizando
+
+\[
+\sum_{i=1}^{n}i^3
+=
+\left[
+\frac{n(n+1)}2
+\right]^2
+\]
+
+y
+
+\[
+\sum_{i=1}^{n}i^2
+=
+\frac{n(n+1)(2n+1)}6,
+\]
+
+obtenemos
+
+\[
+A_n
+=
+\frac{(n+1)^2}{4n^2}
++
+\frac{(n+1)(2n+1)}{6n^2}.
+\]
+
+Tomando el límite,
+
+\[
+A
+=
+\frac14+\frac13.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+A=\frac{7}{12}
+}.
+\]
+
+%========================================================
+\section*{Particiones no uniformes y puntos arbitrarios}
+%========================================================
+
+%========================================================
+\subsection*{Ejercicio 73}
+%========================================================
+
+Sea
+
+\[
+f(x)=4-x^2
+\]
+
+y
+
+\[
+P=
+\left\{
+0,\frac12,1,\frac54,2
+\right\}.
+\]
+
+Se eligen los extremos derechos.
+
+Los subintervalos son
+
+\[
+\left[0,\frac12\right],
+\quad
+\left[\frac12,1\right],
+\quad
+\left[1,\frac54\right],
+\quad
+\left[\frac54,2\right].
+\]
+
+Sus longitudes son
+
+\[
+\Delta x_1=\frac12,
+\]
+
+\[
+\Delta x_2=\frac12,
+\]
+
+\[
+\Delta x_3=\frac14,
+\]
+
+\[
+\Delta x_4=\frac34.
+\]
+
+Los puntos de muestra son
+
+\[
+\xi_1=\frac12,
+\qquad
+\xi_2=1,
+\qquad
+\xi_3=\frac54,
+\qquad
+\xi_4=2.
+\]
+
+Evaluamos:
+
+\[
+f\left(\frac12\right)
+=
+4-\frac14
+=
+\frac{15}{4},
+\]
+
+\[
+f(1)=3,
+\]
+
+\[
+f\left(\frac54\right)
+=
+4-\frac{25}{16}
+=
+\frac{39}{16},
+\]
+
+\[
+f(2)=0.
+\]
+
+La suma de Riemann es
+
+\[
+S
+=
+\frac{15}{4}\frac12
++
+3\frac12
++
+\frac{39}{16}\frac14
++
+0\frac34.
+\]
+
+Entonces,
+
+\[
+S
+=
+\frac{15}{8}
++
+\frac32
++
+\frac{39}{64}.
+\]
+
+Con denominador común \(64\),
+
+\[
+S
+=
+\frac{120}{64}
++
+\frac{96}{64}
++
+\frac{39}{64}.
+\]
+
+Así,
+
+\[
+\boxed{
+S=\frac{255}{64}=3.984375
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 75}
+%========================================================
+
+Sea
+
+\[
+f(x)=\sqrt{x+1}
+\]
+
+y
+
+\[
+P=
+\left\{
+0,\frac14,1,2,4
+\right\}.
+\]
+
+Se pide utilizar el punto medio de cada subintervalo.
+
+Los subintervalos son
+
+\[
+\left[0,\frac14\right],
+\quad
+\left[\frac14,1\right],
+\quad
+[1,2],
+\quad
+[2,4].
+\]
+
+Las longitudes son
+
+\[
+\Delta x_1=\frac14,
+\]
+
+\[
+\Delta x_2=\frac34,
+\]
+
+\[
+\Delta x_3=1,
+\]
+
+\[
+\Delta x_4=2.
+\]
+
+Los puntos medios son
+
+\[
+m_1
+=
+\frac{0+\frac14}{2}
+=
+\frac18,
+\]
+
+\[
+m_2
+=
+\frac{\frac14+1}{2}
+=
+\frac58,
+\]
+
+\[
+m_3
+=
+\frac{1+2}{2}
+=
+\frac32,
+\]
+
+\[
+m_4
+=
+\frac{2+4}{2}
+=
+3.
+\]
+
+Evaluamos:
+
+\[
+f\left(\frac18\right)
+=
+\sqrt{\frac98}
+=
+\frac{3}{2\sqrt2},
+\]
+
+\[
+f\left(\frac58\right)
+=
+\sqrt{\frac{13}{8}},
+\]
+
+\[
+f\left(\frac32\right)
+=
+\sqrt{\frac52},
+\]
+
+\[
+f(3)=2.
+\]
+
+Por tanto,
+
+\[
+S
+=
+\frac14\sqrt{\frac98}
++
+\frac34\sqrt{\frac{13}{8}}
++
+\sqrt{\frac52}
++
+2(2).
+\]
+
+Así,
+
+\[
+\boxed{
+S
+=
+\frac14\sqrt{\frac98}
++
+\frac34\sqrt{\frac{13}{8}}
++
+\sqrt{\frac52}
++
+4
+}.
+\]
+
+Ésta es una suma de Riemann con partición no uniforme y puntos medios.
+
+%========================================================
+\section*{2.5. Sumas y notación sigma}
+%========================================================
+
+%========================================================
+\subsection*{Ejercicio 77}
+%========================================================
+
+Calcule
+
+\[
+\sum_{k=1}^{8}(3k-2).
+\]
+
+Escribimos los términos:
+
+\[
+(3(1)-2)
++
+(3(2)-2)
++\cdots+
+(3(8)-2).
+\]
+
+Así,
+
+\[
+1+4+7+10+13+16+19+22.
+\]
+
+Podemos utilizar linealidad:
+
+\[
+\sum_{k=1}^{8}(3k-2)
+=
+3\sum_{k=1}^{8}k
+-
+2\sum_{k=1}^{8}1.
+\]
+
+Sabemos que
+
+\[
+\sum_{k=1}^{8}k
+=
+\frac{8(9)}2
+=
+36.
+\]
+
+Además,
+
+\[
+\sum_{k=1}^{8}1=8.
+\]
+
+Por tanto,
+
+\[
+3(36)-2(8)
+=
+108-16.
+\]
+
+Así,
+
+\[
+\boxed{
+\sum_{k=1}^{8}(3k-2)=92
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 79}
+%========================================================
+
+Calcule
+
+\[
+\sum_{k=1}^{6}(2k+1)^2.
+\]
+
+Expandimos:
+
+\[
+(2k+1)^2
+=
+4k^2+4k+1.
+\]
+
+Por tanto,
+
+\[
+\sum_{k=1}^{6}(2k+1)^2
+=
+4\sum_{k=1}^{6}k^2
++
+4\sum_{k=1}^{6}k
++
+\sum_{k=1}^{6}1.
+\]
+
+Sabemos que
+
+\[
+\sum_{k=1}^{6}k
+=
+\frac{6(7)}2
+=
+21,
+\]
+
+y
+
+\[
+\sum_{k=1}^{6}k^2
+=
+\frac{6(7)(13)}6
+=
+91.
+\]
+
+Además,
+
+\[
+\sum_{k=1}^{6}1=6.
+\]
+
+Entonces,
+
+\[
+4(91)+4(21)+6.
+\]
+
+Así,
+
+\[
+364+84+6=454.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+\sum_{k=1}^{6}(2k+1)^2=454
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 81}
+%========================================================
+
+Exprese mediante notación sigma
+
+\[
+\frac14+\frac24+\frac34+\cdots+\frac{20}{4}.
+\]
+
+El término general es
+
+\[
+\frac{k}{4}.
+\]
+
+El índice comienza en
+
+\[
+k=1
+\]
+
+y termina en
+
+\[
+k=20.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+\frac14+\frac24+\frac34+\cdots+\frac{20}{4}
+=
+\sum_{k=1}^{20}\frac{k}{4}
+}.
+\]
+
+Equivalentemente,
+
+\[
+\boxed{
+=
+\frac14\sum_{k=1}^{20}k
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 83}
+%========================================================
+
+Simplifique
+
+\[
+\frac1n
+\sum_{i=1}^{n}
+\left(\frac{i}{n}\right)^2.
+\]
+
+Sacamos las potencias de \(n\):
+
+\[
+\frac1n
+\sum_{i=1}^{n}
+\frac{i^2}{n^2}.
+\]
+
+Entonces,
+
+\[
+=
+\frac{1}{n^3}
+\sum_{i=1}^{n}i^2.
+\]
+
+Utilizando
+
+\[
+\sum_{i=1}^{n}i^2
+=
+\frac{n(n+1)(2n+1)}6,
+\]
+
+obtenemos
+
+\[
+=
+\frac{1}{n^3}
+\frac{n(n+1)(2n+1)}6.
+\]
+
+Simplificando un factor \(n\),
+
+\[
+\boxed{
+\frac1n
+\sum_{i=1}^{n}
+\left(\frac{i}{n}\right)^2
+=
+\frac{(n+1)(2n+1)}{6n^2}
+}.
+\]
+
+%========================================================
+\subsection*{Ejercicio 85}
+%========================================================
+
+Calcule
+
+\[
+\lim_{n\to\infty}
+\frac{1}{n^3}
+\sum_{i=1}^{n}i^2.
+\]
+
+Utilizamos
+
+\[
+\sum_{i=1}^{n}i^2
+=
+\frac{n(n+1)(2n+1)}6.
+\]
+
+Entonces,
+
+\[
+\frac{1}{n^3}
+\sum_{i=1}^{n}i^2
+=
+\frac{n(n+1)(2n+1)}{6n^3}.
+\]
+
+Simplificando,
+
+\[
+=
+\frac{(n+1)(2n+1)}{6n^2}.
+\]
+
+Dividimos cada factor entre \(n\):
+
+\[
+=
+\frac16
+\left(
+1+\frac1n
+\right)
+\left(
+2+\frac1n
+\right).
+\]
+
+Tomamos el límite:
+
+\[
+\lim_{n\to\infty}
+\frac16
+\left(
+1+\frac1n
+\right)
+\left(
+2+\frac1n
+\right)
+=
+\frac16(1)(2).
+\]
+
+Por tanto,
+
+\[
+\boxed{
+\lim_{n\to\infty}
+\frac{1}{n^3}
+\sum_{i=1}^{n}i^2
+=
+\frac13
+}.
+\]
+
+%===========================================================
+\section{Ecuaciones de segundo grado en dos variables}
+%===========================================================
+
+\subsection*{Introducción}
+
+En geometría analítica aparecen con frecuencia ecuaciones de la forma
+
+\[
+Ax^2+By^2+Cx+Dy+E=0,
+\]
+
+donde
+
+\[
+A,B,C,D,E\in\mathbb{R}.
+\]
+
+Este tipo de ecuaciones permite describir diversas curvas en el plano,
+entre ellas:
+
+\begin{itemize}
+    \item rectas;
+    \item circunferencias;
+    \item elipses;
+    \item hipérbolas.
+\end{itemize}
+
+El objetivo de esta sección es aprender a reconocer qué curva representa
+una ecuación determinada y transformarla a una forma más sencilla,
+llamada \textbf{forma canónica}.
+
+La herramienta algebraica principal será el procedimiento de
+\textbf{completar cuadrados}.
+
+%===========================================================
+\subsection*{Observación inicial}
+%===========================================================
+
+La ecuación general de segundo grado en dos variables es, en realidad,
+
+\[
+Ax^2+Bxy+Cy^2+Dx+Ey+F=0.
+\]
+
+Sin embargo, en esta sección estudiaremos el caso particular en el que no
+aparece el término mixto \(xy\). Es decir,
+
+\[
+\boxed{
+Ax^2+By^2+Cx+Dy+E=0
+}.
+\]
+
+En esta situación, los ejes principales de las cónicas son paralelos a
+los ejes coordenados, por lo que no es necesario realizar una rotación
+de ejes.
+
+%===========================================================
+\subsection*{Idea general de clasificación}
+%===========================================================
+
+La clasificación depende principalmente de los coeficientes de
+
+\[
+x^2
+\qquad\text{y}\qquad
+y^2.
+\]
+
+Tenemos los siguientes casos.
+
+\[
+\boxed{
+\begin{array}{c|c}
+\text{Condición} & \text{Tipo de curva}\\
+\hline
+A=B=0 & \text{Recta}\\
+A=B\neq0 & \text{Circunferencia}\\
+AB>0,\;A\neq B & \text{Elipse}\\
+AB<0 & \text{Hipérbola}
+\end{array}
+}
+\]
+
+Esta tabla proporciona una primera clasificación.
+
+Sin embargo, para conocer completamente la curva necesitamos transformar
+la ecuación a su forma canónica.
+
+%===========================================================
+\subsection{La recta}
+%===========================================================
+
+Si
+
+\[
+A=0
+\qquad\text{y}\qquad
+B=0,
+\]
+
+la ecuación
+
+\[
+Ax^2+By^2+Cx+Dy+E=0
+\]
+
+se reduce a
+
+\[
+Cx+Dy+E=0.
+\]
+
+Ésta es la ecuación general de una recta.
+
+Por tanto,
+
+\[
+\boxed{
+Cx+Dy+E=0
+}
+\]
+
+representa una recta siempre que
+
+\[
+(C,D)\neq(0,0).
+\]
+
+%-----------------------------------------------------------
+\subsection*{Ejemplo 1}
+
+Considere
+
+\[
+3x-2y+6=0.
+\]
+
+Despejamos \(y\):
+
+\[
+-2y=-3x-6.
+\]
+
+Dividiendo entre \(-2\),
+
+\[
+y=\frac32x+3.
+\]
+
+Así, la ecuación tiene la forma
+
+\[
+y=mx+b,
+\]
+
+con
+
+\[
+m=\frac32
+\]
+
+y
+
+\[
+b=3.
+\]
+
+Por tanto, representa una recta de pendiente
+
+\[
+\boxed{m=\frac32}
+\]
+
+y ordenada al origen
+
+\[
+\boxed{b=3}.
+\]
+
+%===========================================================
+\subsection{La circunferencia}
+%===========================================================
+
+Una circunferencia con centro
+
+\[
+(h,k)
+\]
+
+y radio
+
+\[
+r>0
+\]
+
+tiene ecuación canónica
+
+\[
+\boxed{
+(x-h)^2+(y-k)^2=r^2.
+}
+\]
+
+Si desarrollamos,
+
+\[
+x^2-2hx+h^2+y^2-2ky+k^2=r^2.
+\]
+
+Reordenando,
+
+\[
+x^2+y^2-2hx-2ky+h^2+k^2-r^2=0.
+\]
+
+Observamos que los coeficientes de
+
+\[
+x^2
+\qquad\text{y}\qquad
+y^2
+\]
+
+son iguales.
+
+Por tanto, una ecuación de la forma
+
+\[
+Ax^2+Ay^2+Cx+Dy+E=0
+\]
+
+puede representar una circunferencia.
+
+Dividiendo entre \(A\), si \(A\neq0\),
+
+\[
+x^2+y^2+\frac{C}{A}x+\frac{D}{A}y+\frac{E}{A}=0.
+\]
+
+%===========================================================
+\subsection*{Método de completar cuadrados}
+%===========================================================
+
+Recordemos la identidad
+
+\[
+x^2+bx
+=
+\left(x+\frac{b}{2}\right)^2
+-
+\left(\frac{b}{2}\right)^2.
+\]
+
+Equivalentemente,
+
+\[
+x^2+bx+\left(\frac{b}{2}\right)^2
+=
+\left(x+\frac{b}{2}\right)^2.
+\]
+
+Esta identidad es la base del procedimiento.
+
+%-----------------------------------------------------------
+\subsection*{Ejemplo 2}
+
+Determine la curva representada por
+
+\[
+x^2+y^2-6x+4y-12=0.
+\]
+
+\subsubsection*{Paso 1. Agrupar términos}
+
+Agrupamos los términos que contienen \(x\) y los que contienen \(y\):
+
+\[
+(x^2-6x)+(y^2+4y)-12=0.
+\]
+
+Pasamos la constante al otro lado:
+
+\[
+x^2-6x+y^2+4y=12.
+\]
+
+%-----------------------------------------------------------
+\subsubsection*{Paso 2. Completar cuadrado en \(x\)}
+
+Tenemos
+
+\[
+x^2-6x.
+\]
+
+Tomamos la mitad de \(-6\):
+
+\[
+\frac{-6}{2}=-3.
+\]
+
+Elevamos al cuadrado:
+
+\[
+(-3)^2=9.
+\]
+
+Por tanto,
+
+\[
+x^2-6x+9=(x-3)^2.
+\]
+
+%-----------------------------------------------------------
+\subsubsection*{Paso 3. Completar cuadrado en \(y\)}
+
+Tenemos
+
+\[
+y^2+4y.
+\]
+
+La mitad de \(4\) es
+
+\[
+2.
+\]
+
+Elevando al cuadrado,
+
+\[
+2^2=4.
+\]
+
+Por tanto,
+
+\[
+y^2+4y+4=(y+2)^2.
+\]
+
+%-----------------------------------------------------------
+\subsubsection*{Paso 4. Mantener la igualdad}
+
+Como añadimos \(9\) y \(4\) al lado izquierdo, debemos añadirlos también
+al lado derecho:
+
+\[
+x^2-6x+9+y^2+4y+4
+=
+12+9+4.
+\]
+
+Entonces,
+
+\[
+(x-3)^2+(y+2)^2=25.
+\]
+
+%-----------------------------------------------------------
+\subsubsection*{Paso 5. Identificar los elementos geométricos}
+
+Comparamos con
+
+\[
+(x-h)^2+(y-k)^2=r^2.
+\]
+
+Tenemos
+
+\[
+h=3,
+\qquad
+k=-2,
+\]
+
+y
+
+\[
+r^2=25.
+\]
+
+Por tanto,
+
+\[
+r=5.
+\]
+
+Así,
+
+\[
+\boxed{
+\text{Centro }C=(3,-2),
+\qquad
+r=5.
+}
+\]
+
+La ecuación representa una circunferencia.
+
+%===========================================================
+\subsection{La elipse}
+%===========================================================
+
+Una elipse con centro
+
+\[
+(h,k)
+\]
+
+y ejes paralelos a los ejes coordenados tiene una de las formas
+
+\[
+\boxed{
+\frac{(x-h)^2}{a^2}
++
+\frac{(y-k)^2}{b^2}
+=1
+}
+\]
+
+o bien
+
+\[
+\boxed{
+\frac{(x-h)^2}{b^2}
++
+\frac{(y-k)^2}{a^2}
+=1,
+}
+\]
+
+donde
+
+\[
+a>b>0.
+\]
+
+La característica algebraica esencial es que los términos
+
+\[
+x^2
+\qquad\text{y}\qquad
+y^2
+\]
+
+tienen coeficientes del mismo signo, pero diferentes.
+
+Es decir,
+
+\[
+\boxed{
+AB>0,
+\qquad
+A\neq B.
+}
+\]
+
+%-----------------------------------------------------------
+\subsection*{Ejemplo 3}
+
+Determine la curva representada por
+
+\[
+4x^2+9y^2-8x+36y+4=0.
+\]
+
+\subsubsection*{Paso 1. Agrupar términos}
+
+Agrupamos:
+
+\[
+(4x^2-8x)+(9y^2+36y)+4=0.
+\]
+
+Pasamos la constante:
+
+\[
+4x^2-8x+9y^2+36y=-4.
+\]
+
+%-----------------------------------------------------------
+\subsubsection*{Paso 2. Factorizar los coeficientes cuadráticos}
+
+Factorizamos \(4\) en los términos de \(x\):
+
+\[
+4(x^2-2x).
+\]
+
+Factorizamos \(9\) en los términos de \(y\):
+
+\[
+9(y^2+4y).
+\]
+
+Así,
+
+\[
+4(x^2-2x)+9(y^2+4y)=-4.
+\]
+
+%-----------------------------------------------------------
+\subsubsection*{Paso 3. Completar cuadrados}
+
+Para
+
+\[
+x^2-2x,
+\]
+
+la mitad de \(-2\) es
+
+\[
+-1,
+\]
+
+y su cuadrado es
+
+\[
+1.
+\]
+
+Así,
+
+\[
+x^2-2x+1=(x-1)^2.
+\]
+
+Para
+
+\[
+y^2+4y,
+\]
+
+la mitad de \(4\) es
+
+\[
+2,
+\]
+
+y su cuadrado es
+
+\[
+4.
+\]
+
+Entonces,
+
+\[
+y^2+4y+4=(y+2)^2.
+\]
+
+%-----------------------------------------------------------
+\subsubsection*{Paso 4. Cuidar los coeficientes externos}
+
+Es muy importante observar que añadir \(1\) dentro del primer
+paréntesis equivale a añadir
+
+\[
+4(1)=4
+\]
+
+a la ecuación.
+
+Añadir \(4\) dentro del segundo paréntesis equivale a añadir
+
+\[
+9(4)=36.
+\]
+
+Por tanto,
+
+\[
+4(x^2-2x+1)+9(y^2+4y+4)
+=
+-4+4+36.
+\]
+
+Así,
+
+\[
+4(x-1)^2+9(y+2)^2=36.
+\]
+
+%-----------------------------------------------------------
+\subsubsection*{Paso 5. Dividir entre la constante}
+
+Dividimos toda la ecuación entre \(36\):
+
+\[
+\frac{4(x-1)^2}{36}
++
+\frac{9(y+2)^2}{36}
+=
+1.
+\]
+
+Simplificando,
+
+\[
+\boxed{
+\frac{(x-1)^2}{9}
++
+\frac{(y+2)^2}{4}
+=
+1.
+}
+\]
+
+%-----------------------------------------------------------
+\subsubsection*{Paso 6. Identificar la elipse}
+
+El centro es
+
+\[
+\boxed{
+C=(1,-2).
+}
+\]
+
+Tenemos
+
+\[
+a^2=9,
+\qquad
+b^2=4.
+\]
+
+Por tanto,
+
+\[
+a=3,
+\qquad
+b=2.
+\]
+
+Como el denominador mayor está bajo el término en \(x\), el eje mayor es
+horizontal.
+
+Así,
+
+\[
+\boxed{
+\text{semieje mayor}=3,
+\qquad
+\text{semieje menor}=2.
+}
+\]
+
+%===========================================================
+\subsection{La hipérbola}
+%===========================================================
+
+La forma canónica de una hipérbola horizontal es
+
+\[
+\boxed{
+\frac{(x-h)^2}{a^2}
+-
+\frac{(y-k)^2}{b^2}
+=1.
+}
+\]
+
+Para una hipérbola vertical,
+
+\[
+\boxed{
+\frac{(y-k)^2}{a^2}
+-
+\frac{(x-h)^2}{b^2}
+=1.
+}
+\]
+
+La característica algebraica principal es que los coeficientes de
+
+\[
+x^2
+\qquad\text{y}\qquad
+y^2
+\]
+
+tienen signos opuestos.
+
+Es decir,
+
+\[
+\boxed{
+AB<0.
+}
+\]
+
+%-----------------------------------------------------------
+\subsection*{Ejemplo 4}
+
+Determine la curva representada por
+
+\[
+4x^2-9y^2-8x-36y-68=0.
+\]
+
+\subsubsection*{Paso 1. Agrupar términos}
+
+Agrupamos:
+
+\[
+(4x^2-8x)+(-9y^2-36y)-68=0.
+\]
+
+Pasamos la constante:
+
+\[
+4x^2-8x-9y^2-36y=68.
+\]
+
+%-----------------------------------------------------------
+\subsubsection*{Paso 2. Factorizar}
+
+Para los términos en \(x\):
+
+\[
+4(x^2-2x).
+\]
+
+Para los términos en \(y\):
+
+\[
+-9(y^2+4y).
+\]
+
+Así,
+
+\[
+4(x^2-2x)-9(y^2+4y)=68.
+\]
+
+%-----------------------------------------------------------
+\subsubsection*{Paso 3. Completar cuadrados}
+
+Tenemos
+
+\[
+x^2-2x
+=
+(x-1)^2-1.
+\]
+
+Asimismo,
+
+\[
+y^2+4y
+=
+(y+2)^2-4.
+\]
+
+Sustituimos:
+
+\[
+4\left[(x-1)^2-1\right]
+-
+9\left[(y+2)^2-4\right]
+=
+68.
+\]
+
+Distribuyendo,
+
+\[
+4(x-1)^2-4
+-
+9(y+2)^2
++
+36
+=
+68.
+\]
+
+Entonces,
+
+\[
+4(x-1)^2
+-
+9(y+2)^2
++
+32
+=
+68.
+\]
+
+Por tanto,
+
+\[
+4(x-1)^2-9(y+2)^2=36.
+\]
+
+%-----------------------------------------------------------
+\subsubsection*{Paso 4. Dividir entre \(36\)}
+
+Dividiendo,
+
+\[
+\frac{4(x-1)^2}{36}
+-
+\frac{9(y+2)^2}{36}
+=
+1.
+\]
+
+Así,
+
+\[
+\boxed{
+\frac{(x-1)^2}{9}
+-
+\frac{(y+2)^2}{4}
+=
+1.
+}
+\]
+
+%-----------------------------------------------------------
+\subsubsection*{Paso 5. Identificar la hipérbola}
+
+El centro es
+
+\[
+\boxed{
+C=(1,-2).
+}
+\]
+
+Además,
+
+\[
+a^2=9,
+\qquad
+b^2=4.
+\]
+
+Por tanto,
+
+\[
+a=3,
+\qquad
+b=2.
+\]
+
+Como el término positivo corresponde a \(x\), la hipérbola abre hacia la
+derecha y hacia la izquierda.
+
+Así,
+
+\[
+\boxed{
+\text{hipérbola horizontal}.
+}
+\]
+
+%===========================================================
+\subsection*{Comparación entre circunferencia, elipse e hipérbola}
+%===========================================================
+
+Las tres ecuaciones pueden compararse fácilmente:
+
+\[
+\boxed{
+\begin{array}{c|c}
+\text{Curva} & \text{Forma canónica}\\
+\hline
+\text{Circunferencia}
+&
+(x-h)^2+(y-k)^2=r^2
+\\[2mm]
+\text{Elipse}
+&
+\dfrac{(x-h)^2}{a^2}
++
+\dfrac{(y-k)^2}{b^2}
+=1
+\\[4mm]
+\text{Hipérbola}
+&
+\dfrac{(x-h)^2}{a^2}
+-
+\dfrac{(y-k)^2}{b^2}
+=1
+\end{array}
+}
+\]
+
+Desde la ecuación general
+
+\[
+Ax^2+By^2+Cx+Dy+E=0,
+\]
+
+podemos hacer una primera identificación:
+
+\[
+\boxed{
+\begin{array}{c|c}
+\text{Coeficientes cuadráticos} & \text{Curva probable}\\
+\hline
+A=B=0 & \text{Recta}\\
+A=B\neq0 & \text{Circunferencia}\\
+AB>0,\quad A\neq B & \text{Elipse}\\
+AB<0 & \text{Hipérbola}
+\end{array}
+}
+\]
+
+%===========================================================
+\subsection*{Algoritmo general para estudiar la ecuación}
+%===========================================================
+
+Dada una ecuación
+
+\[
+Ax^2+By^2+Cx+Dy+E=0,
+\]
+
+podemos seguir siempre el mismo procedimiento.
+
+\subsection*{Paso 1. Observar los términos cuadráticos}
+
+Identificar los coeficientes
+
+\[
+A
+\qquad\text{y}\qquad
+B.
+\]
+
+Esto proporciona una primera clasificación.
+
+\[
+\begin{array}{c|c}
+A=B=0 & \text{Recta}\\
+A=B\neq0 & \text{Circunferencia}\\
+AB>0,\ A\neq B & \text{Elipse}\\
+AB<0 & \text{Hipérbola}
+\end{array}
+\]
+
+\subsection*{Paso 2. Agrupar variables}
+
+Escribir
+
+\[
+(Ax^2+Cx)+(By^2+Dy)=-E.
+\]
+
+\subsection*{Paso 3. Factorizar los coeficientes cuadráticos}
+
+Escribir
+
+\[
+A\left(
+x^2+\frac{C}{A}x
+\right)
++
+B\left(
+y^2+\frac{D}{B}y
+\right)
+=
+-E.
+\]
+
+\subsection*{Paso 4. Completar cuadrados}
+
+Utilizar
+
+\[
+u^2+pu
+=
+\left(
+u+\frac{p}{2}
+\right)^2
+-
+\left(
+\frac{p}{2}
+\right)^2.
+\]
+
+Para \(x\),
+
+\[
+x^2+\frac{C}{A}x
+=
+\left(
+x+\frac{C}{2A}
+\right)^2
+-
+\left(
+\frac{C}{2A}
+\right)^2.
+\]
+
+Para \(y\),
+
+\[
+y^2+\frac{D}{B}y
+=
+\left(
+y+\frac{D}{2B}
+\right)^2
+-
+\left(
+\frac{D}{2B}
+\right)^2.
+\]
+
+\subsection*{Paso 5. Simplificar}
+
+Después de completar cuadrados, reorganizar hasta obtener una expresión
+del tipo
+
+\[
+\alpha(x-h)^2+\beta(y-k)^2=K.
+\]
+
+\subsection*{Paso 6. Normalizar}
+
+Si \(K\neq0\), dividir toda la ecuación entre \(K\) para obtener
+
+\[
+\frac{(x-h)^2}{a^2}
+\pm
+\frac{(y-k)^2}{b^2}
+=
+1.
+\]
+
+\subsection*{Paso 7. Identificar la curva}
+
+Finalmente se determina:
+
+\begin{itemize}
+    \item el tipo de curva;
+    \item el centro;
+    \item el radio, en el caso de la circunferencia;
+    \item los semiejes, en el caso de la elipse;
+    \item la orientación, en el caso de la hipérbola.
+\end{itemize}
+
+%===========================================================
+\subsection*{Ejemplo comparativo}
+%===========================================================
+
+Compare las siguientes ecuaciones:
+
+\[
+x^2+y^2-4x+6y-12=0,
+\]
+
+\[
+4x^2+9y^2-8x+18y-23=0,
+\]
+
+\[
+4x^2-9y^2-8x-18y-41=0.
+\]
+
+Sin hacer todavía ningún cálculo, podemos observar:
+
+\begin{enumerate}
+
+\item En
+\[
+x^2+y^2-4x+6y-12=0,
+\]
+los coeficientes de \(x^2\) y \(y^2\) son iguales y positivos.
+
+Por tanto, esperamos una
+\[
+\boxed{\text{circunferencia}.}
+\]
+
+\item En
+\[
+4x^2+9y^2-8x+18y-23=0,
+\]
+los coeficientes son positivos pero diferentes.
+
+Por tanto, esperamos una
+\[
+\boxed{\text{elipse}.}
+\]
+
+\item En
+\[
+4x^2-9y^2-8x-18y-41=0,
+\]
+los coeficientes tienen signos opuestos.
+
+Por tanto, esperamos una
+\[
+\boxed{\text{hipérbola}.}
+\]
+
+\end{enumerate}
+
+Esta observación permite clasificar rápidamente la curva antes de
+realizar el procedimiento de completar cuadrados.
+
+%===========================================================
+\subsection*{Ejercicios para trabajar en clase}
+%===========================================================
+
+Determine qué curva representa cada ecuación y transfórmela a su forma
+canónica.
+
+\begin{enumerate}
+
+\item
+\[
+x^2+y^2-4x+2y-20=0.
+\]
+
+\item
+\[
+x^2+y^2+6x-8y+9=0.
+\]
+
+\item
+\[
+4x^2+9y^2-16x+18y-11=0.
+\]
+
+\item
+\[
+9x^2+4y^2+18x-16y-11=0.
+\]
+
+\item
+\[
+4x^2-9y^2-8x+18y-41=0.
+\]
+
+\item
+\[
+9x^2-4y^2+36x+8y-4=0.
+\]
+
+\item
+\[
+3x-5y+15=0.
+\]
+
+\item
+\[
+2x+4y-8=0.
+\]
+
+\end{enumerate}
+
+%===========================================================
+\subsection*{Errores frecuentes}
+%===========================================================
+
+\begin{enumerate}
+
+\item \textbf{Olvidar factorizar el coeficiente cuadrático antes de
+completar el cuadrado.}
+
+Por ejemplo,
+
+\[
+4x^2-8x
+\]
+
+debe escribirse primero como
+
+\[
+4(x^2-2x).
+\]
+
+\item \textbf{No tomar la mitad del coeficiente lineal.}
+
+Para
+
+\[
+x^2-6x,
+\]
+
+no añadimos \(36\), sino
+
+\[
+\left(\frac{-6}{2}\right)^2=9.
+\]
+
+\item \textbf{Olvidar el coeficiente externo.}
+
+Si tenemos
+
+\[
+4(x^2-2x),
+\]
+
+al completar
+
+\[
+x^2-2x+1,
+\]
+
+en realidad estamos añadiendo
+
+\[
+4(1)=4
+\]
+
+a la ecuación.
+
+\item \textbf{Cambiar solamente un lado de la igualdad.}
+
+Toda cantidad que se añada a un lado debe compensarse en el otro.
+
+\item \textbf{Confundir los signos del centro.}
+
+En
+
+\[
+(x-3)^2+(y+2)^2=25,
+\]
+
+el centro es
+
+\[
+(3,-2),
+\]
+
+no
+
+\[
+(-3,2).
+\]
+
+\item \textbf{Pensar que términos cuadráticos del mismo signo siempre
+dan una circunferencia.}
+
+Por ejemplo,
+
+\[
+4x^2+9y^2+\cdots=0
+\]
+
+no representa una circunferencia porque los coeficientes \(4\) y \(9\)
+son diferentes.
+
+En general corresponde a una elipse.
+
+\end{enumerate}
+
+%===========================================================
+\subsection*{Resumen}
+%===========================================================
+
+Para estudiar
+
+\[
+\boxed{
+Ax^2+By^2+Cx+Dy+E=0
+}
+\]
+
+seguimos la secuencia
+
+\[
+\boxed{
+\text{Clasificar}
+\longrightarrow
+\text{Agrupar}
+\longrightarrow
+\text{Factorizar}
+\longrightarrow
+\text{Completar cuadrados}
+\longrightarrow
+\text{Normalizar}
+\longrightarrow
+\text{Interpretar}
+}
+\]
+
+y utilizamos como guía:
+
+\[
+\boxed{
+\begin{array}{c|c}
+\text{Condición} & \text{Curva}\\
+\hline
+A=B=0 & \text{Recta}\\
+A=B\neq0 & \text{Circunferencia}\\
+AB>0,\ A\neq B & \text{Elipse}\\
+AB<0 & \text{Hipérbola}
+\end{array}
+}
+\]
+
+El procedimiento de completar cuadrados permite pasar de la ecuación
+general a la forma canónica y, a partir de ella, identificar de manera
+directa las características geométricas de la curva.
 
 \end{document}
