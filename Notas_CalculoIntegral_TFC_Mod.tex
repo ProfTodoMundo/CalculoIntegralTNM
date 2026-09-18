@@ -6797,9 +6797,12 @@ Obtenga la derivada.
 \item $\displaystyle \frac{d}{dx}\int_1^{x^3}\sqrt[3]{t^2+1}\,dt$.
 \item $\displaystyle \frac{d}{dx}\int_x^{x^2}\frac1{\sqrt{t^2+1}}\,dt$.
 \end{enumerate}
+
 \newpage
 %========================================================
+%========================================================
 \section{Solución de ejercicios}
+%========================================================
 %========================================================
 %--------------------------------------------------------
 \subsection*{Ejercicio 87}
@@ -7062,156 +7065,62 @@ Los subintervalos son
 \]
 
 Sus longitudes son
-\[
-\Delta x_1=1-0.25=0.75=\frac34,
-\]
-\[
-\Delta x_2=1.5-1=0.5=\frac12,
-\]
-\[
-\Delta x_3=1.75-1.5=0.25=\frac14,
-\]
-\[
-\Delta x_4=2.25-1.75=0.5=\frac12,
-\]
-\[
-\Delta x_5=3-2.25=0.75=\frac34.
-\]
+\begin{eqnarray*}
+\Delta x_1&=&1-0.25=0.75=\frac34,\\
+\Delta x_2&=&1.5-1=0.5=\frac12,\\
+\Delta x_3&=&1.75-1.5=0.25=\frac14,\\
+\Delta x_4&=&2.25-1.75=0.5=\frac12,\\
+\Delta x_5&=&3-2.25=0.75=\frac34.
+\end{eqnarray*}
 
 Los puntos de muestra correspondientes son
-\[
+\begin{eqnarray*}
 \xi_1=0.5,\quad
 \xi_2=1.25,\quad
 \xi_3=1.75,\quad
 \xi_4=2,\quad
 \xi_5=2.75.
-\]
+\end{eqnarray*}
 
 Evaluamos la función en cada uno:
-
-\[
-f(0.5)=10-(0.5)^2
-=10-\frac14
-=\frac{39}{4},
-\]
-
-\[
-f(1.25)
-=
-10-\left(\frac54\right)^2
-=
-10-\frac{25}{16}
-=
-\frac{135}{16},
-\]
-
-\[
-f(1.75)
-=
-10-\left(\frac74\right)^2
-=
-10-\frac{49}{16}
-=
-\frac{111}{16},
-\]
-
-\[
-f(2)=10-4=6,
-\]
-
-\[
-f(2.75)
-=
-10-\left(\frac{11}{4}\right)^2
-=
-10-\frac{121}{16}
-=
-\frac{39}{16}.
-\]
-
+\begin{eqnarray*}
+f(0.5)&=&10-(0.5)^2=10-\frac14=\frac{39}{4},\\
+f(1.25)&=&10-\left(\frac54\right)^2=10-\frac{25}{16}=\frac{135}{16},\\
+f(1.75)&=&10-\left(\frac74\right)^2=10-\frac{49}{16}=\frac{111}{16},\\
+f(2)&=&10-4=6,\\
+f(2.75)&=&10-\left(\frac{11}{4}\right)^2=10-\frac{121}{16}=\frac{39}{16}.\\
+\end{eqnarray*}
 Por tanto,
 
-\[
-S=
-\frac{39}{4}\left(\frac34\right)
-+
-\frac{135}{16}\left(\frac12\right)
-+
-\frac{111}{16}\left(\frac14\right)
-+
-6\left(\frac12\right)
-+
-\frac{39}{16}\left(\frac34\right).
-\]
+\[S=\frac{39}{4}\left(\frac34\right)+\frac{135}{16}\left(\frac12\right)+\frac{111}{16}\left(\frac14\right)+6\left(\frac12\right)+\frac{39}{16}\left(\frac34\right).\]
 
 Calculando cada producto,
 
-\[
-S
-=
-\frac{117}{16}
-+
-\frac{135}{32}
-+
-\frac{111}{64}
-+
-3
-+
-\frac{117}{64}.
-\]
+\[S=\frac{117}{16}+\frac{135}{32}+\frac{111}{64}+3+\frac{117}{64}.\]
 
 Con denominador común \(64\),
 
-\[
-S
-=
-\frac{468}{64}
-+
-\frac{270}{64}
-+
-\frac{111}{64}
-+
-\frac{192}{64}
-+
-\frac{117}{64}.
-\]
+\[S=\frac{468}{64}+\frac{270}{64}+\frac{111}{64}+\frac{192}{64}+\frac{117}{64}.\]
 
 Así,
 
-\[
-S
-=
-\frac{1158}{64}
-=
-\frac{579}{32}.
-\]
+\[S=\frac{1158}{64}=\frac{579}{32}.\]
 
 Por lo tanto,
 
-\[
-\boxed{
-S=\frac{579}{32}\approx18.09375
-}.
-\]
+\[\boxed{S=\frac{579}{32}\approx18.09375}.\]
 
 %========================================================
 \subsection*{Ejercicio 91}
-
+%========================================================
 Para
-\[
-f(x)=\frac1x
-\]
+\[f(x)=\frac1x\]
 en el intervalo
-\[
-[1,4],
-\]
+\[[1,4],\]
 se utiliza la partición
-\[
-P=\{1,1.5,2,3,4\}.
-\]
+\[P=\{1,1.5,2,3,4\}.\]
 
-Se pide seleccionar arbitrariamente un punto de muestra en cada
-subintervalo.
+Se pide seleccionar arbitrariamente un punto de muestra en cada subintervalo.
 
 Los subintervalos son
 \[
@@ -7222,97 +7131,46 @@ Los subintervalos son
 \]
 
 Elegiremos, por comodidad, los puntos medios:
-
-\[
-\xi_1=1.25=\frac54,
-\]
-\[
-\xi_2=1.75=\frac74,
-\]
-\[
-\xi_3=2.5=\frac52,
-\]
-\[
+\begin{eqnarray*}
+\xi_1=1.25=\frac54,\\
+\xi_2=1.75=\frac74,\\
+\xi_3=2.5=\frac52,\\
 \xi_4=3.5=\frac72.
-\]
+\end{eqnarray*}
 
 Las longitudes de los subintervalos son
-
-\[
-\Delta x_1=1.5-1=\frac12,
-\]
-\[
-\Delta x_2=2-1.5=\frac12,
-\]
-\[
-\Delta x_3=3-2=1,
-\]
-\[
-\Delta x_4=4-3=1.
-\]
-
+\begin{eqnarray*}
+\Delta x_1&=&1.5-1=\frac12,\\
+\Delta x_2&=&2-1.5=\frac12,\\
+\Delta x_3&=&3-2=1,\\
+\Delta x_4&=&4-3=1.
+\end{eqnarray*}
 La suma de Riemann es
 
-\[
-S
-=
-f\left(\frac54\right)\frac12
-+
-f\left(\frac74\right)\frac12
-+
-f\left(\frac52\right)(1)
-+
-f\left(\frac72\right)(1).
-\]
+\[S=f\left(\frac54\right)\frac12+f\left(\frac74\right)\frac12+f\left(\frac52\right)(1)+f\left(\frac72\right)(1).\]
 
 Como
-\[
-f(x)=\frac1x,
-\]
+\[f(x)=\frac1x,\]
 tenemos
 
-\[
-f\left(\frac54\right)=\frac45,
-\]
-\[
-f\left(\frac74\right)=\frac47,
-\]
-\[
-f\left(\frac52\right)=\frac25,
-\]
-\[
-f\left(\frac72\right)=\frac27.
-\]
+\begin{eqnarray*}
+f\left(\frac54\right)&=&\frac45,\\
+f\left(\frac74\right)&=&\frac47,\\
+f\left(\frac52\right)&=&\frac25,\\
+f\left(\frac72\right)&=&\frac27.
+\end{eqnarray*}
 
 Entonces
 
-\[
-S
-=
-\frac45\left(\frac12\right)
-+
-\frac47\left(\frac12\right)
-+
-\frac25
-+
-\frac27.
-\]
+\[S=\frac45\left(\frac12\right)+\frac47\left(\frac12\right)+\frac25+\frac27.\]
 
 Por tanto,
 
-\[
-S
-=
-\frac25+\frac27+\frac25+\frac27.
-\]
+\[S=\frac25+\frac27+\frac25+\frac27.\]
 
 Agrupando,
 
-\[
-S
-=
-\frac45+\frac47.
-\]
+\[S=\frac45+\frac47.\]
 
 El denominador común es \(35\), de modo que
 
@@ -7326,11 +7184,7 @@ S
 
 Así,
 
-\[
-\boxed{
-S=\frac{48}{35}\approx1.37143
-}.
-\]
+\[\boxed{S=\frac{48}{35}\approx1.37143}.\]
 
 \textbf{Observación.}
 Como el problema permite seleccionar arbitrariamente los puntos de
@@ -7339,33 +7193,22 @@ de los puntos elegidos.
 
 %========================================================
 \subsection*{Ejercicio 93}
+%========================================================
 
 Explique por qué los extremos izquierdo, derecho y el punto medio son
 casos particulares de una suma de Riemann.
 
 Sea una partición del intervalo
-\[
-[a,b]
-\]
+\[[a,b]\]
 dada por
 
-\[
-P=\{x_0,x_1,\ldots,x_n\},
-\]
+\[P=\{x_0,x_1,\ldots,x_n\},\]
 donde
-\[
-a=x_0<x_1<\cdots<x_n=b.
-\]
+\[a=x_0<x_1<\cdots<x_n=b.\]
 
 Una suma de Riemann tiene la forma general
 
-\[
-\boxed{
-S(P,f)=
-\sum_{i=1}^{n}
-f(\xi_i)\Delta x_i
-}
-\]
+\[\boxed{S(P,f)=\sum_{i=1}^{n}f(\xi_i)\Delta x_i}\]
 donde
 
 \[
@@ -7421,20 +7264,10 @@ Esta es la suma de Riemann por extremos derechos.
 
 Si se elige como punto de muestra el centro de cada subintervalo,
 
-\[
-\xi_i=
-\frac{x_{i-1}+x_i}{2},
-\]
+\[\xi_i=\frac{x_{i-1}+x_i}{2},\]
 entonces
 
-\[
-M_n
-=
-\sum_{i=1}^{n}
-f\left(
-\frac{x_{i-1}+x_i}{2}
-\right)\Delta x_i.
-\]
+\[M_n=\sum_{i=1}^{n}f\left(\frac{x_{i-1}+x_i}{2}\right)\Delta x_i.\]
 
 Por consiguiente, las sumas por extremos izquierdos, extremos derechos y
 puntos medios no son métodos diferentes en esencia, sino casos
@@ -7442,11 +7275,7 @@ particulares de la suma de Riemann general.
 
 En todos ellos se utiliza la expresión
 
-\[
-\boxed{
-\sum_{i=1}^{n}f(\xi_i)\Delta x_i
-}
-\]
+\[\boxed{\sum_{i=1}^{n}f(\xi_i)\Delta x_i}\]
 
 y únicamente cambia la forma en que se seleccionan los puntos
 \(\xi_i\).
@@ -7459,24 +7288,17 @@ regular.
 
 Sea
 
-\[
-P=
-\{x_0,x_1,\ldots,x_n\}
-\]
+\[P=\{x_0,x_1,\ldots,x_n\}\]
 una partición del intervalo \([a,b]\), donde
 
-\[
-a=x_0<x_1<x_2<\cdots<x_n=b.
-\]
+\[a=x_0<x_1<x_2<\cdots<x_n=b.\]
 
 Cuando la partición no es regular, los subintervalos no necesariamente
 tienen la misma longitud.
 
 Para cada subintervalo
 
-\[
-[x_{i-1},x_i],
-\]
+\[[x_{i-1},x_i],\]
 se define
 
 \[
