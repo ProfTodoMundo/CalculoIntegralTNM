@@ -1,0 +1,1428 @@
+\documentclass[10pt,aspectratio=169]{beamer}
+\usetheme{Madrid}
+\usecolortheme{default}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,mexico]{babel}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{tikz}
+\usepackage{booktabs,array}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{theorems}[numbered]
+\newtheorem{observacion}{Observación}
+\newtheorem{pregunta}{Pregunta guía}
+\title{Cálculo Integral}
+\subtitle{Integrales trigonométricas elementales y sustitución trigonométrica}
+\author{Carlos Ernesto Martínez}
+\institute{Tecnológico Nacional de México}
+\date{}
+\begin{document}
+
+\begin{frame}\titlepage\end{frame}
+
+
+%=========================================================
+\section{Integrales de las funciones trigonométricas elementales}
+%=========================================================
+
+\begin{frame}{Antes de la sustitución trigonométrica}
+Antes de estudiar sustituciones como
+\[
+x=a\sin\theta,\qquad x=a\tan\theta,\qquad x=a\sec\theta,
+\]
+conviene separar un problema anterior e independiente:
+\begin{block}{Pregunta}
+¿Cómo se integran las seis funciones trigonométricas elementales y cuáles de sus primitivas pueden reconstruirse sin memorizar una tabla?
+\end{block}
+Esta revisión será importante más adelante porque, después de una sustitución trigonométrica, tendremos que integrar expresiones que contienen senos, cosenos, tangentes, secantes, etc.
+\end{frame}
+
+\begin{frame}{Punto de partida: integrar es leer una derivada al revés}
+Si conocemos
+\[
+F'(x)=f(x),
+\]
+entonces podemos leer la igualdad en sentido inverso:
+\[
+\boxed{\int f(x)\,dx=F(x)+C.}
+\]
+Por eso, antes de memorizar integrales trigonométricas, conviene recordar las derivadas básicas.
+\begin{block}{Idea didáctica}
+Primero preguntamos: ``¿reconozco al integrando como una derivada conocida?'' Sólo cuando la respuesta es no necesitamos transformar la expresión.
+\end{block}
+\end{frame}
+
+\begin{frame}{Derivadas trigonométricas que ya conocemos}
+\small
+\[
+\boxed{
+\begin{aligned}
+(\sin x)'&=\cos x, & (\cos x)'&=-\sin x,\\[1mm]
+(\tan x)'&=\sec^2x, & (\cot x)'&=-\csc^2x,\\[1mm]
+(\sec x)'&=\sec x\tan x, & (\csc x)'&=-\csc x\cot x.
+\end{aligned}}
+\]
+Observe que aquí aparecen directamente seis integrandos:
+\[
+\cos x,\quad \sin x,\quad \sec^2x,\quad \csc^2x,
+\quad \sec x\tan x,\quad \csc x\cot x.
+\]
+Por tanto, esas seis integrales no requieren una técnica nueva.
+\end{frame}
+
+\begin{frame}{Seis primitivas inmediatas}
+\small
+Leyendo las derivadas anteriores en sentido inverso:
+\[
+\boxed{
+\begin{aligned}
+\int \cos x\,dx&=\sin x+C,\\
+\int \sin x\,dx&=-\cos x+C,\\
+\int \sec^2x\,dx&=\tan x+C,\\
+\int \csc^2x\,dx&=-\cot x+C,\\
+\int \sec x\tan x\,dx&=\sec x+C,\\
+\int \csc x\cot x\,dx&=-\csc x+C.
+\end{aligned}}
+\]
+\begin{alertblock}{Atención a los signos}
+Los signos negativos en las primitivas de $\sin x$, $\csc^2x$ y $\csc x\cot x$ provienen de las derivadas de $\cos x$, $\cot x$ y $\csc x$.
+\end{alertblock}
+\end{frame}
+
+\begin{frame}{¿Qué integrales faltan?}
+La tabla de derivadas no nos entrega inmediatamente
+\[
+\boxed{
+\int\tan x\,dx,\qquad
+\int\cot x\,dx,\qquad
+\int\sec x\,dx,\qquad
+\int\csc x\,dx.}
+\]
+No conviene tratarlas como cuatro fórmulas aisladas.
+\vspace{2mm}
+\begin{block}{Objetivo}
+Vamos a reconstruir las cuatro hasta convertirlas en la estructura
+\[
+\boxed{\int\frac{u'}{u}\,dx=\ln|u|+C.}
+\]
+Así veremos que, en realidad, las cuatro tienen una misma raíz conceptual: el logaritmo natural.
+\end{block}
+\end{frame}
+
+%---------------- Tangente ----------------
+\subsection{Integral de la tangente}
+\begin{frame}{Integral de $\tan x$: primer paso}
+Queremos calcular
+\[
+I=\int\tan x\,dx.
+\]
+La tangente puede escribirse como cociente:
+\[
+\tan x=\frac{\sin x}{\cos x}.
+\]
+Entonces
+\[
+I=\int\frac{\sin x}{\cos x}\,dx.
+\]
+\begin{pregunta}
+¿Qué función aparece en el denominador y dónde está su derivada?
+\end{pregunta}
+El denominador es $\cos x$ y
+\[
+(\cos x)'=-\sin x.
+\]
+El numerador contiene precisamente $\sin x$; sólo falta controlar el signo.
+\end{frame}
+
+\begin{frame}{Integral de $\tan x$: sustitución}
+Tomamos
+\[
+\boxed{u=\cos x}.
+\]
+Entonces
+\[
+du=-\sin x\,dx
+\qquad\Longrightarrow\qquad
+\sin x\,dx=-du.
+\]
+Sustituyendo paso a paso,
+\begin{align*}
+I
+&=\int\frac{\sin x}{\cos x}\,dx\\
+&=\int\frac{-du}{u}\\
+&=-\int\frac{du}{u}\\
+&=-\ln|u|+C.
+\end{align*}
+Regresando a $x$,
+\[
+\boxed{\int\tan x\,dx=-\ln|\cos x|+C.}
+\]
+\end{frame}
+
+\begin{frame}{¿Por qué también aparece $\ln|\sec x|$?}
+Como
+\[
+\sec x=\frac{1}{\cos x},
+\]
+entonces
+\begin{align*}
+\ln|\sec x|
+&=\ln\left|\frac{1}{\cos x}\right|\\
+&=\ln 1-\ln|\cos x|\\
+&=-\ln|\cos x|.
+\end{align*}
+Por tanto,
+\[
+\boxed{
+\int\tan x\,dx
+=-\ln|\cos x|+C
+=\ln|\sec x|+C.}
+\]
+No son dos métodos distintos: son dos escrituras equivalentes de la misma primitiva.
+\end{frame}
+
+%---------------- Cotangente ----------------
+\subsection{Integral de la cotangente}
+\begin{frame}{Integral de $\cot x$: reconocer la misma estructura}
+Ahora
+\[
+I=\int\cot x\,dx.
+\]
+Usamos
+\[
+\cot x=\frac{\cos x}{\sin x},
+\]
+de modo que
+\[
+I=\int\frac{\cos x}{\sin x}\,dx.
+\]
+Esta vez la situación es todavía más directa:
+\[
+(\sin x)'=\cos x.
+\]
+Así, el numerador es exactamente la derivada del denominador.
+\end{frame}
+
+\begin{frame}{Integral de $\cot x$: desarrollo completo}
+Tomamos
+\[
+\boxed{u=\sin x},\qquad du=\cos x\,dx.
+\]
+Entonces
+\begin{align*}
+I
+&=\int\frac{\cos x}{\sin x}\,dx\\
+&=\int\frac{du}{u}\\
+&=\ln|u|+C\\
+&=\boxed{\ln|\sin x|+C}.
+\end{align*}
+Por tanto,
+\[
+\boxed{\int\cot x\,dx=\ln|\sin x|+C.}
+\]
+\begin{block}{Comparación}
+$\tan x$ produce un signo negativo porque $(\cos x)'=-\sin x$; $\cot x$ no lo produce porque $(\sin x)'=\cos x$.
+\end{block}
+\end{frame}
+
+\begin{frame}{$\tan x$ y $\cot x$: una sola idea}
+Podemos ver ambas integrales sin hacer la sustitución explícita:
+\[
+\tan x
+=\frac{\sin x}{\cos x}
+=-\frac{(\cos x)'}{\cos x},
+\]
+\[
+\cot x
+=\frac{\cos x}{\sin x}
+=\frac{(\sin x)'}{\sin x}.
+\]
+Por tanto, ambas son manifestaciones de
+\[
+\boxed{\int\frac{f'(x)}{f(x)}\,dx=\ln|f(x)|+C.}
+\]
+Ésta es la estructura que debemos aprender a reconocer; las fórmulas particulares salen de ella.
+\end{frame}
+
+%---------------- Secante ----------------
+\subsection{Integral de la secante}
+\begin{frame}{La secante: ¿por qué es menos evidente?}
+Consideremos
+\[
+I=\int\sec x\,dx.
+\]
+Si intentamos una sustitución inmediata, aparece un problema:
+\[
+(\sec x)'=\sec x\tan x,
+\]
+pero en la integral sólo tenemos $\sec x$.
+\vspace{2mm}
+Tampoco escribir $\sec x=1/\cos x$ produce directamente $f'/f$, porque falta un factor $\sin x$.
+\begin{alertblock}{Necesitamos una manipulación adicional}
+Vamos a modificar la apariencia del integrando sin cambiar su valor, multiplicando por una forma conveniente de $1$.
+\end{alertblock}
+\end{frame}
+
+\begin{frame}{¿Cómo se descubre el ``truco'' de la secante?}
+Queremos fabricar un denominador cuya derivada aparezca en el numerador.
+Recordemos
+\[
+(\sec x)'=\sec x\tan x,
+\qquad
+(\tan x)'=\sec^2x.
+\]
+Si sumamos las funciones,
+\[
+\frac{d}{dx}(\sec x+\tan x)
+=\sec x\tan x+\sec^2x.
+\]
+Factorizando el lado derecho,
+\[
+\sec x\tan x+\sec^2x
+=\sec x(\tan x+\sec x).
+\]
+¡Ésta contiene exactamente el factor $\sec x$ que queremos integrar!
+\end{frame}
+
+\begin{frame}{Secante: fabricar $u'/u$}
+Multiplicamos por
+\[
+1=\frac{\sec x+\tan x}{\sec x+\tan x}.
+\]
+Entonces
+\begin{align*}
+I
+&=\int\sec x
+\frac{\sec x+\tan x}{\sec x+\tan x}\,dx\\[1mm]
+&=\int
+\frac{\sec^2x+\sec x\tan x}{\sec x+\tan x}\,dx.
+\end{align*}
+Ahora compare:
+\[
+\underbrace{\sec x+\tan x}_{u}
+\qquad\Longrightarrow\qquad
+\underbrace{\sec x\tan x+\sec^2x}_{u'}.
+\]
+La manipulación no fue mágica: fue diseñada para producir $u'/u$.
+\end{frame}
+
+\begin{frame}{Secante: terminar la sustitución}
+Tomamos
+\[
+\boxed{u=\sec x+\tan x}.
+\]
+Entonces
+\[
+du=(\sec x\tan x+\sec^2x)\,dx.
+\]
+Por tanto,
+\begin{align*}
+I
+&=\int\frac{du}{u}\\
+&=\ln|u|+C\\
+&=\boxed{\ln|\sec x+\tan x|+C}.
+\end{align*}
+Así,
+\[
+\boxed{\int\sec x\,dx=\ln|\sec x+\tan x|+C.}
+\]
+\end{frame}
+
+\begin{frame}{Comprobación de la integral de la secante}
+Siempre podemos verificar una primitiva derivando:
+\small
+\begin{align*}
+\frac{d}{dx}\ln|\sec x+\tan x|
+&=\frac{\sec x\tan x+\sec^2x}{\sec x+\tan x}\\
+&=\frac{\sec x(\tan x+\sec x)}{\sec x+\tan x}\\
+&=\sec x.
+\end{align*}
+Por lo tanto, la fórmula es correcta.
+\begin{block}{Lección}
+La derivación no sólo sirve para comprobar el resultado; también explica retrospectivamente por qué elegimos $\sec x+\tan x$.
+\end{block}
+\end{frame}
+
+%---------------- Cosecante ----------------
+\subsection{Integral de la cosecante}
+\begin{frame}{La cosecante: repetir la estrategia, no la fórmula}
+Queremos calcular
+\[
+I=\int\csc x\,dx.
+\]
+Recordemos
+\[
+(\csc x)'=-\csc x\cot x,
+\qquad
+(\cot x)'=-\csc^2x.
+\]
+Entonces
+\[
+\frac{d}{dx}(\csc x+\cot x)
+=-\csc x\cot x-\csc^2x.
+\]
+Factorizando,
+\[
+=-\csc x(\cot x+\csc x).
+\]
+Esto sugiere fabricar nuevamente una razón $u'/u$.
+\end{frame}
+
+\begin{frame}{Cosecante: multiplicar por una forma de $1$}
+Multiplicamos por
+\[
+1=\frac{\csc x+\cot x}{\csc x+\cot x}.
+\]
+Así,
+\begin{align*}
+I
+&=\int\csc x
+\frac{\csc x+\cot x}{\csc x+\cot x}\,dx\\[1mm]
+&=\int
+\frac{\csc^2x+\csc x\cot x}{\csc x+\cot x}\,dx.
+\end{align*}
+Pero
+\[
+\frac{d}{dx}(\csc x+\cot x)
+=-(\csc^2x+\csc x\cot x).
+\]
+El numerador es el negativo de la derivada del denominador.
+\end{frame}
+
+\begin{frame}{Cosecante: sustitución y resultado}
+Tomamos
+\[
+\boxed{u=\csc x+\cot x}.
+\]
+Entonces
+\[
+du=-(\csc^2x+\csc x\cot x)\,dx,
+\]
+y por ello
+\begin{align*}
+I
+&=-\int\frac{du}{u}\\
+&=-\ln|u|+C\\
+&=\boxed{-\ln|\csc x+\cot x|+C}.
+\end{align*}
+Por tanto,
+\[
+\boxed{\int\csc x\,dx=-\ln|\csc x+\cot x|+C.}
+\]
+\end{frame}
+
+\begin{frame}{Una segunda forma para la integral de $\csc x$}
+Usamos la identidad
+\[
+\csc^2x=1+\cot^2x.
+\]
+Entonces
+\begin{align*}
+(\csc x-\cot x)(\csc x+\cot x)
+&=\csc^2x-\cot^2x\\
+&=1.
+\end{align*}
+Por tanto,
+\[
+\csc x-\cot x=\frac{1}{\csc x+\cot x}.
+\]
+Tomando logaritmos,
+\[
+\ln|\csc x-\cot x|=-\ln|\csc x+\cot x|.
+\]
+Así,
+\[
+\boxed{\int\csc x\,dx=\ln|\csc x-\cot x|+C.}
+\]
+\end{frame}
+
+\begin{frame}{Comprobación de la forma alternativa}
+Derivemos
+\[
+F(x)=\ln|\csc x-\cot x|.
+\]
+Entonces
+\small
+\begin{align*}
+F'(x)
+&=\frac{-\csc x\cot x+\csc^2x}{\csc x-\cot x}\\
+&=\frac{\csc x(\csc x-\cot x)}{\csc x-\cot x}\\
+&=\csc x.
+\end{align*}
+Así confirmamos nuevamente que
+\[
+\int\csc x\,dx=\ln|\csc x-\cot x|+C.
+\]
+Las dos formas logarítmicas representan la misma familia de primitivas.
+\end{frame}
+
+%---------------- Síntesis ----------------
+\subsection{Síntesis y conexión con el logaritmo}
+\begin{frame}{Resumen: las seis integrales inmediatas}
+\footnotesize
+\[
+\boxed{
+\begin{aligned}
+\int\cos x\,dx&=\sin x+C,
+&\int\sin x\,dx&=-\cos x+C,\\[1mm]
+\int\sec^2x\,dx&=\tan x+C,
+&\int\csc^2x\,dx&=-\cot x+C,\\[1mm]
+\int\sec x\tan x\,dx&=\sec x+C,
+&\int\csc x\cot x\,dx&=-\csc x+C.
+\end{aligned}}
+\]
+Estas seis salen directamente de la tabla de derivadas. No requieren una técnica adicional.
+\end{frame}
+
+\begin{frame}{Resumen: las cuatro que reconstruimos}
+\small
+\[
+\boxed{
+\begin{aligned}
+\int\tan x\,dx
+&=-\ln|\cos x|+C
+=\ln|\sec x|+C,\\[1mm]
+\int\cot x\,dx
+&=\ln|\sin x|+C,\\[1mm]
+\int\sec x\,dx
+&=\ln|\sec x+\tan x|+C,\\[1mm]
+\int\csc x\,dx
+&=-\ln|\csc x+\cot x|+C\\
+&=\ln|\csc x-\cot x|+C.
+\end{aligned}}
+\]
+La meta no es memorizar las cuatro líneas, sino recordar cómo reconstruirlas.
+\end{frame}
+
+\begin{frame}{¿Por qué aparece siempre el logaritmo?}
+Recordemos la estructura fundamental
+\[
+\boxed{\int\frac{du}{u}=\ln|u|+C.}
+\]
+Y, en forma compuesta,
+\[
+\boxed{\int\frac{f'(x)}{f(x)}\,dx=\ln|f(x)|+C.}
+\]
+En los cuatro casos hicimos exactamente eso:
+\begin{itemize}
+\item $\tan x$ y $\cot x$: la estructura $f'/f$ ya estaba casi visible.
+\item $\sec x$ y $\csc x$: tuvimos que fabricarla algebraicamente.
+\end{itemize}
+Por eso los logaritmos no aparecen por casualidad.
+\end{frame}
+
+\begin{frame}{Conexión con la definición del logaritmo natural}
+Para $x>0$, podemos definir
+\[
+\boxed{\ln x=\int_1^x\frac{dt}{t}.}
+\]
+Por ello, la integral
+\[
+\int\frac{du}{u}
+\]
+es precisamente la estructura elemental que genera el logaritmo.
+\vspace{2mm}
+Las primitivas de $\tan x$, $\cot x$, $\sec x$ y $\csc x$ no son, por tanto, resultados aislados: todas terminan reduciéndose a esa misma estructura.
+\end{frame}
+
+\begin{frame}{Mapa conceptual de esta primera parte}
+\[
+\boxed{
+\begin{array}{c}
+\text{función trigonométrica}\\[1mm]
+\downarrow\\
+\text{¿es una derivada conocida?}\\[1mm]
+\swarrow\qquad\searrow\\[-1mm]
+\text{sí}\qquad\qquad\text{no}\\
+\downarrow\qquad\qquad\downarrow\\
+\text{integrar directamente}\qquad
+\text{buscar o fabricar }f'/f\\[1mm]
+\qquad\qquad\downarrow\\
+\qquad\qquad\ln|f(x)|+C
+\end{array}}
+\]
+Este patrón será útil cuando las sustituciones trigonométricas transformen una integral algebraica en una integral trigonométrica.
+\end{frame}
+
+\begin{frame}{Transición: ahora sí, sustitución trigonométrica}
+Ya contamos con dos herramientas distintas:
+\begin{enumerate}
+\item sabemos integrar las funciones trigonométricas elementales;
+\item sabemos reconocer la estructura $f'/f$ que conduce al logaritmo.
+\end{enumerate}
+Ahora estudiaremos una técnica diferente: usar identidades trigonométricas para simplificar expresiones algebraicas como
+\[
+\sqrt{a^2-x^2},\qquad
+\sqrt{a^2+x^2},\qquad
+\sqrt{x^2-a^2}.
+\]
+La pregunta cambia de ``¿cómo integro esta función trigonométrica?'' a
+\[
+\boxed{\text{¿cómo uso trigonometría para simplificar una expresión algebraica?}}
+\]
+\end{frame}
+
+
+\begin{frame}{Objetivo de esta parte}
+Al terminar esta sección debemos poder responder, sin depender de una tabla, cuatro preguntas:
+\begin{enumerate}
+\item ¿Qué expresión algebraica está dificultando la integral?
+\item ¿Por qué conviene usar seno, tangente o secante?
+\item ¿Cómo la identidad pitagórica elimina la raíz?
+\item ¿Cómo regresamos de $\theta$ a $x$ mediante un triángulo rectángulo?
+\end{enumerate}
+\vspace{2mm}
+La idea no es memorizar tres recetas, sino comprender el mecanismo
+\[
+\boxed{\text{estructura algebraica}\to\text{identidad}\to\text{sustitución}\to\text{triángulo}.}
+\]
+\end{frame}
+
+\section{Idea central}
+\begin{frame}{¿Por qué introducir trigonometría?}
+Hasta ahora, una sustitución típica puede ser
+\[
+u=x^2+1,\qquad u=3x-2.
+\]
+En sustitución trigonométrica hacemos algo diferente: introducimos deliberadamente un ángulo $\theta$.
+\vspace{2mm}
+\begin{pregunta}
+¿Por qué introducir una función trigonométrica si la integral original ni siquiera contiene trigonometría?
+\end{pregunta}
+\pause
+Porque las identidades pitagóricas pueden transformar \textbf{sumas y diferencias de cuadrados} en \textbf{cuadrados perfectos}.
+\end{frame}
+
+\begin{frame}{Las tres identidades que gobiernan la técnica}
+\[
+\boxed{1-\sin^2\theta=\cos^2\theta}
+\]
+\[
+\boxed{1+\tan^2\theta=\sec^2\theta}
+\]
+\[
+\boxed{\sec^2\theta-1=\tan^2\theta}
+\]
+No son tres fórmulas desconectadas. Son exactamente las identidades que necesitamos para las estructuras
+\[
+a^2-x^2,\qquad a^2+x^2,\qquad x^2-a^2.
+\]
+\end{frame}
+
+\begin{frame}{¿Qué queremos conseguir?}
+Supongamos que aparece
+\[
+\sqrt{a^2-x^2}.
+\]
+La raíz sería mucho más sencilla si el radicando pudiera escribirse como un cuadrado:
+\[
+a^2-x^2=a^2\cos^2\theta.
+\]
+Entonces
+\[
+\sqrt{a^2-x^2}=\sqrt{a^2\cos^2\theta}=a|\cos\theta|.
+\]
+Con una elección adecuada del intervalo de $\theta$,
+\[
+\sqrt{a^2-x^2}=a\cos\theta.
+\]
+\begin{block}{Propósito esencial}
+Convertir una suma o diferencia de cuadrados en un cuadrado perfecto mediante una identidad trigonométrica.
+\end{block}
+\end{frame}
+
+\section{Cómo descubrir las sustituciones}
+\begin{frame}{Caso algebraico 1: $a^2-x^2$}
+No empezamos memorizando $x=a\sin\theta$. La deducimos.
+\begin{align*}
+a^2-x^2=a^2\left(1-\frac{x^2}{a^2}\right)=a^2\left[1-\left(\frac{x}{a}\right)^2\right].
+\end{align*}
+Ahora comparamos con
+\[
+1-\sin^2\theta=\cos^2\theta.
+\]
+Para que ambas expresiones tengan la misma estructura hacemos
+\[
+\frac{x}{a}=\sin\theta.
+\]
+Por tanto,
+\[
+\boxed{x=a\sin\theta}.
+\]
+\end{frame}
+
+\begin{frame}{¿Qué gana la sustitución $x=a\sin\theta$?}
+Si $x=a\sin\theta$, entonces
+\begin{align*}
+a^2-x^2=a^2-a^2\sin^2\theta=a^2(1-\sin^2\theta)=a^2\cos^2\theta.
+\end{align*}
+Por ello,
+\[
+\sqrt{a^2-x^2}=a|\cos\theta|.
+\]
+Además, al derivar la sustitución,
+\[
+\boxed{dx=a\cos\theta\,d\theta}.
+\]
+Observe que la misma función $\cos\theta$ aparece tanto en la raíz transformada como en $dx$. Esa compatibilidad es parte de la eficacia de la sustitución.
+\end{frame}
+
+\begin{frame}{Caso algebraico 2: $a^2+x^2$}
+Factorizamos $a^2$:
+\begin{align*}
+a^2+x^2=a^2\left(1+\frac{x^2}{a^2}\right)=a^2\left[1+\left(\frac{x}{a}\right)^2\right].
+\end{align*}
+La identidad con la misma estructura es
+\[
+1+\tan^2\theta=\sec^2\theta.
+\]
+Por eso identificamos
+\[
+\frac{x}{a}=\tan\theta,
+\]
+y obtenemos
+\[
+\boxed{x=a\tan\theta},\qquad \boxed{dx=a\sec^2\theta\,d\theta}.
+\]
+\end{frame}
+
+\begin{frame}{¿Qué gana la sustitución $x=a\tan\theta$?}
+\begin{align*}
+a^2+x^2=a^2+a^2\tan^2\theta=a^2(1+\tan^2\theta)=a^2\sec^2\theta.
+\end{align*}
+Así,
+\[
+\sqrt{a^2+x^2}=a|\sec\theta|.
+\]
+Si elegimos
+\[
+-\frac{\pi}{2}<\theta<\frac{\pi}{2},
+\]
+entonces $\cos\theta>0$ y, por tanto, $\sec\theta>0$:
+\[
+\boxed{\sqrt{a^2+x^2}=a\sec\theta}.
+\]
+\end{frame}
+
+\begin{frame}{Caso algebraico 3: $x^2-a^2$}
+Ahora escribimos
+\begin{align*}
+x^2-a^2=a^2\left(\frac{x^2}{a^2}-1\right)=a^2\left[\left(\frac{x}{a}\right)^2-1\right].
+\end{align*}
+Buscamos una identidad del tipo
+\[
+(\text{algo})^2-1=(\text{algo})^2.
+\]
+La identidad adecuada es
+\[
+\sec^2\theta-1=\tan^2\theta.
+\]
+Por ello,
+\[
+\boxed{x=a\sec\theta},\qquad
+\boxed{dx=a\sec\theta\tan\theta\,d\theta}.
+\]
+\end{frame}
+
+\begin{frame}{Las tres sustituciones, ahora deducidas}
+\centering
+\renewcommand{\arraystretch}{1.55}
+\begin{tabular}{>{\centering\arraybackslash}m{3cm}>{\centering\arraybackslash}m{4.4cm}>{\centering\arraybackslash}m{3.7cm}}
+\toprule
+Estructura & Identidad & Sustitución\\
+\midrule
+$a^2-x^2$ & $1-\sin^2\theta=\cos^2\theta$ & $x=a\sin\theta$\\
+$a^2+x^2$ & $1+\tan^2\theta=\sec^2\theta$ & $x=a\tan\theta$\\
+$x^2-a^2$ & $\sec^2\theta-1=\tan^2\theta$ & $x=a\sec\theta$\\
+\bottomrule
+\end{tabular}
+\vspace{4mm}
+\begin{alertblock}{Idea que sí conviene recordar}
+No memorice la última columna sin la columna central. La identidad es la razón de la sustitución.
+\end{alertblock}
+\end{frame}
+
+\section{Valor absoluto e intervalos}
+\begin{frame}{Un detalle que no debemos esconder: $\sqrt{u^2}=|u|$}
+En general,
+\[
+\boxed{\sqrt{u^2}=|u|},
+\]
+no simplemente $u$.
+Por ejemplo,
+\[
+\sqrt{a^2\cos^2\theta}=|a\cos\theta|.
+\]
+Si $a>0$,
+\[
+|a\cos\theta|=a|\cos\theta|.
+\]
+Para poder escribir $a\cos\theta$ necesitamos elegir un intervalo donde $\cos\theta\ge0$.
+\begin{block}{Elección habitual para $x=a\sin\theta$}
+\[
+-\frac{\pi}{2}\le\theta\le\frac{\pi}{2}.
+\]
+En este intervalo, $\cos\theta\ge0$.
+\end{block}
+\end{frame}
+
+\begin{frame}{¿Por qué restringimos $\theta$?}
+La restricción cumple dos funciones:
+\begin{enumerate}
+\item permite eliminar correctamente valores absolutos, por ejemplo
+\[
+\sqrt{\cos^2\theta}=\cos\theta;
+\]
+\item hace que la función trigonométrica usada sea uno a uno y podamos recuperar el ángulo mediante su inversa, por ejemplo
+\[
+\sin\theta=\frac{x}{a}
+\quad\Longrightarrow\quad
+\theta=\arcsin\left(\frac{x}{a}\right).
+\]
+\end{enumerate}
+Por eso la elección del intervalo no es un tecnicismo aislado: conecta la sustitución con las ramas principales de las funciones trigonométricas inversas.
+\end{frame}
+
+\section{El papel del triángulo}
+\begin{frame}{¿Por qué aparece un triángulo al final?}
+Supongamos que hicimos
+\[
+x=a\sin\theta.
+\]
+Después de integrar obtenemos una expresión en $\theta$, pero necesitamos una respuesta en $x$.
+De la sustitución,
+\[
+\sin\theta=\frac{x}{a}
+=\frac{\text{opuesto}}{\text{hipotenusa}}.
+\]
+Eso nos permite construir un triángulo rectángulo. El lado faltante se obtiene por Pitágoras.
+\begin{block}{Función del triángulo}
+El triángulo es un dispositivo de \textbf{reconstrucción}: traduce $\sin\theta$, $\cos\theta$, $\tan\theta$, $\sec\theta$, etc., nuevamente a expresiones algebraicas en $x$.
+\end{block}
+\end{frame}
+
+\begin{frame}{Triángulo asociado a $x=a\sin\theta$}
+\begin{columns}[T]
+\column{0.47\textwidth}
+De
+\[
+\sin\theta=\frac{x}{a}
+\]
+tomamos
+\[
+\text{opuesto}=x,\qquad \text{hipotenusa}=a.
+\]
+Por Pitágoras,
+\[
+\text{adyacente}=\sqrt{a^2-x^2}.
+\]
+Entonces
+\[
+\cos\theta=\frac{\sqrt{a^2-x^2}}{a},\qquad
+\tan\theta=\frac{x}{\sqrt{a^2-x^2}}.
+\]
+\column{0.50\textwidth}
+\centering
+\begin{tikzpicture}[scale=.9]
+\coordinate (A) at (0,0);\coordinate (B) at (4,0);\coordinate (C) at (4,3);
+\draw[thick] (A)--(B)--(C)--cycle;
+\draw (3.65,0)--(3.65,.35)--(4,.35);
+\node at (2,-.35) {$\sqrt{a^2-x^2}$};\node[right] at (4,1.5) {$x$};\node[above left] at (2.05,1.65) {$a$};
+\draw (.75,0) arc[start angle=0,end angle=36.87,radius=.75];\node at (.95,.32) {$\theta$};
+\end{tikzpicture}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Triángulo asociado a $x=a\tan\theta$}
+\begin{columns}[T]
+\column{0.47\textwidth}
+De
+\[
+\tan\theta=\frac{x}{a}
+\]
+tomamos
+\[
+\text{opuesto}=x,\qquad \text{adyacente}=a.
+\]
+Por Pitágoras,
+\[
+\text{hipotenusa}=\sqrt{a^2+x^2}.
+\]
+Por tanto,
+\[
+\sec\theta=\frac{\sqrt{a^2+x^2}}{a},\qquad
+\sin\theta=\frac{x}{\sqrt{a^2+x^2}}.
+\]
+\column{0.50\textwidth}
+\centering
+\begin{tikzpicture}[scale=.9]
+\coordinate (A) at (0,0);\coordinate (B) at (4,0);\coordinate (C) at (4,3);
+\draw[thick] (A)--(B)--(C)--cycle;
+\draw (3.65,0)--(3.65,.35)--(4,.35);
+\node at (2,-.35) {$a$};\node[right] at (4,1.5) {$x$};\node[above left] at (2.1,1.65) {$\sqrt{a^2+x^2}$};
+\draw (.75,0) arc[start angle=0,end angle=36.87,radius=.75];\node at (.95,.32) {$\theta$};
+\end{tikzpicture}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Triángulo asociado a $x=a\sec\theta$}
+\begin{columns}[T]
+\column{0.47\textwidth}
+De
+\[
+\sec\theta=\frac{x}{a}
+=\frac{\text{hipotenusa}}{\text{adyacente}}
+\]
+tomamos
+\[
+\text{hipotenusa}=x,\qquad \text{adyacente}=a.
+\]
+Por Pitágoras,
+\[
+\text{opuesto}=\sqrt{x^2-a^2}.
+\]
+Así,
+\[
+\tan\theta=\frac{\sqrt{x^2-a^2}}{a},\quad
+\sin\theta=\frac{\sqrt{x^2-a^2}}{x}.
+\]
+\column{0.50\textwidth}
+\centering
+\begin{tikzpicture}[scale=.9]
+\coordinate (A) at (0,0);\coordinate (B) at (4,0);\coordinate (C) at (4,3);
+\draw[thick] (A)--(B)--(C)--cycle;
+\draw (3.65,0)--(3.65,.35)--(4,.35);
+\node at (2,-.35) {$a$};\node[right] at (4,1.5) {$\sqrt{x^2-a^2}$};\node[above left] at (2.15,1.65) {$x$};
+\draw (.75,0) arc[start angle=0,end angle=36.87,radius=.75];\node at (.95,.32) {$\theta$};
+\end{tikzpicture}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Algoritmo razonado}
+\begin{enumerate}
+\item Identifique la expresión problemática: $a^2-x^2$, $a^2+x^2$ o $x^2-a^2$.
+\item Factorice $a^2$ mentalmente para reconocer la identidad pitagórica.
+\item Deduzca la sustitución trigonométrica apropiada.
+\item Calcule $dx$.
+\item Sustituya \textbf{toda} la integral, no sólo la raíz.
+\item Simplifique usando la identidad pitagórica.
+\item Integre respecto de $\theta$.
+\item Construya el triángulo correspondiente.
+\item Reescriba todas las funciones de $\theta$ en términos de $x$.
+\item Simplifique y añada $C$.
+\end{enumerate}
+\end{frame}
+
+\section{Ejemplo 1: $a^2-x^2$}
+\begin{frame}{Ejemplo 1: planteamiento}
+Calcular
+\[
+\boxed{I=\int\sqrt{a^2-x^2}\,dx},\qquad a>0.
+\]
+\begin{pregunta}
+¿Qué estructura aparece dentro de la raíz?
+\end{pregunta}
+\[
+a^2-x^2.
+\]
+La identidad correspondiente es
+\[
+1-\sin^2\theta=\cos^2\theta,
+\]
+por lo que elegimos
+\[
+\boxed{x=a\sin\theta}.
+\]
+\end{frame}
+
+\begin{frame}{Ejemplo 1: transformar $dx$ y la raíz}
+De
+\[
+x=a\sin\theta
+\]
+obtenemos
+\[
+\boxed{dx=a\cos\theta\,d\theta}.
+\]
+Por otra parte,
+\begin{align*}
+\sqrt{a^2-x^2}
+&=\sqrt{a^2-a^2\sin^2\theta}\\
+&=a\sqrt{1-\sin^2\theta}\\
+&=a\sqrt{\cos^2\theta}\\
+&=a|\cos\theta|.
+\end{align*}
+Elegimos $-\pi/2\le\theta\le\pi/2$, de modo que $\cos\theta\ge0$:
+\[
+\boxed{\sqrt{a^2-x^2}=a\cos\theta}.
+\]
+\end{frame}
+
+\begin{frame}{Ejemplo 1: la integral ya está en $\theta$}
+Sustituimos ambas piezas:
+\begin{align*}
+I
+&=\int \underbrace{(a\cos\theta)}_{\sqrt{a^2-x^2}}
+\underbrace{(a\cos\theta\,d\theta)}_{dx}\\
+&=a^2\int\cos^2\theta\,d\theta.
+\end{align*}
+Ahora aparece una integral trigonométrica conocida. Utilizamos
+\[
+\cos^2\theta=\frac{1+\cos(2\theta)}{2}.
+\]
+Por tanto,
+\[
+I=\frac{a^2}{2}\int\bigl(1+\cos(2\theta)\bigr)\,d\theta.
+\]
+\end{frame}
+
+\begin{frame}{Ejemplo 1: integrar con cuidado}
+\begin{align*}
+I
+&=\frac{a^2}{2}\left(\theta+\frac12\sin(2\theta)\right)+C.
+\end{align*}
+¿Por qué aparece $1/2$?
+\[
+\int\cos(2\theta)\,d\theta=\frac12\sin(2\theta).
+\]
+Usamos ahora
+\[
+\sin(2\theta)=2\sin\theta\cos\theta
+\]
+para obtener
+\[
+\boxed{I=\frac{a^2}{2}\theta+
+\frac{a^2}{2}\sin\theta\cos\theta+C.}
+\]
+Todavía no hemos terminado: la respuesta sigue escrita en $\theta$.
+\end{frame}
+
+\begin{frame}{Ejemplo 1: reconstrucción mediante el triángulo}
+\begin{columns}[T]
+\column{0.48\textwidth}
+De $x=a\sin\theta$:
+\[
+\sin\theta=\frac{x}{a}.
+\]
+El triángulo da
+\[
+\cos\theta=\frac{\sqrt{a^2-x^2}}{a}.
+\]
+Y por la rama principal,
+\[
+\theta=\arcsin\left(\frac{x}{a}\right).
+\]
+\column{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=.82]
+\coordinate (A) at (0,0);\coordinate (B) at (4,0);\coordinate (C) at (4,3);
+\draw[thick] (A)--(B)--(C)--cycle;\draw (3.65,0)--(3.65,.35)--(4,.35);
+\node at (2,-.35) {$\sqrt{a^2-x^2}$};\node[right] at (4,1.5) {$x$};\node[above left] at (2.05,1.65) {$a$};
+\draw (.75,0) arc[start angle=0,end angle=36.87,radius=.75];\node at (.95,.32) {$\theta$};
+\end{tikzpicture}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Ejemplo 1: regreso completo a $x$}
+Partimos de
+\[
+I=\frac{a^2}{2}\theta+\frac{a^2}{2}\sin\theta\cos\theta+C.
+\]
+Sustituimos:
+\begin{align*}
+I
+&=\frac{a^2}{2}\arcsin\left(\frac{x}{a}\right)
++\frac{a^2}{2}\left(\frac{x}{a}\right)
+\left(\frac{\sqrt{a^2-x^2}}{a}\right)+C\\
+&=\frac{a^2}{2}\arcsin\left(\frac{x}{a}\right)
++\frac{x}{2}\sqrt{a^2-x^2}+C.
+\end{align*}
+Por tanto,
+\[
+\boxed{\int\sqrt{a^2-x^2}\,dx=
+\frac{x}{2}\sqrt{a^2-x^2}+
+\frac{a^2}{2}\arcsin\left(\frac{x}{a}\right)+C.}
+\]
+\end{frame}
+
+\begin{frame}{Ejemplo 1: ¿qué debemos aprender del procedimiento?}
+No interesa únicamente la fórmula final. El mecanismo fue:
+\[
+\sqrt{a^2-x^2}
+\xrightarrow{x=a\sin\theta}
+a\cos\theta
+\]
+y simultáneamente
+\[
+dx\xrightarrow{x=a\sin\theta}a\cos\theta\,d\theta.
+\]
+Esto produjo
+\[
+a^2\int\cos^2\theta\,d\theta.
+\]
+Después el triángulo permitió reconstruir $\cos\theta$, mientras que la inversa del seno permitió reconstruir $\theta$.
+\begin{alertblock}{Error frecuente}
+Llegar a una respuesta en $\theta$ y detenerse. La integral original está en $x$; debemos regresar a $x$.
+\end{alertblock}
+\end{frame}
+
+\section{Ejemplo 2: $a^2+x^2$}
+\begin{frame}{Ejemplo 2: planteamiento}
+Calcular
+\[
+\boxed{I=\int\frac{dx}{\sqrt{a^2+x^2}}},\qquad a>0.
+\]
+La estructura es
+\[
+a^2+x^2,
+\]
+que corresponde a
+\[
+1+\tan^2\theta=\sec^2\theta.
+\]
+Por ello,
+\[
+\boxed{x=a\tan\theta},\qquad
+\boxed{dx=a\sec^2\theta\,d\theta}.
+\]
+\end{frame}
+
+\begin{frame}{Ejemplo 2: transformar la raíz}
+\begin{align*}
+\sqrt{a^2+x^2}
+&=\sqrt{a^2+a^2\tan^2\theta}\\
+&=a\sqrt{1+\tan^2\theta}\\
+&=a\sqrt{\sec^2\theta}\\
+&=a|\sec\theta|.
+\end{align*}
+Tomamos
+\[
+-\frac{\pi}{2}<\theta<\frac{\pi}{2}.
+\]
+En este intervalo $\cos\theta>0$, por tanto $\sec\theta>0$ y
+\[
+\boxed{\sqrt{a^2+x^2}=a\sec\theta}.
+\]
+\end{frame}
+
+\begin{frame}{Ejemplo 2: sustitución completa}
+\begin{align*}
+I
+&=\int
+\frac{\underbrace{a\sec^2\theta\,d\theta}_{dx}}
+{\underbrace{a\sec\theta}_{\sqrt{a^2+x^2}}}\\
+&=\int\sec\theta\,d\theta.
+\end{align*}
+Usamos la integral ya conocida:
+\[
+\int\sec\theta\,d\theta
+=\ln|\sec\theta+\tan\theta|+C.
+\]
+Por tanto,
+\[
+\boxed{I=\ln|\sec\theta+\tan\theta|+C.}
+\]
+De nuevo, falta regresar a $x$.
+\end{frame}
+
+\begin{frame}{Ejemplo 2: triángulo y reconstrucción}
+\begin{columns}[T]
+\column{0.47\textwidth}
+De
+\[
+\tan\theta=\frac{x}{a}
+\]
+tenemos opuesto $x$ y adyacente $a$. Entonces
+\[
+\text{hipotenusa}=\sqrt{a^2+x^2}
+\]
+y
+\[
+\sec\theta=\frac{\sqrt{a^2+x^2}}{a}.
+\]
+\column{0.50\textwidth}
+\centering
+\begin{tikzpicture}[scale=.86]
+\coordinate (A) at (0,0);\coordinate (B) at (4,0);\coordinate (C) at (4,3);
+\draw[thick] (A)--(B)--(C)--cycle;\draw (3.65,0)--(3.65,.35)--(4,.35);
+\node at (2,-.35) {$a$};\node[right] at (4,1.5) {$x$};\node[above left] at (2.1,1.65) {$\sqrt{a^2+x^2}$};
+\draw (.75,0) arc[start angle=0,end angle=36.87,radius=.75];\node at (.95,.32) {$\theta$};
+\end{tikzpicture}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Ejemplo 2: regreso a $x$ y constante logarítmica}
+\begin{align*}
+I
+&=\ln\left|
+\frac{\sqrt{a^2+x^2}}{a}+\frac{x}{a}
+\right|+C\\
+&=\ln\left|\frac{x+\sqrt{a^2+x^2}}{a}\right|+C.
+\end{align*}
+Como $a>0$ es constante,
+\[
+\ln\left|\frac{x+\sqrt{a^2+x^2}}{a}\right|
+=\ln|x+\sqrt{a^2+x^2}|-\ln a.
+\]
+Pero $-\ln a$ es una constante, así que se incorpora a $C$:
+\[
+\boxed{\int\frac{dx}{\sqrt{a^2+x^2}}
+=\ln|x+\sqrt{a^2+x^2}|+C.}
+\]
+\end{frame}
+
+\begin{frame}{Ejemplo 2: dos detalles que suelen causar dudas}
+\begin{enumerate}
+\item ¿Por qué aparece un logaritmo si empezamos con una raíz?
+\[
+\text{Porque la sustitución produjo }\int\sec\theta\,d\theta.
+\]
+\item ¿Por qué podemos ``desaparecer'' el factor $1/a$ dentro del logaritmo?
+\[
+\ln\left|\frac{F(x)}{a}\right|=\ln|F(x)|-\ln a,
+\]
+y $-\ln a$ es simplemente otra constante de integración.
+\end{enumerate}
+\begin{alertblock}{No confundir}
+No estamos afirmando que $\ln|F/a|=\ln|F|$. Las primitivas difieren en una constante, y por eso representan la misma familia de antiderivadas.
+\end{alertblock}
+\end{frame}
+
+\section{Ejemplo 3: $x^2-a^2$}
+\begin{frame}{Ejemplo 3: planteamiento}
+Calcular
+\[
+\boxed{I=\int\frac{dx}{\sqrt{x^2-a^2}}},\qquad a>0.
+\]
+La estructura es
+\[
+x^2-a^2,
+\]
+y la identidad correspondiente es
+\[
+\sec^2\theta-1=\tan^2\theta.
+\]
+Por ello,
+\[
+\boxed{x=a\sec\theta},\qquad
+\boxed{dx=a\sec\theta\tan\theta\,d\theta}.
+\]
+\end{frame}
+
+\begin{frame}{Ejemplo 3: transformar la raíz}
+\begin{align*}
+\sqrt{x^2-a^2}
+&=\sqrt{a^2\sec^2\theta-a^2}\\
+&=a\sqrt{\sec^2\theta-1}\\
+&=a\sqrt{\tan^2\theta}\\
+&=a|\tan\theta|.
+\end{align*}
+Para estudiar el caso $x\ge a$, elegimos
+\[
+0\le\theta<\frac{\pi}{2}.
+\]
+Entonces $\tan\theta\ge0$ y
+\[
+\boxed{\sqrt{x^2-a^2}=a\tan\theta}.
+\]
+\begin{observacion}
+La integral real exige $|x|\ge a$. Aquí desarrollamos explícitamente la rama $x\ge a$; el valor absoluto en la forma final permite expresar la primitiva de manera apropiada en los intervalos de su dominio.
+\end{observacion}
+\end{frame}
+
+\begin{frame}{Ejemplo 3: sustitución completa}
+\begin{align*}
+I
+&=\int
+\frac{\underbrace{a\sec\theta\tan\theta\,d\theta}_{dx}}
+{\underbrace{a\tan\theta}_{\sqrt{x^2-a^2}}}\\
+&=\int\sec\theta\,d\theta\\
+&=\ln|\sec\theta+\tan\theta|+C.
+\end{align*}
+El patrón es parecido al ejemplo anterior, pero la reconstrucción geométrica es diferente porque ahora la relación inicial es
+\[
+\sec\theta=\frac{x}{a}.
+\]
+\end{frame}
+
+\begin{frame}{Ejemplo 3: triángulo y reconstrucción}
+\begin{columns}[T]
+\column{0.47\textwidth}
+Como
+\[
+\sec\theta=\frac{x}{a}
+=\frac{\text{hipotenusa}}{\text{adyacente}},
+\]
+tomamos hipotenusa $x$ y adyacente $a$. Por Pitágoras,
+\[
+\text{opuesto}=\sqrt{x^2-a^2}.
+\]
+Así,
+\[
+\tan\theta=\frac{\sqrt{x^2-a^2}}{a}.
+\]
+\column{0.50\textwidth}
+\centering
+\begin{tikzpicture}[scale=.86]
+\coordinate (A) at (0,0);\coordinate (B) at (4,0);\coordinate (C) at (4,3);
+\draw[thick] (A)--(B)--(C)--cycle;\draw (3.65,0)--(3.65,.35)--(4,.35);
+\node at (2,-.35) {$a$};\node[right] at (4,1.5) {$\sqrt{x^2-a^2}$};\node[above left] at (2.15,1.65) {$x$};
+\draw (.75,0) arc[start angle=0,end angle=36.87,radius=.75];\node at (.95,.32) {$\theta$};
+\end{tikzpicture}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Ejemplo 3: regreso a $x$}
+\begin{align*}
+I
+&=\ln\left|
+\frac{x}{a}+\frac{\sqrt{x^2-a^2}}{a}
+\right|+C\\
+&=\ln\left|
+\frac{x+\sqrt{x^2-a^2}}{a}
+\right|+C\\
+&=\ln|x+\sqrt{x^2-a^2}|-\ln a+C.
+\end{align*}
+Absorbemos $-\ln a$ en la constante:
+\[
+\boxed{\int\frac{dx}{\sqrt{x^2-a^2}}
+=\ln|x+\sqrt{x^2-a^2}|+C.}
+\]
+\end{frame}
+
+\section{Comparación y práctica}
+\begin{frame}{Comparación de los tres casos}
+\centering
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{>{\centering\arraybackslash}m{3.2cm}>{\centering\arraybackslash}m{3.1cm}>{\centering\arraybackslash}m{4.1cm}}
+\toprule
+Expresión & Sustitución & La raíz se transforma en\\
+\midrule
+$\sqrt{a^2-x^2}$ & $x=a\sin\theta$ & $a\cos\theta$\\
+$\sqrt{a^2+x^2}$ & $x=a\tan\theta$ & $a\sec\theta$\\
+$\sqrt{x^2-a^2}$ & $x=a\sec\theta$ & $a\tan\theta$\\
+\bottomrule
+\end{tabular}
+\vspace{4mm}
+La columna derecha no se memoriza por separado: se obtiene aplicando la identidad pitagórica correspondiente.
+\end{frame}
+
+\begin{frame}{Diagnóstico rápido: ¿qué sustitución elegiría?}
+Sin integrar todavía, proponga una sustitución para cada caso:
+\begin{enumerate}
+\item $\displaystyle \int \frac{x^2}{\sqrt{25-x^2}}\,dx$
+\item $\displaystyle \int \frac{dx}{(9+x^2)^{3/2}}$
+\item $\displaystyle \int \sqrt{x^2-16}\,dx$
+\item $\displaystyle \int \frac{dx}{x^2\sqrt{x^2-4}}$
+\item $\displaystyle \int x^2\sqrt{36-x^2}\,dx$
+\end{enumerate}
+\pause
+\[
+\begin{array}{c|c}
+1,5 & x=5\sin\theta\text{ o }x=6\sin\theta\\
+2 & x=3\tan\theta\\
+3 & x=4\sec\theta\\
+4 & x=2\sec\theta
+\end{array}
+\]
+\end{frame}
+
+\begin{frame}{Errores frecuentes}
+\begin{enumerate}
+\item Elegir la sustitución por memoria sin verificar la identidad.
+\item Cambiar la raíz pero olvidar transformar $dx$.
+\item Escribir $\sqrt{u^2}=u$ sin considerar $|u|$.
+\item No especificar un intervalo conveniente para $\theta$.
+\item Construir mal el triángulo: confundir hipotenusa, opuesto y adyacente.
+\item Terminar con una respuesta en $\theta$.
+\item En expresiones logarítmicas, eliminar constantes sin justificar que se absorben en $C$.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Ejercicios para el pizarrón: nivel 1}
+Determine primero la sustitución y dibuje el triángulo; después integre.
+\begin{enumerate}
+\item $\displaystyle \int\sqrt{9-x^2}\,dx$
+\item $\displaystyle \int\frac{dx}{\sqrt{4+x^2}}$
+\item $\displaystyle \int\frac{dx}{\sqrt{x^2-25}}$
+\end{enumerate}
+\vspace{2mm}
+En cada ejercicio debe quedar explícito:
+\[
+\text{estructura}\to\text{identidad}\to\text{sustitución}\to dx\to\text{triángulo}.
+\]
+\end{frame}
+
+\begin{frame}{Ejercicios para el pizarrón: nivel 2}
+Ahora la expresión problemática está acompañada de otros factores:
+\begin{enumerate}
+\item $\displaystyle \int\frac{x^2}{\sqrt{16-x^2}}\,dx$
+\item $\displaystyle \int\frac{x^2}{\sqrt{x^2+9}}\,dx$
+\item $\displaystyle \int\frac{\sqrt{x^2-4}}{x}\,dx$
+\item $\displaystyle \int\frac{dx}{(x^2+4)^{3/2}}$
+\end{enumerate}
+La sustitución trigonométrica simplifica la raíz, pero después todavía puede ser necesario utilizar identidades trigonométricas adicionales.
+\end{frame}
+
+\begin{frame}{Ejercicios para casa}
+\begin{enumerate}
+\item $\displaystyle \int\frac{dx}{\sqrt{49-x^2}}$
+\item $\displaystyle \int\frac{x^2}{\sqrt{25-x^2}}\,dx$
+\item $\displaystyle \int\sqrt{x^2+16}\,dx$
+\item $\displaystyle \int\frac{dx}{(x^2+1)^{3/2}}$
+\item $\displaystyle \int\sqrt{x^2-9}\,dx$
+\item $\displaystyle \int\frac{dx}{x^2\sqrt{x^2-1}}$
+\end{enumerate}
+En los ejercicios 1--3, incluya explícitamente el triángulo utilizado para regresar a $x$.
+\end{frame}
+
+\begin{frame}{Mapa mental final}
+\[
+\boxed{
+\begin{array}{c}
+\text{¿Veo }a^2-x^2?\\
+\Downarrow\\
+x=a\sin\theta
+\end{array}}
+\qquad
+\boxed{
+\begin{array}{c}
+\text{¿Veo }a^2+x^2?\\
+\Downarrow\\
+x=a\tan\theta
+\end{array}}
+\qquad
+\boxed{
+\begin{array}{c}
+\text{¿Veo }x^2-a^2?\\
+\Downarrow\\
+x=a\sec\theta
+\end{array}}
+\]
+\vspace{4mm}
+Pero la pregunta más importante sigue siendo:
+\[
+\boxed{\text{¿qué identidad pitagórica hace funcionar esa sustitución?}}
+\]
+Si podemos responderla, ya no dependemos de memorizar una tabla.
+\end{frame}
+
+\begin{frame}{Conexión con las funciones trigonométricas inversas}
+En el primer caso aparece naturalmente
+\[
+\theta=\arcsin\left(\frac{x}{a}\right),
+\]
+porque habíamos definido
+\[
+\sin\theta=\frac{x}{a}.
+\]
+En los otros casos, el triángulo permite reconstruir las funciones trigonométricas necesarias sin tener que escribir necesariamente $\theta$ mediante una inversa.
+\vspace{2mm}
+Esto enlaza la sustitución trigonométrica con las primitivas que contienen
+\[
+\arcsin x,\qquad \arctan x,\qquad \operatorname{arcsec}x,
+\]
+que estudiaremos a continuación desde el punto de vista de sus derivadas.
+\end{frame}
+
+\end{document}

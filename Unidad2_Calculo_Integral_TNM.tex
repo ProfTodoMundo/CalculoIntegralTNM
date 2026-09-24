@@ -1,0 +1,491 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,mexico]{babel}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{geometry,enumitem,booktabs,array,xcolor,graphicx,hyperref,fancyhdr,microtype,longtable}
+\geometry{letterpaper,top=2.3cm,bottom=2.3cm,left=2.5cm,right=2.5cm}
+\setlength{\parindent}{0pt}\setlength{\parskip}{0.55em}
+\definecolor{azul}{RGB}{25,70,120}
+\hypersetup{colorlinks=true,linkcolor=azul,urlcolor=azul,citecolor=azul}
+\newtheorem{teorema}{Teorema}[section]\newtheorem{proposicion}[teorema]{Proposición}\newtheorem{corolario}[teorema]{Corolario}
+\theoremstyle{definition}\newtheorem{definicion}[teorema]{Definición}\newtheorem{ejemplo}[teorema]{Ejemplo}\newtheorem{ejercicio}[teorema]{Ejercicio}
+\theoremstyle{remark}\newtheorem*{observacion}{Observación}\newtheorem*{advertencia}{Advertencia}\newtheorem*{estrategia}{Estrategia}
+\newcommand{\R}{\mathbb{R}}\newcommand{\dd}{\,dx}\newcommand{\du}{\,du}\newcommand{\dt}{\,dt}
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}\fancyhf{}\fancyhead[L]{Tecnológico Nacional de México}\fancyhead[R]{Cálculo Integral}\fancyfoot[L]{Carlos Ernesto Martínez Rodríguez}\fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+\title{\textbf{Notas para el curso de Cálculo Integral}\\[0.3cm]\Large Unidad 2: Integral indefinida y métodos de integración}
+\author{Carlos Ernesto Martínez Rodríguez\\Tecnológico Nacional de México}
+\date{Agosto--Diciembre 2026}
+\begin{document}\maketitle\tableofcontents\newpage
+
+\section{Propósito y conexión con la Unidad 1}
+En la Unidad 1 construimos la integral definida a partir de sumas de Riemann y establecimos el Teorema Fundamental del Cálculo. Si $f$ es continua y $F'=f$, entonces
+\[\int_a^b f(x)\,dx=F(b)-F(a).\]
+La Unidad 2 estudia sistemáticamente el problema inverso de la derivación: dada $f$, encontrar una función $F$ cuya derivada sea $f$. El objetivo no es memorizar una colección aislada de fórmulas, sino aprender a \emph{reconocer la estructura del integrando}, seleccionar una técnica apropiada, ejecutarla correctamente y verificar el resultado derivando.
+
+\section{Primitivas o antiderivadas}
+\begin{definicion}Sea $f:I\to\R$. Una función $F:I\to\R$ es una \textbf{primitiva} o \textbf{antiderivada} de $f$ si $F'(x)=f(x)$ para todo $x\in I$.\end{definicion}
+Por ejemplo, $F(x)=x^3$ es primitiva de $f(x)=3x^2$. También lo son $x^3+5$, $x^3-\pi$ y, en general, $x^3+C$.
+\begin{teorema}Si $F$ y $G$ son primitivas de la misma función $f$ en un intervalo $I$, entonces existe $C\in\R$ tal que $F(x)=G(x)+C$.\end{teorema}
+\begin{proof}Como $F'=G'=f$, se tiene $(F-G)'=0$. Una función con derivada nula en un intervalo es constante; por tanto $F-G=C$.\end{proof}
+
+\section{Integral indefinida y constante de integración}
+\begin{definicion}Si $F'=f$, la familia de todas las primitivas de $f$ se representa por
+\[\boxed{\int f(x)\,dx=F(x)+C}.\]
+La expresión se denomina \textbf{integral indefinida}.\end{definicion}
+La integral definida $\int_a^b f(x)dx$ es un número; la integral indefinida $\int f(x)dx$ es una familia de funciones. La constante $C$ es indispensable porque la derivada elimina cualquier constante.
+
+\section{Propiedades y verificación}
+Por linealidad de la derivada,
+\[\int[\alpha f(x)+\beta g(x)]dx=\alpha\int f(x)dx+\beta\int g(x)dx.\]
+Todas las constantes que aparezcan al integrar término a término pueden reunirse en una sola constante $C$.
+\begin{observacion}La comprobación natural de una integral indefinida es derivar el resultado. Si proponemos $\int f(x)dx=F(x)+C$, la verificación consiste en comprobar $F'(x)=f(x)$.\end{observacion}
+
+\section{Integración directa}
+De $\frac{d}{dx}x^{n+1}=(n+1)x^n$ obtenemos
+\[\boxed{\int x^n dx=\frac{x^{n+1}}{n+1}+C,\quad n\neq-1}.\]
+El caso $n=-1$ es especial:
+\[\boxed{\int\frac1x dx=\ln|x|+C}.\]
+Otras fórmulas básicas son
+\begin{align*}
+\int e^x dx&=e^x+C,& \int a^x dx&=\frac{a^x}{\ln a}+C,\\
+\int\sin xdx&=-\cos x+C,&\int\cos xdx&=\sin x+C,\\
+\int\sec^2x dx&=\tan x+C,&\int\csc^2x dx&=-\cot x+C,\\
+\int\sec x\tan xdx&=\sec x+C,&\int\csc x\cot xdx&=-\csc x+C,\\
+\int\frac{dx}{1+x^2}&=\arctan x+C,&\int\frac{dx}{\sqrt{1-x^2}}&=\arcsin x+C.
+\end{align*}
+\begin{ejemplo}Calcule $\int(4x^3-6x^2+5x-8)dx$. Por linealidad,
+\[x^4-2x^3+\frac52x^2-8x+C.\]
+La derivación recupera exactamente el integrando.\end{ejemplo}
+\begin{ejemplo}Calcule $\int(3x^4-2x^{-2}+5x^{1/2})dx$. Entonces
+\[\boxed{\frac35x^5+\frac2x+\frac{10}{3}x^{3/2}+C}.\]\end{ejemplo}
+
+\section{Cambio de variable o sustitución}
+La sustitución es la regla de la cadena leída en sentido inverso. Si $F'=f$ y $u=g(x)$, entonces
+\[\frac{d}{dx}F(g(x))=f(g(x))g'(x),\]
+de donde
+\[\boxed{\int f(g(x))g'(x)dx=\int f(u)du=F(g(x))+C}.\]
+\begin{estrategia}Busque una expresión interior $g(x)$ cuya derivada aparezca, quizá salvo un factor constante, en el resto del integrando.\end{estrategia}
+\begin{ejemplo}$\int2x(x^2+1)^5dx$. Tome $u=x^2+1$, $du=2x dx$:
+\[\boxed{\frac{(x^2+1)^6}{6}+C}.\]\end{ejemplo}
+\begin{ejemplo}$\int x(x^2+4)^7dx$. Con $u=x^2+4$, $du=2x dx$,
+\[\boxed{\frac{(x^2+4)^8}{16}+C}.\]\end{ejemplo}
+\begin{ejemplo}$\int xe^{x^2}dx$. Con $u=x^2$,
+\[\boxed{\frac12e^{x^2}+C}.\]\end{ejemplo}
+\begin{ejemplo}$\int\frac{2x}{x^2+5}dx$. Con $u=x^2+5$,
+\[\boxed{\ln(x^2+5)+C}.\]\end{ejemplo}
+\begin{ejemplo}Calcule $\int\frac{x^3}{x^2+1}dx$. Escriba $x^3dx=x^2(xdx)$ y tome $u=x^2+1$. Entonces $x^2=u-1$ y $x dx=du/2$:
+\[\frac12\int\frac{u-1}{u}du=\frac12\int\left(1-\frac1u\right)du.\]
+Así,
+\[\boxed{\frac{x^2}{2}-\frac12\ln(x^2+1)+C}.\]\end{ejemplo}
+\begin{ejemplo}Calcule $\int\frac{dx}{3x+7}$. Tome $u=3x+7$, $du=3dx$:
+\[\boxed{\frac13\ln|3x+7|+C}.\]\end{ejemplo}
+\begin{ejemplo}Calcule $\int\sin x\,e^{\cos x}dx$. Tome $u=\cos x$, $du=-\sin xdx$:
+\[\boxed{-e^{\cos x}+C}.\]\end{ejemplo}
+
+\section{Integración por partes}
+De $(uv)'=u'v+uv'$ se obtiene
+\[\boxed{\int u\,dv=uv-\int v\,du}.\]
+La elección debe hacer más sencilla la integral restante. LIATE (logarítmica, inversa trigonométrica, algebraica, trigonométrica, exponencial) es una heurística útil, no un teorema.
+\begin{ejemplo}$\int xe^xdx$. Tome $u=x$, $dv=e^xdx$. Entonces $du=dx$, $v=e^x$ y
+\[\boxed{e^x(x-1)+C}.\]\end{ejemplo}
+\begin{ejemplo}$\int x\sin xdx$. Tome $u=x$, $dv=\sin xdx$. Entonces $v=-\cos x$:
+\[\boxed{-x\cos x+\sin x+C}.\]\end{ejemplo}
+\begin{ejemplo}$\int x^2e^xdx$. Aplicando partes dos veces,
+\[\int x^2e^xdx=x^2e^x-2\int xe^xdx=\boxed{e^x(x^2-2x+2)+C}.\]\end{ejemplo}
+\begin{ejemplo}$\int\ln xdx$. Escriba $\ln x=1\cdot\ln x$, tome $u=\ln x$, $dv=dx$:
+\[\boxed{x\ln x-x+C}.\]\end{ejemplo}
+\begin{ejemplo}Calcule $\int\arctan xdx$. Tome $u=\arctan x$, $dv=dx$:
+\[x\arctan x-\int\frac{x}{1+x^2}dx=\boxed{x\arctan x-\frac12\ln(1+x^2)+C}.\]\end{ejemplo}
+\subsection{Integrales cíclicas}
+\begin{ejemplo}Sea $I=\int e^x\cos xdx$. Por partes, con $u=\cos x$, $dv=e^xdx$,
+\[I=e^x\cos x+\int e^x\sin xdx.\]
+Integramos de nuevo la última integral:
+\[\int e^x\sin xdx=e^x\sin x-\int e^x\cos xdx=e^x\sin x-I.\]
+Por tanto,
+\[2I=e^x(\sin x+\cos x),\]
+y
+\[\boxed{I=\frac{e^x}{2}(\sin x+\cos x)+C}.\]\end{ejemplo}
+
+\section{Integrales trigonométricas: potencias de seno y coseno}
+Consideremos $\int\sin^m x\cos^n xdx$.
+\subsection{Potencia impar de seno}
+Si $m$ es impar, separe un factor $\sin x$ y convierta el resto mediante $\sin^2x=1-\cos^2x$.
+\begin{ejemplo}$\int\sin^3x\cos^2x dx$. Escriba $\sin^3x=(1-\cos^2x)\sin x$ y tome $u=\cos x$:
+\[\boxed{-\frac{\cos^3x}{3}+\frac{\cos^5x}{5}+C}.\]\end{ejemplo}
+\subsection{Potencia impar de coseno}
+Si $n$ es impar, separe $\cos x$ y use $\cos^2x=1-\sin^2x$.
+\begin{ejemplo}Calcule $\int\sin^2x\cos^3x dx$. Se obtiene\[\boxed{\frac{\sin^3x}{3}-\frac{\sin^5x}{5}+C}.\]\end{ejemplo}
+\subsection{Ambas potencias pares}
+Use las identidades de reducción
+\[\sin^2x=\frac{1-\cos2x}{2},\qquad\cos^2x=\frac{1+\cos2x}{2}.\]
+\begin{ejemplo}$\int\sin^2x dx=\boxed{\frac{x}{2}-\frac{\sin2x}{4}+C}$.\end{ejemplo}
+\begin{ejemplo}Calcule $\int\sin^2x\cos^2x dx$. Como $\sin x\cos x=\frac12\sin2x$,
+\[\sin^2x\cos^2x=\frac14\sin^22x=\frac18(1-\cos4x).\]
+Así,
+\[\boxed{\frac{x}{8}-\frac{\sin4x}{32}+C}.\]\end{ejemplo}
+
+\section{Potencias de tangente y secante}
+Para $\int\tan^m x\sec^n xdx$ son fundamentales
+\[\sec^2x=1+\tan^2x,\qquad \tan^2x=\sec^2x-1.\]
+\begin{estrategia}
+\begin{enumerate}
+\item Si la potencia de secante es par, reserve un factor $\sec^2x$ y use $u=\tan x$.
+\item Si la potencia de tangente es impar, reserve $\sec x\tan x$ y use $u=\sec x$.
+\item Si ninguno aplica directamente, transforme usando identidades y simplifique.
+\end{enumerate}
+\end{estrategia}
+\begin{ejemplo}Calcule $\int\tan^3x\sec^4x dx$. Reserve $\sec^2x dx$ y escriba $\sec^2x=1+\tan^2x$ en el resto:
+\[\int\tan^3x\sec^2x\,\sec^2x dx.\]
+Con $u=\tan x$, $du=\sec^2x dx$:
+\[\int u^3(1+u^2)du=\boxed{\frac{\tan^4x}{4}+\frac{\tan^6x}{6}+C}.\]\end{ejemplo}
+\begin{ejemplo}Calcule $\int\tan^3x\sec xdx$. Escriba $\tan^3x=\tan^2x\tan x=(\sec^2x-1)\tan x$. Entonces
+\[\int(\sec^2x-1)\sec x\tan xdx.\]
+Con $u=\sec x$,
+\[\boxed{\frac{\sec^3x}{3}-\sec x+C}.\]\end{ejemplo}
+\subsection{La integral de $\sec x$}
+Multiplicamos por una forma conveniente de uno:
+\[\int\sec xdx=\int\frac{\sec x(\sec x+\tan x)}{\sec x+\tan x}dx.\]
+El numerador es $\sec^2x+\sec x\tan x$, derivada del denominador. Por tanto,
+\[\boxed{\int\sec xdx=\ln|\sec x+\tan x|+C}.\]
+
+\section{Potencias de cotangente y cosecante}
+Análogamente,
+\[\csc^2x=1+\cot^2x,\qquad\cot^2x=\csc^2x-1.\]
+\begin{estrategia}Si la potencia de cosecante es par, reserve $\csc^2x$ y use $u=\cot x$ (recordando $du=-\csc^2x dx$). Si la potencia de cotangente es impar, reserve $\csc x\cot x$ y use $u=\csc x$.\end{estrategia}
+\begin{ejemplo}Calcule $\int\cot^2x\csc^4x dx$. Reserve $\csc^2x dx$:
+\[\int\cot^2x(1+\cot^2x)\csc^2x dx.\]
+Con $u=\cot x$, $du=-\csc^2x dx$,
+\[\boxed{-\frac{\cot^3x}{3}-\frac{\cot^5x}{5}+C}.\]\end{ejemplo}
+
+\section{Productos trigonométricos con ángulos distintos}
+Las identidades producto-a-suma son
+\begin{align*}
+\sin A\cos B&=\tfrac12[\sin(A+B)+\sin(A-B)],\\
+\cos A\cos B&=\tfrac12[\cos(A+B)+\cos(A-B)],\\
+\sin A\sin B&=\tfrac12[\cos(A-B)-\cos(A+B)].
+\end{align*}
+\begin{ejemplo}Calcule $\int\sin3x\cos2x dx$. Entonces
+\[\sin3x\cos2x=\frac12(\sin5x+\sin x),\]
+y
+\[\boxed{-\frac1{10}\cos5x-\frac12\cos x+C}.\]\end{ejemplo}
+\begin{ejemplo}Calcule $\int\cos4x\cos xdx$. Usando producto-a-suma,
+\[\frac12\int(\cos5x+\cos3x)dx=\boxed{\frac1{10}\sin5x+\frac16\sin3x+C}.\]\end{ejemplo}
+
+\section{Sustituciones trigonométricas}
+Estas sustituciones explotan identidades pitagóricas:
+\begin{center}\begin{tabular}{lll}\toprule
+Expresión & Sustitución & Identidad\\\midrule
+$\sqrt{a^2-x^2}$ & $x=a\sin\theta$ & $1-\sin^2\theta=\cos^2\theta$\\
+$\sqrt{a^2+x^2}$ & $x=a\tan\theta$ & $1+\tan^2\theta=\sec^2\theta$\\
+$\sqrt{x^2-a^2}$ & $x=a\sec\theta$ & $\sec^2\theta-1=\tan^2\theta$\\\bottomrule
+\end{tabular}\end{center}
+\subsection{Caso $\sqrt{a^2-x^2}$}
+\begin{ejemplo}Calcule $\int\sqrt{9-x^2}dx$. Tome $x=3\sin\theta$, $dx=3\cos\theta d\theta$. Entonces $\sqrt{9-x^2}=3\cos\theta$ y
+\[9\int\cos^2\theta d\theta=\frac92\theta+\frac94\sin2\theta+C.\]
+Como $\theta=\arcsin(x/3)$ y $\sin2\theta=2x\sqrt{9-x^2}/9$,
+\[\boxed{\frac{x}{2}\sqrt{9-x^2}+\frac92\arcsin\left(\frac{x}{3}\right)+C}.\]\end{ejemplo}
+\begin{ejemplo}Calcule $\int\frac{dx}{\sqrt{25-x^2}}$. Con $x=5\sin\theta$ se obtiene inmediatamente
+\[\boxed{\arcsin\left(\frac{x}{5}\right)+C}.\]\end{ejemplo}
+\subsection{Caso $\sqrt{a^2+x^2}$}
+\begin{ejemplo}Calcule $\int\sqrt{x^2+4}dx$. Tome $x=2\tan\theta$, $dx=2\sec^2\theta d\theta$ y $\sqrt{x^2+4}=2\sec\theta$. Resulta
+\[4\int\sec^3\theta d\theta.\]
+Usando $\int\sec^3\theta d\theta=\frac12\sec\theta\tan\theta+\frac12\ln|\sec\theta+\tan\theta|+C$ y regresando a $x$,
+\[\boxed{\frac{x}{2}\sqrt{x^2+4}+2\ln|x+\sqrt{x^2+4}|+C}.\]
+Una constante aditiva producida por $\ln2$ se absorbe en $C$.\end{ejemplo}
+\subsection{Caso $\sqrt{x^2-a^2}$}
+\begin{ejemplo}Calcule $\int\frac{\sqrt{x^2-9}}{x}dx$, para $x>3$. Tome $x=3\sec\theta$. Entonces $dx=3\sec\theta\tan\theta d\theta$ y $\sqrt{x^2-9}=3\tan\theta$. La integral se convierte en
+\[3\int\tan^2\theta d\theta=3\int(\sec^2\theta-1)d\theta=3\tan\theta-3\theta+C.\]
+Como $\tan\theta=\sqrt{x^2-9}/3$ y $\theta=\operatorname{arcsec}(x/3)$,
+\[\boxed{\sqrt{x^2-9}-3\operatorname{arcsec}\left(\frac{x}{3}\right)+C}.\]\end{ejemplo}
+\begin{observacion}Una sustitución trigonométrica no debe usarse mecánicamente. Antes conviene intentar simplificación algebraica o una sustitución ordinaria.\end{observacion}
+
+\section{Funciones racionales y división de polinomios}
+Una función racional es $P(x)/Q(x)$. Es propia si $\deg P<\deg Q$ e impropia si $\deg P\ge\deg Q$. En el segundo caso se divide primero.
+\begin{ejemplo}
+\[\frac{x^2+3x+5}{x+1}=x+2+\frac3{x+1}.\]
+Por tanto,
+\[\boxed{\int\frac{x^2+3x+5}{x+1}dx=\frac{x^2}{2}+2x+3\ln|x+1|+C}.\]
+\end{ejemplo}
+
+\section{Fracciones parciales: teoría y clasificación}
+Supongamos que $P/Q$ es propia y que $Q$ se factoriza sobre $\R$. La descomposición depende de los factores del denominador.
+\subsection{Caso I: factores lineales distintos}
+Si $Q=(x-a_1)\cdots(x-a_k)$ con raíces distintas, se propone
+\[\frac{P(x)}{Q(x)}=\frac{A_1}{x-a_1}+\cdots+\frac{A_k}{x-a_k}.\]
+\begin{ejemplo}Calcule $\int\frac{5x+1}{(x-1)(x+2)}dx$. Planteamos
+\[\frac{5x+1}{(x-1)(x+2)}=\frac{A}{x-1}+\frac{B}{x+2}.\]
+Multiplicando por el denominador,
+\[5x+1=A(x+2)+B(x-1).\]
+Con $x=1$, $A=2$; con $x=-2$, $B=3$. Por tanto,
+\[\boxed{2\ln|x-1|+3\ln|x+2|+C}.\]\end{ejemplo}
+\begin{ejemplo}Calcule $\int\frac{x^2+1}{x(x-1)(x+1)}dx$. Proponga
+\[\frac{x^2+1}{x(x-1)(x+1)}=\frac{A}{x}+\frac{B}{x-1}+\frac{C}{x+1}.\]
+Multiplicando y evaluando en $x=0,1,-1$ se obtiene $A=-1$, $B=1$, $C=1$. Así,
+\[\boxed{-\ln|x|+\ln|x-1|+\ln|x+1|+C}.\]\end{ejemplo}
+
+\subsection{Caso II: factores lineales repetidos}
+Si $(x-a)^m$ divide a $Q$, deben aparecer \emph{todas} las potencias:
+\[\frac{A_1}{x-a}+\frac{A_2}{(x-a)^2}+\cdots+\frac{A_m}{(x-a)^m}.\]
+\begin{ejemplo}Calcule
+\[\int\frac{2x+3}{(x-1)^2(x+1)}dx.\]
+Planteamos
+\[\frac{2x+3}{(x-1)^2(x+1)}=\frac{A}{x-1}+\frac{B}{(x-1)^2}+\frac{C}{x+1}.\]
+Multiplicando,
+\[2x+3=A(x-1)(x+1)+B(x+1)+C(x-1)^2.\]
+Con $x=1$: $5=2B$, así $B=5/2$. Con $x=-1$: $1=4C$, así $C=1/4$. Comparando coeficientes de $x^2$, $A+C=0$, luego $A=-1/4$. Por tanto,
+\[\int\left[-\frac1{4(x-1)}+\frac{5}{2(x-1)^2}+\frac1{4(x+1)}\right]dx,\]
+y
+\[\boxed{-\frac14\ln|x-1|-\frac{5}{2(x-1)}+\frac14\ln|x+1|+C}.\]\end{ejemplo}
+
+\subsection{Caso III: factores cuadráticos irreducibles distintos}
+Para un factor $x^2+bx+c$ sin raíces reales, el numerador debe ser lineal:
+\[\frac{Ax+B}{x^2+bx+c}.\]
+\begin{ejemplo}Calcule
+\[\int\frac{x^2+2x+3}{(x-1)(x^2+1)}dx.\]
+Proponga
+\[\frac{x^2+2x+3}{(x-1)(x^2+1)}=\frac{A}{x-1}+\frac{Bx+C}{x^2+1}.\]
+Entonces
+\[x^2+2x+3=A(x^2+1)+(Bx+C)(x-1).\]
+Comparando coeficientes:
+\[A+B=1,\qquad -B+C=2,\qquad A-C=3.\]
+Se obtiene $A=3$, $B=-2$, $C=0$. Luego
+\[\int\left[\frac3{x-1}-\frac{2x}{x^2+1}\right]dx
+=\boxed{3\ln|x-1|-\ln(x^2+1)+C}.\]\end{ejemplo}
+\begin{ejemplo}Calcule $\int\frac{dx}{(x-1)(x^2+4)}$. La descomposición es
+\[\frac1{(x-1)(x^2+4)}=\frac{1/5}{x-1}+\frac{(-x-1)/5}{x^2+4}.\]
+Integrando término a término,
+\[\boxed{\frac15\ln|x-1|-\frac1{10}\ln(x^2+4)-\frac1{10}\arctan\left(\frac{x}{2}\right)+C}.\]\end{ejemplo}
+
+\subsection{Caso IV: factores cuadráticos irreducibles repetidos}
+Si $(x^2+bx+c)^m$ aparece, deben incluirse
+\[\frac{A_1x+B_1}{x^2+bx+c}+\frac{A_2x+B_2}{(x^2+bx+c)^2}+\cdots+\frac{A_mx+B_m}{(x^2+bx+c)^m}.\]
+\begin{ejemplo}Considere
+\[\frac{x^3+2x+1}{(x^2+1)^2}.\]
+La forma correcta es
+\[\frac{Ax+B}{x^2+1}+\frac{Cx+D}{(x^2+1)^2}.\]
+Multiplicando por $(x^2+1)^2$,
+\[x^3+2x+1=(Ax+B)(x^2+1)+Cx+D.\]
+Comparando coeficientes: $A=1$, $B=0$, $A+C=2$, $B+D=1$, por lo que $C=1$, $D=1$. Entonces
+\[\int\frac{x}{x^2+1}dx+\int\frac{x}{(x^2+1)^2}dx+\int\frac{dx}{(x^2+1)^2}.\]
+Las dos primeras son sustituciones directas. Para la última usamos la identidad conocida
+\[\int\frac{dx}{(x^2+1)^2}=\frac{x}{2(x^2+1)}+\frac12\arctan x+C.\]
+Así,
+\[\boxed{\frac12\ln(x^2+1)-\frac1{2(x^2+1)}+\frac{x}{2(x^2+1)}+\frac12\arctan x+C}.\]\end{ejemplo}
+
+\subsection{Caso mixto completo}
+\begin{ejemplo}Para
+\[\frac{P(x)}{(x-1)^2(x^2+4)^2}\]
+la forma general correcta es
+\[\frac{A}{x-1}+\frac{B}{(x-1)^2}+\frac{Cx+D}{x^2+4}+\frac{Ex+F}{(x^2+4)^2}.\]
+Este patrón debe establecerse \emph{antes} de calcular coeficientes.\end{ejemplo}
+
+\section{Integrales exponenciales y logarítmicas}
+\[\int e^{ax}dx=\frac1a e^{ax}+C,\qquad \int a^xdx=\frac{a^x}{\ln a}+C.\]
+\begin{ejemplo}$\int 5^{3x}dx$. Como $\frac{d}{dx}5^{3x}=3\ln5\,5^{3x}$,
+\[\boxed{\frac{5^{3x}}{3\ln5}+C}.\]\end{ejemplo}
+La estructura logarítmica fundamental es
+\[\boxed{\int\frac{f'(x)}{f(x)}dx=\ln|f(x)|+C}.\]
+El valor absoluto es necesario porque $1/x$ está definido en ambos semiejes, mientras que $\ln x$ sólo lo está para $x>0$.
+\begin{ejemplo}$\int\frac{6x+1}{3x^2+x-4}dx$. El numerador es exactamente la derivada del denominador, por lo que
+\[\boxed{\ln|3x^2+x-4|+C}.\]\end{ejemplo}
+
+\section{Selección del método de integración}
+La selección del método es parte central de la unidad. Un procedimiento razonable es:
+\begin{enumerate}
+\item \textbf{Simplificar}: expandir, factorizar, dividir polinomios, cancelar factores válidos o usar identidades.
+\item \textbf{Buscar una integral inmediata}.
+\item \textbf{Buscar sustitución}: ¿aparece una función y su derivada?
+\item \textbf{Analizar productos}: polinomio por exponencial/trigonométrica suele sugerir partes.
+\item \textbf{Analizar potencias trigonométricas}: decidir según paridad.
+\item \textbf{Analizar funciones racionales}: división y fracciones parciales.
+\item \textbf{Reconocer radicales cuadráticos}: considerar sustitución trigonométrica.
+\item \textbf{Combinar técnicas}: algunas integrales requieren más de un método.
+\item \textbf{Verificar derivando}.
+\end{enumerate}
+\subsection{Ejemplos de diagnóstico}
+\begin{center}\begin{longtable}{p{0.43\textwidth}p{0.43\textwidth}}\toprule
+Integral & Primera estrategia razonable\\\midrule
+$\int x(x^2+1)^7dx$ & Sustitución $u=x^2+1$\\
+$\int x\cos xdx$ & Por partes\\
+$\int\sin^5x\cos^2xdx$ & Separar $\sin x$, identidad y sustitución\\
+$\int\tan^2x\sec^4xdx$ & Reservar $\sec^2x$, $u=\tan x$\\
+$\int\frac{x+3}{(x-1)(x+2)}dx$ & Fracciones parciales\\
+$\int\frac{x^3}{x+1}dx$ & División de polinomios primero\\
+$\int\sqrt{16-x^2}dx$ & Sustitución trigonométrica\\
+$\int\ln xdx$ & Por partes\\
+$\int\sin3x\cos5xdx$ & Producto-a-suma\\\bottomrule
+\end{longtable}\end{center}
+
+\section{Bloque de ejercicios resueltos de dificultad creciente}
+\subsection{Nivel I: reconocimiento directo}
+\begin{ejercicio}Calcule $\int(7x^6-4x^{-3}+2e^x)dx$.\end{ejercicio}
+\textbf{Solución.}
+\[\boxed{x^7+2x^{-2}+2e^x+C}.\]
+\begin{ejercicio}Calcule $\int(3\cos x-2\sec^2x)dx$.\end{ejercicio}
+\textbf{Solución.}
+\[\boxed{3\sin x-2\tan x+C}.\]
+
+\subsection{Nivel II: sustitución}
+\begin{ejercicio}Calcule $\int x^2\sqrt{x^3+1}dx$.\end{ejercicio}
+\textbf{Solución.} $u=x^3+1$, $du=3x^2dx$:
+\[\boxed{\frac{2}{9}(x^3+1)^{3/2}+C}.\]
+\begin{ejercicio}Calcule $\int\frac{e^x}{1+e^x}dx$.\end{ejercicio}
+\textbf{Solución.} $u=1+e^x$, $du=e^xdx$:
+\[\boxed{\ln(1+e^x)+C}.\]
+
+\subsection{Nivel III: por partes}
+\begin{ejercicio}Calcule $\int x^2\sin xdx$.\end{ejercicio}
+\textbf{Solución.} Partes dos veces:
+\begin{align*}
+\int x^2\sin xdx&=-x^2\cos x+2\int x\cos xdx\\
+&=-x^2\cos x+2x\sin x+2\cos x+C.
+\end{align*}
+\[\boxed{-x^2\cos x+2x\sin x+2\cos x+C}.\]
+
+\subsection{Nivel IV: trigonométricas}
+\begin{ejercicio}Calcule $\int\sin^5x\cos^2xdx$.\end{ejercicio}
+\textbf{Solución.} Separe $\sin x$:
+\[\sin^5x=(1-\cos^2x)^2\sin x.\]
+Con $u=\cos x$,
+\[-\int(1-u^2)^2u^2du=-\int(u^2-2u^4+u^6)du,\]
+de modo que
+\[\boxed{-\frac{\cos^3x}{3}+\frac{2\cos^5x}{5}-\frac{\cos^7x}{7}+C}.\]
+\begin{ejercicio}Calcule $\int\sec^4x\tan^2xdx$.\end{ejercicio}
+\textbf{Solución.} Reserve $\sec^2x dx$ y sustituya $u=\tan x$:
+\[\int(1+u^2)u^2du=\boxed{\frac{\tan^3x}{3}+\frac{\tan^5x}{5}+C}.\]
+
+\subsection{Nivel V: fracciones parciales}
+\begin{ejercicio}Calcule $\int\frac{4x+1}{x^2-x-2}dx$.\end{ejercicio}
+\textbf{Solución.} Factorizamos $x^2-x-2=(x-2)(x+1)$ y escribimos
+\[\frac{4x+1}{(x-2)(x+1)}=\frac{3}{x-2}+\frac1{x+1}.\]
+Por tanto,
+\[\boxed{3\ln|x-2|+\ln|x+1|+C}.\]
+\begin{ejercicio}Calcule $\int\frac{dx}{x(x+1)^2}$.\end{ejercicio}
+\textbf{Solución.}
+\[\frac1{x(x+1)^2}=\frac1x-\frac1{x+1}-\frac1{(x+1)^2}.\]
+Luego
+\[\boxed{\ln|x|-\ln|x+1|+\frac1{x+1}+C}.\]
+
+\subsection{Nivel VI: combinación de técnicas}
+\begin{ejercicio}Calcule $\int x\ln(x^2+1)dx$.\end{ejercicio}
+\textbf{Solución.} Primero $u=x^2+1$, $du=2xdx$:
+\[\frac12\int\ln u\,du.\]
+Ahora por partes, $\int\ln udu=u\ln u-u$:
+\[\boxed{\frac12(x^2+1)\ln(x^2+1)-\frac12(x^2+1)+C}.\]
+\begin{ejercicio}Calcule $\int\frac{x^2}{x^2+1}dx$.\end{ejercicio}
+\textbf{Solución.} Antes de integrar, simplifique:
+\[\frac{x^2}{x^2+1}=1-\frac1{x^2+1}.\]
+Por tanto,
+\[\boxed{x-\arctan x+C}.\]
+
+\section{Errores frecuentes}
+\begin{enumerate}
+\item Olvidar $+C$ en una integral indefinida.
+\item Aplicar la regla de potencias a $x^{-1}$.
+\item Sustituir $u=g(x)$ sin transformar completamente $dx$ y los factores restantes.
+\item Elegir $u$ y $dv$ en partes de modo que la nueva integral sea más difícil.
+\item En fracciones parciales, omitir términos correspondientes a potencias repetidas.
+\item Colocar una constante, en vez de $Ax+B$, sobre un cuadrático irreducible.
+\item Intentar fracciones parciales antes de hacer división cuando la fracción es impropia.
+\item Perder signos en $d(\cos x)=-\sin xdx$ o $d(\cot x)=-\csc^2xdx$.
+\item No regresar a la variable original después de una sustitución en una integral indefinida.
+\item No verificar el resultado mediante derivación.
+\end{enumerate}
+
+\section{Ejercicios propuestos por técnica}
+\subsection*{Integración directa}
+\begin{enumerate}
+\item $\int(x^8-3x^4+2)dx$.
+\item $\int(4x^{-5}+3\sqrt{x})dx$.
+\item $\int(2e^x-5\sin x+3\sec^2x)dx$.
+\end{enumerate}
+\subsection*{Sustitución}
+\begin{enumerate}
+\item $\int x(x^2+3)^8dx$.
+\item $\int x^2e^{x^3}dx$.
+\item $\int\frac{5x^4}{x^5+7}dx$.
+\item $\int\frac{\cos x}{2+\sin x}dx$.
+\item $\int\tan x\sec^2x dx$.
+\end{enumerate}
+\subsection*{Por partes}
+\begin{enumerate}
+\item $\int xe^{2x}dx$.
+\item $\int x\cos3x dx$.
+\item $\int x^2\ln xdx$.
+\item $\int e^x\sin xdx$.
+\item $\int\arcsin xdx$.
+\end{enumerate}
+\subsection*{Trigonométricas}
+\begin{enumerate}
+\item $\int\sin^7x\cos^2xdx$.
+\item $\int\sin^4x\cos^2xdx$.
+\item $\int\tan^4x\sec^4xdx$.
+\item $\int\tan^5x\sec^3xdx$.
+\item $\int\sin5x\cos2xdx$.
+\end{enumerate}
+\subsection*{Sustitución trigonométrica}
+\begin{enumerate}
+\item $\int\sqrt{16-x^2}dx$.
+\item $\int\frac{x^2}{\sqrt{25-x^2}}dx$.
+\item $\int\frac{dx}{(x^2+9)^{3/2}}$.
+\item $\int\frac{\sqrt{x^2-4}}{x}dx$.
+\end{enumerate}
+\subsection*{Fracciones parciales}
+\begin{enumerate}
+\item $\int\frac{2x+7}{(x-1)(x+3)}dx$.
+\item $\int\frac{x+2}{x(x-1)^2}dx$.
+\item $\int\frac{x^2+1}{(x-2)(x^2+4)}dx$.
+\item $\int\frac{2x^3+x+1}{(x^2+1)^2}dx$.
+\item $\int\frac{x^3+1}{x^2-1}dx$ (realice primero división).
+\end{enumerate}
+
+\section{Ejercicios integradores: seleccionar antes de calcular}
+En cada caso: (i) identifique la estructura; (ii) indique el método; (iii) resuelva; (iv) verifique derivando.
+\begin{enumerate}
+\item $\int(3x^5-4x^2+1)dx$.
+\item $\int x(x^2+5)^6dx$.
+\item $\int\frac{x}{x^2+4}dx$.
+\item $\int xe^xdx$.
+\item $\int x^2\cos xdx$.
+\item $\int\sin^3x\cos^4xdx$.
+\item $\int\sin^2x\cos^2xdx$.
+\item $\int\sqrt{25-x^2}dx$.
+\item $\int\frac{2x+3}{(x-1)(x+2)}dx$.
+\item $\int\frac{x^2+3x+4}{x+1}dx$.
+\item $\int\ln xdx$.
+\item $\int xe^{x^2}dx$.
+\item $\int\frac{3x^2}{x^3+1}dx$.
+\item $\int x^2e^xdx$.
+\item $\int\frac{dx}{\sqrt{9-x^2}}$.
+\item $\int\frac{x^4}{x^2+1}dx$.
+\item $\int\cos3x\cos7xdx$.
+\item $\int\frac{x}{(x^2+1)^2}dx$.
+\item $\int\sec^3x dx$.
+\item $\int e^x\cos xdx$.
+\end{enumerate}
+
+\section{Uso de herramientas computacionales para verificar}
+Un sistema algebraico computacional puede utilizarse para comprobar resultados, pero no sustituye la selección y justificación del método. En R, por ejemplo, puede verificarse numéricamente una antiderivada comparando diferencias finitas con el integrando; en Python/SymPy puede derivarse simbólicamente el resultado. La práctica recomendada es: resolver primero a mano, derivar manualmente y utilizar software como tercera comprobación.
+
+\section{Resumen de la unidad}
+La integral indefinida representa la familia de primitivas de una función. Las técnicas estudiadas pueden entenderse como reglas de derivación utilizadas en sentido inverso: sustitución invierte la regla de la cadena; partes invierte la regla del producto; las identidades trigonométricas transforman el integrando a formas básicas; la sustitución trigonométrica explota identidades pitagóricas; y las fracciones parciales reducen funciones racionales a piezas integrables. La competencia central no es sólo ejecutar algoritmos, sino reconocer estructuras y decidir una estrategia eficiente.
+
+\section*{Formulario de consulta rápida}
+\addcontentsline{toc}{section}{Formulario de consulta rápida}
+\begin{align*}
+\int x^n dx&=\frac{x^{n+1}}{n+1}+C\quad(n\neq-1),&
+\int\frac{dx}{x}&=\ln|x|+C,\\
+\int e^{ax}dx&=\frac{e^{ax}}a+C,&
+\int a^xdx&=\frac{a^x}{\ln a}+C,\\
+\int u\,dv&=uv-\int v\,du,&
+\int\frac{f'}f dx&=\ln|f|+C,\\
+\sin^2x&=\frac{1-\cos2x}{2},&
+\cos^2x&=\frac{1+\cos2x}{2},\\
+1+\tan^2x&=\sec^2x,&1+\cot^2x&=\csc^2x.
+\end{align*}
+Sustituciones trigonométricas principales:
+\[x=a\sin\theta\;(a^2-x^2),\qquad x=a\tan\theta\;(a^2+x^2),\qquad x=a\sec\theta\;(x^2-a^2).\]
+
+\end{document}

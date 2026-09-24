@@ -1,0 +1,1495 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,mexico]{babel}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{geometry,enumitem,booktabs,array,xcolor,graphicx,hyperref,fancyhdr,microtype,longtable}
+\geometry{letterpaper,top=2.3cm,bottom=2.3cm,left=2.5cm,right=2.5cm}
+\setlength{\parindent}{0pt}\setlength{\parskip}{0.55em}
+\definecolor{azul}{RGB}{25,70,120}
+\hypersetup{colorlinks=true,linkcolor=azul,urlcolor=azul,citecolor=azul}
+\newtheorem{teorema}{Teorema}[section]\newtheorem{proposicion}[teorema]{Proposición}\newtheorem{corolario}[teorema]{Corolario}
+\theoremstyle{definition}\newtheorem{definicion}[teorema]{Definición}\newtheorem{ejemplo}[teorema]{Ejemplo}\newtheorem{ejercicio}[teorema]{Ejercicio}
+\theoremstyle{remark}\newtheorem*{observacion}{Observación}\newtheorem*{advertencia}{Advertencia}\newtheorem*{estrategia}{Estrategia}
+\newcommand{\R}{\mathbb{R}}\newcommand{\dd}{\,dx}\newcommand{\du}{\,du}\newcommand{\dt}{\,dt}
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}\fancyhf{}\fancyhead[L]{Tecnológico Nacional de México}\fancyhead[R]{Cálculo Integral}\fancyfoot[L]{Carlos Ernesto Martínez Rodríguez}\fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+\title{\textbf{Notas para el curso de Cálculo Integral}\\[0.3cm]\Large Unidad 2: Integral indefinida y métodos de integración}
+\author{Carlos Ernesto Martínez Rodríguez\\Tecnológico Nacional de México}
+\date{Agosto--Diciembre 2026}
+\begin{document}\maketitle\tableofcontents\newpage
+
+\section{Propósito y conexión con la Unidad 1}
+En la Unidad 1 construimos la integral definida a partir de sumas de Riemann y establecimos el Teorema Fundamental del Cálculo. Si $f$ es continua y $F'=f$, entonces
+\[\int_a^b f(x)\,dx=F(b)-F(a).\]
+La Unidad 2 estudia sistemáticamente el problema inverso de la derivación: dada $f$, encontrar una función $F$ cuya derivada sea $f$. El objetivo no es memorizar una colección aislada de fórmulas, sino aprender a \emph{reconocer la estructura del integrando}, seleccionar una técnica apropiada, ejecutarla correctamente y verificar el resultado derivando.
+
+\section{Primitivas o antiderivadas}
+\begin{definicion}Sea $f:I\to\R$. Una función $F:I\to\R$ es una \textbf{primitiva} o \textbf{antiderivada} de $f$ si $F'(x)=f(x)$ para todo $x\in I$.\end{definicion}
+Por ejemplo, $F(x)=x^3$ es primitiva de $f(x)=3x^2$. También lo son $x^3+5$, $x^3-\pi$ y, en general, $x^3+C$.
+\begin{teorema}Si $F$ y $G$ son primitivas de la misma función $f$ en un intervalo $I$, entonces existe $C\in\R$ tal que $F(x)=G(x)+C$.\end{teorema}
+\begin{proof}Como $F'=G'=f$, se tiene $(F-G)'=0$. Una función con derivada nula en un intervalo es constante; por tanto $F-G=C$.\end{proof}
+
+\section{Integral indefinida y constante de integración}
+\begin{definicion}Si $F'=f$, la familia de todas las primitivas de $f$ se representa por
+\[\boxed{\int f(x)\,dx=F(x)+C}.\]
+La expresión se denomina \textbf{integral indefinida}.\end{definicion}
+La integral definida $\int_a^b f(x)dx$ es un número; la integral indefinida $\int f(x)dx$ es una familia de funciones. La constante $C$ es indispensable porque la derivada elimina cualquier constante.
+
+\section{Propiedades y verificación}
+Por linealidad de la derivada,
+\[\int[\alpha f(x)+\beta g(x)]dx=\alpha\int f(x)dx+\beta\int g(x)dx.\]
+Todas las constantes que aparezcan al integrar término a término pueden reunirse en una sola constante $C$.
+\begin{observacion}La comprobación natural de una integral indefinida es derivar el resultado. Si proponemos $\int f(x)dx=F(x)+C$, la verificación consiste en comprobar $F'(x)=f(x)$.\end{observacion}
+
+\section{Del Teorema Fundamental al logaritmo natural}
+En este punto aparece una excepción importante a la regla de la potencia. Para $n\neq-1$ sabemos que
+\[
+\int x^n\,dx=\frac{x^{n+1}}{n+1}+C.
+\]
+Si intentamos sustituir $n=-1$, obtendríamos una división entre cero. Por tanto, la integral
+\[
+\int\frac{1}{x}\,dx
+\]
+no puede deducirse de la regla de la potencia. En lugar de memorizar una fórmula nueva, construiremos la función que la resuelve utilizando la integral definida estudiada en la Unidad 1.
+
+\subsection{Definición integral del logaritmo natural}
+\begin{definicion}
+Para $x>0$ definimos el \textbf{logaritmo natural} de $x$ por
+\[
+\boxed{\ln x:=\int_1^x\frac{1}{t}\,dt.}
+\]
+\end{definicion}
+Esta definición tiene una interpretación geométrica inmediata: $\ln x$ mide la acumulación con signo de la función $1/t$ entre $1$ y $x$. En particular,
+\[
+\ln1=\int_1^1\frac{1}{t}\,dt=0.
+\]
+Si $x>1$, la integral es positiva; si $0<x<1$, al invertirse la orientación respecto de $1$, el logaritmo es negativo.
+
+\subsection{Derivada del logaritmo a partir del Primer Teorema Fundamental}
+Sea
+\[
+L(x)=\int_1^x\frac{1}{t}\,dt,\qquad x>0.
+\]
+La función $t\mapsto1/t$ es continua en $(0,\infty)$. Por el Primer Teorema Fundamental del Cálculo,
+\[
+L'(x)=\frac1x.
+\]
+Como $L(x)=\ln x$, obtenemos
+\[
+\boxed{\frac{d}{dx}\ln x=\frac1x,\qquad x>0.}
+\]
+Ahora sí podemos leer esta igualdad en sentido inverso:
+\[
+\boxed{\int\frac1x\,dx=\ln x+C,\qquad x>0.}
+\]
+
+\subsection{¿Por qué aparece $\ln|x|$?}
+El integrando $1/x$ también está definido para $x<0$. En ese intervalo consideremos
+\[
+F(x)=\ln(-x).
+\]
+Por la regla de la cadena,
+\[
+F'(x)=\frac{1}{-x}(-1)=\frac1x.
+\]
+Por tanto, en cualquier intervalo que no contenga al cero,
+\[
+\boxed{\int\frac1x\,dx=\ln|x|+C.}
+\]
+\begin{observacion}
+El dominio $\R\setminus\{0\}=(-\infty,0)\cup(0,\infty)$ no es un intervalo. Si se trabaja simultáneamente en ambas componentes, las constantes pueden ser diferentes:
+\[
+F(x)=\begin{cases}
+\ln(-x)+C_1,&x<0,\\[1mm]
+\ln x+C_2,&x>0.
+\end{cases}
+\]
+La escritura $\ln|x|+C$ se utiliza habitualmente cuando se trabaja en un intervalo contenido en una de las dos componentes.
+\end{observacion}
+
+\subsection{Propiedades del logaritmo deducidas mediante cálculo}
+Fijemos $a>0$ y definamos, para $x>0$,
+\[
+H(x)=\ln(ax)-\ln x.
+\]
+Entonces
+\[
+H'(x)=\frac{a}{ax}-\frac1x=0.
+\]
+Por tanto, $H$ es constante. Evaluando en $x=1$,
+\[
+H(1)=\ln a,
+\]
+y concluimos
+\[
+\boxed{\ln(ax)=\ln a+\ln x.}
+\]
+Tomando $a=x$ y repitiendo el argumento se obtiene la conocida propiedad
+\[
+\boxed{\ln(xy)=\ln x+\ln y,\qquad x,y>0.}
+\]
+De ella se deducen
+\[
+\ln\left(\frac{x}{y}\right)=\ln x-\ln y,
+\qquad
+\ln(x^r)=r\ln x
+\]
+en los dominios donde las expresiones estén definidas.
+
+\subsection{Monotonía y recorrido de $\ln x$}
+Como
+\[
+(\ln x)'=\frac1x>0\qquad(x>0),
+\]
+$\ln x$ es estrictamente creciente. Además,
+\[
+\lim_{x\to0^+}\ln x=-\infty,
+\qquad
+\lim_{x\to\infty}\ln x=\infty.
+\]
+Así, $\ln:(0,\infty)\to\R$ es uno a uno y sobre. En consecuencia posee una función inversa.
+
+\section{La función exponencial como inversa del logaritmo}
+En muchos cursos la exponencial aparece primero y después se define el logaritmo como su inversa. En estas notas seguiremos el camino inverso, que resulta natural después de haber construido la integral definida: primero definimos $\ln x$ mediante una integral y después definimos la exponencial como su función inversa.
+
+\begin{definicion}
+La \textbf{función exponencial natural} se define como la inversa del logaritmo natural:
+\[
+\boxed{\exp(x):=\ln^{-1}(x).}
+\]
+Equivalentemente,
+\[
+y=\exp(x)\quad\Longleftrightarrow\quad x=\ln y.
+\]
+Se utiliza la notación
+\[
+\boxed{e^x:=\exp(x).}
+\]
+\end{definicion}
+Por ser funciones inversas,
+\[
+\boxed{\ln(e^x)=x,\qquad e^{\ln x}=x\quad(x>0).}
+\]
+
+\subsection{El número $e$}
+Definimos
+\[
+\boxed{e:=\exp(1).}
+\]
+Por definición de función inversa,
+\[
+\ln e=1.
+\]
+Pero la definición integral del logaritmo nos dice que
+\[
+\boxed{\int_1^e\frac{1}{t}\,dt=1.}
+\]
+Así, $e$ puede caracterizarse como el único número positivo para el cual el área con signo bajo $1/t$, desde $1$ hasta $e$, es exactamente uno.
+
+\subsection{Derivada de la exponencial}
+Partimos de la identidad
+\[
+\ln(e^x)=x.
+\]
+Derivando ambos lados respecto de $x$ y usando la regla de la cadena,
+\[
+\frac{1}{e^x}\frac{d}{dx}(e^x)=1.
+\]
+Multiplicando por $e^x$,
+\[
+\boxed{\frac{d}{dx}e^x=e^x.}
+\]
+Ahora leemos nuevamente la igualdad en sentido inverso:
+\[
+\boxed{\int e^x\,dx=e^x+C.}
+\]
+Este resultado no se introduce como una fórmula aislada: se obtiene de la definición de la exponencial como inversa de $\ln$.
+
+\subsection{Exponenciales de base arbitraria}
+Para $a>0$, $a\neq1$, definimos
+\[
+a^x=e^{x\ln a}.
+\]
+Entonces, por la regla de la cadena,
+\[
+\frac{d}{dx}a^x=e^{x\ln a}\ln a=a^x\ln a.
+\]
+Por consiguiente,
+\[
+\boxed{\int a^x\,dx=\frac{a^x}{\ln a}+C,\qquad a>0,\ a\neq1.}
+\]
+
+\section{Integración directa}
+
+\subsection{Primeras integrales inferidas de las reglas de derivación}
+
+Antes de introducir nuevas técnicas de integración conviene detenernos en una idea sencilla, pero fundamental. Desde el Cálculo Diferencial ya conocemos numerosas reglas de derivación. Si la integración indefinida representa el problema inverso de la derivación, entonces varias de nuestras primeras integrales pueden \emph{inferirse directamente} leyendo esas reglas en sentido contrario.
+
+Por ejemplo, sabemos que
+\[
+\frac{d}{dx}\left(\frac{x^{n+1}}{n+1}\right)=x^n,
+\qquad n\neq -1.
+\]
+Por tanto,
+\[
+\boxed{\int x^n\,dx=\frac{x^{n+1}}{n+1}+C,\qquad n\neq-1.}
+\]
+
+De manera análoga, las derivadas trigonométricas conocidas
+\[
+\frac{d}{dx}(\sin x)=\cos x,
+\qquad
+\frac{d}{dx}(\cos x)=-\sin x
+\]
+nos permiten leer inmediatamente
+\[
+\boxed{\int\cos x\,dx=\sin x+C}
+\]
+y
+\[
+\boxed{\int\sin x\,dx=-\cos x+C.}
+\]
+Obsérvese especialmente el signo en la segunda fórmula: como la derivada de $\cos x$ es $-\sin x$, necesitamos $-\cos x$ para obtener como derivada a $\sin x$.
+
+También sabemos que
+\[
+\frac{d}{dx}(\tan x)=\sec^2x.
+\]
+Por consiguiente,
+\[
+\boxed{\int\sec^2x\,dx=\tan x+C.}
+\]
+Del mismo modo,
+\[
+\frac{d}{dx}(\cot x)=-\csc^2x
+\]
+implica
+\[
+\boxed{\int\csc^2x\,dx=-\cot x+C.}
+\]
+Y las identidades de derivación
+\[
+\frac{d}{dx}(\sec x)=\sec x\tan x,
+\qquad
+\frac{d}{dx}(\csc x)=-\csc x\cot x
+\]
+proporcionan
+\[
+\boxed{\int\sec x\tan x\,dx=\sec x+C,}
+\qquad
+\boxed{\int\csc x\cot x\,dx=-\csc x+C.}
+\]
+
+Así, las primeras fórmulas de integración no aparecen como una tabla nueva y desconectada de lo aprendido anteriormente. Son, en realidad, reglas de derivación ya conocidas que ahora estamos leyendo de derecha a izquierda:
+\[
+\boxed{F'(x)=f(x)\quad\Longleftrightarrow\quad \int f(x)\,dx=F(x)+C.}
+\]
+
+Esta observación también explica por qué la integral de $1/x$ requirió un tratamiento especial. La regla de la potencia produce las primitivas de $x^n$ solamente cuando $n\neq-1$; el caso $n=-1$ condujo a la construcción del logaritmo natural desarrollada en la sección anterior. De forma semejante, la integral de $e^x$ quedó justificada después de construir la función exponencial como inversa de $\ln x$.
+
+Una vez construidas y motivadas estas primitivas fundamentales, podemos comenzar a integrar directamente. La idea no es memorizar una tabla sin contexto, sino reconocer reglas de derivación conocidas en sentido inverso.
+
+De
+\[
+\frac{d}{dx}x^{n+1}=(n+1)x^n
+\]
+se obtiene
+\[
+\boxed{\int x^n\,dx=\frac{x^{n+1}}{n+1}+C,\qquad n\neq-1.}
+\]
+El caso $n=-1$ ya fue construido separadamente:
+\[
+\boxed{\int\frac1x\,dx=\ln|x|+C.}
+\]
+
+\subsection{Tabla fundamental razonada}
+Las siguientes fórmulas se obtienen invirtiendo las correspondientes reglas de derivación:
+\begin{align*}
+\int e^x\,dx&=e^x+C,&
+\int a^x\,dx&=\frac{a^x}{\ln a}+C,\\
+\int\sin x\,dx&=-\cos x+C,&
+\int\cos x\,dx&=\sin x+C,\\
+\int\sec^2x\,dx&=\tan x+C,&
+\int\csc^2x\,dx&=-\cot x+C,\\
+\int\sec x\tan x\,dx&=\sec x+C,&
+\int\csc x\cot x\,dx&=-\csc x+C,\\
+\int\frac{dx}{1+x^2}&=\arctan x+C,&
+\int\frac{dx}{\sqrt{1-x^2}}&=\arcsin x+C.
+\end{align*}
+
+\subsection{Cómo leer una integral directa}
+Consideremos
+\[
+\int(4x^3-6x^2+5x-8)\,dx.
+\]
+Antes de operar observamos que el integrando es una suma de potencias de $x$. No aparece una composición, un producto que requiera partes ni una función racional complicada. Por tanto, basta usar linealidad y la regla de la potencia:
+\begin{align*}
+\int(4x^3-6x^2+5x-8)\,dx
+&=4\int x^3\,dx-6\int x^2\,dx+5\int x\,dx-8\int1\,dx\\
+&=4\frac{x^4}{4}-6\frac{x^3}{3}+5\frac{x^2}{2}-8x+C\\
+&=\boxed{x^4-2x^3+\frac52x^2-8x+C}.
+\end{align*}
+La verificación consiste en derivar el resultado y recuperar exactamente el integrando.
+
+\begin{ejemplo}
+Calcule
+\[
+\int\left(3x^4-\frac2{x^2}+5\sqrt{x}\right)dx.
+\]
+Primero escribimos todas las expresiones como potencias:
+\[
+3x^4-2x^{-2}+5x^{1/2}.
+\]
+Ahora integramos término a término:
+\begin{align*}
+3\int x^4dx-2\int x^{-2}dx+5\int x^{1/2}dx
+&=\frac35x^5+2x^{-1}+\frac{10}{3}x^{3/2}+C\\
+&=\boxed{\frac35x^5+\frac2x+\frac{10}{3}x^{3/2}+C}.
+\end{align*}
+\end{ejemplo}
+
+
+\section{Ejemplos motivadores: ¿por qué necesitamos técnicas de integración?}
+
+Hasta este momento hemos obtenido primitivas invirtiendo reglas elementales de derivación. Sin embargo, muy pronto aparecen integrales que no coinciden de manera inmediata con ninguna fórmula de la tabla básica. Antes de presentar reglas generales conviene estudiar algunos ejemplos que muestran \emph{qué obstáculo aparece} y \emph{qué idea permite superarlo}. De esta manera, cada técnica de integración surgirá como respuesta a un problema concreto y no como una receta aislada.
+
+\subsection{Primer ejemplo: una composición sugiere invertir la regla de la cadena}
+Consideremos
+\[
+I=\int 2x(x^2+1)^5\,dx.
+\]
+No podemos aplicar directamente la regla de la potencia a $(x^2+1)^5$, pues la variable no aparece simplemente como $x^5$. Sin embargo, recordemos que
+\[
+\frac{d}{dx}(x^2+1)^6=6(x^2+1)^5(2x).
+\]
+El factor $2x$ que aparece en el integrando es precisamente la derivada de la expresión interior $x^2+1$. Esto sugiere considerar toda esa expresión como una nueva variable:
+\[
+u=x^2+1,\qquad du=2x\,dx.
+\]
+Entonces
+\[
+I=\int u^5\,du=\frac{u^6}{6}+C
+=\boxed{\frac{(x^2+1)^6}{6}+C}.
+\]
+
+La observación importante no es solamente el cálculo anterior. Lo esencial es reconocer el patrón
+\[
+\boxed{f(g(x))g'(x)}.
+\]
+Éste es exactamente el patrón producido por la regla de la cadena al derivar una composición. Por ello, el \textbf{cambio de variable} o \textbf{sustitución} será la técnica que invierte la regla de la cadena.
+
+\subsection{Segundo ejemplo: un producto sugiere invertir la regla del producto}
+Consideremos ahora
+\[
+I=\int xe^x\,dx.
+\]
+La integral no es directa. Tampoco una sustitución sencilla elimina el producto: si tomamos $u=x$, nada cambia esencialmente; y si tomamos $u=e^x$, todavía queda el factor $x$.
+
+Recordemos la regla del producto:
+\[
+(uv)'=u'v+uv'.
+\]
+Despejando uno de los términos e integrando, podremos transformar un producto en otra integral. En este ejemplo conviene derivar el factor algebraico $x$, porque se simplifica:
+\[
+u=x,\qquad dv=e^x\,dx,
+\]
+por lo que
+\[
+du=dx,\qquad v=e^x.
+\]
+Entonces
+\[
+I=xe^x-\int e^x\,dx
+=xe^x-e^x+C
+=\boxed{e^x(x-1)+C}.
+\]
+
+Este ejemplo motiva la regla general de \textbf{integración por partes}: cuando el integrando contiene un producto, puede ser conveniente derivar uno de sus factores e integrar el otro.
+
+\subsection{Tercer ejemplo: una identidad puede transformar la integral}
+Consideremos
+\[
+I=\int\sin^2x\,dx.
+\]
+Sabemos integrar $\sin x$, pero eso no significa que podamos escribir
+\[
+\int\sin^2x\,dx=(\int\sin x\,dx)^2;
+\]
+esta igualdad es falsa. Tampoco existe en nuestra tabla básica una primitiva inmediata de $\sin^2x$.
+
+La dificultad desaparece si recordamos la identidad de ángulo doble
+\[
+\cos(2x)=1-2\sin^2x,
+\]
+de donde
+\[
+\sin^2x=\frac{1-\cos(2x)}{2}.
+\]
+Así,
+\begin{align*}
+I&=\frac12\int1\,dx-\frac12\int\cos(2x)\,dx\\
+&=\frac{x}{2}-\frac14\sin(2x)+C.
+\end{align*}
+Por tanto,
+\[
+\boxed{\int\sin^2x\,dx=\frac{x}{2}-\frac{\sin(2x)}{4}+C}.
+\]
+
+Aquí la técnica no consiste inicialmente en ``integrar'', sino en \textbf{reescribir el integrando mediante identidades trigonométricas} hasta obtener integrales conocidas. Ésta será la idea central de las integrales trigonométricas.
+
+\subsection{Cuarto ejemplo: un radical sugiere fabricar una identidad pitagórica}
+Consideremos
+\[
+I=\int\sqrt{9-x^2}\,dx.
+\]
+La raíz
+\[
+\sqrt{9-x^2}
+\]
+no desaparece mediante una sustitución algebraica elemental. Sin embargo, la expresión $9-x^2$ recuerda la identidad
+\[
+1-\sin^2\theta=\cos^2\theta.
+\]
+Si hacemos
+\[
+x=3\sin\theta,
+\]
+entonces
+\[
+9-x^2=9(1-\sin^2\theta)=9\cos^2\theta,
+\]
+y, escogiendo el intervalo usual para $\theta$,
+\[
+\sqrt{9-x^2}=3\cos\theta.
+\]
+Además,
+\[
+dx=3\cos\theta\,d\theta.
+\]
+La integral radical se convierte en
+\[
+9\int\cos^2\theta\,d\theta,
+\]
+que ya pertenece al tipo estudiado en el ejemplo anterior.
+
+La idea general será, por tanto, elegir una sustitución trigonométrica que convierta expresiones como
+\[
+a^2-x^2,\qquad a^2+x^2,\qquad x^2-a^2
+\]
+en cuadrados perfectos mediante identidades pitagóricas.
+
+\subsection{Quinto ejemplo: una fracción racional puede descomponerse}
+Consideremos
+\[
+I=\int\frac{5x+1}{(x-1)(x+2)}\,dx.
+\]
+No reconocemos directamente una primitiva. Pero podemos preguntar si la fracción complicada puede escribirse como suma de fracciones simples:
+\[
+\frac{5x+1}{(x-1)(x+2)}
+=\frac{A}{x-1}+\frac{B}{x+2}.
+\]
+Al multiplicar por $(x-1)(x+2)$ obtenemos
+\[
+5x+1=A(x+2)+B(x-1).
+\]
+Tomando $x=1$ resulta $A=2$, y tomando $x=-2$ resulta $B=3$. Por tanto,
+\[
+\frac{5x+1}{(x-1)(x+2)}=\frac2{x-1}+\frac3{x+2}.
+\]
+Ahora sí podemos integrar:
+\[
+I=2\ln|x-1|+3\ln|x+2|+C.
+\]
+
+Este ejemplo motiva el método de \textbf{fracciones parciales}: descomponer una función racional en una suma de términos cuya integración ya conocemos.
+
+\subsection{Sexto ejemplo: antes de elegir una técnica, conviene simplificar}
+No toda integral aparentemente complicada requiere una técnica nueva. Consideremos
+\[
+I=\int\frac{x^2+2x}{x}\,dx.
+\]
+Si intentáramos sustitución o fracciones parciales estaríamos complicando innecesariamente el problema. Primero simplificamos:
+\[
+\frac{x^2+2x}{x}=x+2,\qquad x\neq0.
+\]
+Entonces
+\[
+I=\int(x+2)\,dx
+=\boxed{\frac{x^2}{2}+2x+C}.
+\]
+
+Este ejemplo establece una regla práctica fundamental:
+\begin{center}
+\textbf{antes de seleccionar una técnica de integración, simplifique el integrando siempre que sea posible.}
+\end{center}
+
+\subsection{De los ejemplos a las reglas generales}
+Los ejemplos anteriores sugieren que las técnicas de integración no son procedimientos desconectados. Cada una intenta invertir, aprovechar o combinar estructuras que ya conocemos:
+
+\begin{center}
+\begin{tabular}{p{0.28\textwidth}p{0.30\textwidth}p{0.31\textwidth}}
+\toprule
+\textbf{Lo que observamos} & \textbf{Idea que lo motiva} & \textbf{Técnica probable}\\
+\midrule
+$f(g(x))g'(x)$ & Regla de la cadena & Sustitución\\
+Producto de funciones & Regla del producto & Integración por partes\\
+Potencias o productos trigonométricos & Identidades trigonométricas & Integrales trigonométricas\\
+$\sqrt{a^2-x^2}$, $\sqrt{a^2+x^2}$, $\sqrt{x^2-a^2}$ & Identidades pitagóricas & Sustitución trigonométrica\\
+$P(x)/Q(x)$ & Descomposición algebraica & División y fracciones parciales\\
+Expresión algebraicamente reducible & Simplificación & Integración directa después de simplificar\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+La tabla anterior no debe interpretarse como un algoritmo infalible. Una misma integral puede admitir más de un método y, en ocasiones, será necesario combinar técnicas. Su propósito es proporcionar una primera guía de reconocimiento. En las secciones siguientes deduciremos cada regla general y estudiaremos con detalle cuándo y cómo utilizarla.
+
+\section{Cambio de variable o sustitución}
+
+La primera técnica general de integración que estudiaremos es el \textbf{cambio de variable}, también llamado \textbf{método de sustitución}. Conviene estudiarlo con especial cuidado porque, además de resolver una gran cantidad de integrales, nos permitirá reconocer con claridad cuándo este método \emph{deja de ser suficiente} y por qué necesitaremos técnicas nuevas.
+
+\subsection{La idea fundamental: invertir la regla de la cadena}
+
+En Cálculo Diferencial aprendimos que, si $F$ y $g$ son funciones derivables, entonces
+\[
+\frac{d}{dx}F(g(x))=F'(g(x))g'(x).
+\]
+Si escribimos $F'=f$, obtenemos
+\[
+\frac{d}{dx}F(g(x))=f(g(x))g'(x).
+\]
+Por lo tanto, al leer esta identidad en sentido inverso,
+\[
+\boxed{\int f(g(x))g'(x)\,dx=F(g(x))+C.}
+\]
+La notación de sustitución hace visible esta estructura. Definimos
+\[
+u=g(x),\qquad du=g'(x)\,dx.
+\]
+Entonces
+\[
+\boxed{\int f(g(x))g'(x)\,dx=\int f(u)\,du.}
+\]
+
+\begin{estrategia}
+Ante una integral, busque primero una expresión que esté ``dentro'' de otra: una potencia, una raíz, un exponencial, un logaritmo o una función trigonométrica. Pregúntese después: \emph{¿aparece también la derivada de esa expresión, quizá multiplicada por una constante?} Si la respuesta es afirmativa, el cambio de variable es un candidato natural.
+\end{estrategia}
+
+No se trata de cambiar letras arbitrariamente. Una sustitución es útil solamente si, después de efectuarla, \textbf{toda la integral puede expresarse en términos de la nueva variable}. Si quedan simultáneamente $x$ y $u$, normalmente la sustitución está incompleta o no fue una buena elección.
+
+\subsection{Nivel 1: sustituciones directas}
+
+Comenzaremos con casos en los que la función interior y su derivada aparecen de manera exacta.
+
+\begin{ejemplo}[Potencia de una función]
+Calcule
+\[
+I=\int 2x(x^2+1)^5\,dx.
+\]
+La expresión $(x^2+1)^5$ es una composición: la función exterior es $u^5$ y la interior es $x^2+1$. Derivamos la interior:
+\[
+\frac{d}{dx}(x^2+1)=2x.
+\]
+El factor $2x\,dx$ aparece exactamente en la integral. Por ello tomamos
+\[
+u=x^2+1,\qquad du=2x\,dx.
+\]
+La integral completa queda en términos de $u$:
+\[
+I=\int u^5\,du=\frac{u^6}{6}+C.
+\]
+Regresando a $x$,
+\[
+\boxed{I=\frac{(x^2+1)^6}{6}+C.}
+\]
+Verificamos derivando:
+\[
+\frac{d}{dx}\left(\frac{(x^2+1)^6}{6}\right)
+=\frac16\,6(x^2+1)^5(2x)=2x(x^2+1)^5.
+\]
+\end{ejemplo}
+
+\begin{ejemplo}[Una exponencial compuesta]
+Calcule
+\[
+\int \cos x\,e^{\sin x}\,dx.
+\]
+La expresión interior del exponencial es $\sin x$ y
+\[
+\frac{d}{dx}(\sin x)=\cos x.
+\]
+Por tanto,
+\[
+u=\sin x,\qquad du=\cos x\,dx,
+\]
+y
+\[
+\int \cos x\,e^{\sin x}\,dx=\int e^u\,du=e^u+C.
+\]
+Así,
+\[
+\boxed{\int \cos x\,e^{\sin x}\,dx=e^{\sin x}+C.}
+\]
+\end{ejemplo}
+
+\begin{ejemplo}[Estructura logarítmica]
+Calcule
+\[
+\int\frac{3x^2}{x^3+4}\,dx.
+\]
+El denominador sugiere
+\[
+u=x^3+4.
+\]
+Su diferencial es
+\[
+du=3x^2\,dx,
+\]
+que coincide exactamente con el numerador. Entonces
+\[
+\int\frac{3x^2}{x^3+4}\,dx=\int\frac{du}{u}=\ln|u|+C,
+\]
+y finalmente
+\[
+\boxed{\int\frac{3x^2}{x^3+4}\,dx=\ln|x^3+4|+C.}
+\]
+Aquí el valor absoluto es necesario porque $x^3+4$ puede tomar valores positivos o negativos.
+\end{ejemplo}
+
+\subsection{Nivel 2: la derivada aparece salvo un factor constante}
+
+Con frecuencia la derivada de la expresión interior no aparece exactamente, pero difiere sólo por una constante. Las constantes pueden introducirse y extraerse de una integral.
+
+\begin{ejemplo}
+Calcule
+\[
+I=\int x(x^2+4)^7\,dx.
+\]
+Tomamos
+\[
+u=x^2+4,\qquad du=2x\,dx.
+\]
+No tenemos $2x\,dx$, sino $x\,dx$. Despejamos:
+\[
+x\,dx=\frac12\,du.
+\]
+Entonces
+\[
+I=\frac12\int u^7\,du
+=\frac12\frac{u^8}{8}+C
+=\frac{u^8}{16}+C.
+\]
+Por tanto,
+\[
+\boxed{I=\frac{(x^2+4)^8}{16}+C.}
+\]
+\end{ejemplo}
+
+\begin{ejemplo}[Exponencial con argumento lineal]
+Calcule
+\[
+\int e^{3x+1}\,dx.
+\]
+Sea
+\[
+u=3x+1,\qquad du=3\,dx,
+\]
+de donde
+\[
+dx=\frac13\,du.
+\]
+Así,
+\[
+\int e^{3x+1}\,dx
+=\frac13\int e^u\,du
+=\frac13e^u+C.
+\]
+Por tanto,
+\[
+\boxed{\int e^{3x+1}\,dx=\frac13e^{3x+1}+C.}
+\]
+Observe que el factor $1/3$ compensa el factor $3$ que aparecería al derivar $e^{3x+1}$.
+\end{ejemplo}
+
+\begin{ejemplo}[Función trigonométrica con argumento lineal]
+Calcule
+\[
+\int\sin(5x)\,dx.
+\]
+Tomamos
+\[
+u=5x,\qquad du=5\,dx,
+\]
+por lo que $dx=du/5$. Entonces
+\[
+\int\sin(5x)\,dx
+=\frac15\int\sin u\,du
+=-\frac15\cos u+C.
+\]
+Así,
+\[
+\boxed{\int\sin(5x)\,dx=-\frac15\cos(5x)+C.}
+\]
+\end{ejemplo}
+
+\subsection{Nivel 3: sustituciones que requieren reorganizar el integrando}
+
+En problemas más interesantes, la estructura no aparece inmediatamente. Antes de sustituir debemos factorizar, separar potencias o expresar parte del integrando mediante la nueva variable.
+
+\begin{ejemplo}[Separar una potencia]
+Calcule
+\[
+I=\int\frac{x^3}{x^2+1}\,dx.
+\]
+El denominador $x^2+1$ sugiere $u=x^2+1$, pero su derivada contiene $x\,dx$, no $x^3\,dx$. Separamos
+\[
+x^3\,dx=x^2(x\,dx).
+\]
+Ahora definimos
+\[
+u=x^2+1,\qquad du=2x\,dx,
+\qquad x\,dx=\frac12du.
+\]
+Todavía aparece $x^2$, pero la propia ecuación de sustitución permite escribir
+\[
+x^2=u-1.
+\]
+Por tanto,
+\[
+I=\frac12\int\frac{u-1}{u}\,du
+=\frac12\int\left(1-\frac1u\right)du.
+\]
+Integramos:
+\[
+I=\frac12(u-\ln|u|)+C.
+\]
+Como $u=x^2+1>0$,
+\[
+\boxed{I=\frac{x^2}{2}-\frac12\ln(x^2+1)+C.}
+\]
+La constante $1/2$ que resulta al sustituir $u=x^2+1$ se absorbe en $C$.
+\end{ejemplo}
+
+\begin{ejemplo}[Una raíz]
+Calcule
+\[
+\int\frac{x^2}{\sqrt{x^3+1}}\,dx.
+\]
+La expresión interior de la raíz es $x^3+1$, cuya derivada es $3x^2$. Tomamos
+\[
+u=x^3+1,\qquad du=3x^2\,dx,
+\]
+de modo que
+\[
+x^2\,dx=\frac13du.
+\]
+Entonces
+\[
+\int\frac{x^2}{\sqrt{x^3+1}}\,dx
+=\frac13\int u^{-1/2}\,du
+=\frac13(2u^{1/2})+C.
+\]
+Por tanto,
+\[
+\boxed{\int\frac{x^2}{\sqrt{x^3+1}}\,dx=\frac23\sqrt{x^3+1}+C.}
+\]
+\end{ejemplo}
+
+\begin{ejemplo}[Una sustitución escondida en una fracción]
+Calcule
+\[
+\int\frac{e^x}{1+e^x}\,dx.
+\]
+El denominador es $1+e^x$ y su derivada es precisamente $e^x$. Así,
+\[
+u=1+e^x,\qquad du=e^x\,dx.
+\]
+Por consiguiente,
+\[
+\int\frac{e^x}{1+e^x}\,dx
+=\int\frac{du}{u}
+=\ln|u|+C.
+\]
+Como $1+e^x>0$,
+\[
+\boxed{\int\frac{e^x}{1+e^x}\,dx=\ln(1+e^x)+C.}
+\]
+\end{ejemplo}
+
+\subsection{Nivel 4: sustituciones menos evidentes}
+
+La función interior no siempre es un polinomio. Puede ser un logaritmo, una función trigonométrica inversa o cualquier otra función cuya derivada esté presente.
+
+\begin{ejemplo}
+Calcule
+\[
+\int\frac{(\ln x)^4}{x}\,dx,\qquad x>0.
+\]
+La potencia afecta a $\ln x$. Como
+\[
+\frac{d}{dx}(\ln x)=\frac1x,
+\]
+tomamos
+\[
+u=\ln x,\qquad du=\frac1x\,dx.
+\]
+Así,
+\[
+\int\frac{(\ln x)^4}{x}\,dx
+=\int u^4\,du
+=\frac{u^5}{5}+C,
+\]
+y
+\[
+\boxed{\int\frac{(\ln x)^4}{x}\,dx=\frac{(\ln x)^5}{5}+C.}
+\]
+\end{ejemplo}
+
+\begin{ejemplo}
+Calcule
+\[
+\int\frac{\arctan x}{1+x^2}\,dx.
+\]
+Recordemos que
+\[
+\frac{d}{dx}(\arctan x)=\frac1{1+x^2}.
+\]
+Entonces
+\[
+u=\arctan x,\qquad du=\frac{dx}{1+x^2}.
+\]
+La integral se reduce a
+\[
+\int u\,du=\frac{u^2}{2}+C.
+\]
+Por tanto,
+\[
+\boxed{\int\frac{\arctan x}{1+x^2}\,dx=\frac12(\arctan x)^2+C.}
+\]
+\end{ejemplo}
+
+\subsection{Una regla práctica para elegir $u$}
+
+No existe una receta infalible, pero en una primera búsqueda conviene formular las siguientes preguntas:
+\begin{enumerate}
+\item ¿Hay una función claramente contenida dentro de otra?
+\item ¿Hay una potencia $(g(x))^n$, una raíz $\sqrt{g(x)}$, una exponencial $e^{g(x)}$, un logaritmo $\ln(g(x))$ o una función trigonométrica de $g(x)$?
+\item ¿Aparece $g'(x)$ en otra parte del integrando?
+\item Si no aparece exactamente, ¿difiere sólo por una constante?
+\item Después de hacer $u=g(x)$, ¿puedo eliminar todas las apariciones de $x$?
+\end{enumerate}
+
+Una comprobación especialmente útil es la última. Si después de sustituir obtenemos, por ejemplo,
+\[
+\int xu^3\,du,
+\]
+y no tenemos forma de expresar $x$ en términos de $u$, la transformación no ha cumplido su objetivo.
+
+\subsection{Cuándo la sustitución ordinaria no basta}
+
+Hasta ahora hemos escogido ejemplos construidos para que el cambio de variable funcione. Sin embargo, no todas las integrales son de la forma $f(g(x))g'(x)$. Reconocer este límite es justamente lo que motiva las siguientes técnicas de integración.
+
+\subsubsection*{Un producto que no se simplifica: hacia integración por partes}
+
+Consideremos
+\[
+I=\int xe^x\,dx.
+\]
+Podríamos intentar $u=e^x$. Entonces $du=e^x\,dx$, pero quedaría
+\[
+I=\int x\,du,
+\]
+y todavía aparece $x$. Podemos escribir $x=\ln u$, pero obtenemos
+\[
+I=\int\ln u\,du,
+\]
+que no es más sencilla que la integral original.
+
+También podríamos intentar $u=x$, pero entonces $du=dx$ y la integral se convierte simplemente en
+\[
+\int ue^u\,du,
+\]
+que tiene exactamente la misma estructura.
+
+La sustitución no ha reducido la dificultad. El problema proviene de que estamos integrando un \textbf{producto} de dos funciones de naturaleza distinta. Esto sugiere invertir otra regla de derivación: la \textbf{regla del producto}. De ahí surgirá la integración por partes.
+
+\subsubsection*{Una función racional: hacia fracciones parciales}
+
+Consideremos
+\[
+\int\frac{dx}{x^2-1}.
+\]
+La elección natural $u=x^2-1$ produce
+\[
+du=2x\,dx,
+\]
+pero en la integral no existe el factor $x$. No podemos fabricar ese factor multiplicando simplemente por una constante.
+
+Sin embargo,
+\[
+x^2-1=(x-1)(x+1).
+\]
+Esto abre una posibilidad diferente: ¿podremos escribir la fracción como suma de fracciones más simples, cuyos denominadores sean $x-1$ y $x+1$? En efecto,
+\[
+\frac1{x^2-1}
+=\frac{1/2}{x-1}-\frac{1/2}{x+1}.
+\]
+Ahora cada término conduce a un logaritmo. Esta observación motivará el método de \textbf{fracciones parciales}.
+
+\subsubsection*{Un radical que la sustitución ordinaria no elimina: hacia sustitución trigonométrica}
+
+Consideremos
+\[
+\int\frac{dx}{\sqrt{9-x^2}}.
+\]
+Si tomamos
+\[
+u=9-x^2,
+\]
+entonces
+\[
+du=-2x\,dx,
+\]
+pero nuevamente falta el factor $x$. La sustitución directa no funciona.
+
+Observemos, sin embargo, que
+\[
+9-x^2=3^2-x^2.
+\]
+La identidad
+\[
+1-\sin^2\theta=\cos^2\theta
+\]
+sugiere fabricar exactamente esa diferencia tomando
+\[
+x=3\sin\theta.
+\]
+Entonces
+\[
+\sqrt{9-x^2}
+=\sqrt{9-9\sin^2\theta}
+=3\cos\theta
+\]
+en un intervalo adecuado para $\theta$. Esta idea dará origen a la \textbf{sustitución trigonométrica}.
+
+\subsubsection*{Una potencia trigonométrica: hacia identidades trigonométricas}
+
+Considere
+\[
+\int\sin^2x\,dx.
+\]
+Tomar $u=\sin x$ produce $du=\cos x\,dx$, pero no tenemos el factor $\cos x$. Tomar $u=\cos x$ produce $du=-\sin x\,dx$, pero tampoco aparece el factor adecuado. Aquí la salida consiste en transformar primero el integrando mediante
+\[
+\sin^2x=\frac{1-\cos(2x)}2.
+\]
+La integral deja entonces de ser problemática. Esto motivará el estudio sistemático de \textbf{integrales trigonométricas}.
+
+\subsection{Lo que debemos aprender del cambio de variable}
+
+El método de sustitución es mucho más que la instrucción ``haga $u=$ algo''. Su lógica puede resumirse así:
+\[
+\boxed{\text{reconocer una composición}\;\longrightarrow\;
+\text{buscar la derivada interior}\;\longrightarrow\;
+\text{cambiar de variable}\;\longrightarrow\;
+\text{integrar}\;\longrightarrow\;
+\text{regresar a }x.}
+\]
+
+Pero igualmente importante es aprender a reconocer cuándo esa estructura \textbf{no está presente}. Los ejemplos anteriores nos han mostrado cuatro obstáculos distintos:
+\begin{center}
+\begin{tabular}{p{0.29\textwidth}p{0.31\textwidth}p{0.28\textwidth}}
+\toprule
+\textbf{Integral} & \textbf{Obstáculo} & \textbf{Técnica que se motivará}\\
+\midrule
+$\int xe^x\,dx$ & Producto que no se simplifica por sustitución & Integración por partes\\
+$\int\frac{dx}{x^2-1}$ & Función racional sin la derivada del denominador & Fracciones parciales\\
+$\int\frac{dx}{\sqrt{9-x^2}}$ & Radical cuadrático característico & Sustitución trigonométrica\\
+$\int\sin^2x\,dx$ & Potencia trigonométrica sin factor diferencial adecuado & Identidades trigonométricas\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Esta transición es fundamental: las técnicas que siguen no son reglas aisladas inventadas arbitrariamente. Cada una responde a una estructura que el cambio de variable ordinario no consigue resolver de manera eficiente.
+
+
+\section{Integración por partes}
+De $(uv)'=u'v+uv'$ se obtiene
+\[\boxed{\int u\,dv=uv-\int v\,du}.\]
+La elección debe hacer más sencilla la integral restante. LIATE (logarítmica, inversa trigonométrica, algebraica, trigonométrica, exponencial) es una heurística útil, no un teorema.
+\begin{ejemplo}$\int xe^xdx$. Tome $u=x$, $dv=e^xdx$. Entonces $du=dx$, $v=e^x$ y
+\[\boxed{e^x(x-1)+C}.\]\end{ejemplo}
+\begin{ejemplo}$\int x\sin xdx$. Tome $u=x$, $dv=\sin xdx$. Entonces $v=-\cos x$:
+\[\boxed{-x\cos x+\sin x+C}.\]\end{ejemplo}
+\begin{ejemplo}$\int x^2e^xdx$. Aplicando partes dos veces,
+\[\int x^2e^xdx=x^2e^x-2\int xe^xdx=\boxed{e^x(x^2-2x+2)+C}.\]\end{ejemplo}
+\begin{ejemplo}$\int\ln xdx$. Escriba $\ln x=1\cdot\ln x$, tome $u=\ln x$, $dv=dx$:
+\[\boxed{x\ln x-x+C}.\]\end{ejemplo}
+\begin{ejemplo}Calcule $\int\arctan xdx$. Tome $u=\arctan x$, $dv=dx$:
+\[x\arctan x-\int\frac{x}{1+x^2}dx=\boxed{x\arctan x-\frac12\ln(1+x^2)+C}.\]\end{ejemplo}
+\subsection{Integrales cíclicas}
+\begin{ejemplo}Sea $I=\int e^x\cos xdx$. Por partes, con $u=\cos x$, $dv=e^xdx$,
+\[I=e^x\cos x+\int e^x\sin xdx.\]
+Integramos de nuevo la última integral:
+\[\int e^x\sin xdx=e^x\sin x-\int e^x\cos xdx=e^x\sin x-I.\]
+Por tanto,
+\[2I=e^x(\sin x+\cos x),\]
+y
+\[\boxed{I=\frac{e^x}{2}(\sin x+\cos x)+C}.\]\end{ejemplo}
+
+\section{Integrales trigonométricas: potencias de seno y coseno}
+Consideremos $\int\sin^m x\cos^n xdx$.
+\subsection{Potencia impar de seno}
+Si $m$ es impar, separe un factor $\sin x$ y convierta el resto mediante $\sin^2x=1-\cos^2x$.
+\begin{ejemplo}$\int\sin^3x\cos^2x dx$. Escriba $\sin^3x=(1-\cos^2x)\sin x$ y tome $u=\cos x$:
+\[\boxed{-\frac{\cos^3x}{3}+\frac{\cos^5x}{5}+C}.\]\end{ejemplo}
+\subsection{Potencia impar de coseno}
+Si $n$ es impar, separe $\cos x$ y use $\cos^2x=1-\sin^2x$.
+\begin{ejemplo}Calcule $\int\sin^2x\cos^3x dx$. Se obtiene\[\boxed{\frac{\sin^3x}{3}-\frac{\sin^5x}{5}+C}.\]\end{ejemplo}
+\subsection{Ambas potencias pares}
+Use las identidades de reducción
+\[\sin^2x=\frac{1-\cos2x}{2},\qquad\cos^2x=\frac{1+\cos2x}{2}.\]
+\begin{ejemplo}$\int\sin^2x dx=\boxed{\frac{x}{2}-\frac{\sin2x}{4}+C}$.\end{ejemplo}
+\begin{ejemplo}Calcule $\int\sin^2x\cos^2x dx$. Como $\sin x\cos x=\frac12\sin2x$,
+\[\sin^2x\cos^2x=\frac14\sin^22x=\frac18(1-\cos4x).\]
+Así,
+\[\boxed{\frac{x}{8}-\frac{\sin4x}{32}+C}.\]\end{ejemplo}
+
+\section{Potencias de tangente y secante}
+Para $\int\tan^m x\sec^n xdx$ son fundamentales
+\[\sec^2x=1+\tan^2x,\qquad \tan^2x=\sec^2x-1.\]
+\begin{estrategia}
+\begin{enumerate}
+\item Si la potencia de secante es par, reserve un factor $\sec^2x$ y use $u=\tan x$.
+\item Si la potencia de tangente es impar, reserve $\sec x\tan x$ y use $u=\sec x$.
+\item Si ninguno aplica directamente, transforme usando identidades y simplifique.
+\end{enumerate}
+\end{estrategia}
+\begin{ejemplo}Calcule $\int\tan^3x\sec^4x dx$. Reserve $\sec^2x dx$ y escriba $\sec^2x=1+\tan^2x$ en el resto:
+\[\int\tan^3x\sec^2x\,\sec^2x dx.\]
+Con $u=\tan x$, $du=\sec^2x dx$:
+\[\int u^3(1+u^2)du=\boxed{\frac{\tan^4x}{4}+\frac{\tan^6x}{6}+C}.\]\end{ejemplo}
+\begin{ejemplo}Calcule $\int\tan^3x\sec xdx$. Escriba $\tan^3x=\tan^2x\tan x=(\sec^2x-1)\tan x$. Entonces
+\[\int(\sec^2x-1)\sec x\tan xdx.\]
+Con $u=\sec x$,
+\[\boxed{\frac{\sec^3x}{3}-\sec x+C}.\]\end{ejemplo}
+\subsection{La integral de $\sec x$}
+Multiplicamos por una forma conveniente de uno:
+\[\int\sec xdx=\int\frac{\sec x(\sec x+\tan x)}{\sec x+\tan x}dx.\]
+El numerador es $\sec^2x+\sec x\tan x$, derivada del denominador. Por tanto,
+\[\boxed{\int\sec xdx=\ln|\sec x+\tan x|+C}.\]
+
+\section{Potencias de cotangente y cosecante}
+Análogamente,
+\[\csc^2x=1+\cot^2x,\qquad\cot^2x=\csc^2x-1.\]
+\begin{estrategia}Si la potencia de cosecante es par, reserve $\csc^2x$ y use $u=\cot x$ (recordando $du=-\csc^2x dx$). Si la potencia de cotangente es impar, reserve $\csc x\cot x$ y use $u=\csc x$.\end{estrategia}
+\begin{ejemplo}Calcule $\int\cot^2x\csc^4x dx$. Reserve $\csc^2x dx$:
+\[\int\cot^2x(1+\cot^2x)\csc^2x dx.\]
+Con $u=\cot x$, $du=-\csc^2x dx$,
+\[\boxed{-\frac{\cot^3x}{3}-\frac{\cot^5x}{5}+C}.\]\end{ejemplo}
+
+\section{Productos trigonométricos con ángulos distintos}
+Las identidades producto-a-suma son
+\begin{align*}
+\sin A\cos B&=\tfrac12[\sin(A+B)+\sin(A-B)],\\
+\cos A\cos B&=\tfrac12[\cos(A+B)+\cos(A-B)],\\
+\sin A\sin B&=\tfrac12[\cos(A-B)-\cos(A+B)].
+\end{align*}
+\begin{ejemplo}Calcule $\int\sin3x\cos2x dx$. Entonces
+\[\sin3x\cos2x=\frac12(\sin5x+\sin x),\]
+y
+\[\boxed{-\frac1{10}\cos5x-\frac12\cos x+C}.\]\end{ejemplo}
+\begin{ejemplo}Calcule $\int\cos4x\cos xdx$. Usando producto-a-suma,
+\[\frac12\int(\cos5x+\cos3x)dx=\boxed{\frac1{10}\sin5x+\frac16\sin3x+C}.\]\end{ejemplo}
+
+\section{Sustituciones trigonométricas}
+Estas sustituciones explotan identidades pitagóricas:
+\begin{center}\begin{tabular}{lll}\toprule
+Expresión & Sustitución & Identidad\\\midrule
+$\sqrt{a^2-x^2}$ & $x=a\sin\theta$ & $1-\sin^2\theta=\cos^2\theta$\\
+$\sqrt{a^2+x^2}$ & $x=a\tan\theta$ & $1+\tan^2\theta=\sec^2\theta$\\
+$\sqrt{x^2-a^2}$ & $x=a\sec\theta$ & $\sec^2\theta-1=\tan^2\theta$\\\bottomrule
+\end{tabular}\end{center}
+\subsection{Caso $\sqrt{a^2-x^2}$}
+\begin{ejemplo}Calcule $\int\sqrt{9-x^2}dx$. Tome $x=3\sin\theta$, $dx=3\cos\theta d\theta$. Entonces $\sqrt{9-x^2}=3\cos\theta$ y
+\[9\int\cos^2\theta d\theta=\frac92\theta+\frac94\sin2\theta+C.\]
+Como $\theta=\arcsin(x/3)$ y $\sin2\theta=2x\sqrt{9-x^2}/9$,
+\[\boxed{\frac{x}{2}\sqrt{9-x^2}+\frac92\arcsin\left(\frac{x}{3}\right)+C}.\]\end{ejemplo}
+\begin{ejemplo}Calcule $\int\frac{dx}{\sqrt{25-x^2}}$. Con $x=5\sin\theta$ se obtiene inmediatamente
+\[\boxed{\arcsin\left(\frac{x}{5}\right)+C}.\]\end{ejemplo}
+\subsection{Caso $\sqrt{a^2+x^2}$}
+\begin{ejemplo}Calcule $\int\sqrt{x^2+4}dx$. Tome $x=2\tan\theta$, $dx=2\sec^2\theta d\theta$ y $\sqrt{x^2+4}=2\sec\theta$. Resulta
+\[4\int\sec^3\theta d\theta.\]
+Usando $\int\sec^3\theta d\theta=\frac12\sec\theta\tan\theta+\frac12\ln|\sec\theta+\tan\theta|+C$ y regresando a $x$,
+\[\boxed{\frac{x}{2}\sqrt{x^2+4}+2\ln|x+\sqrt{x^2+4}|+C}.\]
+Una constante aditiva producida por $\ln2$ se absorbe en $C$.\end{ejemplo}
+\subsection{Caso $\sqrt{x^2-a^2}$}
+\begin{ejemplo}Calcule $\int\frac{\sqrt{x^2-9}}{x}dx$, para $x>3$. Tome $x=3\sec\theta$. Entonces $dx=3\sec\theta\tan\theta d\theta$ y $\sqrt{x^2-9}=3\tan\theta$. La integral se convierte en
+\[3\int\tan^2\theta d\theta=3\int(\sec^2\theta-1)d\theta=3\tan\theta-3\theta+C.\]
+Como $\tan\theta=\sqrt{x^2-9}/3$ y $\theta=\operatorname{arcsec}(x/3)$,
+\[\boxed{\sqrt{x^2-9}-3\operatorname{arcsec}\left(\frac{x}{3}\right)+C}.\]\end{ejemplo}
+\begin{observacion}Una sustitución trigonométrica no debe usarse mecánicamente. Antes conviene intentar simplificación algebraica o una sustitución ordinaria.\end{observacion}
+
+\section{Funciones racionales y división de polinomios}
+Una función racional es $P(x)/Q(x)$. Es propia si $\deg P<\deg Q$ e impropia si $\deg P\ge\deg Q$. En el segundo caso se divide primero.
+\begin{ejemplo}
+\[\frac{x^2+3x+5}{x+1}=x+2+\frac3{x+1}.\]
+Por tanto,
+\[\boxed{\int\frac{x^2+3x+5}{x+1}dx=\frac{x^2}{2}+2x+3\ln|x+1|+C}.\]
+\end{ejemplo}
+
+\section{Fracciones parciales: teoría y clasificación}
+Supongamos que $P/Q$ es propia y que $Q$ se factoriza sobre $\R$. La descomposición depende de los factores del denominador.
+\subsection{Caso I: factores lineales distintos}
+Si $Q=(x-a_1)\cdots(x-a_k)$ con raíces distintas, se propone
+\[\frac{P(x)}{Q(x)}=\frac{A_1}{x-a_1}+\cdots+\frac{A_k}{x-a_k}.\]
+\begin{ejemplo}Calcule $\int\frac{5x+1}{(x-1)(x+2)}dx$. Planteamos
+\[\frac{5x+1}{(x-1)(x+2)}=\frac{A}{x-1}+\frac{B}{x+2}.\]
+Multiplicando por el denominador,
+\[5x+1=A(x+2)+B(x-1).\]
+Con $x=1$, $A=2$; con $x=-2$, $B=3$. Por tanto,
+\[\boxed{2\ln|x-1|+3\ln|x+2|+C}.\]\end{ejemplo}
+\begin{ejemplo}Calcule $\int\frac{x^2+1}{x(x-1)(x+1)}dx$. Proponga
+\[\frac{x^2+1}{x(x-1)(x+1)}=\frac{A}{x}+\frac{B}{x-1}+\frac{C}{x+1}.\]
+Multiplicando y evaluando en $x=0,1,-1$ se obtiene $A=-1$, $B=1$, $C=1$. Así,
+\[\boxed{-\ln|x|+\ln|x-1|+\ln|x+1|+C}.\]\end{ejemplo}
+
+\subsection{Caso II: factores lineales repetidos}
+Si $(x-a)^m$ divide a $Q$, deben aparecer \emph{todas} las potencias:
+\[\frac{A_1}{x-a}+\frac{A_2}{(x-a)^2}+\cdots+\frac{A_m}{(x-a)^m}.\]
+\begin{ejemplo}Calcule
+\[\int\frac{2x+3}{(x-1)^2(x+1)}dx.\]
+Planteamos
+\[\frac{2x+3}{(x-1)^2(x+1)}=\frac{A}{x-1}+\frac{B}{(x-1)^2}+\frac{C}{x+1}.\]
+Multiplicando,
+\[2x+3=A(x-1)(x+1)+B(x+1)+C(x-1)^2.\]
+Con $x=1$: $5=2B$, así $B=5/2$. Con $x=-1$: $1=4C$, así $C=1/4$. Comparando coeficientes de $x^2$, $A+C=0$, luego $A=-1/4$. Por tanto,
+\[\int\left[-\frac1{4(x-1)}+\frac{5}{2(x-1)^2}+\frac1{4(x+1)}\right]dx,\]
+y
+\[\boxed{-\frac14\ln|x-1|-\frac{5}{2(x-1)}+\frac14\ln|x+1|+C}.\]\end{ejemplo}
+
+\subsection{Caso III: factores cuadráticos irreducibles distintos}
+Para un factor $x^2+bx+c$ sin raíces reales, el numerador debe ser lineal:
+\[\frac{Ax+B}{x^2+bx+c}.\]
+\begin{ejemplo}Calcule
+\[\int\frac{x^2+2x+3}{(x-1)(x^2+1)}dx.\]
+Proponga
+\[\frac{x^2+2x+3}{(x-1)(x^2+1)}=\frac{A}{x-1}+\frac{Bx+C}{x^2+1}.\]
+Entonces
+\[x^2+2x+3=A(x^2+1)+(Bx+C)(x-1).\]
+Comparando coeficientes:
+\[A+B=1,\qquad -B+C=2,\qquad A-C=3.\]
+Se obtiene $A=3$, $B=-2$, $C=0$. Luego
+\[\int\left[\frac3{x-1}-\frac{2x}{x^2+1}\right]dx
+=\boxed{3\ln|x-1|-\ln(x^2+1)+C}.\]\end{ejemplo}
+\begin{ejemplo}Calcule $\int\frac{dx}{(x-1)(x^2+4)}$. La descomposición es
+\[\frac1{(x-1)(x^2+4)}=\frac{1/5}{x-1}+\frac{(-x-1)/5}{x^2+4}.\]
+Integrando término a término,
+\[\boxed{\frac15\ln|x-1|-\frac1{10}\ln(x^2+4)-\frac1{10}\arctan\left(\frac{x}{2}\right)+C}.\]\end{ejemplo}
+
+\subsection{Caso IV: factores cuadráticos irreducibles repetidos}
+Si $(x^2+bx+c)^m$ aparece, deben incluirse
+\[\frac{A_1x+B_1}{x^2+bx+c}+\frac{A_2x+B_2}{(x^2+bx+c)^2}+\cdots+\frac{A_mx+B_m}{(x^2+bx+c)^m}.\]
+\begin{ejemplo}Considere
+\[\frac{x^3+2x+1}{(x^2+1)^2}.\]
+La forma correcta es
+\[\frac{Ax+B}{x^2+1}+\frac{Cx+D}{(x^2+1)^2}.\]
+Multiplicando por $(x^2+1)^2$,
+\[x^3+2x+1=(Ax+B)(x^2+1)+Cx+D.\]
+Comparando coeficientes: $A=1$, $B=0$, $A+C=2$, $B+D=1$, por lo que $C=1$, $D=1$. Entonces
+\[\int\frac{x}{x^2+1}dx+\int\frac{x}{(x^2+1)^2}dx+\int\frac{dx}{(x^2+1)^2}.\]
+Las dos primeras son sustituciones directas. Para la última usamos la identidad conocida
+\[\int\frac{dx}{(x^2+1)^2}=\frac{x}{2(x^2+1)}+\frac12\arctan x+C.\]
+Así,
+\[\boxed{\frac12\ln(x^2+1)-\frac1{2(x^2+1)}+\frac{x}{2(x^2+1)}+\frac12\arctan x+C}.\]\end{ejemplo}
+
+\subsection{Caso mixto completo}
+\begin{ejemplo}Para
+\[\frac{P(x)}{(x-1)^2(x^2+4)^2}\]
+la forma general correcta es
+\[\frac{A}{x-1}+\frac{B}{(x-1)^2}+\frac{Cx+D}{x^2+4}+\frac{Ex+F}{(x^2+4)^2}.\]
+Este patrón debe establecerse \emph{antes} de calcular coeficientes.\end{ejemplo}
+
+\section{Integrales exponenciales y logarítmicas: reconocimiento de estructuras}
+Ya construimos $\ln x$ a partir de la integral definida y definimos $e^x$ como su función inversa. Ahora utilizaremos esos resultados dentro de integrales más elaboradas.
+
+\subsection{Estructura exponencial}
+Si aparece $e^{g(x)}g'(x)$, la regla de la cadena sugiere la sustitución $u=g(x)$:
+\[
+\boxed{\int e^{g(x)}g'(x)\,dx=e^{g(x)}+C.}
+\]
+Por ejemplo,
+\[
+\int 2x e^{x^2}\,dx=e^{x^2}+C.
+\]
+Para una base $a>0$, $a\neq1$,
+\[
+\boxed{\int a^{g(x)}g'(x)\,dx=\frac{a^{g(x)}}{\ln a}+C.}
+\]
+
+\begin{ejemplo}
+Calcule $\int5^{3x}\,dx$.
+La función interior del exponente es $3x$, cuya derivada es $3$. Podemos escribir
+\[
+\int5^{3x}\,dx=\frac13\int 5^u\,du,
+\qquad u=3x.
+\]
+Por tanto,
+\[
+\boxed{\int5^{3x}\,dx=\frac{5^{3x}}{3\ln5}+C.}
+\]
+\end{ejemplo}
+
+\subsection{Estructura logarítmica $f'/f$}
+La fórmula
+\[
+\int\frac1u\,du=\ln|u|+C
+\]
+combinada con la sustitución $u=f(x)$ produce uno de los patrones más importantes de toda la unidad. Si $f(x)\neq0$ en el intervalo considerado,
+\[
+\boxed{\int\frac{f'(x)}{f(x)}\,dx=\ln|f(x)|+C.}
+\]
+No se trata de una nueva fórmula independiente: es simplemente sustitución seguida de la integral de $1/u$ que ya construimos.
+
+\begin{ejemplo}
+Calcule
+\[
+\int\frac{6x+1}{3x^2+x-4}\,dx.
+\]
+Antes de integrar observamos la estructura. El denominador es
+\[
+f(x)=3x^2+x-4,
+\]
+y su derivada es
+\[
+f'(x)=6x+1,
+\]
+que coincide exactamente con el numerador. Tomamos
+\[
+u=3x^2+x-4,\qquad du=(6x+1)dx.
+\]
+Entonces
+\[
+\int\frac{6x+1}{3x^2+x-4}\,dx
+=\int\frac1u\,du
+=\ln|u|+C.
+\]
+Por tanto,
+\[
+\boxed{\ln|3x^2+x-4|+C}.
+\]
+\end{ejemplo}
+
+\begin{ejemplo}
+Calcule
+\[
+\int\frac{2x}{x^2-4}\,dx.
+\]
+Tomamos $u=x^2-4$, $du=2x\,dx$. Así,
+\[
+\int\frac{2x}{x^2-4}\,dx=\int\frac{du}{u}=\ln|u|+C,
+\]
+y finalmente
+\[
+\boxed{\int\frac{2x}{x^2-4}\,dx=\ln|x^2-4|+C.}
+\]
+Aquí el valor absoluto es esencial porque $x^2-4$ puede ser positivo o negativo en distintos intervalos de su dominio.
+\end{ejemplo}
+
+\section{Selección del método de integración}
+La selección del método es parte central de la unidad. Un procedimiento razonable es:
+\begin{enumerate}
+\item \textbf{Simplificar}: expandir, factorizar, dividir polinomios, cancelar factores válidos o usar identidades.
+\item \textbf{Buscar una integral inmediata}.
+\item \textbf{Buscar sustitución}: ¿aparece una función y su derivada?
+\item \textbf{Analizar productos}: polinomio por exponencial/trigonométrica suele sugerir partes.
+\item \textbf{Analizar potencias trigonométricas}: decidir según paridad.
+\item \textbf{Analizar funciones racionales}: división y fracciones parciales.
+\item \textbf{Reconocer radicales cuadráticos}: considerar sustitución trigonométrica.
+\item \textbf{Combinar técnicas}: algunas integrales requieren más de un método.
+\item \textbf{Verificar derivando}.
+\end{enumerate}
+\subsection{Ejemplos de diagnóstico}
+\begin{center}\begin{longtable}{p{0.43\textwidth}p{0.43\textwidth}}\toprule
+Integral & Primera estrategia razonable\\\midrule
+$\int x(x^2+1)^7dx$ & Sustitución $u=x^2+1$\\
+$\int x\cos xdx$ & Por partes\\
+$\int\sin^5x\cos^2xdx$ & Separar $\sin x$, identidad y sustitución\\
+$\int\tan^2x\sec^4xdx$ & Reservar $\sec^2x$, $u=\tan x$\\
+$\int\frac{x+3}{(x-1)(x+2)}dx$ & Fracciones parciales\\
+$\int\frac{x^3}{x+1}dx$ & División de polinomios primero\\
+$\int\sqrt{16-x^2}dx$ & Sustitución trigonométrica\\
+$\int\ln xdx$ & Por partes\\
+$\int\sin3x\cos5xdx$ & Producto-a-suma\\\bottomrule
+\end{longtable}\end{center}
+
+\section{Bloque de ejercicios resueltos de dificultad creciente}
+\subsection{Nivel I: reconocimiento directo}
+\begin{ejercicio}Calcule $\int(7x^6-4x^{-3}+2e^x)dx$.\end{ejercicio}
+\textbf{Solución.}
+\[\boxed{x^7+2x^{-2}+2e^x+C}.\]
+\begin{ejercicio}Calcule $\int(3\cos x-2\sec^2x)dx$.\end{ejercicio}
+\textbf{Solución.}
+\[\boxed{3\sin x-2\tan x+C}.\]
+
+\subsection{Nivel II: sustitución}
+\begin{ejercicio}Calcule $\int x^2\sqrt{x^3+1}dx$.\end{ejercicio}
+\textbf{Solución.} $u=x^3+1$, $du=3x^2dx$:
+\[\boxed{\frac{2}{9}(x^3+1)^{3/2}+C}.\]
+\begin{ejercicio}Calcule $\int\frac{e^x}{1+e^x}dx$.\end{ejercicio}
+\textbf{Solución.} $u=1+e^x$, $du=e^xdx$:
+\[\boxed{\ln(1+e^x)+C}.\]
+
+\subsection{Nivel III: por partes}
+\begin{ejercicio}Calcule $\int x^2\sin xdx$.\end{ejercicio}
+\textbf{Solución.} Partes dos veces:
+\begin{align*}
+\int x^2\sin xdx&=-x^2\cos x+2\int x\cos xdx\\
+&=-x^2\cos x+2x\sin x+2\cos x+C.
+\end{align*}
+\[\boxed{-x^2\cos x+2x\sin x+2\cos x+C}.\]
+
+\subsection{Nivel IV: trigonométricas}
+\begin{ejercicio}Calcule $\int\sin^5x\cos^2xdx$.\end{ejercicio}
+\textbf{Solución.} Separe $\sin x$:
+\[\sin^5x=(1-\cos^2x)^2\sin x.\]
+Con $u=\cos x$,
+\[-\int(1-u^2)^2u^2du=-\int(u^2-2u^4+u^6)du,\]
+de modo que
+\[\boxed{-\frac{\cos^3x}{3}+\frac{2\cos^5x}{5}-\frac{\cos^7x}{7}+C}.\]
+\begin{ejercicio}Calcule $\int\sec^4x\tan^2xdx$.\end{ejercicio}
+\textbf{Solución.} Reserve $\sec^2x dx$ y sustituya $u=\tan x$:
+\[\int(1+u^2)u^2du=\boxed{\frac{\tan^3x}{3}+\frac{\tan^5x}{5}+C}.\]
+
+\subsection{Nivel V: fracciones parciales}
+\begin{ejercicio}Calcule $\int\frac{4x+1}{x^2-x-2}dx$.\end{ejercicio}
+\textbf{Solución.} Factorizamos $x^2-x-2=(x-2)(x+1)$ y escribimos
+\[\frac{4x+1}{(x-2)(x+1)}=\frac{3}{x-2}+\frac1{x+1}.\]
+Por tanto,
+\[\boxed{3\ln|x-2|+\ln|x+1|+C}.\]
+\begin{ejercicio}Calcule $\int\frac{dx}{x(x+1)^2}$.\end{ejercicio}
+\textbf{Solución.}
+\[\frac1{x(x+1)^2}=\frac1x-\frac1{x+1}-\frac1{(x+1)^2}.\]
+Luego
+\[\boxed{\ln|x|-\ln|x+1|+\frac1{x+1}+C}.\]
+
+\subsection{Nivel VI: combinación de técnicas}
+\begin{ejercicio}Calcule $\int x\ln(x^2+1)dx$.\end{ejercicio}
+\textbf{Solución.} Primero $u=x^2+1$, $du=2xdx$:
+\[\frac12\int\ln u\,du.\]
+Ahora por partes, $\int\ln udu=u\ln u-u$:
+\[\boxed{\frac12(x^2+1)\ln(x^2+1)-\frac12(x^2+1)+C}.\]
+\begin{ejercicio}Calcule $\int\frac{x^2}{x^2+1}dx$.\end{ejercicio}
+\textbf{Solución.} Antes de integrar, simplifique:
+\[\frac{x^2}{x^2+1}=1-\frac1{x^2+1}.\]
+Por tanto,
+\[\boxed{x-\arctan x+C}.\]
+
+\section{Errores frecuentes}
+\begin{enumerate}
+\item Olvidar $+C$ en una integral indefinida.
+\item Aplicar la regla de potencias a $x^{-1}$.
+\item Sustituir $u=g(x)$ sin transformar completamente $dx$ y los factores restantes.
+\item Elegir $u$ y $dv$ en partes de modo que la nueva integral sea más difícil.
+\item En fracciones parciales, omitir términos correspondientes a potencias repetidas.
+\item Colocar una constante, en vez de $Ax+B$, sobre un cuadrático irreducible.
+\item Intentar fracciones parciales antes de hacer división cuando la fracción es impropia.
+\item Perder signos en $d(\cos x)=-\sin xdx$ o $d(\cot x)=-\csc^2xdx$.
+\item No regresar a la variable original después de una sustitución en una integral indefinida.
+\item No verificar el resultado mediante derivación.
+\end{enumerate}
+
+\section{Ejercicios propuestos por técnica}
+\subsection*{Integración directa}
+\begin{enumerate}
+\item $\int(x^8-3x^4+2)dx$.
+\item $\int(4x^{-5}+3\sqrt{x})dx$.
+\item $\int(2e^x-5\sin x+3\sec^2x)dx$.
+\end{enumerate}
+\subsection*{Sustitución}
+\begin{enumerate}
+\item $\int x(x^2+3)^8dx$.
+\item $\int x^2e^{x^3}dx$.
+\item $\int\frac{5x^4}{x^5+7}dx$.
+\item $\int\frac{\cos x}{2+\sin x}dx$.
+\item $\int\tan x\sec^2x dx$.
+\end{enumerate}
+\subsection*{Por partes}
+\begin{enumerate}
+\item $\int xe^{2x}dx$.
+\item $\int x\cos3x dx$.
+\item $\int x^2\ln xdx$.
+\item $\int e^x\sin xdx$.
+\item $\int\arcsin xdx$.
+\end{enumerate}
+\subsection*{Trigonométricas}
+\begin{enumerate}
+\item $\int\sin^7x\cos^2xdx$.
+\item $\int\sin^4x\cos^2xdx$.
+\item $\int\tan^4x\sec^4xdx$.
+\item $\int\tan^5x\sec^3xdx$.
+\item $\int\sin5x\cos2xdx$.
+\end{enumerate}
+\subsection*{Sustitución trigonométrica}
+\begin{enumerate}
+\item $\int\sqrt{16-x^2}dx$.
+\item $\int\frac{x^2}{\sqrt{25-x^2}}dx$.
+\item $\int\frac{dx}{(x^2+9)^{3/2}}$.
+\item $\int\frac{\sqrt{x^2-4}}{x}dx$.
+\end{enumerate}
+\subsection*{Fracciones parciales}
+\begin{enumerate}
+\item $\int\frac{2x+7}{(x-1)(x+3)}dx$.
+\item $\int\frac{x+2}{x(x-1)^2}dx$.
+\item $\int\frac{x^2+1}{(x-2)(x^2+4)}dx$.
+\item $\int\frac{2x^3+x+1}{(x^2+1)^2}dx$.
+\item $\int\frac{x^3+1}{x^2-1}dx$ (realice primero división).
+\end{enumerate}
+
+\section{Ejercicios integradores: seleccionar antes de calcular}
+En cada caso: (i) identifique la estructura; (ii) indique el método; (iii) resuelva; (iv) verifique derivando.
+\begin{enumerate}
+\item $\int(3x^5-4x^2+1)dx$.
+\item $\int x(x^2+5)^6dx$.
+\item $\int\frac{x}{x^2+4}dx$.
+\item $\int xe^xdx$.
+\item $\int x^2\cos xdx$.
+\item $\int\sin^3x\cos^4xdx$.
+\item $\int\sin^2x\cos^2xdx$.
+\item $\int\sqrt{25-x^2}dx$.
+\item $\int\frac{2x+3}{(x-1)(x+2)}dx$.
+\item $\int\frac{x^2+3x+4}{x+1}dx$.
+\item $\int\ln xdx$.
+\item $\int xe^{x^2}dx$.
+\item $\int\frac{3x^2}{x^3+1}dx$.
+\item $\int x^2e^xdx$.
+\item $\int\frac{dx}{\sqrt{9-x^2}}$.
+\item $\int\frac{x^4}{x^2+1}dx$.
+\item $\int\cos3x\cos7xdx$.
+\item $\int\frac{x}{(x^2+1)^2}dx$.
+\item $\int\sec^3x dx$.
+\item $\int e^x\cos xdx$.
+\end{enumerate}
+
+\section{Uso de herramientas computacionales para verificar}
+Un sistema algebraico computacional puede utilizarse para comprobar resultados, pero no sustituye la selección y justificación del método. En R, por ejemplo, puede verificarse numéricamente una antiderivada comparando diferencias finitas con el integrando; en Python/SymPy puede derivarse simbólicamente el resultado. La práctica recomendada es: resolver primero a mano, derivar manualmente y utilizar software como tercera comprobación.
+
+\section{Resumen de la unidad}
+La integral indefinida representa la familia de primitivas de una función. Las técnicas estudiadas pueden entenderse como reglas de derivación utilizadas en sentido inverso: sustitución invierte la regla de la cadena; partes invierte la regla del producto; las identidades trigonométricas transforman el integrando a formas básicas; la sustitución trigonométrica explota identidades pitagóricas; y las fracciones parciales reducen funciones racionales a piezas integrables. La competencia central no es sólo ejecutar algoritmos, sino reconocer estructuras y decidir una estrategia eficiente.
+
+\section*{Formulario de consulta rápida}
+\addcontentsline{toc}{section}{Formulario de consulta rápida}
+\begin{align*}
+\int x^n dx&=\frac{x^{n+1}}{n+1}+C\quad(n\neq-1),&
+\int\frac{dx}{x}&=\ln|x|+C,\\
+\int e^{ax}dx&=\frac{e^{ax}}a+C,&
+\int a^xdx&=\frac{a^x}{\ln a}+C,\\
+\int u\,dv&=uv-\int v\,du,&
+\int\frac{f'}f dx&=\ln|f|+C,\\
+\sin^2x&=\frac{1-\cos2x}{2},&
+\cos^2x&=\frac{1+\cos2x}{2},\\
+1+\tan^2x&=\sec^2x,&1+\cot^2x&=\csc^2x.
+\end{align*}
+Sustituciones trigonométricas principales:
+\[x=a\sin\theta\;(a^2-x^2),\qquad x=a\tan\theta\;(a^2+x^2),\qquad x=a\sec\theta\;(x^2-a^2).\]
+
+\end{document}
