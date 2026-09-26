@@ -1,0 +1,275 @@
+\documentclass[12pt]{article}
+
+% ======================================================
+% Codificación e idioma
+% ======================================================
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{multicol}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+% =====================================================
+% Matemáticas
+% =====================================================
+
+\usepackage{amsmath,amssymb,amsfonts}
+
+% =====================================================
+% Formato y utilidades
+% =====================================================
+
+\usepackage[letterpaper,margin=2.2cm]{geometry}
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{hyperref}
+
+% =====================================================
+% Hipervínculos
+% =====================================================
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  urlcolor=blue,
+  citecolor=blue
+}
+
+% =====================================================
+% Formato de párrafos
+% =====================================================
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.05em}
+
+% =====================================================
+% Datos editables del examen
+% =====================================================
+
+\newcommand{\institucion}{Tecnológico Nacional de México}
+\newcommand{\materia}{Cálculo Integral}
+\newcommand{\nombreexamen}{Primer Examen Parcial}
+\newcommand{\unidad}{Unidad 1: Integral Indefinica}
+\newcommand{\docente}{Carlos Ernesto Martínez}
+\newcommand{\fechaexamen}{}
+\newcommand{\duracion}{60 minutos}
+\newcommand{\puntajetotal}{100 puntos}
+
+% =====================================================
+% Encabezado y pie de página
+% =====================================================
+
+\setlength{\headheight}{10pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\institucion}
+\fancyhead[R]{\materia}
+
+\fancyfoot[L]{\docente}
+\fancyfoot[C]{Página \thepage\ de \pageref{LastPage}}
+\fancyfoot[R]{\nombreexamen}
+
+\renewcommand{\headrulewidth}{0.1pt}
+\renewcommand{\footrulewidth}{0.1pt}
+
+% =====================================================
+% Contador y ambiente para problemas
+% =====================================================
+
+\newcounter{problema}
+
+\newenvironment{problema}[1]
+{
+  \refstepcounter{problema}
+  \par\medskip
+  \noindent
+  \textbf{Problema \theproblema.}
+  \textbf{[#1 puntos]}
+  \par\smallskip
+}
+{
+  \par\medskip
+}
+
+% =====================================================
+% Comando para espacio de respuesta
+% =====================================================
+
+\newcommand{\espaciorespuesta}[1]{
+  \vspace{#1}
+}
+
+% =====================================================
+% Documento
+% =====================================================
+
+\begin{document}
+
+% =====================================================
+% Encabezado principal
+% =====================================================
+
+\begin{center}
+    {\Large\textbf{\institucion}}\\[0.1em]
+    {\large\textbf{\materia}}\\[0.1em]
+    {\large\textbf{\nombreexamen}}\\[0.1em]
+    {\normalsize\unidad}
+\end{center}
+
+\vspace{0.15em}
+
+% =====================================================
+% Datos del estudiante
+% =====================================================
+
+\begin{tabularx}{\textwidth}{>{\bfseries}l X >{\bfseries}l X}
+Nombre: & \hrulefill &
+No. de control: & \hrulefill \\[1.2em]
+
+Grupo: & \hrulefill &
+Fecha: & \hrulefill \\[1.2em]
+
+Calificación: & \hrulefill &
+
+\end{tabularx}
+
+
+
+% =====================================================
+% Información general
+% =====================================================
+
+% =====================================================
+% Instrucciones
+% =====================================================
+
+\subsection*{Instrucciones}
+Muestre de manera clara y ordenada todo el procedimiento. Justifique sus resultados cuando se solicite. Las respuestas sin procedimiento no serán consideradas par la calificaci\'on. Sí se permite uso de calculadora, mostrar al inicio del examen.
+
+% =====================================================
+% REACTIVOS
+% =====================================================
+
+
+\begin{problema}{10}*
+Identifique claramente la región, las curvas que la delimitan y el intervalo de interés. Determine mediante geometría elemental el área bajo $f(x)=6-x$ en $[1,4]$.
+\end{problema}
+
+%\begin{problema}{10}
+%Para $f(x)=4-x$ en $[0,4]$, calcule aproximaciones izquierda y derecha con $n=8$.
+%\end{problema}
+
+
+\begin{problema}{15}
+Determine las sumas de las áreas de los rectángulos inscritos y circunscritos para $n=4,8$. Dibuje la región para $f(x)=2x+1$, $0\le x\le4$.
+\end{problema}
+
+
+\begin{problema}{10}
+Use $n$ rectángulos y obtenga una fórmula para $A_n$. Después calcule $ A=\lim_{n\to\infty}A_n$. Muestre explícitamente $\Delta x$, $x_i$, $f(x_i)$ y la suma correspondiente para $y=2x+3$, $1\le x\le4$.
+
+\end{problema}
+
+
+\begin{problema}{15}
+*\textbf{Resolver a lo m\'as dos ejercicios}. Escriba los términos y calcule
+\begin{enumerate}[resume]
+\begin{multicols}{2}
+\item Simplifique $\sum_{i=1}^{n}\left(3+\frac{2i}{n}\right).$
+\item Calcule $\lim_{n\to\infty}\frac1{n^3}\sum_{i=1}^{n}i^2.$
+\item Calcule $\sum_{k=1}^{215}3k(k^{2}+2)^2.$
+\item Calcule $\sum_{k=1}^{n}\left(2^{k}-2^{k-1}\right)$
+
+\end{multicols}
+\end{enumerate}
+
+\end{problema}
+
+
+\begin{problema}{15}
+\textbf{Resolver uno de los dos ejercicios}. Determine el valor exacto de la integral definida interpretándola como área de una región plana. 
+
+\begin{enumerate}[resume]
+\begin{multicols}{3}
+\item $\displaystyle \int_{-4}^4\sqrt{16-x^2}\,dx$.
+\item $\displaystyle \int_0^2\sqrt{2x-x^2}\,dx$.
+\end{multicols}
+\end{enumerate}
+
+\end{problema}
+
+
+\begin{problema}{10}
+Determine, con aproximación de centésimos, un valor de $c$ que satisfaga
+$\int_a^b f(x)\,dx=f(c)(b-a)$ para $\displaystyle \int_1^4(x^2+4x+5)\,dx$.
+
+
+\end{problema}
+
+
+\begin{problema}{10}
+Determine el valor promedio de $f(x)=9-x^2$ en $[0,3]$ y los puntos donde se alcanza.
+\end{problema}
+
+\begin{problema}{10}
+*\textbf{Resolver a lo m\'as dos ejercicios}. Determine $F'(x)$. 
+
+\begin{enumerate}[resume]
+\begin{multicols}{3}
+\item $\displaystyle F(x)=\int_2^x\sqrt{1+t^2}\,dt$.
+\item $\displaystyle F(x)=\int_1^xe^{t^2}\,dt$.
+\item $\displaystyle F(x)=\int_0^x\frac{dt}{1+t^2}$.
+\item $\displaystyle F(x)=\int_2^x\sqrt{1+t^2}\,dt$.
+\end{multicols}
+\end{enumerate}
+
+\end{problema}
+
+\begin{problema}{10}
+*\textbf{Resolver a lo m\'as dos ejercicios}. Obtenga la derivada.
+
+\begin{enumerate}[resume]
+\begin{multicols}{3}
+%\item $\frac{d}{dx}\int_2^x\frac{1}{t^4+4}\,dt.$
+\item $\frac{d}{dx}\int_1^{x^3}\sqrt[3]{t^2+1}\,dt.$
+\item $\frac{d}{dx}\int_2^x\frac{1}{t^4+4}\,dt.$
+%\item $\frac{d}{dx}\int_3^x\sqrt{1+t^2}\,dt$
+\item $\frac{d}{dx}\int_{-x}^{x}\cos(t^2+1)\,dt.$
+%\item $\frac{d}{dx}\int_1^{x^3}\sqrt[3]{t^2+1}\,dt.$
+
+\end{multicols}
+\end{enumerate}
+\end{problema}
+
+\begin{problema}{15}
+\textbf{Resolver a lo m\'as dos ejercicios}. Evalúe las siguientes integrales, mostrando la antiderivada y la evaluación en los límites.
+
+\begin{enumerate}[resume]
+\begin{multicols}{3}
+\item  $\int_0^2(3x^2+4x-1)\,dx$.
+\item $\displaystyle \int_1^4\sqrt{x}(2+x)\,dx$.
+\item $\displaystyle \int_0^{\pi/2}\sin2x\,dx$.
+\item $\displaystyle \int_0^1\frac{y^2+2y}{\sqrt[3]{y^3+3y^2+4}}\,dy$.
+\item $\displaystyle \int_0^3(x+2)\sqrt{x+1}\,dx$.
+\item $\int_1^4\left(x^2+\sqrt{x}+x^{-2}\right)\,dx$.
+
+\end{multicols}
+\end{enumerate}
+\end{problema}
+
+
+
+
+%\end{multicols}
+\espaciorespuesta{6cm}
+
+
+% ============================================================
+
+\end{document}
