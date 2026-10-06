@@ -1,0 +1,178 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,mexico]{babel}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{geometry}
+\usepackage{hyperref}
+\geometry{letterpaper,margin=2.2cm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\newtcolorbox{nota}[1][]{enhanced,breakable,colback=gray!5,colframe=black!60,title=#1,fonttitle=\bfseries}
+\newtcolorbox{formula}[1][]{enhanced,breakable,colback=blue!3,colframe=blue!50!black,title=#1,fonttitle=\bfseries}
+\newtcolorbox{ejemplo}[1][]{enhanced,breakable,colback=white,colframe=black!45,title=#1,fonttitle=\bfseries}
+\title{\textbf{Cálculo Integral}\\\large Integrales indefinidas: teoría, ejemplos y banco de ejercicios}
+\author{Tecnológico Nacional de México}
+\date{}
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Antiderivación inmediata}
+\begin{nota}[Idea fundamental]
+Una función $F$ es una antiderivada de $f$ si $F'(x)=f(x)$. La integral indefinida representa la familia $\int f(x)\,dx=F(x)+C$.
+\end{nota}
+\begin{formula}[Reglas básicas]
+\[\int x^n\,dx=\frac{x^{n+1}}{n+1}+C\quad(n\neq-1),\qquad \int \frac{dx}{x}=\ln|x|+C.\]
+\[\int\sin x\,dx=-\cos x+C,\quad \int\cos x\,dx=\sin x+C,\]
+\[\int\sec^2x\,dx=\tan x+C,\quad \int\csc^2x\,dx=-\cot x+C,\]
+\[\int\sec x\tan x\,dx=\sec x+C,\quad \int\csc x\cot x\,dx=-\csc x+C.\]
+\end{formula}
+\begin{ejemplo}[Ejemplos trigonométricos de las imágenes]
+\[\int(3\sec x\tan x-5\csc^2x)\,dx,\qquad
+\int\frac{2\cot x-3\sin^2x}{\sin x}\,dx,\qquad
+\int(\tan^2x+\cot^2x+4)\,dx.\]
+\end{ejemplo}
+\subsection*{Ejercicios 4.1}
+\begin{enumerate}[itemsep=3pt]
+\item $\int3x^4dx$ \item $\int2x^7dx$ \item $\int x^{-3}dx$ \item $\int3t^{-5}dt$
+\item $\int5u^{3/2}du$ \item $\int10\sqrt[3]{x^2}dx$ \item $\int\frac2{\sqrt[3]x}dx$ \item $\int\frac3{\sqrt y}dy$
+\item $\int6t^2\sqrt[3]t\,dt$ \item $\int(3u^5-2u^3)du$ \item $\int y^3(2y^2-3)dy$ \item $\int x^4(5-x^2)dx$
+\item $\int(8x^4+4x^3-6x^2-4x+5)dx$ \item $\int(2+3x^2-8x^3)dx$ \item $\int\sqrt{x}(x+1)dx$
+\item $\int(\sqrt x-1/\sqrt x)dx$ \item $\int(2/x^3+3/x^2+5)dx$ \item $\int(3-1/x^4+1/x^2)dx$
+\item $\int\frac{x^2+4x-4}{\sqrt x}dx$ \item $\int\frac{y^4+2y^2-1}{\sqrt y}dy$ \item $\int(\sqrt[3]x+1/\sqrt[3]x)dx$
+\item $\int\frac{27t^3-1}{\sqrt[3]t}dt$ \item $\int(3\sin t-2\cos t)dt$ \item $\int(5\cos x-4\sin x)dx$
+\item $\int\frac{\sin x}{\cos^2x}dx$ \item $\int\frac{\cos x}{\sin^2x}dx$ \item $\int(4\csc x\cot x+2\sec^2x)dx$ \item $\int(3\csc^2t-5\sec t\tan t)dt$.
+\end{enumerate}
+
+\section{Método de sustitución}
+\begin{nota}[Sustitución]
+Si el integrando contiene una composición y aparece (salvo una constante) la derivada de la función interior, se usa $u=g(x)$, $du=g'(x)dx$. La meta es transformar toda la integral a la variable $u$.
+\end{nota}
+\begin{ejemplo}[Ejemplos de las imágenes]
+\[\int\frac{\sin\sqrt{x}}{\sqrt{x}}dx,\qquad \int\sin x\sqrt{1-\cos x}\,dx.\]
+\end{ejemplo}
+\subsection*{Ejercicios 4.2: 1--44}
+\begin{enumerate}[itemsep=3pt]
+\item $\int\sqrt{1-4y}\,dy$ \item $\int\sqrt[3]{3x-4}\,dx$ \item $\int x\sqrt[3]{x^2-9}\,dx$ \item $\int x(2x^2+1)^6dx$
+\item $\int x^2(x^3-1)^{10}dx$ \item $\int3x\sqrt{4-x^2}dx$ \item $\int\frac{y^3}{(1-2y^4)^5}dy$ \item $\int\frac{s}{\sqrt{3s^2+1}}ds$
+\item $\int(x^2-4x+4)^{4/3}dx$ \item $\int x^4\sqrt{3x^5-5}dx$ \item $\int x\sqrt{x+2}dx$ \item $\int\frac{t}{\sqrt{t+3}}dt$
+\item $\int\frac{2r}{(1-r)^7}dr$ \item $\int x^3(2-x^2)^{12}dx$ \item $\int x^2\sqrt{3-2x}dx$ \item $\int(r^3+3)^{1/4}r^5dr$
+\item $\int\cos4\theta\,d\theta$ \item $\int\sin(x/3)dx$ \item $\int6x^2\sin(x^3)dx$ \item $\int\frac12t\cos(4t^2)dt$
+\item $\int\sec^2(5x)dx$ \item $\int\csc^2(2\theta)d\theta$ \item $\int y\csc(3y^2)\cot(3y^2)dy$ \item $\int r^2\sec^2(r^3)dr$
+\item $\int\cos x(2+\sin x)^4dx$ \item $\int\frac{4\sin x}{(1+\cos x)^2}dx$ \item $\int\sqrt{1+\frac1{3x}}\frac1{x^2}dx$ \item $\int\sqrt{\frac1t-1}\frac1{t^2}dt$
+\item $\int2\sin x\sqrt[3]{1+\cos x}dx$ \item $\int\sin2x\sqrt{2-\cos2x}dx$ \item $\int\cos^2t\sin t\,dt$ \item $\int\sin^3\theta\cos\theta\,d\theta$
+\item $\int(\tan2x+\cot2x)^2dx$ \item $\int\frac{\sec^2(3\sqrt t)}{\sqrt t}dt$ \item $\int\frac{x^2+2x}{\sqrt{x^3+3x^2+1}}dx$ \item $\int x(x^2+1)\sqrt{4-2x^2-x^4}dx$
+\item $\int\frac{y+3}{(3-y)^{2/3}}dy$ \item $\int\sqrt{3+s}(s+1)^2ds$ \item $\int\frac{(r^{1/3}+2)^4}{\sqrt[3]{r^2}}dr$ \item $\int(t+1/t)^{3/2}\frac{t^2-1}{t^2}dt$
+\item $\int\frac{x^3}{(x^2+4)^{3/2}}dx$ \item $\int\frac{x^3}{\sqrt{1-2x^2}}dx$ \item $\int\sin x\sin(\cos x)dx$ \item $\int\sec x\tan x\cos(\sec x)dx$.
+\end{enumerate}
+
+\section{Logaritmos e integrales logarítmicas}
+\begin{nota}[Propiedades]
+Para $a>0$, $a\ne1$, $M,N>0$:
+\[\log_a1=0,\quad \log_a(MN)=\log_aM+\log_aN,\quad \log_a(M/N)=\log_aM-\log_aN,\]
+\[\log_a(M^n)=n\log_aM,\qquad \log_a a=1,\qquad \log_a x=\frac{\ln x}{\ln a}.\]
+\end{nota}
+\begin{formula}[Derivadas]
+\[\frac{d}{dx}\ln|u|=\frac{u'}u,\qquad \frac{d}{dx}\log_a u=\frac{u'}{u\ln a}.\]
+\end{formula}
+\begin{ejemplo}[Ejemplo]
+\[\int\frac{\ln x}{x}dx=\frac{(\ln x)^2}{2}+C.\]
+\end{ejemplo}
+\subsection*{Ejercicios 5.3: integrales indefinidas 15--32}
+\begin{enumerate}[start=15,itemsep=3pt]
+\item $\int\frac1{3-2x}dx$ \item $\int\frac{x}{2-x^2}dx$ \item $\int\frac{3x^2}{5x^3-1}dx$ \item $\int\frac{2x-1}{x(x-1)}dx$
+\item $\int\frac1{y\ln y}dy$ \item $\int\frac{\sin3t}{\cos3t-1}dt$ \item $\int(\cot5x+\csc5x)dx$ \item $\int\frac{\cos3x+3}{\sin3x}dx$
+\item $\int\frac{2-3\sin2x}{\cos2x}dx$ \item $\int(\tan2x-\sec2x)dx$ \item $\int\frac{2x^3}{x^2-4}dx$ \item $\int\frac{5-4y^2}{3+2y}dy$
+\item $\int\frac{\ln^2(3x)}x dx$ \item $\int\frac{2+\ln^2x}{x(1-\ln x)}dx$ \item $\int\frac{2\ln x+1}{x[(\ln x)^2+\ln x]}dx$ \item $\int\frac{3x^5-2x^3+5x^2-2}{x^3+1}dx$
+\item $\int\frac{\tan(\ln x)}x dx$ \item $\int\frac{\cot\sqrt t}{\sqrt t}dt$.
+\end{enumerate}
+
+\section{Funciones exponenciales de base general}
+\begin{nota}[Definición y relación con $e$]
+Para $a>0$, $a\ne1$, $f(x)=a^x$ y $a^x=e^{x\ln a}$. De aquí se obtiene $\frac d{dx}a^x=a^x\ln a$.
+\end{nota}
+\begin{formula}[Integración exponencial]
+\[\boxed{\int a^x dx=\frac{a^x}{\ln a}+C},\qquad
+\boxed{\int a^{kx}dx=\frac{a^{kx}}{k\ln a}+C},\]
+\[\boxed{\int a^{u(x)}u'(x)dx=\frac{a^{u(x)}}{\ln a}+C}.\]
+\end{formula}
+\begin{ejemplo}[Ejemplo de la imagen]
+\[\int\sqrt{10^{3x}}dx=\int10^{3x/2}dx=\frac{2\,10^{3x/2}}{3\ln10}+C.\]
+\end{ejemplo}
+\subsection*{Ejercicios 5.5: integrales indefinidas 21--30}
+\begin{enumerate}[start=21,itemsep=4pt]
+\item $\int3^{2x}dx$ \item $\int a^{nx}dx$ \item $\int a^t e^t dt$ \item $\int5^{x^4+2x}(2x^3+1)dx$
+\item $\int x^2 10^{x^3}dx$ \item $\int a^z\ln z(\ln z+1)dz$ \item $\int e^{y^2}e^{3e^y}dy$ \item $\int\frac{4^{\ln(1/x)}}x dx$
+\item $\int\frac{\log_2x^2}{x}dx$ \item $\int\frac{(\log_3x)^2}{x}dx$.
+\end{enumerate}
+
+\section{Funciones trigonométricas inversas}
+\begin{nota}[Inversa no significa recíproco]
+$\sin^{-1}x=\arcsin x$ denota la función inversa del seno restringido; en cambio $(\sin x)^{-1}=1/\sin x=\csc x$ es el recíproco.
+\end{nota}
+\begin{nota}[Ramas principales]
+\[\arcsin:[-1,1]\to[-\pi/2,\pi/2],\quad \arccos:[-1,1]\to[0,\pi],\quad \arctan:\mathbb R\to(-\pi/2,\pi/2).\]
+La restricción del dominio de seno, coseno y tangente es necesaria para obtener funciones inyectivas y, por tanto, inversas.
+\end{nota}
+\begin{formula}[Derivadas fundamentales]
+\[\frac d{dx}\arcsin u=\frac{u'}{\sqrt{1-u^2}},\qquad \frac d{dx}\arccos u=-\frac{u'}{\sqrt{1-u^2}},\]
+\[\frac d{dx}\arctan u=\frac{u'}{1+u^2},\qquad \frac d{dx}\operatorname{arccot}u=-\frac{u'}{1+u^2},\]
+\[\frac d{dx}\operatorname{arcsec}u=\frac{u'}{|u|\sqrt{u^2-1}},\qquad \frac d{dx}\operatorname{arccsc}u=-\frac{u'}{|u|\sqrt{u^2-1}}.\]
+\end{formula}
+\begin{nota}[Identidades de composición]
+\[\sin(\arcsin x)=x\ (|x|\le1),\qquad \arcsin(\sin y)=y\ \text{si }y\in[-\pi/2,\pi/2].\]
+\[\cos(\arccos x)=x\ (|x|\le1),\qquad \arccos(\cos y)=y\ \text{si }y\in[0,\pi].\]
+\[\arccos x=\frac\pi2-\arcsin x.\]
+\end{nota}
+
+\section{Integrales que producen funciones trigonométricas inversas}
+\begin{formula}[Formas normalizadas]
+\[\int\frac{du}{\sqrt{1-u^2}}=\arcsin u+C,\qquad \int\frac{du}{1+u^2}=\arctan u+C,\]
+\[\int\frac{du}{|u|\sqrt{u^2-1}}=\operatorname{arcsec}|u|+C.\]
+\end{formula}
+\begin{formula}[Formas con parámetro]
+Para $a>0$,
+\[\int\frac{du}{\sqrt{a^2-u^2}}=\arcsin\left(\frac ua\right)+C,\]
+\[\int\frac{du}{a^2+u^2}=\frac1a\arctan\left(\frac ua\right)+C,\]
+\[\int\frac{du}{|u|\sqrt{u^2-a^2}}=\frac1a\operatorname{arcsec}\left(\frac{|u|}{a}\right)+C.\]
+\end{formula}
+\begin{nota}[Demostración del tipo arco seno]
+Si $F(u)=\arcsin(u/a)$, entonces
+\[F'(u)=\frac{1/a}{\sqrt{1-(u/a)^2}}=\frac1{\sqrt{a^2-u^2}},\quad a>0.\]
+Por ello la primera fórmula anterior es inmediata.
+\end{nota}
+\begin{ejemplo}[Ejemplo 1]
+\[\int\frac{dx}{\sqrt{4-9x^2}}=\frac13\arcsin\left(\frac{3x}{2}\right)+C.\]
+\end{ejemplo}
+\begin{ejemplo}[Ejemplo 2: completar el cuadrado]
+\[3x^2-2x+5=3\left(x-\frac13\right)^2+\frac{14}{3}
+=3\left[\left(x-\frac13\right)^2+\frac{14}{9}\right].\]
+Así,
+\[\int\frac{dx}{3x^2-2x+5}=\frac1{\sqrt{14}}\arctan\left(\frac{3x-1}{\sqrt{14}}\right)+C.\]
+\end{ejemplo}
+\begin{nota}[Reconocimiento]
+$\sqrt{a^2-u^2}$ sugiere arco seno; $a^2+u^2$ sugiere arco tangente; $|u|\sqrt{u^2-a^2}$ sugiere arco secante. Cuando aparece un cuadrático irreducible, completar el cuadrado suele producir la forma $u^2+a^2$.
+\end{nota}
+\subsection*{Ejercicios 5.8: integrales indefinidas 1--16}
+\begin{enumerate}[itemsep=4pt]
+\item $\int\frac{dx}{\sqrt{1-4x^2}}$ \item $\int\frac{dx}{x^2+25}$ \item $\int\frac{dx}{9x^2+16}$ \item $\int\frac{dt}{\sqrt{1-16t^2}}$
+\item $\int\frac{dx}{4x\sqrt{x^2-16}}$ \item $\int\frac{x}{x^4+16}dx$ \item $\int\frac{r}{\sqrt{16-9r^4}}dr$ \item $\int\frac{du}{u\sqrt{16u^2-9}}$
+\item $\int\frac{e^x}{7+e^{2x}}dx$ \item $\int\frac{\sin x}{\sqrt{2-\cos^2x}}dx$ \item $\int\frac{dx}{(1+x)\sqrt x}$ \item $\int\frac{ds}{\sqrt{2s-s^2}}$
+\item $\int\frac{dx}{x^2-x+2}$ \item $\int\frac{dx}{\sqrt{3x-x^2-2}}$ \item $\int\frac{dx}{\sqrt{15+2x-x^2}}$ \item $\int\frac{2dt}{(t-3)\sqrt{t^2-6t+5}}$.
+\end{enumerate}
+\subsection*{Ejercicios teóricos 32--36}
+\begin{enumerate}[start=32]
+\item Verifique por diferenciación $\int\frac{du}{a^2+u^2}=\frac1a\arctan(u/a)+C$.
+\item Verifique por diferenciación la fórmula de tipo arco secante.
+\item Deduzca por cambio de variable la fórmula $\int du/\sqrt{a^2-u^2}$.
+\item Deduzca por cambio de variable la fórmula $\int du/(a^2+u^2)$.
+\item Deduzca por cambio de variable la fórmula de tipo arco secante.
+\end{enumerate}
+
+\section*{Alcance del documento}
+Este documento reúne únicamente el material de las imágenes pertinente a \textbf{integrales indefinidas}: teoría necesaria, ejemplos y bancos de ejercicios. Se omitieron deliberadamente integrales definidas, áreas, volúmenes, valor promedio y problemas de aplicación, conforme al criterio establecido para esta unidad.
+\end{document}

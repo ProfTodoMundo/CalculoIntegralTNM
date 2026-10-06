@@ -1,0 +1,423 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,mexico]{babel}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\geometry{letterpaper,margin=2.2cm}
+\hypersetup{colorlinks=true,linkcolor=blue!50!black}
+\pagestyle{fancy}\fancyhf{}\lhead{Cálculo Integral}\rhead{Banco de integrales indefinidas}\cfoot{\thepage}
+\setlength{\parindent}{0pt}
+\setlist[enumerate]{itemsep=0.45em,topsep=0.4em}
+\title{\textbf{Banco de problemas de integrales indefinidas}\\\large Cálculo Integral}
+\author{Material para clase}
+\date{}
+\begin{document}
+\maketitle
+\tableofcontents
+\bigskip
+
+\section*{Indicaciones}
+\addcontentsline{toc}{section}{Indicaciones}
+Determine una primitiva de cada integrando y escriba siempre la constante de integración $C$. Antes de integrar, simplifique algebraicamente cuando sea conveniente. En los ejercicios de sustitución, identifique explícitamente $u$ y $du$.
+
+\textbf{Alcance de este banco.} Se incluyen los tipos de integrales indefinidas que pueden trabajarse antes de estudiar integración por partes, fracciones parciales y sustitución trigonométrica. Esas técnicas se dejan fuera deliberadamente para no anticipar temas posteriores.
+
+\section{Integración inmediata: regla de la potencia}
+\begin{multicols}{2}\begin{enumerate}
+\item $\displaystyle \int x^7\,dx$
+\item $\displaystyle \int x^{12}\,dx$
+\item $\displaystyle \int x^{-3}\,dx$
+\item $\displaystyle \int x^{-5}\,dx$
+\item $\displaystyle \int x^{1/2}\,dx$
+\item $\displaystyle \int x^{3/2}\,dx$
+\item $\displaystyle \int x^{-1/2}\,dx$
+\item $\displaystyle \int x^{5/3}\,dx$
+\end{enumerate}\end{multicols}
+
+\section{Polinomios y combinaciones lineales}
+\begin{multicols}{2}\begin{enumerate}
+\item $\displaystyle \int(3x^2-4x+7)\,dx$
+\item $\displaystyle \int(5x^4-2x^3+x-6)\,dx$
+\item $\displaystyle \int(2x^5+7x^2-9)\,dx$
+\item $\displaystyle \int(8-3x+4x^3)\,dx$
+\item $\displaystyle \int\left(\frac{x^4}{2}-\frac{3x^2}{4}+5x\right)dx$
+\item $\displaystyle \int(6x^7-5x^5+2x^2-1)\,dx$
+\item $\displaystyle \int\left(\frac{2}{3}x^6-\frac{5}{2}x^3+4\right)dx$
+\item $\displaystyle \int(7x^8-3x^4+x^2-8x+11)\,dx$
+\end{enumerate}\end{multicols}
+
+\section{Radicales y potencias fraccionarias}
+\begin{multicols}{2}\begin{enumerate}
+\item $\displaystyle \int \sqrt{x}\,dx$
+\item $\displaystyle \int \sqrt[3]{x^2}\,dx$
+\item $\displaystyle \int \frac{1}{\sqrt{x}}\,dx$
+\item $\displaystyle \int \frac{1}{\sqrt[3]{x^2}}\,dx$
+\item $\displaystyle \int(2\sqrt{x}+3\sqrt[3]{x})\,dx$
+\item $\displaystyle \int\frac{x^2+\sqrt{x}}{x}\,dx$
+\item $\displaystyle \int\left(\sqrt[4]{x^3}+\frac{2}{\sqrt{x}}\right)dx$
+\item $\displaystyle \int\frac{x^3+2x}{\sqrt{x}}\,dx$
+\end{enumerate}\end{multicols}
+
+\section{Simplificación algebraica antes de integrar}
+\begin{multicols}{2}\begin{enumerate}
+\item $\displaystyle \int\frac{x^3+2x^2-x}{x}\,dx$
+\item $\displaystyle \int\frac{3x^4-2x^2+5x}{x^2}\,dx$
+\item $\displaystyle \int\frac{(x+1)^2}{x}\,dx$
+\item $\displaystyle \int\frac{x^4-1}{x^2}\,dx$
+\item $\displaystyle \int\frac{2x^3+5x^2-3x}{x}\,dx$
+\item $\displaystyle \int\frac{x^5+x^3+x}{x^2}\,dx$
+\item $\displaystyle \int\frac{(x-2)(x+3)}{x}\,dx$
+\item $\displaystyle \int\frac{x^6-2x^3+x}{x^2}\,dx$
+\end{enumerate}\end{multicols}
+
+\section{La forma $1/x$ y logaritmos inmediatos}
+\begin{multicols}{2}\begin{enumerate}
+\item $\displaystyle \int\frac{1}{x}\,dx$
+\item $\displaystyle \int\frac{5}{x}\,dx$
+\item $\displaystyle \int\left(3x^2+\frac{2}{x}\right)dx$
+\item $\displaystyle \int\left(\frac{4}{x}-x^3\right)dx$
+\item $\displaystyle \int\frac{7x^2+3}{x}\,dx$
+\item $\displaystyle \int\frac{x^3-4}{x}\,dx$
+\item $\displaystyle \int\left(\sqrt{x}+\frac{6}{x}\right)dx$
+\item $\displaystyle \int\frac{2x^4-x+5}{x}\,dx$
+\end{enumerate}\end{multicols}
+
+\section{Funciones exponenciales}
+\begin{multicols}{2}\begin{enumerate}
+\item $\displaystyle \int e^x\,dx$
+\item $\displaystyle \int e^{3x}\,dx$
+\item $\displaystyle \int e^{-2x}\,dx$
+\item $\displaystyle \int 4e^{5x}\,dx$
+\item $\displaystyle \int 2^x\,dx$
+\item $\displaystyle \int 5^{3x}\,dx$
+\item $\displaystyle \int 3^{-2x}\,dx$
+\item $\displaystyle \int(2e^{4x}-3\,7^x)\,dx$
+\end{enumerate}\end{multicols}
+
+\section{Trigonométricas inmediatas}
+\begin{multicols}{2}\begin{enumerate}
+\item $\displaystyle \int\sin x\,dx$
+\item $\displaystyle \int\cos x\,dx$
+\item $\displaystyle \int\sec^2x\,dx$
+\item $\displaystyle \int\csc^2x\,dx$
+\item $\displaystyle \int\sec x\tan x\,dx$
+\item $\displaystyle \int\csc x\cot x\,dx$
+\item $\displaystyle \int(3\cos x-2\sin x)\,dx$
+\item $\displaystyle \int(4\sec^2x+5\csc x\cot x)\,dx$
+\end{enumerate}\end{multicols}
+
+\section{Trigonométricas con identidades elementales}
+\begin{multicols}{2}\begin{enumerate}
+\item $\displaystyle \int\sin^2x\,dx$
+\item $\displaystyle \int\cos^2x\,dx$
+\item $\displaystyle \int(1+\cos 2x)\,dx$
+\item $\displaystyle \int(1-\cos 2x)\,dx$
+\item $\displaystyle \int\sin x\cos x\,dx$
+\item $\displaystyle \int\sin(2x)\,dx$
+\item $\displaystyle \int\cos(5x)\,dx$
+\item $\displaystyle \int(3\sin^2x+2\cos^2x)\,dx$
+\end{enumerate}\end{multicols}
+
+\section{Sustitución: potencias de una función}
+\begin{multicols}{2}\begin{enumerate}
+\item $\displaystyle \int 2x(x^2+1)^5\,dx$
+\item $\displaystyle \int 3x^2(x^3-4)^6\,dx$
+\item $\displaystyle \int(2x+1)(x^2+x+3)^4\,dx$
+\item $\displaystyle \int 4x^3(x^4+2)^7\,dx$
+\item $\displaystyle \int x(3x^2-1)^8\,dx$
+\item $\displaystyle \int(6x-5)(3x^2-5x+2)^3\,dx$
+\item $\displaystyle \int x^2(1-x^3)^5\,dx$
+\item $\displaystyle \int(5x^4+2)(x^5+2x-1)^6\,dx$
+\end{enumerate}\end{multicols}
+
+\section{Sustitución con radicales}
+\begin{multicols}{2}\begin{enumerate}
+\item $\displaystyle \int\frac{x}{\sqrt{x^2+4}}\,dx$
+\item $\displaystyle \int\frac{2x+1}{\sqrt{x^2+x+5}}\,dx$
+\item $\displaystyle \int x^2\sqrt{x^3+1}\,dx$
+\item $\displaystyle \int\frac{x^3}{\sqrt{x^4+7}}\,dx$
+\item $\displaystyle \int(3x^2-2)\sqrt{x^3-2x+4}\,dx$
+\item $\displaystyle \int\frac{4x}{\sqrt[3]{2x^2+1}}\,dx$
+\item $\displaystyle \int x^2\sqrt[4]{x^3+2}\,dx$
+\item $\displaystyle \int\frac{5x^4}{\sqrt{1+x^5}}\,dx$
+\end{enumerate}\end{multicols}
+
+\section{Sustitución que conduce a logaritmos: $f'(x)/f(x)$}
+\begin{multicols}{2}\begin{enumerate}
+\item $\displaystyle \int\frac{2x}{x^2+3}\,dx$
+\item $\displaystyle \int\frac{3x^2}{x^3+5}\,dx$
+\item $\displaystyle \int\frac{2x+1}{x^2+x+4}\,dx$
+\item $\displaystyle \int\frac{4x^3}{x^4-7}\,dx$
+\item $\displaystyle \int\frac{6x-2}{3x^2-2x+9}\,dx$
+\item $\displaystyle \int\frac{5x^4+1}{x^5+x+2}\,dx$
+\item $\displaystyle \int\frac{\cos x}{2+\sin x}\,dx$
+\item $\displaystyle \int\frac{e^x}{1+e^x}\,dx$
+\end{enumerate}\end{multicols}
+
+\section{Sustitución con exponenciales}
+\begin{multicols}{2}\begin{enumerate}
+\item $\displaystyle \int e^x(1+e^x)^4\,dx$
+\item $\displaystyle \int e^{2x}\sqrt{1+e^{2x}}\,dx$
+\item $\displaystyle \int\frac{e^x}{(3+e^x)^2}\,dx$
+\item $\displaystyle \int e^{-x}(2+e^{-x})^5\,dx$
+\item $\displaystyle \int\frac{3e^{3x}}{1+e^{3x}}\,dx$
+\item $\displaystyle \int e^{4x}(1-e^{4x})^3\,dx$
+\item $\displaystyle \int\frac{2^x}{1+2^x}\,dx$
+\item $\displaystyle \int 5^x(2+5^x)^6\,dx$
+\end{enumerate}\end{multicols}
+
+\section{Sustitución con funciones trigonométricas}
+\begin{multicols}{2}\begin{enumerate}
+\item $\displaystyle \int\sin x\cos^4x\,dx$
+\item $\displaystyle \int\cos x\sin^5x\,dx$
+\item $\displaystyle \int\sec^2x(1+\tan x)^3\,dx$
+\item $\displaystyle \int\csc^2x(2-\cot x)^4\,dx$
+\item $\displaystyle \int\sec x\tan x(3+\sec x)^5\,dx$
+\item $\displaystyle \int\csc x\cot x(1+\csc x)^2\,dx$
+\item $\displaystyle \int\frac{\cos x}{1+\sin x}\,dx$
+\item $\displaystyle \int\frac{\sec^2x}{2+\tan x}\,dx$
+\end{enumerate}\end{multicols}
+
+\section{Formas inversas inmediatas}
+Estas integrales se resuelven reconociendo las derivadas de funciones trigonométricas inversas, sin utilizar sustitución trigonométrica.
+\begin{multicols}{2}\begin{enumerate}
+\item $\displaystyle \int\frac{1}{1+x^2}\,dx$
+\item $\displaystyle \int\frac{1}{\sqrt{1-x^2}}\,dx$
+\item $\displaystyle \int\frac{1}{4+x^2}\,dx$
+\item $\displaystyle \int\frac{1}{\sqrt{9-x^2}}\,dx$
+\item $\displaystyle \int\frac{1}{1+4x^2}\,dx$
+\item $\displaystyle \int\frac{1}{\sqrt{16-9x^2}}\,dx$
+\item $\displaystyle \int\frac{3}{1+9x^2}\,dx$
+\item $\displaystyle \int\frac{2}{\sqrt{25-4x^2}}\,dx$
+\end{enumerate}\end{multicols}
+
+\section{Integrales mixtas: identificar el método}
+En esta sección no se indica la técnica. Antes de calcular, clasifique cada integral.
+\begin{multicols}{2}\begin{enumerate}
+\item $\displaystyle \int(4x^3-2x+7)\,dx$
+\item $\displaystyle \int\frac{x^2+3x}{x}\,dx$
+\item $\displaystyle \int\frac{x}{x^2+9}\,dx$
+\item $\displaystyle \int x^2(x^3+4)^7\,dx$
+\item $\displaystyle \int\frac{x}{\sqrt{x^2+1}}\,dx$
+\item $\displaystyle \int e^{2x}(1+e^{2x})^3\,dx$
+\item $\displaystyle \int\cos x(2+\sin x)^5\,dx$
+\item $\displaystyle \int\frac{\sec^2x}{1+\tan x}\,dx$
+\item $\displaystyle \int\cos^2x\,dx$
+\item $\displaystyle \int\frac{1}{9+x^2}\,dx$
+\item $\displaystyle \int\frac{1}{\sqrt{25-x^2}}\,dx$
+\item $\displaystyle \int\left(x^{3/2}+x^{-1/2}\right)dx$
+\item $\displaystyle \int 7^{2x}\,dx$
+\item $\displaystyle \int\frac{4x^3}{2+x^4}\,dx$
+\item $\displaystyle \int\sin x\cos^6x\,dx$
+\item $\displaystyle \int\frac{e^x}{4+e^x}\,dx$
+\end{enumerate}\end{multicols}
+
+\section{Retos de cierre}
+\begin{enumerate}
+\item $\displaystyle \int\frac{x^5+2x^3-x}{x^2}\,dx$
+\item $\displaystyle \int\frac{x^2}{\sqrt{1+x^3}}\,dx$
+\item $\displaystyle \int\frac{2x-3}{x^2-3x+10}\,dx$
+\item $\displaystyle \int e^{-3x}(1+e^{-3x})^7\,dx$
+\item $\displaystyle \int\frac{\cos(2x)}{3+\sin(2x)}\,dx$
+\item $\displaystyle \int\frac{1}{16+25x^2}\,dx$
+\item $\displaystyle \int\frac{1}{\sqrt{36-4x^2}}\,dx$
+\item $\displaystyle \int\left(2\sin^2x+3\cos^2x\right)dx$
+\end{enumerate}
+
+\section*{Temas reservados para una etapa posterior}
+\addcontentsline{toc}{section}{Temas reservados para una etapa posterior}
+Para conservar la secuencia del curso, este banco no incluye ejercicios que requieran como método principal:
+\begin{itemize}
+\item integración por partes;
+\item integración de funciones racionales mediante fracciones parciales;
+\item sustituciones trigonométricas para radicales del tipo $\sqrt{a^2-x^2}$, $\sqrt{a^2+x^2}$ o $\sqrt{x^2-a^2}$ cuando no sean formas inmediatas;
+\item técnicas avanzadas para potencias y productos trigonométricos que excedan identidades elementales.
+\end{itemize}
+
+
+\clearpage
+\part*{Soluciones detalladas de los ejercicios impares}
+\addcontentsline{toc}{part}{Soluciones detalladas de los ejercicios impares}
+
+En cada solución se muestran deliberadamente pasos intermedios: identificación de la forma, simplificación, sustitución cuando procede, ajuste de constantes, integración y regreso a la variable original. Esto permite utilizar el material como guía de exposición en clase.
+
+\section*{1. Integración inmediata: regla de la potencia}
+\textbf{1.} $\displaystyle\int x^7\,dx$. Usamos $\int x^n dx=\frac{x^{n+1}}{n+1}+C$, $n\neq-1$. Aquí $n=7$:
+\[\int x^7dx=\frac{x^{7+1}}{7+1}+C=\frac{x^8}{8}+C.\]
+\textbf{3.} $\displaystyle\int x^{-3}\,dx$. Como $n=-3\neq-1$:
+\[\int x^{-3}dx=\frac{x^{-3+1}}{-3+1}+C=\frac{x^{-2}}{-2}+C=-\frac{1}{2x^2}+C.\]
+\textbf{5.} $\displaystyle\int x^{1/2}\,dx$:
+\[\int x^{1/2}dx=\frac{x^{1/2+1}}{1/2+1}+C=\frac{x^{3/2}}{3/2}+C=\frac23x^{3/2}+C.\]
+\textbf{7.} $\displaystyle\int x^{-1/2}\,dx$:
+\[\int x^{-1/2}dx=\frac{x^{1/2}}{1/2}+C=2x^{1/2}+C=2\sqrt{x}+C.\]
+
+\section*{2. Polinomios y combinaciones lineales}
+\textbf{1.} Por linealidad integramos término a término:
+\begin{align*}\int(3x^2-4x+7)dx&=3\int x^2dx-4\int xdx+7\int dx\\&=3\frac{x^3}{3}-4\frac{x^2}{2}+7x+C\\&=x^3-2x^2+7x+C.\end{align*}
+\textbf{3.}\begin{align*}\int(2x^5+7x^2-9)dx&=2\frac{x^6}{6}+7\frac{x^3}{3}-9x+C\\&=\frac{x^6}{3}+\frac73x^3-9x+C.\end{align*}
+\textbf{5.}\begin{align*}\int\left(\frac{x^4}{2}-\frac{3x^2}{4}+5x\right)dx&=\frac12\frac{x^5}{5}-\frac34\frac{x^3}{3}+5\frac{x^2}{2}+C\\&=\frac{x^5}{10}-\frac{x^3}{4}+\frac52x^2+C.\end{align*}
+\textbf{7.}\begin{align*}\int\left(\frac23x^6-\frac52x^3+4\right)dx&=\frac23\frac{x^7}{7}-\frac52\frac{x^4}{4}+4x+C\\&=\frac{2x^7}{21}-\frac{5x^4}{8}+4x+C.\end{align*}
+
+\section*{3. Radicales y potencias fraccionarias}
+\textbf{1.} Primero $\sqrt{x}=x^{1/2}$:
+\[\int\sqrt{x}\,dx=\int x^{1/2}dx=\frac{x^{3/2}}{3/2}+C=\frac23x^{3/2}+C.\]
+\textbf{3.} $1/\sqrt{x}=x^{-1/2}$:
+\[\int x^{-1/2}dx=\frac{x^{1/2}}{1/2}+C=2\sqrt{x}+C.\]
+\textbf{5.} Convertimos radicales a potencias:
+\begin{align*}\int(2\sqrt{x}+3\sqrt[3]{x})dx&=\int(2x^{1/2}+3x^{1/3})dx\\&=2\frac{x^{3/2}}{3/2}+3\frac{x^{4/3}}{4/3}+C\\&=\frac43x^{3/2}+\frac94x^{4/3}+C.\end{align*}
+\textbf{7.} $\sqrt[4]{x^3}=x^{3/4}$ y $2/\sqrt{x}=2x^{-1/2}$:
+\begin{align*}\int\left(x^{3/4}+2x^{-1/2}\right)dx&=\frac{x^{7/4}}{7/4}+2\frac{x^{1/2}}{1/2}+C\\&=\frac47x^{7/4}+4\sqrt{x}+C.\end{align*}
+
+\section*{4. Simplificación algebraica antes de integrar}
+\textbf{1.} Dividimos cada término entre $x$:
+\begin{align*}\int\frac{x^3+2x^2-x}{x}dx&=\int(x^2+2x-1)dx\\&=\frac{x^3}{3}+x^2-x+C.\end{align*}
+\textbf{3.} Expandimos $(x+1)^2=x^2+2x+1$ y dividimos entre $x$:
+\begin{align*}\int\frac{(x+1)^2}{x}dx&=\int\left(x+2+\frac1x\right)dx\\&=\frac{x^2}{2}+2x+\ln|x|+C.\end{align*}
+\textbf{5.}\begin{align*}\int\frac{2x^3+5x^2-3x}{x}dx&=\int(2x^2+5x-3)dx\\&=\frac23x^3+\frac52x^2-3x+C.\end{align*}
+\textbf{7.} Primero $(x-2)(x+3)=x^2+x-6$:
+\begin{align*}\int\frac{x^2+x-6}{x}dx&=\int\left(x+1-\frac6x\right)dx\\&=\frac{x^2}{2}+x-6\ln|x|+C.\end{align*}
+
+\section*{5. La forma $1/x$ y logaritmos inmediatos}
+\textbf{1.} Reconocemos la fórmula especial $\int dx/x=\ln|x|+C$:
+\[\int\frac1x dx=\ln|x|+C.\]
+\textbf{3.}\begin{align*}\int\left(3x^2+\frac2x\right)dx&=3\int x^2dx+2\int\frac1x dx\\&=x^3+2\ln|x|+C.\end{align*}
+\textbf{5.} Simplificamos primero:
+\begin{align*}\int\frac{7x^2+3}{x}dx&=\int\left(7x+\frac3x\right)dx\\&=7\frac{x^2}{2}+3\ln|x|+C.\end{align*}
+\textbf{7.}\begin{align*}\int\left(\sqrt{x}+\frac6x\right)dx&=\int x^{1/2}dx+6\int\frac1x dx\\&=\frac23x^{3/2}+6\ln|x|+C.\end{align*}
+
+\section*{6. Funciones exponenciales}
+\textbf{1.} Como $(e^x)'=e^x$, $\displaystyle\int e^x dx=e^x+C$.\\
+\textbf{3.} Para $\int e^{-2x}dx$, hacemos $u=-2x$, $du=-2dx$, $dx=-\frac12du$:
+\[\int e^{-2x}dx=-\frac12\int e^u du=-\frac12e^u+C=-\frac12e^{-2x}+C.\]
+\textbf{5.} Usamos $\int a^x dx=a^x/\ln a+C$:
+\[\int2^x dx=\frac{2^x}{\ln2}+C.\]
+\textbf{7.} Sea $u=-2x$, entonces $du=-2dx$:
+\begin{align*}\int3^{-2x}dx&=-\frac12\int3^u du=-\frac12\frac{3^u}{\ln3}+C\\&=-\frac{3^{-2x}}{2\ln3}+C.\end{align*}
+
+\section*{7. Trigonométricas inmediatas}
+\textbf{1.} Como $(\cos x)'=-\sin x$:
+\[\int\sin x\,dx=-\cos x+C.\]
+\textbf{3.} Como $(\tan x)'=\sec^2x$:
+\[\int\sec^2x\,dx=\tan x+C.\]
+\textbf{5.} Como $(\sec x)'=\sec x\tan x$:
+\[\int\sec x\tan x\,dx=\sec x+C.\]
+\textbf{7.} Aplicamos linealidad y las dos fórmulas básicas:
+\begin{align*}\int(3\cos x-2\sin x)dx&=3\sin x-2(-\cos x)+C\\&=3\sin x+2\cos x+C.\end{align*}
+
+\section*{8. Trigonométricas con identidades elementales}
+\textbf{1.} Usamos $\sin^2x=(1-\cos2x)/2$:
+\begin{align*}\int\sin^2x dx&=\frac12\int(1-\cos2x)dx\\&=\frac{x}{2}-\frac12\left(\frac{\sin2x}{2}\right)+C\\&=\frac{x}{2}-\frac{\sin2x}{4}+C.\end{align*}
+\textbf{3.}\begin{align*}\int(1+\cos2x)dx&=x+\int\cos2x dx\\&=x+\frac12\sin2x+C.\end{align*}
+\textbf{5.} Podemos usar $\sin x\cos x=\frac12\sin2x$:
+\begin{align*}\int\sin x\cos x dx&=\frac12\int\sin2x dx\\&=\frac12\left(-\frac12\cos2x\right)+C=-\frac14\cos2x+C.\end{align*}
+(Equivalentemente, con $u=\sin x$ se obtiene $\frac12\sin^2x+C$; ambas primitivas difieren sólo en una constante.)\\
+\textbf{7.} Sea $u=5x$, $du=5dx$, $dx=du/5$:
+\[\int\cos5x dx=\frac15\int\cos u\,du=\frac15\sin u+C=\frac15\sin5x+C.\]
+
+\section*{9. Sustitución: potencias de una función}
+\textbf{1.} $\displaystyle\int2x(x^2+1)^5dx$. Elegimos la expresión interna:
+\[u=x^2+1,\qquad du=2x\,dx.\]
+Entonces
+\[\int2x(x^2+1)^5dx=\int u^5du=\frac{u^6}{6}+C=\frac{(x^2+1)^6}{6}+C.\]
+\textbf{3.} Sea $u=x^2+x+3$. Entonces $du=(2x+1)dx$:
+\[\int(2x+1)(x^2+x+3)^4dx=\int u^4du=\frac{u^5}{5}+C=\frac{(x^2+x+3)^5}{5}+C.\]
+\textbf{5.} Sea $u=3x^2-1$, $du=6x dx$, de donde $x dx=du/6$:
+\begin{align*}\int x(3x^2-1)^8dx&=\frac16\int u^8du=\frac16\frac{u^9}{9}+C\\&=\frac{(3x^2-1)^9}{54}+C.\end{align*}
+\textbf{7.} Sea $u=1-x^3$, $du=-3x^2dx$, así $x^2dx=-du/3$:
+\[\int x^2(1-x^3)^5dx=-\frac13\int u^5du=-\frac{u^6}{18}+C=-\frac{(1-x^3)^6}{18}+C.\]
+
+\section*{10. Sustitución con radicales}
+\textbf{1.} Sea $u=x^2+4$, $du=2x dx$, $x dx=du/2$:
+\begin{align*}\int\frac{x}{\sqrt{x^2+4}}dx&=\frac12\int u^{-1/2}du\\&=\frac12\frac{u^{1/2}}{1/2}+C=\sqrt{u}+C=\sqrt{x^2+4}+C.\end{align*}
+\textbf{3.} Sea $u=x^3+1$, $du=3x^2dx$, $x^2dx=du/3$:
+\[\int x^2\sqrt{x^3+1}dx=\frac13\int u^{1/2}du=\frac13\frac{u^{3/2}}{3/2}+C=\frac29(x^3+1)^{3/2}+C.\]
+\textbf{5.} Sea $u=x^3-2x+4$. Entonces $du=(3x^2-2)dx$:
+\[\int(3x^2-2)\sqrt{x^3-2x+4}dx=\int u^{1/2}du=\frac23u^{3/2}+C=\frac23(x^3-2x+4)^{3/2}+C.\]
+\textbf{7.} Sea $u=x^3+2$, $du=3x^2dx$, $x^2dx=du/3$:
+\begin{align*}\int x^2\sqrt[4]{x^3+2}dx&=\frac13\int u^{1/4}du\\&=\frac13\frac{u^{5/4}}{5/4}+C=\frac4{15}(x^3+2)^{5/4}+C.\end{align*}
+
+\section*{11. Sustitución que conduce a logaritmos: $f'(x)/f(x)$}
+\textbf{1.} Sea $u=x^2+3$, $du=2x dx$:
+\[\int\frac{2x}{x^2+3}dx=\int\frac{du}{u}=\ln|u|+C=\ln(x^2+3)+C.\]
+Como $x^2+3>0$, el valor absoluto puede omitirse.\\
+\textbf{3.} Sea $u=x^2+x+4$, $du=(2x+1)dx$:
+\[\int\frac{2x+1}{x^2+x+4}dx=\int\frac{du}{u}=\ln|u|+C=\ln(x^2+x+4)+C.\]
+\textbf{5.} Sea $u=3x^2-2x+9$, $du=(6x-2)dx$:
+\[\int\frac{6x-2}{3x^2-2x+9}dx=\int\frac{du}{u}=\ln|3x^2-2x+9|+C.\]
+\textbf{7.} Sea $u=2+\sin x$, $du=\cos x dx$:
+\[\int\frac{\cos x}{2+\sin x}dx=\int\frac{du}{u}=\ln|u|+C=\ln(2+\sin x)+C.\]
+
+\section*{12. Sustitución con exponenciales}
+\textbf{1.} Sea $u=1+e^x$, $du=e^x dx$:
+\[\int e^x(1+e^x)^4dx=\int u^4du=\frac{u^5}{5}+C=\frac{(1+e^x)^5}{5}+C.\]
+\textbf{3.} Sea $u=3+e^x$, $du=e^x dx$:
+\begin{align*}\int\frac{e^x}{(3+e^x)^2}dx&=\int u^{-2}du=\frac{u^{-1}}{-1}+C\\&=-\frac1u+C=-\frac1{3+e^x}+C.\end{align*}
+\textbf{5.} Sea $u=1+e^{3x}$. Entonces $du=3e^{3x}dx$:
+\[\int\frac{3e^{3x}}{1+e^{3x}}dx=\int\frac{du}{u}=\ln|u|+C=\ln(1+e^{3x})+C.\]
+\textbf{7.} Sea $u=1+2^x$. Como $d(2^x)=2^x\ln2\,dx$,
+\[du=2^x\ln2\,dx,\qquad 2^xdx=\frac{du}{\ln2}.\]
+Por tanto
+\[\int\frac{2^x}{1+2^x}dx=\frac1{\ln2}\int\frac{du}{u}=\frac{\ln(1+2^x)}{\ln2}+C.\]
+
+\section*{13. Sustitución con funciones trigonométricas}
+\textbf{1.} Sea $u=\cos x$, $du=-\sin x dx$, así $\sin xdx=-du$:
+\[\int\sin x\cos^4x dx=-\int u^4du=-\frac{u^5}{5}+C=-\frac{\cos^5x}{5}+C.\]
+\textbf{3.} Sea $u=1+\tan x$, $du=\sec^2x dx$:
+\[\int\sec^2x(1+\tan x)^3dx=\int u^3du=\frac{u^4}{4}+C=\frac{(1+\tan x)^4}{4}+C.\]
+\textbf{5.} Sea $u=3+\sec x$, $du=\sec x\tan x dx$:
+\[\int\sec x\tan x(3+\sec x)^5dx=\int u^5du=\frac{u^6}{6}+C=\frac{(3+\sec x)^6}{6}+C.\]
+\textbf{7.} Sea $u=1+\sin x$, $du=\cos xdx$:
+\[\int\frac{\cos x}{1+\sin x}dx=\int\frac{du}{u}=\ln|u|+C=\ln|1+\sin x|+C.\]
+
+\section*{14. Formas inversas inmediatas}
+\textbf{1.} Reconocemos $\displaystyle\frac{d}{dx}(\arctan x)=\frac1{1+x^2}$:
+\[\int\frac{dx}{1+x^2}=\arctan x+C.\]
+\textbf{3.} Llevamos a la forma $\int dx/(a^2+x^2)=\frac1a\arctan(x/a)+C$. Aquí $a=2$:
+\[\int\frac{dx}{4+x^2}=\frac12\arctan\left(\frac{x}{2}\right)+C.\]
+\textbf{5.} Escribimos $1+4x^2=1+(2x)^2$. Sea $u=2x$, $du=2dx$, $dx=du/2$:
+\[\int\frac{dx}{1+4x^2}=\frac12\int\frac{du}{1+u^2}=\frac12\arctan u+C=\frac12\arctan(2x)+C.\]
+\textbf{7.} Sea $u=3x$, $du=3dx$. El numerador ya es $3dx$:
+\[\int\frac{3}{1+9x^2}dx=\int\frac{du}{1+u^2}=\arctan u+C=\arctan(3x)+C.\]
+
+\section*{15. Integrales mixtas: ejercicios impares}
+\textbf{1.} Es un polinomio; integramos término a término:
+\[\int(4x^3-2x+7)dx=x^4-x^2+7x+C.\]
+\textbf{3.} Sea $u=x^2+9$, $du=2x dx$, $x dx=du/2$:
+\[\int\frac{x}{x^2+9}dx=\frac12\int\frac{du}{u}=\frac12\ln(x^2+9)+C.\]
+\textbf{5.} Sea $u=x^2+1$, $du=2x dx$:
+\[\int\frac{x}{\sqrt{x^2+1}}dx=\frac12\int u^{-1/2}du=\sqrt{u}+C=\sqrt{x^2+1}+C.\]
+\textbf{7.} Sea $u=2+\sin x$, $du=\cos x dx$:
+\[\int\cos x(2+\sin x)^5dx=\int u^5du=\frac{(2+\sin x)^6}{6}+C.\]
+\textbf{9.} Usamos $\cos^2x=(1+\cos2x)/2$:
+\[\int\cos^2x dx=\frac{x}{2}+\frac{\sin2x}{4}+C.\]
+\textbf{11.} Forma $\int dx/\sqrt{a^2-x^2}=\arcsin(x/a)+C$, con $a=5$:
+\[\int\frac{dx}{\sqrt{25-x^2}}=\arcsin\left(\frac{x}{5}\right)+C.\]
+\textbf{13.} Usamos $\int a^{kx}dx=a^{kx}/(k\ln a)+C$:
+\[\int7^{2x}dx=\frac{7^{2x}}{2\ln7}+C.\]
+\textbf{15.} Sea $u=\cos x$, $du=-\sin xdx$:
+\[\int\sin x\cos^6x dx=-\int u^6du=-\frac{u^7}{7}+C=-\frac{\cos^7x}{7}+C.\]
+
+\section*{16. Retos de cierre: ejercicios impares}
+\textbf{1.} Simplificamos antes de integrar:
+\begin{align*}\int\frac{x^5+2x^3-x}{x^2}dx&=\int\left(x^3+2x-\frac1x\right)dx\\&=\frac{x^4}{4}+x^2-\ln|x|+C.\end{align*}
+\textbf{3.} Observamos que la derivada del denominador es exactamente el numerador. Sea
+\[u=x^2-3x+10,\qquad du=(2x-3)dx.\]
+Entonces
+\[\int\frac{2x-3}{x^2-3x+10}dx=\int\frac{du}{u}=\ln|u|+C=\ln(x^2-3x+10)+C.\]
+(El trinomio es siempre positivo porque su discriminante es $9-40=-31<0$ y el coeficiente principal es positivo.)\\
+\textbf{5.} Sea $u=3+\sin(2x)$. Por la regla de la cadena,
+\[du=2\cos(2x)dx,\qquad \cos(2x)dx=\frac12du.\]
+Así,
+\[\int\frac{\cos(2x)}{3+\sin(2x)}dx=\frac12\int\frac{du}{u}=\frac12\ln|u|+C=\frac12\ln(3+\sin2x)+C.\]
+\textbf{7.} Factorizamos el radicando:
+\[\sqrt{36-4x^2}=\sqrt{4(9-x^2)}=2\sqrt{9-x^2}.\]
+Por tanto
+\begin{align*}\int\frac{dx}{\sqrt{36-4x^2}}&=\frac12\int\frac{dx}{\sqrt{9-x^2}}\\&=\frac12\arcsin\left(\frac{x}{3}\right)+C.\end{align*}
+
+\end{document}

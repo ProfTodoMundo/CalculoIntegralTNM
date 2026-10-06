@@ -1,0 +1,576 @@
+%=========================================================
+% APÉNDICE: INTEGRALES Y FUNCIONES TRIGONOMÉTRICAS INVERSAS
+% Material para incorporar a las notas de Cálculo Integral
+% No utiliza derivación implícita.
+% Requiere: amsmath, amssymb, amsthm, mathtools, enumitem, booktabs
+% y los entornos definicion, ejemplo, ejercicio, observacion, advertencia
+%=========================================================
+
+\appendix
+\section{Integrales que producen funciones trigonométricas inversas}
+\label{ap:integrales-trig-inversas}
+
+\subsection{Propósito del apéndice}
+
+En algunas integrales aparecen expresiones que no conducen a potencias,
+logaritmos o funciones trigonométricas ordinarias, sino a
+\emph{funciones trigonométricas inversas}. Las dos formas que aparecen con
+mayor frecuencia en un primer curso son
+\[
+\frac{1}{\sqrt{1-x^2}}
+\qquad\text{y}\qquad
+\frac{1}{1+x^2}.
+\]
+
+El objetivo de este apéndice no es agregar fórmulas aisladas a una tabla de
+integración, sino aprender a reconocer su estructura, reconstruir sus formas
+escaladas y decidir cuándo es necesario realizar primero una transformación
+algebraica o una sustitución.
+
+\begin{observacion}
+En este apéndice no se utiliza derivación implícita. Se parte de las fórmulas
+de derivación de las funciones trigonométricas inversas, previamente conocidas,
+y se emplean lectura inversa de la derivada, álgebra, regla de la cadena y
+sustitución.
+\end{observacion}
+
+%---------------------------------------------------------
+\subsection{Punto de partida: leer una derivada en sentido inverso}
+%---------------------------------------------------------
+
+Recordemos las dos derivadas fundamentales
+\[
+\frac{d}{dx}\arcsin x=\frac{1}{\sqrt{1-x^2}},
+\qquad -1<x<1,
+\]
+y
+\[
+\frac{d}{dx}\arctan x=\frac{1}{1+x^2},
+\qquad x\in\mathbb{R}.
+\]
+
+Toda fórmula de derivación puede leerse en sentido inverso como una fórmula
+de integración. Por tanto,
+\[
+\boxed{\int\frac{dx}{\sqrt{1-x^2}}=\arcsin x+C}
+\]
+y
+\[
+\boxed{\int\frac{dx}{1+x^2}=\arctan x+C.}
+\]
+
+Éstas son las dos parejas que conviene dominar. Las formas más generales se
+pueden reconstruir a partir de ellas.
+
+%---------------------------------------------------------
+\subsection{Forma de arcoseno: \texorpdfstring{$\sqrt{a^2-x^2}$}{sqrt(a2-x2)}}
+%---------------------------------------------------------
+
+Queremos reconstruir
+\[
+I=\int\frac{dx}{\sqrt{a^2-x^2}},\qquad a>0.
+\]
+
+El primer paso es hacer visible la estructura $1-u^2$. Factorizamos $a^2$
+dentro de la raíz:
+\begin{align*}
+\sqrt{a^2-x^2}
+&=\sqrt{a^2\left(1-\frac{x^2}{a^2}\right)}\\
+&=a\sqrt{1-\left(\frac{x}{a}\right)^2},
+\end{align*}
+porque $a>0$. Entonces
+\[
+I=\frac1a\int
+\frac{dx}{\sqrt{1-\left(\frac{x}{a}\right)^2}}.
+\]
+
+Tomamos
+\[
+u=\frac{x}{a},\qquad du=\frac1a\,dx.
+\]
+Por tanto,
+\[
+I=\int\frac{du}{\sqrt{1-u^2}}
+=\arcsin u+C.
+\]
+Regresando a $x$,
+\[
+\boxed{\int\frac{dx}{\sqrt{a^2-x^2}}
+=\arcsin\left(\frac{x}{a}\right)+C,\qquad a>0.}
+\]
+
+\begin{observacion}
+En esta fórmula no aparece un factor exterior $1/a$. El factor $1/a$ que
+surge al factorizar la raíz coincide exactamente con el que aparece en
+$du=(1/a)dx$.
+\end{observacion}
+
+\subsubsection*{Ejemplo 1: reconocimiento directo}
+Calculemos
+\[
+\int\frac{dx}{\sqrt{25-x^2}}.
+\]
+Como $25=5^2$,
+\[
+\int\frac{dx}{\sqrt{25-x^2}}
+=\boxed{\arcsin\left(\frac{x}{5}\right)+C}.
+\]
+
+\subsubsection*{Ejemplo 2: primero hay que reescribir}
+Consideremos
+\[
+\int\frac{dx}{\sqrt{16-9x^2}}.
+\]
+La expresión todavía no tiene exactamente la forma $a^2-x^2$. Escribimos
+\[
+16-9x^2=16\left(1-\left(\frac{3x}{4}\right)^2\right).
+\]
+Así,
+\[
+\sqrt{16-9x^2}=4\sqrt{1-\left(\frac{3x}{4}\right)^2}
+\]
+y
+\[
+I=\frac14\int\frac{dx}{\sqrt{1-(3x/4)^2}}.
+\]
+Tomamos
+\[
+u=\frac{3x}{4},\qquad du=\frac34\,dx,
+\qquad dx=\frac43\,du.
+\]
+Entonces
+\begin{align*}
+I
+&=\frac14\frac43\int\frac{du}{\sqrt{1-u^2}}\\
+&=\frac13\arcsin u+C.
+\end{align*}
+Por tanto,
+\[
+\boxed{\int\frac{dx}{\sqrt{16-9x^2}}
+=\frac13\arcsin\left(\frac{3x}{4}\right)+C.}
+\]
+
+\subsubsection*{Ejemplo 3: una constante adicional en el numerador}
+\[
+\int\frac{6\,dx}{\sqrt{49-4x^2}}.
+\]
+Como
+\[
+49-4x^2=49\left(1-\left(\frac{2x}{7}\right)^2\right),
+\]
+tenemos
+\[
+I=\frac67\int\frac{dx}{\sqrt{1-(2x/7)^2}}.
+\]
+Con
+\[
+u=\frac{2x}{7},\qquad dx=\frac72\,du,
+\]
+resulta
+\[
+I=3\int\frac{du}{\sqrt{1-u^2}}
+=\boxed{3\arcsin\left(\frac{2x}{7}\right)+C}.
+\]
+
+%---------------------------------------------------------
+\subsection{Forma de arcotangente: \texorpdfstring{$a^2+x^2$}{a2+x2}}
+%---------------------------------------------------------
+
+Partimos de
+\[
+I=\int\frac{dx}{a^2+x^2},\qquad a>0.
+\]
+Factorizamos $a^2$:
+\[
+a^2+x^2=a^2\left(1+\left(\frac{x}{a}\right)^2\right).
+\]
+Entonces
+\[
+I=\frac1{a^2}\int
+\frac{dx}{1+(x/a)^2}.
+\]
+Tomamos
+\[
+u=\frac{x}{a},\qquad dx=a\,du.
+\]
+Por tanto,
+\begin{align*}
+I
+&=\frac1{a^2}\int\frac{a\,du}{1+u^2}\\
+&=\frac1a\arctan u+C.
+\end{align*}
+Así,
+\[
+\boxed{\int\frac{dx}{a^2+x^2}
+=\frac1a\arctan\left(\frac{x}{a}\right)+C,\qquad a>0.}
+\]
+
+\begin{observacion}
+Aquí sí permanece un factor $1/a$. Ésta es una diferencia importante entre
+las formas escaladas del arcoseno y de la arcotangente.
+\end{observacion}
+
+\subsubsection*{Ejemplo 4: reconocimiento directo}
+\[
+\int\frac{dx}{9+x^2}
+=\boxed{\frac13\arctan\left(\frac{x}{3}\right)+C}.
+\]
+
+\subsubsection*{Ejemplo 5: coeficiente en \texorpdfstring{$x^2$}{x2}}
+Consideremos
+\[
+\int\frac{dx}{4+25x^2}.
+\]
+Escribimos
+\[
+4+25x^2=4\left(1+\left(\frac{5x}{2}\right)^2\right).
+\]
+Así,
+\[
+I=\frac14\int\frac{dx}{1+(5x/2)^2}.
+\]
+Sea
+\[
+u=\frac{5x}{2},\qquad dx=\frac25\,du.
+\]
+Entonces
+\[
+I=\frac1{10}\int\frac{du}{1+u^2}
+=\boxed{\frac1{10}\arctan\left(\frac{5x}{2}\right)+C}.
+\]
+
+\subsubsection*{Ejemplo 6: completar el cuadrado}
+Calculemos
+\[
+\int\frac{dx}{x^2+6x+13}.
+\]
+La estructura de arcotangente no es visible de inmediato. Completamos el
+cuadrado:
+\begin{align*}
+x^2+6x+13
+&=x^2+6x+9+4\\
+&=(x+3)^2+2^2.
+\end{align*}
+Por tanto,
+\[
+I=\int\frac{dx}{(x+3)^2+2^2}.
+\]
+Tomamos $u=x+3$, $du=dx$:
+\[
+I=\int\frac{du}{u^2+2^2}
+=\boxed{\frac12\arctan\left(\frac{x+3}{2}\right)+C}.
+\]
+
+\subsubsection*{Ejemplo 7: completar el cuadrado con coeficiente principal}
+Consideremos
+\[
+\int\frac{dx}{2x^2-8x+10}.
+\]
+Factorizamos primero el $2$:
+\[
+2x^2-8x+10=2(x^2-4x+5).
+\]
+Completamos el cuadrado:
+\[
+x^2-4x+5=(x-2)^2+1.
+\]
+Entonces
+\begin{align*}
+I
+&=\frac12\int\frac{dx}{(x-2)^2+1}\\
+&=\boxed{\frac12\arctan(x-2)+C}.
+\end{align*}
+
+%---------------------------------------------------------
+\subsection{Arcocoseno: una forma equivalente}
+%---------------------------------------------------------
+
+También sabemos que
+\[
+\frac{d}{dx}\arccos x=-\frac1{\sqrt{1-x^2}}.
+\]
+Por tanto,
+\[
+\int\frac{-dx}{\sqrt{1-x^2}}=\arccos x+C,
+\]
+o equivalentemente,
+\[
+\int\frac{dx}{\sqrt{1-x^2}}=-\arccos x+C.
+\]
+Esto no contradice la fórmula con arcoseno, porque
+\[
+\arcsin x+\arccos x=\frac\pi2.
+\]
+En consecuencia, $\arcsin x$ y $-\arccos x$ difieren solamente en una
+constante.
+
+\begin{observacion}
+Para integración práctica utilizaremos preferentemente la forma con
+$\arcsin$, pues permite mantener una sola fórmula de referencia para la
+estructura $1/\sqrt{1-x^2}$.
+\end{observacion}
+
+%---------------------------------------------------------
+\subsection{Arcosecante y la importancia del valor absoluto}
+%---------------------------------------------------------
+
+Otra fórmula que aparece en tablas de integración es
+\[
+\frac{d}{dx}\operatorname{arcsec}x
+=\frac1{|x|\sqrt{x^2-1}},\qquad |x|>1.
+\]
+Leyéndola en sentido inverso,
+\[
+\boxed{\int\frac{dx}{|x|\sqrt{x^2-1}}
+=\operatorname{arcsec}x+C.}
+\]
+Una forma escalada frecuente es
+\[
+\boxed{\int\frac{dx}{|x|\sqrt{x^2-a^2}}
+=\frac1a\operatorname{arcsec}\left(\frac{|x|}{a}\right)+C,\qquad a>0,}
+\]
+con las consideraciones correspondientes de dominio y de la convención usada
+para $\operatorname{arcsec}$.
+
+\begin{advertencia}
+El valor absoluto no es un adorno. Aparece porque la derivada de la función
+arcosecante debe tratar correctamente las dos regiones $x>1$ y $x<-1$. En un
+primer curso conviene dar mayor prioridad operativa a las formas de arcoseno
+y arcotangente.
+\end{advertencia}
+
+%---------------------------------------------------------
+\subsection{Reconocimiento estructural: no basta con mirar la fórmula}
+%---------------------------------------------------------
+
+Las formas anteriores se vuelven realmente útiles cuando aparecen
+composiciones. Por la regla de la cadena, las estructuras que debemos buscar
+son
+\[
+\boxed{\frac{f'(x)}{\sqrt{1-f(x)^2}}}
+\quad\longrightarrow\quad
+\arcsin(f(x))+C,
+\]
+y
+\[
+\boxed{\frac{f'(x)}{1+f(x)^2}}
+\quad\longrightarrow\quad
+\arctan(f(x))+C.
+\]
+
+La pregunta correcta no es solamente ``¿veo un $1-x^2$?'' sino
+\begin{quote}
+¿puedo identificar una expresión interior $f(x)$ y aparece también, salvo una
+constante, su derivada $f'(x)$?
+\end{quote}
+
+\subsubsection*{Ejemplo 8: composición que produce arcoseno}
+\[
+I=\int\frac{2x\,dx}{\sqrt{1-x^4}}.
+\]
+Observamos que $x^4=(x^2)^2$. Tomamos
+\[
+u=x^2,\qquad du=2x\,dx.
+\]
+Entonces
+\[
+I=\int\frac{du}{\sqrt{1-u^2}}
+=\boxed{\arcsin(x^2)+C}.
+\]
+
+\subsubsection*{Ejemplo 9: composición que produce arcotangente}
+\[
+I=\int\frac{3x^2\,dx}{1+x^6}.
+\]
+Como $x^6=(x^3)^2$, tomamos
+\[
+u=x^3,\qquad du=3x^2\,dx.
+\]
+Así,
+\[
+I=\int\frac{du}{1+u^2}
+=\boxed{\arctan(x^3)+C}.
+\]
+
+\subsubsection*{Ejemplo 10: ajustar una constante}
+\[
+I=\int\frac{x\,dx}{\sqrt{1-4x^4}}.
+\]
+La expresión interior natural es $u=2x^2$, pues $u^2=4x^4$. Entonces
+\[
+du=4x\,dx,
+\qquad x\,dx=\frac14du.
+\]
+Por tanto,
+\[
+I=\frac14\int\frac{du}{\sqrt{1-u^2}}
+=\boxed{\frac14\arcsin(2x^2)+C}.
+\]
+
+%---------------------------------------------------------
+\subsection{Una estrategia de decisión}
+%---------------------------------------------------------
+
+Cuando una integral parezca relacionada con funciones trigonométricas
+inversas, conviene seguir el siguiente procedimiento.
+
+\begin{enumerate}
+\item \textbf{Simplificar algebraicamente} el integrando si es posible.
+\item Buscar una estructura del tipo
+\[
+\sqrt{a^2-u^2}
+\qquad\text{o}\qquad
+a^2+u^2.
+\]
+\item Identificar la expresión interior $u=f(x)$.
+\item Comprobar si aparece $f'(x)\,dx$, quizá multiplicado por una constante.
+\item Si existe un trinomio cuadrático, considerar \textbf{completar el cuadrado}.
+\item Realizar la sustitución y reducir a una de las dos formas fundamentales.
+\item Regresar a la variable original.
+\item \textbf{Verificar derivando} el resultado.
+\end{enumerate}
+
+\subsection{Tabla de reconocimiento rápido}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabular}{>{\centering\arraybackslash}p{0.29\textwidth}
+                >{\centering\arraybackslash}p{0.29\textwidth}
+                >{\centering\arraybackslash}p{0.30\textwidth}}
+\toprule
+\textbf{Estructura} & \textbf{Sustitución o reconocimiento} & \textbf{Resultado típico}\\
+\midrule
+$\displaystyle \frac{1}{\sqrt{1-u^2}}$
+& identificar $u=f(x)$
+& $\arcsin u+C$\\
+$\displaystyle \frac{1}{1+u^2}$
+& identificar $u=f(x)$
+& $\arctan u+C$\\
+$\displaystyle \frac{1}{\sqrt{a^2-x^2}}$
+& $u=x/a$
+& $\arcsin(x/a)+C$\\
+$\displaystyle \frac{1}{a^2+x^2}$
+& $u=x/a$
+& $\frac1a\arctan(x/a)+C$\\
+$\displaystyle \frac{f'(x)}{\sqrt{1-f(x)^2}}$
+& $u=f(x)$
+& $\arcsin(f(x))+C$\\
+$\displaystyle \frac{f'(x)}{1+f(x)^2}$
+& $u=f(x)$
+& $\arctan(f(x))+C$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+%---------------------------------------------------------
+\subsection{Errores frecuentes}
+%---------------------------------------------------------
+
+\begin{enumerate}
+\item Confundir
+\[
+\int\frac{dx}{a^2+x^2}
+\]
+con una integral logarítmica. Para obtener $\ln(a^2+x^2)$ tendría que aparecer
+en el numerador una constante múltiplo de $2x$.
+
+\item Olvidar el factor $1/a$ en
+\[
+\int\frac{dx}{a^2+x^2}.
+\]
+
+\item Suponer que
+\[
+\sqrt{a^2-x^2}=a-x.
+\]
+Esta igualdad es falsa en general.
+
+\item Aplicar una fórmula antes de normalizar la expresión. Por ejemplo,
+$\sqrt{16-9x^2}$ no es todavía $\sqrt{a^2-x^2}$ con la variable $x$ sin
+modificación: debe hacerse visible $(3x/4)^2$.
+
+\item Completar incorrectamente el cuadrado. Siempre conviene comprobar la
+identidad expandiendo el resultado.
+
+\item Hacer una sustitución $u=f(x)$ sin verificar que el diferencial $du$
+aparezca en el integrando, al menos salvo un factor constante.
+\end{enumerate}
+
+%---------------------------------------------------------
+\subsection{Ejercicios propuestos}
+%---------------------------------------------------------
+
+\subsubsection*{Nivel 1: reconocimiento directo}
+Calcule:
+\begin{enumerate}[label=\arabic*.]
+\item $\displaystyle \int\frac{dx}{\sqrt{36-x^2}}$.
+\item $\displaystyle \int\frac{dx}{16+x^2}$.
+\item $\displaystyle \int\frac{dx}{\sqrt{9-x^2}}$.
+\item $\displaystyle \int\frac{dx}{25+x^2}$.
+\end{enumerate}
+
+\subsubsection*{Nivel 2: normalización y constantes}
+\begin{enumerate}[label=\arabic*.,resume]
+\item $\displaystyle \int\frac{dx}{\sqrt{25-4x^2}}$.
+\item $\displaystyle \int\frac{dx}{9+16x^2}$.
+\item $\displaystyle \int\frac{5\,dx}{\sqrt{49-25x^2}}$.
+\item $\displaystyle \int\frac{6\,dx}{4+9x^2}$.
+\end{enumerate}
+
+\subsubsection*{Nivel 3: composición}
+\begin{enumerate}[label=\arabic*.,resume]
+\item $\displaystyle \int\frac{2x\,dx}{1+x^4}$.
+\item $\displaystyle \int\frac{3x^2\,dx}{\sqrt{1-x^6}}$.
+\item $\displaystyle \int\frac{e^x\,dx}{1+e^{2x}}$.
+\item $\displaystyle \int\frac{\cos x\,dx}{\sqrt{1-\sin^2x}}$, indicando en qué intervalos se simplifica sin ambigüedad.
+\end{enumerate}
+
+\subsubsection*{Nivel 4: completar el cuadrado}
+\begin{enumerate}[label=\arabic*.,resume]
+\item $\displaystyle \int\frac{dx}{x^2+4x+8}$.
+\item $\displaystyle \int\frac{dx}{x^2-6x+18}$.
+\item $\displaystyle \int\frac{dx}{2x^2+8x+10}$.
+\item $\displaystyle \int\frac{dx}{4x^2-8x+8}$.
+\end{enumerate}
+
+%---------------------------------------------------------
+\subsection{Respuestas de los ejercicios}
+%---------------------------------------------------------
+
+\begin{enumerate}[label=\arabic*.]
+\item $\displaystyle \arcsin(x/6)+C$.
+\item $\displaystyle \frac14\arctan(x/4)+C$.
+\item $\displaystyle \arcsin(x/3)+C$.
+\item $\displaystyle \frac15\arctan(x/5)+C$.
+\item $\displaystyle \frac12\arcsin(2x/5)+C$.
+\item $\displaystyle \frac1{12}\arctan(4x/3)+C$.
+\item $\displaystyle \arcsin(5x/7)+C$.
+\item $\displaystyle \arctan(3x/2)+C$.
+\item $\displaystyle \arctan(x^2)+C$.
+\item $\displaystyle \arcsin(x^3)+C$.
+\item $\displaystyle \arctan(e^x)+C$.
+\item Requiere considerar $\sqrt{1-\sin^2x}=|\cos x|$; la respuesta depende del intervalo considerado.
+\item $\displaystyle \frac12\arctan\left(\frac{x+2}{2}\right)+C$.
+\item $\displaystyle \frac13\arctan\left(\frac{x-3}{3}\right)+C$.
+\item $\displaystyle \frac12\arctan(x+2)+C$.
+\item $\displaystyle \frac14\arctan(x-1)+C$.
+\end{enumerate}
+
+%---------------------------------------------------------
+\subsection{Cierre conceptual}
+%---------------------------------------------------------
+
+Las fórmulas de integración asociadas a funciones trigonométricas inversas
+son más útiles cuando se entienden como \emph{patrones estructurales}. Las dos
+formas fundamentales son
+\[
+\boxed{\int\frac{du}{\sqrt{1-u^2}}=\arcsin u+C}
+\qquad\text{y}\qquad
+\boxed{\int\frac{du}{1+u^2}=\arctan u+C.}
+\]
+A partir de ellas se obtienen las formas escaladas y las composiciones. En
+problemas más elaborados, la tarea principal consiste en transformar el
+integrando hasta hacer visible una de estas estructuras. Por ello, completar
+el cuadrado, factorizar constantes y reconocer una expresión junto con su
+derivada son habilidades más importantes que memorizar una lista extensa de
+fórmulas.
