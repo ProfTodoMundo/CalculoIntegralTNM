@@ -7,6 +7,7 @@
 \usepackage[spanish,mexico]{babel}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
 \usepackage[most]{tcolorbox}
+\usepackage{multicol}
 \usepackage{geometry,enumitem,booktabs,array,xcolor,graphicx,hyperref,fancyhdr,microtype,longtable}
 %=========================================================
 \geometry{letterpaper,top=2.3cm,bottom=2.3cm,left=2.5cm,right=2.5cm}
@@ -20,12 +21,14 @@
 \theoremstyle{definition}
 \newtheorem{definicion}[teorema]{Definición}
 \newtheorem{ejemplo}[teorema]{Ejemplo}
+\newtheorem{Ejer}[teorema]{Ejercicio}
 \newtheorem{nota}[teorema]{Nota}
 \newtheorem{ejercicio}[teorema]{Ejercicio}
 \theoremstyle{remark}
 \newtheorem*{observacion}{Observación}
 \newtheorem*{advertencia}{Advertencia}
 \newtheorem*{estrategia}{Estrategia}
+\newcommand{\F}[1]{\[\displaystyle #1\]}
 %=========================================================
 % Cajas para notas teóricas y fórmulas
 %=========================================================
@@ -96,14 +99,15 @@ Por ejemplo, $F(x)=x^3$ es primitiva de $f(x)=3x^2$. También lo son $x^3+5$, $x
 \[\boxed{\int f(x)\,dx=F(x)+C}.\]
 La expresión se denomina \textbf{integral indefinida}.\end{definicion}
 La integral definida $\int_a^b f(x)dx$ es un número; la integral indefinida $\int f(x)dx$ es una familia de funciones. La constante $C$ es indispensable porque la derivada elimina cualquier constante.
-
+%=========================================================
 \section*{Propiedades y verificación}
+%=========================================================
 Por linealidad de la derivada,
 \[\int[\alpha f(x)+\beta g(x)]dx=\alpha\int f(x)dx+\beta\int g(x)dx.\]
 Todas las constantes que aparezcan al integrar término a término pueden reunirse en una sola constante $C$.
 \begin{observacion}La comprobación natural de una integral indefinida es derivar el resultado. Si proponemos $\int f(x)dx=F(x)+C$, la verificación consiste en comprobar $F'(x)=f(x)$.\end{observacion}
 %<<>>==<<>>==<<>>==<<>>==<<>>==<<>>==<<>>==<<>>==<<>>
-\section{Del Teorema Fundamental al logaritmo natural}
+\section{Logaritmo natural y Función exponencial}
 %<<>>==<<>>==<<>>==<<>>==<<>>==<<>>==<<>>==<<>>==<<>>
 En este punto aparece una excepción importante a la regla de la potencia. Para $n\neq-1$ sabemos que
 \[
@@ -202,8 +206,9 @@ De ella se deducen
 \ln(x^r)=r\ln x
 \]
 en los dominios donde las expresiones estén definidas.
-
+%=========================================================
 \subsection*{Monotonía y recorrido de $\ln x$}
+%=========================================================
 Como
 \[
 (\ln x)'=\frac1x>0\qquad(x>0),
@@ -216,7 +221,7 @@ $\ln x$ es estrictamente creciente. Además,
 \]
 Así, $\ln:(0,\infty)\to\R$ es uno a uno y sobre. En consecuencia posee una función inversa.
 %<<>>==<<>>==<<>>==<<>>==<<>>==<<>>==<<>>==<<>>==<<>>
-\section{La función exponencial como inversa del logaritmo}
+\subsection*{Función exponencial}
 %<<>>==<<>>==<<>>==<<>>==<<>>==<<>>==<<>>==<<>>==<<>>
 En muchos cursos la exponencial aparece primero y después se define el logaritmo como su inversa. En estas notas seguiremos el camino inverso, que resulta natural después de haber construido la integral definida: primero definimos $\ln x$ mediante una integral y después definimos la exponencial como su función inversa.
 
@@ -253,8 +258,9 @@ Pero la definición integral del logaritmo nos dice que
 \boxed{\int_1^e\frac{1}{t}\,dt=1.}
 \]
 Así, $e$ puede caracterizarse como el único número positivo para el cual el área con signo bajo $1/t$, desde $1$ hasta $e$, es exactamente uno.
-
+%=========================================================
 \subsection*{Derivada de la exponencial}
+%=========================================================
 Partimos de la identidad
 \[
 \ln(e^x)=x.
@@ -272,8 +278,9 @@ Ahora leemos nuevamente la igualdad en sentido inverso:
 \boxed{\int e^x\,dx=e^x+C.}
 \]
 Este resultado no se introduce como una fórmula aislada: se obtiene de la definición de la exponencial como inversa de $\ln$.
-
+%=========================================================
 \subsection*{Exponenciales de base arbitraria}
+%=========================================================
 Para $a>0$, $a\neq1$, definimos
 \[
 a^x=e^{x\ln a}.
@@ -290,9 +297,9 @@ Por consiguiente,
 %<<>>==<<>>==<<>>==<<>>==<<>>==<<>>==<<>>==<<>>==<<>>
 \section{Integración directa}
 %<<>>==<<>>==<<>>==<<>>==<<>>==<<>>==<<>>==<<>>==<<>>
-
+%=========================================================
 \subsection*{Primeras integrales inferidas de las reglas de derivación}
-
+%=========================================================
 Antes de introducir nuevas técnicas de integración conviene detenernos en una idea sencilla, pero fundamental. Desde el Cálculo Diferencial ya conocemos numerosas reglas de derivación. Si la integración indefinida representa el problema inverso de la derivación, entonces varias de nuestras primeras integrales pueden \emph{inferirse directamente} leyendo esas reglas en sentido contrario.
 
 Por ejemplo, sabemos que
@@ -371,8 +378,9 @@ El caso $n=-1$ ya fue construido separadamente:
 \[
 \boxed{\int\frac1x\,dx=\ln|x|+C.}
 \]
-
+%=========================================================
 \subsection*{Tabla fundamental razonada}
+%=========================================================
 Las siguientes fórmulas se obtienen invirtiendo las correspondientes reglas de derivación:
 \begin{align*}
 \int e^x\,dx&=e^x+C,&
@@ -386,8 +394,9 @@ Las siguientes fórmulas se obtienen invirtiendo las correspondientes reglas de 
 \int\frac{dx}{1+x^2}&=\arctan x+C,&
 \int\frac{dx}{\sqrt{1-x^2}}&=\arcsin x+C.
 \end{align*}
-
+%=========================================================
 \subsection*{Cómo leer una integral directa}
+%=========================================================
 Consideremos
 \[
 \int(4x^3-6x^2+5x-8)\,dx.
@@ -420,7 +429,7 @@ Ahora integramos término a término:
 
 
 %=========================================================
-\section{Integrales de las funciones trigonométricas elementales}
+\section{Integrales trigonométricas}
 %=========================================================
 
 Las primitivas de algunas funciones trigonométricas se obtienen
@@ -1009,14 +1018,14 @@ misma estructura fundamental:
 \]
 
 %=========================================================
-\section{Integrales que producen funciones trigonométricas inversas}
+%\section{Integrales trigonométricas - II}
 %=========================================================
 
 
 %=========================================================
-\subsection*{Sustitución trigonométrica y reconstrucción mediante
-triángulos rectángulos}
+\subsection*{Trigonom\'etricas inversas}
 %=========================================================
+\textbf{Sustitución trigonométrica y reconstrucción mediante triángulos rectángulos}
 
 Hasta ahora hemos utilizado cambios de variable en los que una expresión
 algebraica se sustituye por una nueva variable. Existe, sin embargo, una
@@ -1040,9 +1049,9 @@ La respuesta está en las identidades pitagóricas. Recordemos
 Estas identidades permiten transformar ciertas sumas o diferencias de
 cuadrados en cuadrados perfectos. Ésta es la idea central de la sustitución
 trigonométrica.
-
-\subsubsection*{¿Qué problema queremos resolver?}
-
+%=========================================================
+\textbf{¿Qué problema queremos resolver?}
+%=========================================================
 Las tres estructuras algebraicas que conviene reconocer son
 
 \[
@@ -1080,9 +1089,9 @@ Por tanto, el propósito esencial puede resumirse como
 \[
 \boxed{\text{convertir una suma o diferencia de cuadrados en un cuadrado perfecto}.}
 \]
-
-\subsubsection*{¿Cómo se descubre cada sustitución?}
-
+%=========================================================
+\textbf{¿Cómo se descubre cada sustitución?}
+%=========================================================
 Para $a^2-x^2$ escribimos
 
 \[
@@ -1160,9 +1169,9 @@ identidad pitagórica.
  x^2-a^2 & \sec^2\theta-1=\tan^2\theta & x=a\sec\theta
 \end{array}}
 \]
-
-\subsubsection*{¿Por qué aparece después un triángulo rectángulo?}
-
+%=========================================================
+\textbf{¿Por qué aparece después un triángulo rectángulo?}
+%=========================================================
 La sustitución trigonométrica introduce deliberadamente una nueva variable,
 $\theta$. Después de integrar, la respuesta queda expresada en términos de
 $\theta$, pero la integral original estaba escrita en términos de $x$.
@@ -1412,8 +1421,7 @@ Ahora regresamos a $x$. De
 \tan\theta=\frac{x}{a}
 \]
 
-construimos un triángulo con cateto opuesto $x$ y cateto adyacente $a$.
-Por Pitágoras, la hipotenusa es $\sqrt{a^2+x^2}$.
+construimos un triángulo con cateto opuesto $x$ y cateto adyacente $a$. Por Pitágoras, la hipotenusa es $\sqrt{a^2+x^2}$.
 
 \begin{center}
 \begin{tikzpicture}[scale=1.05]
@@ -1579,7 +1587,7 @@ Nuevamente, el término constante $-\ln a$ se absorbe en $C$. Así,
 =\ln|x+\sqrt{x^2-a^2}|+C.}
 \]
 
-\subsubsection*{Regla práctica para reconstruir las tres sustituciones}
+\textbf{Regla práctica para reconstruir las tres sustituciones}
 
 No es necesario memorizar tres reglas aisladas. Basta recordar las tres
 identidades pitagóricas y observar la estructura algebraica:
@@ -1797,7 +1805,7 @@ con el cuidado correspondiente respecto del dominio y de la
 convención empleada para \(\operatorname{arcsec}\).
 
 %---------------------------------------------------------
-\subsubsection*{Las dos parejas fundamentales}
+\textbf{Las dos parejas fundamentales}
 %---------------------------------------------------------
 
 Para efectos prácticos, las dos relaciones más importantes son
@@ -1842,15 +1850,15 @@ y
 Estas dos formas aparecen constantemente al integrar.
 
 %=========================================================
-\subsection*{Deducción mediante funciones trigonométricas inversas}
+\textbf{Deducción mediante funciones trigonométricas inversas}
 %=========================================================
 
 Estas fórmulas no tienen por qué memorizarse de manera aislada.
 Podemos obtenerlas a partir de las propias funciones trigonométricas
 inversas.
-
+%=========================================================
 \subsubsection*{Deducción para el arco seno}
-
+%=========================================================
 Sea
 
 \[
@@ -1924,9 +1932,9 @@ Leyendo la derivada al revés,
 \arcsin x+C.
 }
 \]
-
+%=========================================================
 \subsubsection*{Deducción para el arco tangente}
-
+%=========================================================
 Sea ahora
 
 \[
@@ -2005,11 +2013,11 @@ Así aparecen tres estructuras fundamentales que conviene reconocer:
 
 
 
-\section{Ejemplos motivadores: ¿por qué necesitamos técnicas de integración?}
+\textbf{Ejemplos motivadores: ¿por qué necesitamos técnicas de integración?}
 
 Hasta este momento hemos obtenido primitivas invirtiendo reglas elementales de derivación. Sin embargo, muy pronto aparecen integrales que no coinciden de manera inmediata con ninguna fórmula de la tabla básica. Antes de presentar reglas generales conviene estudiar algunos ejemplos que muestran \emph{qué obstáculo aparece} y \emph{qué idea permite superarlo}. De esta manera, cada técnica de integración surgirá como respuesta a un problema concreto y no como una receta aislada.
 
-\subsection*{Primer ejemplo: una composición sugiere invertir la regla de la cadena}
+\textbf{Primer ejemplo: una composición sugiere invertir la regla de la cadena}
 Consideremos
 \[
 I=\int 2x(x^2+1)^5\,dx.
@@ -2034,7 +2042,7 @@ La observación importante no es solamente el cálculo anterior. Lo esencial es 
 \]
 Éste es exactamente el patrón producido por la regla de la cadena al derivar una composición. Por ello, el \textbf{cambio de variable} o \textbf{sustitución} será la técnica que invierte la regla de la cadena.
 
-\subsection*{Segundo ejemplo: un producto sugiere invertir la regla del producto}
+\textbf{Segundo ejemplo: un producto sugiere invertir la regla del producto}
 Consideremos ahora
 \[
 I=\int xe^x\,dx.
@@ -2062,7 +2070,7 @@ I=xe^x-\int e^x\,dx
 
 Este ejemplo motiva la regla general de \textbf{integración por partes}: cuando el integrando contiene un producto, puede ser conveniente derivar uno de sus factores e integrar el otro.
 
-\subsection*{Tercer ejemplo: una identidad puede transformar la integral}
+\textbf{Tercer ejemplo: una identidad puede transformar la integral}
 Consideremos
 \[
 I=\int\sin^2x\,dx.
@@ -2093,7 +2101,7 @@ Por tanto,
 
 Aquí la técnica no consiste inicialmente en ``integrar'', sino en \textbf{reescribir el integrando mediante identidades trigonométricas} hasta obtener integrales conocidas. Ésta será la idea central de las integrales trigonométricas.
 
-\subsection*{Cuarto ejemplo: un radical sugiere fabricar una identidad pitagórica}
+\textbf{Cuarto ejemplo: un radical sugiere fabricar una identidad pitagórica}
 Consideremos
 \[
 I=\int\sqrt{9-x^2}\,dx.
@@ -2134,7 +2142,7 @@ a^2-x^2,\qquad a^2+x^2,\qquad x^2-a^2
 \]
 en cuadrados perfectos mediante identidades pitagóricas.
 
-\subsection*{Quinto ejemplo: una fracción racional puede descomponerse}
+\textbf{Quinto ejemplo: una fracción racional puede descomponerse}
 Consideremos
 \[
 I=\int\frac{5x+1}{(x-1)(x+2)}\,dx.
@@ -2159,7 +2167,7 @@ I=2\ln|x-1|+3\ln|x+2|+C.
 
 Este ejemplo motiva el método de \textbf{fracciones parciales}: descomponer una función racional en una suma de términos cuya integración ya conocemos.
 
-\subsection*{Sexto ejemplo: antes de elegir una técnica, conviene simplificar}
+\textbf{Sexto ejemplo: antes de elegir una técnica, conviene simplificar}
 No toda integral aparentemente complicada requiere una técnica nueva. Consideremos
 \[
 I=\int\frac{x^2+2x}{x}\,dx.
@@ -2179,7 +2187,7 @@ Este ejemplo establece una regla práctica fundamental:
 \textbf{antes de seleccionar una técnica de integración, simplifique el integrando siempre que sea posible.}
 \end{center}
 
-\subsection*{De los ejemplos a las reglas generales}
+\textbf{De los ejemplos a las reglas generales}
 Los ejemplos anteriores sugieren que las técnicas de integración no son procedimientos desconectados. Cada una intenta invertir, aprovechar o combinar estructuras que ya conocemos:
 
 \begin{center}
@@ -2197,13 +2205,13 @@ Expresión algebraicamente reducible & Simplificación & Integración directa de
 \end{tabular}
 \end{center}
 
-La tabla anterior no debe interpretarse como un algoritmo infalible. Una misma integral puede admitir más de un método y, en ocasiones, será necesario combinar técnicas. Su propósito es proporcionar una primera guía de reconocimiento. En las secciones siguientes deduciremos cada regla general y estudiaremos con detalle cuándo y cómo utilizarla.
-
+%=========================================================
 \section{Cambio de variable o sustitución}
+%=========================================================
 
 La primera técnica general de integración que estudiaremos es el \textbf{cambio de variable}, también llamado \textbf{método de sustitución}. Conviene estudiarlo con especial cuidado porque, además de resolver una gran cantidad de integrales, nos permitirá reconocer con claridad cuándo este método \emph{deja de ser suficiente} y por qué necesitaremos técnicas nuevas.
 
-\subsection*{La idea fundamental: invertir la regla de la cadena}
+\textbf{La idea fundamental: invertir la regla de la cadena}
 
 En Cálculo Diferencial aprendimos que, si $F$ y $g$ son funciones derivables, entonces
 \[
@@ -2232,7 +2240,7 @@ Ante una integral, busque primero una expresión que esté ``dentro'' de otra: u
 
 No se trata de cambiar letras arbitrariamente. Una sustitución es útil solamente si, después de efectuarla, \textbf{toda la integral puede expresarse en términos de la nueva variable}. Si quedan simultáneamente $x$ y $u$, normalmente la sustitución está incompleta o no fue una buena elección.
 
-\subsection*{Nivel 1: sustituciones directas}
+\textbf{Nivel 1: sustituciones directas}
 
 Comenzaremos con casos en los que la función interior y su derivada aparecen de manera exacta.
 
@@ -2311,7 +2319,7 @@ y finalmente
 Aquí el valor absoluto es necesario porque $x^3+4$ puede tomar valores positivos o negativos.
 \end{ejemplo}
 
-\subsection*{Nivel 2: la derivada aparece salvo un factor constante}
+\textbf{Nivel 2: la derivada aparece salvo un factor constante}
 
 Con frecuencia la derivada de la expresión interior no aparece exactamente, pero difiere sólo por una constante. Las constantes pueden introducirse y extraerse de una integral.
 
@@ -2387,7 +2395,7 @@ Así,
 \]
 \end{ejemplo}
 
-\subsection*{Nivel 3: sustituciones que requieren reorganizar el integrando}
+\textbf{Nivel 3: sustituciones que requieren reorganizar el integrando}
 
 En problemas más interesantes, la estructura no aparece inmediatamente. Antes de sustituir debemos factorizar, separar potencias o expresar parte del integrando mediante la nueva variable.
 
@@ -2471,7 +2479,7 @@ Como $1+e^x>0$,
 \]
 \end{ejemplo}
 
-\subsection*{Nivel 4: sustituciones menos evidentes}
+\textbf{Nivel 4: sustituciones menos evidentes}
 
 La función interior no siempre es un polinomio. Puede ser un logaritmo, una función trigonométrica inversa o cualquier otra función cuya derivada esté presente.
 
@@ -2523,7 +2531,7 @@ Por tanto,
 \]
 \end{ejemplo}
 
-\subsection*{Una regla práctica para elegir $u$}
+\textbf{Una regla práctica para elegir $u$}
 
 No existe una receta infalible, pero en una primera búsqueda conviene formular las siguientes preguntas:
 \begin{enumerate}
@@ -2540,11 +2548,11 @@ Una comprobación especialmente útil es la última. Si después de sustituir ob
 \]
 y no tenemos forma de expresar $x$ en términos de $u$, la transformación no ha cumplido su objetivo.
 
-\subsection*{Cuándo la sustitución ordinaria no basta}
+\textbf{Cuándo la sustitución ordinaria no basta}
 
 Hasta ahora hemos escogido ejemplos construidos para que el cambio de variable funcione. Sin embargo, no todas las integrales son de la forma $f(g(x))g'(x)$. Reconocer este límite es justamente lo que motiva las siguientes técnicas de integración.
 
-\subsubsection*{Un producto que no se simplifica: hacia integración por partes}
+\textbf{Un producto que no se simplifica: hacia integración por partes}
 
 Consideremos
 \[
@@ -2568,7 +2576,7 @@ que tiene exactamente la misma estructura.
 
 La sustitución no ha reducido la dificultad. El problema proviene de que estamos integrando un \textbf{producto} de dos funciones de naturaleza distinta. Esto sugiere invertir otra regla de derivación: la \textbf{regla del producto}. De ahí surgirá la integración por partes.
 
-\subsubsection*{Una función racional: hacia fracciones parciales}
+\textbf{Una función racional: hacia fracciones parciales}
 
 Consideremos
 \[
@@ -2591,7 +2599,7 @@ Esto abre una posibilidad diferente: ¿podremos escribir la fracción como suma 
 \]
 Ahora cada término conduce a un logaritmo. Esta observación motivará el método de \textbf{fracciones parciales}.
 
-\subsubsection*{Un radical que la sustitución ordinaria no elimina: hacia sustitución trigonométrica}
+\textbf{Un radical que la sustitución ordinaria no elimina: hacia sustitución trigonométrica}
 
 Consideremos
 \[
@@ -2627,7 +2635,7 @@ Entonces
 \]
 en un intervalo adecuado para $\theta$. Esta idea dará origen a la \textbf{sustitución trigonométrica}.
 
-\subsubsection*{Una potencia trigonométrica: hacia identidades trigonométricas}
+\textbf{Una potencia trigonométrica: hacia identidades trigonométricas}
 
 Considere
 \[
@@ -2639,49 +2647,31 @@ Tomar $u=\sin x$ produce $du=\cos x\,dx$, pero no tenemos el factor $\cos x$. To
 \]
 La integral deja entonces de ser problemática. Esto motivará el estudio sistemático de \textbf{integrales trigonométricas}.
 
-\subsection*{Lo que debemos aprender del cambio de variable}
 
-El método de sustitución es mucho más que la instrucción ``haga $u=$ algo''. Su lógica puede resumirse así:
-\[
-\boxed{\text{reconocer una composición}\;\longrightarrow\;
-\text{buscar la derivada interior}\;\longrightarrow\;
-\text{cambiar de variable}\;\longrightarrow\;
-\text{integrar}\;\longrightarrow\;
-\text{regresar a }x.}
-\]
-
-Pero igualmente importante es aprender a reconocer cuándo esa estructura \textbf{no está presente}. Los ejemplos anteriores nos han mostrado cuatro obstáculos distintos:
-\begin{center}
-\begin{tabular}{p{0.29\textwidth}p{0.31\textwidth}p{0.28\textwidth}}
-\toprule
-\textbf{Integral} & \textbf{Obstáculo} & \textbf{Técnica que se motivará}\\
-\midrule
-$\int xe^x\,dx$ & Producto que no se simplifica por sustitución & Integración por partes\\
-$\int\frac{dx}{x^2-1}$ & Función racional sin la derivada del denominador & Fracciones parciales\\
-$\int\frac{dx}{\sqrt{9-x^2}}$ & Radical cuadrático característico & Sustitución trigonométrica\\
-$\int\sin^2x\,dx$ & Potencia trigonométrica sin factor diferencial adecuado & Identidades trigonométricas\\
-\bottomrule
-\end{tabular}
-\end{center}
-
-Esta transición es fundamental: las técnicas que siguen no son reglas aisladas inventadas arbitrariamente. Cada una responde a una estructura que el cambio de variable ordinario no consigue resolver de manera eficiente.
-
-
+%=========================================================
 \section{Integración por partes}
+%=========================================================
 De $(uv)'=u'v+uv'$ se obtiene
 \[\boxed{\int u\,dv=uv-\int v\,du}.\]
 La elección debe hacer más sencilla la integral restante. LIATE (logarítmica, inversa trigonométrica, algebraica, trigonométrica, exponencial) es una heurística útil, no un teorema.
+
 \begin{ejemplo}$\int xe^xdx$. Tome $u=x$, $dv=e^xdx$. Entonces $du=dx$, $v=e^x$ y
 \[\boxed{e^x(x-1)+C}.\]\end{ejemplo}
+
 \begin{ejemplo}$\int x\sin xdx$. Tome $u=x$, $dv=\sin xdx$. Entonces $v=-\cos x$:
 \[\boxed{-x\cos x+\sin x+C}.\]\end{ejemplo}
+
 \begin{ejemplo}$\int x^2e^xdx$. Aplicando partes dos veces,
 \[\int x^2e^xdx=x^2e^x-2\int xe^xdx=\boxed{e^x(x^2-2x+2)+C}.\]\end{ejemplo}
+
 \begin{ejemplo}$\int\ln xdx$. Escriba $\ln x=1\cdot\ln x$, tome $u=\ln x$, $dv=dx$:
 \[\boxed{x\ln x-x+C}.\]\end{ejemplo}
+
 \begin{ejemplo}Calcule $\int\arctan xdx$. Tome $u=\arctan x$, $dv=dx$:
 \[x\arctan x-\int\frac{x}{1+x^2}dx=\boxed{x\arctan x-\frac12\ln(1+x^2)+C}.\]\end{ejemplo}
+%=========================================================
 \subsection*{Integrales cíclicas}
+%=========================================================
 \begin{ejemplo}Sea $I=\int e^x\cos xdx$. Por partes, con $u=\cos x$, $dv=e^xdx$,
 \[I=e^x\cos x+\int e^x\sin xdx.\]
 Integramos de nuevo la última integral:
@@ -2691,25 +2681,38 @@ Por tanto,
 y
 \[\boxed{I=\frac{e^x}{2}(\sin x+\cos x)+C}.\]\end{ejemplo}
 
-\section{Integrales trigonométricas: potencias de seno y coseno}
+%=========================================================
+\section{Integrales trigonométricas}
+%=========================================================
+%=========================================================
+\subsection*{Integrales trigonométricas: potencias de seno y coseno}
+%=========================================================
 Consideremos $\int\sin^m x\cos^n xdx$.
 \subsection*{Potencia impar de seno}
 Si $m$ es impar, separe un factor $\sin x$ y convierta el resto mediante $\sin^2x=1-\cos^2x$.
+
 \begin{ejemplo}$\int\sin^3x\cos^2x dx$. Escriba $\sin^3x=(1-\cos^2x)\sin x$ y tome $u=\cos x$:
 \[\boxed{-\frac{\cos^3x}{3}+\frac{\cos^5x}{5}+C}.\]\end{ejemplo}
+
+%=========================================================
 \subsection*{Potencia impar de coseno}
+%=========================================================
 Si $n$ es impar, separe $\cos x$ y use $\cos^2x=1-\sin^2x$.
 \begin{ejemplo}Calcule $\int\sin^2x\cos^3x dx$. Se obtiene\[\boxed{\frac{\sin^3x}{3}-\frac{\sin^5x}{5}+C}.\]\end{ejemplo}
+%=========================================================
 \subsection*{Ambas potencias pares}
+%=========================================================
 Use las identidades de reducción
 \[\sin^2x=\frac{1-\cos2x}{2},\qquad\cos^2x=\frac{1+\cos2x}{2}.\]
 \begin{ejemplo}$\int\sin^2x dx=\boxed{\frac{x}{2}-\frac{\sin2x}{4}+C}$.\end{ejemplo}
+
 \begin{ejemplo}Calcule $\int\sin^2x\cos^2x dx$. Como $\sin x\cos x=\frac12\sin2x$,
 \[\sin^2x\cos^2x=\frac14\sin^22x=\frac18(1-\cos4x).\]
 Así,
 \[\boxed{\frac{x}{8}-\frac{\sin4x}{32}+C}.\]\end{ejemplo}
-
-\section{Potencias de tangente y secante}
+%=========================================================
+\subsection*{Potencias de tangente y secante}
+%=========================================================
 Para $\int\tan^m x\sec^n xdx$ son fundamentales
 \[\sec^2x=1+\tan^2x,\qquad \tan^2x=\sec^2x-1.\]
 \begin{estrategia}
@@ -2719,44 +2722,57 @@ Para $\int\tan^m x\sec^n xdx$ son fundamentales
 \item Si ninguno aplica directamente, transforme usando identidades y simplifique.
 \end{enumerate}
 \end{estrategia}
+
 \begin{ejemplo}Calcule $\int\tan^3x\sec^4x dx$. Reserve $\sec^2x dx$ y escriba $\sec^2x=1+\tan^2x$ en el resto:
 \[\int\tan^3x\sec^2x\,\sec^2x dx.\]
 Con $u=\tan x$, $du=\sec^2x dx$:
 \[\int u^3(1+u^2)du=\boxed{\frac{\tan^4x}{4}+\frac{\tan^6x}{6}+C}.\]\end{ejemplo}
+
 \begin{ejemplo}Calcule $\int\tan^3x\sec xdx$. Escriba $\tan^3x=\tan^2x\tan x=(\sec^2x-1)\tan x$. Entonces
 \[\int(\sec^2x-1)\sec x\tan xdx.\]
 Con $u=\sec x$,
 \[\boxed{\frac{\sec^3x}{3}-\sec x+C}.\]\end{ejemplo}
+%=========================================================
 \subsection*{La integral de $\sec x$}
+%=========================================================
 Multiplicamos por una forma conveniente de uno:
 \[\int\sec xdx=\int\frac{\sec x(\sec x+\tan x)}{\sec x+\tan x}dx.\]
 El numerador es $\sec^2x+\sec x\tan x$, derivada del denominador. Por tanto,
 \[\boxed{\int\sec xdx=\ln|\sec x+\tan x|+C}.\]
-
-\section{Potencias de cotangente y cosecante}
+%=========================================================
+\subsection*{Potencias de cotangente y cosecante}
+%=========================================================
 Análogamente,
+
 \[\csc^2x=1+\cot^2x,\qquad\cot^2x=\csc^2x-1.\]
+
 \begin{estrategia}Si la potencia de cosecante es par, reserve $\csc^2x$ y use $u=\cot x$ (recordando $du=-\csc^2x dx$). Si la potencia de cotangente es impar, reserve $\csc x\cot x$ y use $u=\csc x$.\end{estrategia}
+
 \begin{ejemplo}Calcule $\int\cot^2x\csc^4x dx$. Reserve $\csc^2x dx$:
 \[\int\cot^2x(1+\cot^2x)\csc^2x dx.\]
 Con $u=\cot x$, $du=-\csc^2x dx$,
 \[\boxed{-\frac{\cot^3x}{3}-\frac{\cot^5x}{5}+C}.\]\end{ejemplo}
-
-\section{Productos trigonométricos con ángulos distintos}
+%=========================================================
+\subsection*{Productos trigonométricos con ángulos distintos}
+%=========================================================
 Las identidades producto-a-suma son
 \begin{align*}
 \sin A\cos B&=\tfrac12[\sin(A+B)+\sin(A-B)],\\
 \cos A\cos B&=\tfrac12[\cos(A+B)+\cos(A-B)],\\
 \sin A\sin B&=\tfrac12[\cos(A-B)-\cos(A+B)].
 \end{align*}
+
 \begin{ejemplo}Calcule $\int\sin3x\cos2x dx$. Entonces
 \[\sin3x\cos2x=\frac12(\sin5x+\sin x),\]
 y
 \[\boxed{-\frac1{10}\cos5x-\frac12\cos x+C}.\]\end{ejemplo}
+
 \begin{ejemplo}Calcule $\int\cos4x\cos xdx$. Usando producto-a-suma,
 \[\frac12\int(\cos5x+\cos3x)dx=\boxed{\frac1{10}\sin5x+\frac16\sin3x+C}.\]\end{ejemplo}
+%=========================================================
+\subsection*{Sustituciones trigonométricas}
+%=========================================================
 
-\section{Sustituciones trigonométricas}
 Estas sustituciones explotan identidades pitagóricas:
 \begin{center}\begin{tabular}{lll}\toprule
 Expresión & Sustitución & Identidad\\\midrule
@@ -2764,27 +2780,39 @@ $\sqrt{a^2-x^2}$ & $x=a\sin\theta$ & $1-\sin^2\theta=\cos^2\theta$\\
 $\sqrt{a^2+x^2}$ & $x=a\tan\theta$ & $1+\tan^2\theta=\sec^2\theta$\\
 $\sqrt{x^2-a^2}$ & $x=a\sec\theta$ & $\sec^2\theta-1=\tan^2\theta$\\\bottomrule
 \end{tabular}\end{center}
+%=========================================================
 \subsection*{Caso $\sqrt{a^2-x^2}$}
+%=========================================================
 \begin{ejemplo}Calcule $\int\sqrt{9-x^2}dx$. Tome $x=3\sin\theta$, $dx=3\cos\theta d\theta$. Entonces $\sqrt{9-x^2}=3\cos\theta$ y
 \[9\int\cos^2\theta d\theta=\frac92\theta+\frac94\sin2\theta+C.\]
 Como $\theta=\arcsin(x/3)$ y $\sin2\theta=2x\sqrt{9-x^2}/9$,
 \[\boxed{\frac{x}{2}\sqrt{9-x^2}+\frac92\arcsin\left(\frac{x}{3}\right)+C}.\]\end{ejemplo}
+
 \begin{ejemplo}Calcule $\int\frac{dx}{\sqrt{25-x^2}}$. Con $x=5\sin\theta$ se obtiene inmediatamente
 \[\boxed{\arcsin\left(\frac{x}{5}\right)+C}.\]\end{ejemplo}
+
+%=========================================================
 \subsection*{Caso $\sqrt{a^2+x^2}$}
+%=========================================================
 \begin{ejemplo}Calcule $\int\sqrt{x^2+4}dx$. Tome $x=2\tan\theta$, $dx=2\sec^2\theta d\theta$ y $\sqrt{x^2+4}=2\sec\theta$. Resulta
 \[4\int\sec^3\theta d\theta.\]
 Usando $\int\sec^3\theta d\theta=\frac12\sec\theta\tan\theta+\frac12\ln|\sec\theta+\tan\theta|+C$ y regresando a $x$,
 \[\boxed{\frac{x}{2}\sqrt{x^2+4}+2\ln|x+\sqrt{x^2+4}|+C}.\]
 Una constante aditiva producida por $\ln2$ se absorbe en $C$.\end{ejemplo}
+
+%=========================================================
 \subsection*{Caso $\sqrt{x^2-a^2}$}
+%=========================================================
 \begin{ejemplo}Calcule $\int\frac{\sqrt{x^2-9}}{x}dx$, para $x>3$. Tome $x=3\sec\theta$. Entonces $dx=3\sec\theta\tan\theta d\theta$ y $\sqrt{x^2-9}=3\tan\theta$. La integral se convierte en
 \[3\int\tan^2\theta d\theta=3\int(\sec^2\theta-1)d\theta=3\tan\theta-3\theta+C.\]
 Como $\tan\theta=\sqrt{x^2-9}/3$ y $\theta=\operatorname{arcsec}(x/3)$,
 \[\boxed{\sqrt{x^2-9}-3\operatorname{arcsec}\left(\frac{x}{3}\right)+C}.\]\end{ejemplo}
+
 \begin{observacion}Una sustitución trigonométrica no debe usarse mecánicamente. Antes conviene intentar simplificación algebraica o una sustitución ordinaria.\end{observacion}
 
-\section{Funciones racionales y división de polinomios}
+%=========================================================
+\section{Fracciones parciales}
+%=========================================================
 Una función racional es $P(x)/Q(x)$. Es propia si $\deg P<\deg Q$ e impropia si $\deg P\ge\deg Q$. En el segundo caso se divide primero.
 \begin{ejemplo}
 \[\frac{x^2+3x+5}{x+1}=x+2+\frac3{x+1}.\]
@@ -2792,25 +2820,31 @@ Por tanto,
 \[\boxed{\int\frac{x^2+3x+5}{x+1}dx=\frac{x^2}{2}+2x+3\ln|x+1|+C}.\]
 \end{ejemplo}
 
-\section{Fracciones parciales: teoría y clasificación}
 Supongamos que $P/Q$ es propia y que $Q$ se factoriza sobre $\R$. La descomposición depende de los factores del denominador.
+%=========================================================
 \subsection*{Caso I: factores lineales distintos}
+%=========================================================
 Si $Q=(x-a_1)\cdots(x-a_k)$ con raíces distintas, se propone
 \[\frac{P(x)}{Q(x)}=\frac{A_1}{x-a_1}+\cdots+\frac{A_k}{x-a_k}.\]
+
 \begin{ejemplo}Calcule $\int\frac{5x+1}{(x-1)(x+2)}dx$. Planteamos
 \[\frac{5x+1}{(x-1)(x+2)}=\frac{A}{x-1}+\frac{B}{x+2}.\]
 Multiplicando por el denominador,
 \[5x+1=A(x+2)+B(x-1).\]
 Con $x=1$, $A=2$; con $x=-2$, $B=3$. Por tanto,
 \[\boxed{2\ln|x-1|+3\ln|x+2|+C}.\]\end{ejemplo}
+
 \begin{ejemplo}Calcule $\int\frac{x^2+1}{x(x-1)(x+1)}dx$. Proponga
 \[\frac{x^2+1}{x(x-1)(x+1)}=\frac{A}{x}+\frac{B}{x-1}+\frac{C}{x+1}.\]
 Multiplicando y evaluando en $x=0,1,-1$ se obtiene $A=-1$, $B=1$, $C=1$. Así,
 \[\boxed{-\ln|x|+\ln|x-1|+\ln|x+1|+C}.\]\end{ejemplo}
-
+%=========================================================
 \subsection*{Caso II: factores lineales repetidos}
+%=========================================================
+
 Si $(x-a)^m$ divide a $Q$, deben aparecer \emph{todas} las potencias:
 \[\frac{A_1}{x-a}+\frac{A_2}{(x-a)^2}+\cdots+\frac{A_m}{(x-a)^m}.\]
+
 \begin{ejemplo}Calcule
 \[\int\frac{2x+3}{(x-1)^2(x+1)}dx.\]
 Planteamos
@@ -2821,10 +2855,12 @@ Con $x=1$: $5=2B$, así $B=5/2$. Con $x=-1$: $1=4C$, así $C=1/4$. Comparando co
 \[\int\left[-\frac1{4(x-1)}+\frac{5}{2(x-1)^2}+\frac1{4(x+1)}\right]dx,\]
 y
 \[\boxed{-\frac14\ln|x-1|-\frac{5}{2(x-1)}+\frac14\ln|x+1|+C}.\]\end{ejemplo}
-
+%=========================================================
 \subsection*{Caso III: factores cuadráticos irreducibles distintos}
+%=========================================================
 Para un factor $x^2+bx+c$ sin raíces reales, el numerador debe ser lineal:
 \[\frac{Ax+B}{x^2+bx+c}.\]
+
 \begin{ejemplo}Calcule
 \[\int\frac{x^2+2x+3}{(x-1)(x^2+1)}dx.\]
 Proponga
@@ -2836,14 +2872,17 @@ Comparando coeficientes:
 Se obtiene $A=3$, $B=-2$, $C=0$. Luego
 \[\int\left[\frac3{x-1}-\frac{2x}{x^2+1}\right]dx
 =\boxed{3\ln|x-1|-\ln(x^2+1)+C}.\]\end{ejemplo}
+
 \begin{ejemplo}Calcule $\int\frac{dx}{(x-1)(x^2+4)}$. La descomposición es
 \[\frac1{(x-1)(x^2+4)}=\frac{1/5}{x-1}+\frac{(-x-1)/5}{x^2+4}.\]
 Integrando término a término,
 \[\boxed{\frac15\ln|x-1|-\frac1{10}\ln(x^2+4)-\frac1{10}\arctan\left(\frac{x}{2}\right)+C}.\]\end{ejemplo}
-
+%=========================================================
 \subsection*{Caso IV: factores cuadráticos irreducibles repetidos}
+%=========================================================
 Si $(x^2+bx+c)^m$ aparece, deben incluirse
 \[\frac{A_1x+B_1}{x^2+bx+c}+\frac{A_2x+B_2}{(x^2+bx+c)^2}+\cdots+\frac{A_mx+B_m}{(x^2+bx+c)^m}.\]
+
 \begin{ejemplo}Considere
 \[\frac{x^3+2x+1}{(x^2+1)^2}.\]
 La forma correcta es
@@ -2856,18 +2895,21 @@ Las dos primeras son sustituciones directas. Para la última usamos la identidad
 \[\int\frac{dx}{(x^2+1)^2}=\frac{x}{2(x^2+1)}+\frac12\arctan x+C.\]
 Así,
 \[\boxed{\frac12\ln(x^2+1)-\frac1{2(x^2+1)}+\frac{x}{2(x^2+1)}+\frac12\arctan x+C}.\]\end{ejemplo}
-
+%=========================================================
 \subsection*{Caso mixto completo}
+%=========================================================
 \begin{ejemplo}Para
 \[\frac{P(x)}{(x-1)^2(x^2+4)^2}\]
 la forma general correcta es
 \[\frac{A}{x-1}+\frac{B}{(x-1)^2}+\frac{Cx+D}{x^2+4}+\frac{Ex+F}{(x^2+4)^2}.\]
 Este patrón debe establecerse \emph{antes} de calcular coeficientes.\end{ejemplo}
 
-\section{Integrales exponenciales y logarítmicas: reconocimiento de estructuras}
+%<<>>==<<>><<>>==<<>><<>>==<<>><<>>==<<>><<>>==<<>>
+\section{Integrales exponenciales y logarítmicas}
+%<<>>==<<>><<>>==<<>><<>>==<<>><<>>==<<>><<>>==<<>>
 Ya construimos $\ln x$ a partir de la integral definida y definimos $e^x$ como su función inversa. Ahora utilizaremos esos resultados dentro de integrales más elaboradas.
 
-\subsection*{Estructura exponencial}
+\textbf{Estructura exponencial}
 
 
 
@@ -2897,7 +2939,7 @@ Por tanto,
 \]
 \end{ejemplo}
 %=========================================================
-\subsection{Integración de funciones exponenciales de base distinta de \(e\)}
+\textbf{Integración de funciones exponenciales de base distinta de \(e\)}
 %=========================================================
 
 Hasta ahora hemos utilizado con frecuencia la fórmula
@@ -2919,7 +2961,7 @@ Estas funciones requieren una pequeña modificación debido a que
 A continuación deduciremos la fórmula correspondiente.
 
 %---------------------------------------------------------
-\subsubsection{Deducción de la fórmula para \(\int a^x\,dx\)}
+\textbf{Deducción de la fórmula para \(\int a^x\,dx\)}
 %---------------------------------------------------------
 
 Recordemos que, para \(a>0\),
@@ -2996,7 +3038,7 @@ compensar ese factor.
 \end{observacion}
 
 %---------------------------------------------------------
-\subsubsection{Ejemplo: integración de \(2^x\)}
+\textbf{Ejemplo: integración de \(2^x\)}
 %---------------------------------------------------------
 
 Consideremos
@@ -3043,7 +3085,7 @@ Por lo tanto,
 \]
 
 %---------------------------------------------------------
-\subsubsection{¿Por qué \(e^x\) es un caso especial?}
+\textbf{¿Por qué \(e^x\) es un caso especial?}
 %---------------------------------------------------------
 
 La fórmula general es
@@ -3088,7 +3130,7 @@ Así,
 fundamental en el cálculo diferencial e integral.
 
 %---------------------------------------------------------
-\subsubsection{Exponenciales con exponente lineal}
+\textbf{Exponenciales con exponente lineal}
 %---------------------------------------------------------
 
 Consideremos ahora
@@ -3136,7 +3178,7 @@ Regresando a la variable original,
 \]
 
 %---------------------------------------------------------
-\subsubsection{Ejemplo: \(\int 2^{3x+1}\,dx\)}
+\textbf{Ejemplo: \(\int 2^{3x+1}\,dx\)}
 %---------------------------------------------------------
 
 Calculemos
@@ -3184,7 +3226,7 @@ Regresando a \(x\),
 \]
 
 %---------------------------------------------------------
-\subsubsection{Exponenciales que requieren sustitución}
+\textbf{Exponenciales que requieren sustitución}
 %---------------------------------------------------------
 
 La misma idea puede combinarse con el método de sustitución.
@@ -3248,7 +3290,7 @@ y obtenemos
 \]
 
 %---------------------------------------------------------
-\subsubsection{Forma general con una función en el exponente}
+\textbf{Forma general con una función en el exponente}
 %---------------------------------------------------------
 
 Los ejemplos anteriores sugieren una forma más general.
@@ -3296,7 +3338,7 @@ sustitución.
 \end{observacion}
 
 %---------------------------------------------------------
-\subsubsection{Ejemplos adicionales}
+\textbf{Ejemplos adicionales}
 %---------------------------------------------------------
 
 \begin{ejemplo}
@@ -3403,66 +3445,9 @@ tenemos
 \]
 \end{ejemplo}
 
-%---------------------------------------------------------
-\subsubsection{Ejercicios propuestos}
-%---------------------------------------------------------
-
-Calcule las siguientes integrales:
-
-\begin{enumerate}
-    \item
-    \[
-    \int 2^x\,dx.
-    \]
-
-    \item
-    \[
-    \int 3^x\,dx.
-    \]
-
-    \item
-    \[
-    \int 10^x\,dx.
-    \]
-
-    \item
-    \[
-    \int 2^{4x}\,dx.
-    \]
-
-    \item
-    \[
-    \int 3^{2x+1}\,dx.
-    \]
-
-    \item
-    \[
-    \int 5^{3x-2}\,dx.
-    \]
-
-    \item
-    \[
-    \int x\,4^{x^2}\,dx.
-    \]
-
-    \item
-    \[
-    \int x^2\,2^{x^3}\,dx.
-    \]
-
-    \item
-    \[
-    \int (2x+1)\,5^{x^2+x}\,dx.
-    \]
-
-    \item
-    \[
-    \int \cos x\,2^{\sin x}\,dx.
-    \]
-\end{enumerate}
 
 %---------------------------------------------------------
-\subsubsection{Resumen}
+\textbf{Resumen}
 %---------------------------------------------------------
 
 Las fórmulas fundamentales de esta sección son
@@ -3502,7 +3487,7 @@ El caso \(a=e\) es particularmente sencillo porque
 \ln e=1.
 \]
 
-\subsection*{Estructura logarítmica $f'/f$}
+\textbf*{Estructura logarítmica $f'/f$}
 La fórmula
 \[
 \int\frac1u\,du=\ln|u|+C
@@ -3558,7 +3543,8 @@ y finalmente
 Aquí el valor absoluto es esencial porque $x^2-4$ puede ser positivo o negativo en distintos intervalos de su dominio.
 \end{ejemplo}
 
-\section{Selección del método de integración}
+\textbf{Selección del método de integración}
+
 La selección del método es parte central de la unidad. Un procedimiento razonable es:
 \begin{enumerate}
 \item \textbf{Simplificar}: expandir, factorizar, dividir polinomios, cancelar factores válidos o usar identidades.
@@ -3571,7 +3557,9 @@ La selección del método es parte central de la unidad. Un procedimiento razona
 \item \textbf{Combinar técnicas}: algunas integrales requieren más de un método.
 \item \textbf{Verificar derivando}.
 \end{enumerate}
-\subsection*{Ejemplos de diagnóstico}
+
+\subsection*{Ejemplos adicionales}
+
 \begin{center}\begin{longtable}{p{0.43\textwidth}p{0.43\textwidth}}\toprule
 Integral & Primera estrategia razonable\\\midrule
 $\int x(x^2+1)^7dx$ & Sustitución $u=x^2+1$\\
@@ -3585,8 +3573,8 @@ $\int\ln xdx$ & Por partes\\
 $\int\sin3x\cos5xdx$ & Producto-a-suma\\\bottomrule
 \end{longtable}\end{center}
 
-\section{Bloque de ejercicios resueltos de dificultad creciente}
-\subsection*{Nivel I: reconocimiento directo}
+
+
 \begin{ejercicio}Calcule $\int(7x^6-4x^{-3}+2e^x)dx$.\end{ejercicio}
 \textbf{Solución.}
 \[\boxed{x^7+2x^{-2}+2e^x+C}.\]
@@ -3594,15 +3582,14 @@ $\int\sin3x\cos5xdx$ & Producto-a-suma\\\bottomrule
 \textbf{Solución.}
 \[\boxed{3\sin x-2\tan x+C}.\]
 
-\subsection*{Nivel II: sustitución}
 \begin{ejercicio}Calcule $\int x^2\sqrt{x^3+1}dx$.\end{ejercicio}
 \textbf{Solución.} $u=x^3+1$, $du=3x^2dx$:
 \[\boxed{\frac{2}{9}(x^3+1)^{3/2}+C}.\]
+
 \begin{ejercicio}Calcule $\int\frac{e^x}{1+e^x}dx$.\end{ejercicio}
 \textbf{Solución.} $u=1+e^x$, $du=e^xdx$:
 \[\boxed{\ln(1+e^x)+C}.\]
 
-\subsection*{Nivel III: por partes}
 \begin{ejercicio}Calcule $\int x^2\sin xdx$.\end{ejercicio}
 \textbf{Solución.} Partes dos veces:
 \begin{align*}
@@ -3611,7 +3598,6 @@ $\int\sin3x\cos5xdx$ & Producto-a-suma\\\bottomrule
 \end{align*}
 \[\boxed{-x^2\cos x+2x\sin x+2\cos x+C}.\]
 
-\subsection*{Nivel IV: trigonométricas}
 \begin{ejercicio}Calcule $\int\sin^5x\cos^2xdx$.\end{ejercicio}
 \textbf{Solución.} Separe $\sin x$:
 \[\sin^5x=(1-\cos^2x)^2\sin x.\]
@@ -3619,98 +3605,560 @@ Con $u=\cos x$,
 \[-\int(1-u^2)^2u^2du=-\int(u^2-2u^4+u^6)du,\]
 de modo que
 \[\boxed{-\frac{\cos^3x}{3}+\frac{2\cos^5x}{5}-\frac{\cos^7x}{7}+C}.\]
+
 \begin{ejercicio}Calcule $\int\sec^4x\tan^2xdx$.\end{ejercicio}
 \textbf{Solución.} Reserve $\sec^2x dx$ y sustituya $u=\tan x$:
 \[\int(1+u^2)u^2du=\boxed{\frac{\tan^3x}{3}+\frac{\tan^5x}{5}+C}.\]
 
-\subsection*{Nivel V: fracciones parciales}
 \begin{ejercicio}Calcule $\int\frac{4x+1}{x^2-x-2}dx$.\end{ejercicio}
 \textbf{Solución.} Factorizamos $x^2-x-2=(x-2)(x+1)$ y escribimos
 \[\frac{4x+1}{(x-2)(x+1)}=\frac{3}{x-2}+\frac1{x+1}.\]
 Por tanto,
 \[\boxed{3\ln|x-2|+\ln|x+1|+C}.\]
+
 \begin{ejercicio}Calcule $\int\frac{dx}{x(x+1)^2}$.\end{ejercicio}
 \textbf{Solución.}
 \[\frac1{x(x+1)^2}=\frac1x-\frac1{x+1}-\frac1{(x+1)^2}.\]
 Luego
 \[\boxed{\ln|x|-\ln|x+1|+\frac1{x+1}+C}.\]
 
-\subsection*{Nivel VI: combinación de técnicas}
+
 \begin{ejercicio}Calcule $\int x\ln(x^2+1)dx$.\end{ejercicio}
 \textbf{Solución.} Primero $u=x^2+1$, $du=2xdx$:
 \[\frac12\int\ln u\,du.\]
 Ahora por partes, $\int\ln udu=u\ln u-u$:
 \[\boxed{\frac12(x^2+1)\ln(x^2+1)-\frac12(x^2+1)+C}.\]
+
 \begin{ejercicio}Calcule $\int\frac{x^2}{x^2+1}dx$.\end{ejercicio}
 \textbf{Solución.} Antes de integrar, simplifique:
 \[\frac{x^2}{x^2+1}=1-\frac1{x^2+1}.\]
 Por tanto,
 \[\boxed{x-\arctan x+C}.\]
 
-\section{Errores frecuentes}
-\begin{enumerate}
-\item Olvidar $+C$ en una integral indefinida.
-\item Aplicar la regla de potencias a $x^{-1}$.
-\item Sustituir $u=g(x)$ sin transformar completamente $dx$ y los factores restantes.
-\item Elegir $u$ y $dv$ en partes de modo que la nueva integral sea más difícil.
-\item En fracciones parciales, omitir términos correspondientes a potencias repetidas.
-\item Colocar una constante, en vez de $Ax+B$, sobre un cuadrático irreducible.
-\item Intentar fracciones parciales antes de hacer división cuando la fracción es impropia.
-\item Perder signos en $d(\cos x)=-\sin xdx$ o $d(\cot x)=-\csc^2xdx$.
-\item No regresar a la variable original después de una sustitución en una integral indefinida.
-\item No verificar el resultado mediante derivación.
-\end{enumerate}
+%<<>>==<<>><<>>==<<>><<>>==<<>><<>>==<<>><<>>==<<>>
+\section{Ejercicios}
+%<<>>==<<>><<>>==<<>><<>>==<<>><<>>==<<>><<>>==<<>>
 
-\section{Ejercicios propuestos por técnica}
-\subsection*{Integración directa}
-\begin{enumerate}
+\begin{Ejer} Integraci\'on directa
+\begin{multicols}{2}
+\begin{enumerate}[series=integrales]
 \item $\int(x^8-3x^4+2)dx$.
 \item $\int(4x^{-5}+3\sqrt{x})dx$.
 \item $\int(2e^x-5\sin x+3\sec^2x)dx$.
+\item $\displaystyle \int x^7\,dx$
+\item $\displaystyle \int x^{12}\,dx$
+\item $\displaystyle \int x^{-3}\,dx$
+\item $\displaystyle \int x^{-5}\,dx$
+\item $\displaystyle \int x^{1/2}\,dx$
+\item $\displaystyle \int x^{3/2}\,dx$
+\item $\displaystyle \int x^{-1/2}\,dx$
+\item $\displaystyle \int x^{5/3}\,dx$
+\item $\displaystyle \int(3x^2-4x+7)\,dx$
+\item $\displaystyle \int(5x^4-2x^3+x-6)\,dx$
+\item $\displaystyle \int(2x^5+7x^2-9)\,dx$
+\item $\displaystyle \int(8-3x+4x^3)\,dx$
+\item $\displaystyle \int\left(\frac{x^4}{2}-\frac{3x^2}{4}+5x\right)dx$
+\item $\displaystyle \int(6x^7-5x^5+2x^2-1)\,dx$
+\item $\displaystyle \int\left(\frac{2}{3}x^6-\frac{5}{2}x^3+4\right)dx$
+\item $\displaystyle \int(7x^8-3x^4+x^2-8x+11)\,dx$
 \end{enumerate}
-\subsection*{Sustitución}
-\begin{enumerate}
+\end{multicols}
+\end{Ejer}
+
+\begin{Ejer}{Radicales y potencias fraccionarias}
+\begin{multicols}{2}
+\begin{enumerate}[resume=integrales]
+\item $\displaystyle \int \sqrt{x}\,dx$
+\item $\displaystyle \int \sqrt[3]{x^2}\,dx$
+\item $\displaystyle \int \frac{1}{\sqrt{x}}\,dx$
+\item $\displaystyle \int \frac{1}{\sqrt[3]{x^2}}\,dx$
+\item $\displaystyle \int(2\sqrt{x}+3\sqrt[3]{x})\,dx$
+\item $\displaystyle \int\frac{x^2+\sqrt{x}}{x}\,dx$
+\item $\displaystyle \int\left(\sqrt[4]{x^3}+\frac{2}{\sqrt{x}}\right)dx$
+\item $\displaystyle \int\frac{x^3+2x}{\sqrt{x}}\,dx$
+\end{enumerate}
+\end{multicols}
+\end{Ejer}
+
+\begin{Ejer}{Simplificación algebraica}
+\begin{multicols}{2}
+\begin{enumerate}[resume=integrales]
+\item $\displaystyle \int\frac{x^3+2x^2-x}{x}\,dx$
+\item $\displaystyle \int\frac{3x^4-2x^2+5x}{x^2}\,dx$
+\item $\displaystyle \int\frac{(x+1)^2}{x}\,dx$
+\item $\displaystyle \int\frac{x^4-1}{x^2}\,dx$
+\item $\displaystyle \int\frac{2x^3+5x^2-3x}{x}\,dx$
+\item $\displaystyle \int\frac{x^5+x^3+x}{x^2}\,dx$
+\item $\displaystyle \int\frac{(x-2)(x+3)}{x}\,dx$
+\item $\displaystyle \int\frac{x^6-2x^3+x}{x^2}\,dx$
+\item $\displaystyle \int \frac{x^3+2x^2-x+1}{x^2+1}\,dx$
+\item $\displaystyle \int \frac{x^2+3x+5}{x+1}\,dx$
+\item $\displaystyle \int \frac{2x^3-x+4}{x^2-1}\,dx$
+\item $\displaystyle \int \frac{x^4+1}{x^2+1}\,dx$
+\item $\displaystyle \int \frac{3x^3+2x^2+1}{x^2+x}\,dx$
+\item $\displaystyle \int \frac{x^3-1}{x-1}\,dx$
+\item $\displaystyle \int \frac{x^4-x^2+1}{x^2+1}\,dx$
+\item $\displaystyle \int \frac{2x^3+5x^2-3}{x+2}\,dx$
+\end{enumerate}
+\end{multicols}
+\end{Ejer}
+
+\begin{Ejer} Sustituci\'on
+\begin{multicols}{2}
+\begin{enumerate}[resume=integrales]
+\item $\displaystyle \int 2x(x^2+1)^5\,dx$
+\item $\displaystyle \int 3x^2(x^3-4)^6\,dx$
+\item $\displaystyle \int(2x+1)(x^2+x+3)^4\,dx$
+\item $\displaystyle \int 4x^3(x^4+2)^7\,dx$
+\item $\displaystyle \int x(3x^2-1)^8\,dx$
+\item $\displaystyle \int(6x-5)(3x^2-5x+2)^3\,dx$
+\item $\displaystyle \int x^2(1-x^3)^5\,dx$
+\item $\displaystyle \int(5x^4+2)(x^5+2x-1)^6\,dx$
 \item $\int x(x^2+3)^8dx$.
 \item $\int x^2e^{x^3}dx$.
 \item $\int\frac{5x^4}{x^5+7}dx$.
 \item $\int\frac{\cos x}{2+\sin x}dx$.
 \item $\int\tan x\sec^2x dx$.
+\item $\displaystyle \int\frac{x}{\sqrt{x^2+4}}\,dx$
+\item $\displaystyle \int\frac{2x+1}{\sqrt{x^2+x+5}}\,dx$
+\item $\displaystyle \int x^2\sqrt{x^3+1}\,dx$
+\item $\displaystyle \int\frac{x^3}{\sqrt{x^4+7}}\,dx$
+\item $\displaystyle \int(3x^2-2)\sqrt{x^3-2x+4}\,dx$
+\item $\displaystyle \int\frac{4x}{\sqrt[3]{2x^2+1}}\,dx$
+\item $\displaystyle \int x^2\sqrt[4]{x^3+2}\,dx$
+\item $\displaystyle \int\frac{5x^4}{\sqrt{1+x^5}}\,dx$
 \end{enumerate}
-\subsection*{Por partes}
-\begin{enumerate}
+\end{multicols}
+\end{Ejer}
+
+\begin{Ejer} Por partes
+\begin{multicols}{3}
+\begin{enumerate}[resume=integrales]
 \item $\int xe^{2x}dx$.
 \item $\int x\cos3x dx$.
+\item $\displaystyle \int x e^x\,dx$
+\item $\displaystyle \int x\sin x\,dx$
+\item $\displaystyle \int x\cos x\,dx$
+\item $\displaystyle \int x\ln x\,dx$
+\item $\displaystyle \int x^2e^x\,dx$
+\item $\displaystyle \int x^2\sin x\,dx$
+\item $\displaystyle \int \ln x\,dx$
+\item $\displaystyle \int e^x\cos x\,dx$
+
 \item $\int x^2\ln xdx$.
 \item $\int e^x\sin xdx$.
 \item $\int\arcsin xdx$.
 \end{enumerate}
-\subsection*{Trigonométricas}
-\begin{enumerate}
+\end{multicols}
+\end{Ejer}
+
+
+\begin{Ejer} Trigonométricas
+
+\begin{multicols}{2}
+\begin{enumerate}[resume=integrales]
+\item $\displaystyle \int\sin x\,dx$
+\item $\displaystyle \int\cos x\,dx$
+\item $\displaystyle \int\sec^2x\,dx$
+\item $\displaystyle \int\csc^2x\,dx$
+\item $\displaystyle \int\sec x\tan x\,dx$
+\item $\displaystyle \int\csc x\cot x\,dx$
+\item $\displaystyle \int(3\cos x-2\sin x)\,dx$
+\item $\displaystyle \int(4\sec^2x+5\csc x\cot x)\,dx$
 \item $\int\sin^7x\cos^2xdx$.
 \item $\int\sin^4x\cos^2xdx$.
 \item $\int\tan^4x\sec^4xdx$.
 \item $\int\tan^5x\sec^3xdx$.
 \item $\int\sin5x\cos2xdx$.
+\item $\displaystyle \int\sin^2x\,dx$
+\item $\displaystyle \int\cos^2x\,dx$
+\item $\displaystyle \int(1+\cos 2x)\,dx$
+\item $\displaystyle \int(1-\cos 2x)\,dx$
+\item $\displaystyle \int\sin x\cos x\,dx$
+\item $\displaystyle \int\sin(2x)\,dx$
+\item $\displaystyle \int\cos(5x)\,dx$
+\item $\displaystyle \int(3\sin^2x+2\cos^2x)\,dx$
 \end{enumerate}
-\subsection*{Sustitución trigonométrica}
-\begin{enumerate}
+\end{multicols}
+\end{Ejer}
+
+\begin{Ejer}  Sustitución trigonométrica
+\begin{multicols}{2}
+\begin{enumerate}[resume=integrales]
 \item $\int\sqrt{16-x^2}dx$.
 \item $\int\frac{x^2}{\sqrt{25-x^2}}dx$.
 \item $\int\frac{dx}{(x^2+9)^{3/2}}$.
 \item $\int\frac{\sqrt{x^2-4}}{x}dx$.
+\item $\displaystyle \int \frac{dx}{\sqrt{9-x^2}}$
+\item $\displaystyle \int \sqrt{16-x^2}\,dx$
+\item $\displaystyle \int \frac{x^2}{\sqrt{25-x^2}}\,dx$
+\item $\displaystyle \int \frac{dx}{\sqrt{x^2+9}}$
+\item $\displaystyle \int \sqrt{x^2+4}\,dx$
+\item $\displaystyle \int \frac{x^2}{\sqrt{x^2+16}}\,dx$
+\item $\displaystyle \int \frac{dx}{\sqrt{x^2-9}}$
+\item $\displaystyle \int \frac{\sqrt{x^2-25}}{x}\,dx$
 \end{enumerate}
-\subsection*{Fracciones parciales}
-\begin{enumerate}
+\end{multicols}
+\end{Ejer}
+
+\begin{Ejer} Fracciones parciales
+\begin{multicols}{3}
+\begin{enumerate}[resume=integrales]
 \item $\int\frac{2x+7}{(x-1)(x+3)}dx$.
 \item $\int\frac{x+2}{x(x-1)^2}dx$.
 \item $\int\frac{x^2+1}{(x-2)(x^2+4)}dx$.
 \item $\int\frac{2x^3+x+1}{(x^2+1)^2}dx$.
-\item $\int\frac{x^3+1}{x^2-1}dx$ (realice primero división).
+\item $\int\frac{x^3+1}{x^2-1}dx$
+\item $\displaystyle \int \frac{dx}{(x-1)(x+2)}$
+\item $\displaystyle \int \frac{3x+5}{(x-1)(x+3)}\,dx$
+\item $\displaystyle \int \frac{dx}{x(x+1)^2}$
+\item $\displaystyle \int \frac{2x+1}{(x-2)^2(x+1)}\,dx$
+\item $\displaystyle \int \frac{dx}{(x^2+1)(x-1)}$
+\item $\displaystyle \int \frac{x^2+1}{x(x-1)(x+2)}\,dx$
+\item $\displaystyle \int \frac{dx}{(x^2+4)(x^2+1)}$
+\item $\displaystyle \int \frac{x+1}{(x^2+1)^2}\,dx$
 \end{enumerate}
+\end{multicols}
+\end{Ejer}
 
-\section{Ejercicios integradores: seleccionar antes de calcular}
-En cada caso: (i) identifique la estructura; (ii) indique el método; (iii) resuelva; (iv) verifique derivando.
-\begin{enumerate}
+
+
+\begin{Ejer}{Funciones exponenciales}
+
+\begin{multicols}{3}
+\begin{enumerate}[resume=integrales]
+\item $\displaystyle \int e^x\,dx$
+\item $\displaystyle \int e^{3x}\,dx$
+\item $\displaystyle \int e^{-2x}\,dx$
+\item $\displaystyle \int 4e^{5x}\,dx$
+\item $\displaystyle \int 2^x\,dx$
+\item $\displaystyle \int 5^{3x}\,dx$
+\item $\displaystyle \int 3^{-2x}\,dx$
+\item $\displaystyle \int(2e^{4x}-3\,7^x)\,dx$
+    \item $\int 2^x\,dx.$
+    \item $\int 3^x\,dx.$
+    \item $\int 10^x\,dx.$
+    \item $\int 2^{4x}\,dx.$
+    \item$\int 3^{2x+1}\,dx.$
+    \item $\int 5^{3x-2}\,dx.$
+    \item $\int x\,4^{x^2}\,dx.$
+    \item $\int x^2\,2^{x^3}\,dx.$
+    \item $\int (2x+1)\,5^{x^2+x}\,dx.$
+    \item $\int \cos x\,2^{\sin x}\,dx.$
+\item $\int3^{2x}dx$ 
+\item $\int a^{nx}dx$ 
+\item $\int a^t e^t dt$ 
+\item $\int5^{x^4+2x}(2x^3+1)dx$
+\item $\int x^2 10^{x^3}dx$ 
+\item $\int a^z\ln z(\ln z+1)dz$ 
+\item $\int e^{y^2}e^{3e^y}dy$ 
+\item $\int\frac{4^{\ln(1/x)}}x dx$
+\item $\int\frac{\log_2x^2}{x}dx$
+\item $\int\frac{(\log_3x)^2}{x}dx$.
+\end{enumerate}
+\end{multicols}
+\end{Ejer}
+
+
+\begin{Ejer}{Logaritmos}
+\begin{multicols}{2}
+\begin{enumerate}[resume=integrales]
+\item $\displaystyle \int\frac{1}{x}\,dx$
+\item $\displaystyle \int\frac{5}{x}\,dx$
+\item $\displaystyle \int\left(3x^2+\frac{2}{x}\right)dx$
+\item $\displaystyle \int\left(\frac{4}{x}-x^3\right)dx$
+\item $\displaystyle \int\frac{7x^2+3}{x}\,dx$
+\item $\displaystyle \int\frac{x^3-4}{x}\,dx$
+\item $\displaystyle \int\left(\sqrt{x}+\frac{6}{x}\right)dx$
+\item $\displaystyle \int\frac{2x^4-x+5}{x}\,dx$
+\item $\int\frac1{3-2x}dx$ 
+\item $\int\frac{x}{2-x^2}dx$ 
+\item $\int\frac{3x^2}{5x^3-1}dx$ 
+\item $\int\frac{2x-1}{x(x-1)}dx$
+\item $\int\frac1{y\ln y}dy$ 
+\item $\int\frac{\sin3t}{\cos3t-1}dt$ 
+\item $\int(\cot5x+\csc5x)dx$ 
+\item $\int\frac{\cos3x+3}{\sin3x}dx$
+\item $\int\frac{2-3\sin2x}{\cos2x}dx$ 
+\item $\int(\tan2x-\sec2x)dx$ 
+\item $\int\frac{2x^3}{x^2-4}dx$ 
+\item $\int\frac{5-4y^2}{3+2y}dy$
+\item $\int\frac{\ln^2(3x)}x dx$ 
+\item $\int\frac{2+\ln^2x}{x(1-\ln x)}dx$ 
+\item $\int\frac{2\ln x+1}{x[(\ln x)^2+\ln x]}dx$ 
+\item $\int\frac{3x^5-2x^3+5x^2-2}{x^3+1}dx$
+\item $\int\frac{\tan(\ln x)}x dx$ 
+\item $\int\frac{\cot\sqrt t}{\sqrt t}dt$.
+\end{enumerate}
+\end{multicols}
+\end{Ejer}
+
+\begin{Ejer}{$f'(x)/f(x)$}
+\begin{multicols}{2}
+\begin{enumerate}[resume=integrales]
+\item $\displaystyle \int\frac{2x}{x^2+3}\,dx$
+\item $\displaystyle \int\frac{3x^2}{x^3+5}\,dx$
+\item $\displaystyle \int\frac{2x+1}{x^2+x+4}\,dx$
+\item $\displaystyle \int\frac{4x^3}{x^4-7}\,dx$
+\item $\displaystyle \int\frac{6x-2}{3x^2-2x+9}\,dx$
+\item $\displaystyle \int\frac{5x^4+1}{x^5+x+2}\,dx$
+\item $\displaystyle \int\frac{\cos x}{2+\sin x}\,dx$
+\item $\displaystyle \int\frac{e^x}{1+e^x}\,dx$
+\end{enumerate}
+\end{multicols}
+\end{Ejer}
+
+\begin{Ejer}{Sustitución generales}
+\begin{multicols}{2}
+\begin{enumerate}[resume=integrales]
+
+\item $\displaystyle \int e^x(1+e^x)^4\,dx$
+\item $\displaystyle \int e^{2x}\sqrt{1+e^{2x}}\,dx$
+\item $\displaystyle \int\frac{e^x}{(3+e^x)^2}\,dx$
+\item $\displaystyle \int e^{-x}(2+e^{-x})^5\,dx$
+\item $\displaystyle \int\frac{3e^{3x}}{1+e^{3x}}\,dx$
+\item $\displaystyle \int e^{4x}(1-e^{4x})^3\,dx$
+\item $\displaystyle \int\frac{2^x}{1+2^x}\,dx$
+\item $\displaystyle \int 5^x(2+5^x)^6\,dx$
+\item $\displaystyle \int\sin x\cos^4x\,dx$
+\item $\displaystyle \int\cos x\sin^5x\,dx$
+\item $\displaystyle \int\sec^2x(1+\tan x)^3\,dx$
+\item $\displaystyle \int\csc^2x(2-\cot x)^4\,dx$
+\item $\displaystyle \int\sec x\tan x(3+\sec x)^5\,dx$
+\item $\displaystyle \int\csc x\cot x(1+\csc x)^2\,dx$
+\item $\displaystyle \int\frac{\cos x}{1+\sin x}\,dx$
+\item $\displaystyle \int\frac{\sec^2x}{2+\tan x}\,dx$
+\end{enumerate}
+\end{multicols}
+\end{Ejer}
+
+\begin{Ejer}{Trigonométricas inversas}
+\begin{multicols}{2}
+\begin{enumerate}[resume=integrales]
+\item $\displaystyle \int\frac{1}{1+x^2}\,dx$
+\item $\displaystyle \int\frac{1}{\sqrt{1-x^2}}\,dx$
+\item $\displaystyle \int\frac{1}{4+x^2}\,dx$
+\item $\displaystyle \int\frac{1}{\sqrt{9-x^2}}\,dx$
+\item $\displaystyle \int\frac{1}{1+4x^2}\,dx$
+\item $\displaystyle \int\frac{1}{\sqrt{16-9x^2}}\,dx$
+\item $\displaystyle \int\frac{3}{1+9x^2}\,dx$
+\item $\displaystyle \int\frac{2}{\sqrt{25-4x^2}}\,dx$
+\item $\displaystyle \int \frac{dx}{\sqrt{1-x^2}}$
+\item $\displaystyle \int \frac{dx}{\sqrt{4-x^2}}$
+\item $\displaystyle \int \frac{dx}{\sqrt{25-4x^2}}$
+\item $\displaystyle \int \frac{3\,dx}{\sqrt{16-9x^2}}$
+\item $\displaystyle \int \frac{dx}{1+x^2}$
+\item $\displaystyle \int \frac{dx}{9+x^2}$
+\item $\displaystyle \int \frac{dx}{4+9x^2}$
+\item $\displaystyle \int \frac{5\,dx}{25+4x^2}$
+\end{enumerate}
+\end{multicols}
+\end{Ejer}
+
+
+
+\begin{Ejer}{Potencias de trigonométricas}
+\begin{multicols}{2}
+\begin{enumerate}[resume=integrales]
+\item $\displaystyle \int \sin^3 x\,dx$
+\item $\displaystyle \int \sin^5 x\,dx$
+\item $\displaystyle \int \sin^7 x\,dx$
+\item $\displaystyle \int \sin^2 x\,dx$
+\item $\displaystyle \int \sin^4 x\,dx$
+\item $\displaystyle \int \sin^6 x\,dx$
+\item $\displaystyle \int \sin^3(2x)\,dx$
+\item $\displaystyle \int \sin^4(3x)\,dx$
+\item $\displaystyle \int \cos^3 x\,dx$
+\item $\displaystyle \int \cos^5 x\,dx$
+\item $\displaystyle \int \cos^7 x\,dx$
+\item $\displaystyle \int \cos^2 x\,dx$
+\item $\displaystyle \int \cos^4 x\,dx$
+\item $\displaystyle \int \cos^6 x\,dx$
+\item $\displaystyle \int \cos^3(2x)\,dx$
+\item $\displaystyle \int \cos^4(3x)\,dx$
+\item $\displaystyle \int \sin(3x)\cos(5x)\,dx$
+\item $\displaystyle \int \cos(2x)\cos(7x)\,dx$
+\item $\displaystyle \int \sin(4x)\sin(2x)\,dx$
+\item $\displaystyle \int \sin x\cos(3x)\,dx$
+\item $\displaystyle \int \cos(5x)\cos x\,dx$
+\item $\displaystyle \int \sin(6x)\sin(3x)\,dx$
+\item $\displaystyle \int \sin(2x)\cos(4x)\,dx$
+\item $\displaystyle \int \cos(3x)\sin(7x)\,dx$
+\item $\displaystyle \int \sin^3 x\cos^2 x\,dx$
+\item $\displaystyle \int \sin^2 x\cos^3 x\,dx$
+\item $\displaystyle \int \sin^5 x\cos^4 x\,dx$
+\item $\displaystyle \int \sin^4 x\cos^5 x\,dx$
+\item $\displaystyle \int \sin^2 x\cos^2 x\,dx$
+\item $\displaystyle \int \sin^4 x\cos^2 x\,dx$
+\item $\displaystyle \int \sin^2 x\cos^4 x\,dx$
+\item $\displaystyle \int \sin^4 x\cos^4 x\,dx$
+\item $\displaystyle \int \tan^3x\,dx$
+\item $\displaystyle \int \sec^3x\,dx$
+\item $\displaystyle \int \tan^2x\sec^2x\,dx$
+\item $\displaystyle \int \tan^4x\sec^2x\,dx$
+\item $\displaystyle \int \sec^4x\tan x\,dx$
+\item $\displaystyle \int \sec^2x\tan^3x\,dx$
+\item $\displaystyle \int \tan^4x\,dx$
+\item $\displaystyle \int \sec^5x\,dx$
+\item $\displaystyle \int \cot^3x\,dx$
+\item $\displaystyle \int \csc^3x\,dx$
+\item $\displaystyle \int \cot^2x\csc^2x\,dx$
+\item $\displaystyle \int \cot^4x\csc^2x\,dx$
+\item $\displaystyle \int \csc^4x\cot x\,dx$
+\item $\displaystyle \int \csc^2x\cot^3x\,dx$
+\item $\displaystyle \int \cot^4x\,dx$
+\item $\displaystyle \int \csc^5x\,dx$
+\end{enumerate}
+\end{multicols}
+\end{Ejer}
+
+
+\begin{Ejer}{Identificar el método}
+\begin{multicols}{2}
+\begin{enumerate}[resume=integrales]
+\item $\displaystyle \int(4x^3-2x+7)\,dx$
+\item $\displaystyle \int\frac{x^2+3x}{x}\,dx$
+\item $\displaystyle \int\frac{x}{x^2+9}\,dx$
+\item $\displaystyle \int x^2(x^3+4)^7\,dx$
+\item $\displaystyle \int\frac{x}{\sqrt{x^2+1}}\,dx$
+\item $\displaystyle \int e^{2x}(1+e^{2x})^3\,dx$
+\item $\displaystyle \int\cos x(2+\sin x)^5\,dx$
+\item $\displaystyle \int\frac{\sec^2x}{1+\tan x}\,dx$
+\item $\displaystyle \int\cos^2x\,dx$
+\item $\displaystyle \int\frac{1}{9+x^2}\,dx$
+\item $\displaystyle \int\frac{1}{\sqrt{25-x^2}}\,dx$
+\item $\displaystyle \int\left(x^{3/2}+x^{-1/2}\right)dx$
+\item $\displaystyle \int 7^{2x}\,dx$
+\item $\displaystyle \int\frac{4x^3}{2+x^4}\,dx$
+\item $\displaystyle \int\sin x\cos^6x\,dx$
+\item $\displaystyle \int x\arctan x\,dx$
+\item $\displaystyle \int x^2\ln x\,dx$
+\item $\displaystyle \int x e^{x^2}\cos(e^{x^2})\,dx$
+\item $\displaystyle \int \frac{x^3}{\sqrt{9-x^2}}\,dx$
+\item $\displaystyle \int \frac{x^2}{x^2+4}\,dx$
+\item $\displaystyle \int e^x\sin x\,dx$
+\item $\displaystyle \int \frac{x^2+1}{x^3+x}\,dx$
+\item $\displaystyle \int \sin^3x\cos^4x\,dx$
+\item $\displaystyle \int\frac{e^x}{4+e^x}\,dx$
+\item $\displaystyle \int\frac{x^5+2x^3-x}{x^2}\,dx$
+\item $\displaystyle \int\frac{x^2}{\sqrt{1+x^3}}\,dx$
+\item $\displaystyle \int\frac{2x-3}{x^2-3x+10}\,dx$
+\item $\displaystyle \int e^{-3x}(1+e^{-3x})^7\,dx$
+\item $\displaystyle \int\frac{\cos(2x)}{3+\sin(2x)}\,dx$
+\item $\displaystyle \int\frac{1}{16+25x^2}\,dx$
+\item $\displaystyle \int\frac{1}{\sqrt{36-4x^2}}\,dx$
+\item $\displaystyle \int\left(2\sin^2x+3\cos^2x\right)dx$
+\item $\int3x^4dx$ 
+\item $\int2x^7dx$ 
+\item $\int x^{-3}dx$ 
+\item $\int3t^{-5}dt$
+\item $\int5u^{3/2}du$
+ \item $\int10\sqrt[3]{x^2}dx$ 
+ \item $\int\frac2{\sqrt[3]x}dx$ 
+ \item $\int\frac3{\sqrt y}dy$
+\item $\int6t^2\sqrt[3]t\,dt$ 
+\item $\int(3u^5-2u^3)du$ 
+\item $\int y^3(2y^2-3)dy$ 
+\item $\int x^4(5-x^2)dx$
+\item $\int(8x^4+4x^3-6x^2-4x+5)dx$ 
+\item $\int(2+3x^2-8x^3)dx$ 
+\item $\int\sqrt{x}(x+1)dx$
+\item $\int(\sqrt x-1/\sqrt x)dx$ 
+\item $\int(2/x^3+3/x^2+5)dx$ 
+\item $\int(3-1/x^4+1/x^2)dx$
+\item $\int\frac{x^2+4x-4}{\sqrt x}dx$ 
+\item $\int\frac{y^4+2y^2-1}{\sqrt y}dy$ 
+\item $\int(\sqrt[3]x+1/\sqrt[3]x)dx$
+\item $\int\frac{27t^3-1}{\sqrt[3]t}dt$ 
+\item $\int(3\sin t-2\cos t)dt$ 
+\item $\int(5\cos x-4\sin x)dx$
+\item $\int\frac{\sin x}{\cos^2x}dx$ 
+\item $\int\frac{\cos x}{\sin^2x}dx$ 
+\item $\int(4\csc x\cot x+2\sec^2x)dx$ 
+\item $\int(3\csc^2t-5\sec t\tan t)dt$.
+\item $\int\sqrt{1-4y}\,dy$ 
+\item $\int\sqrt[3]{3x-4}\,dx$ 
+\item $\int x\sqrt[3]{x^2-9}\,dx$ 
+\item $\int x(2x^2+1)^6dx$
+\item $\int x^2(x^3-1)^{10}dx$
+ \item $\int3x\sqrt{4-x^2}dx$ 
+ \item $\int\frac{y^3}{(1-2y^4)^5}dy$ 
+ \item $\int\frac{s}{\sqrt{3s^2+1}}ds$
+\item $\int(x^2-4x+4)^{4/3}dx$ 
+\item $\int x^4\sqrt{3x^5-5}dx$ 
+\item $\int x\sqrt{x+2}dx$ 
+\item $\int\frac{t}{\sqrt{t+3}}dt$
+\item $\int\frac{2r}{(1-r)^7}dr$ 
+\item $\int x^3(2-x^2)^{12}dx$ 
+\item $\int x^2\sqrt{3-2x}dx$ 
+\item $\int(r^3+3)^{1/4}r^5dr$
+\item $\int\cos4\theta\,d\theta$ 
+\item $\int\sin(x/3)dx$ 
+\item $\int6x^2\sin(x^3)dx$ 
+\item $\int\frac12t\cos(4t^2)dt$
+\item $\int\sec^2(5x)dx$ 
+\item $\int\csc^2(2\theta)d\theta$ 
+\item $\int y\csc(3y^2)\cot(3y^2)dy$ 
+\item $\int r^2\sec^2(r^3)dr$
+\item $\int\cos x(2+\sin x)^4dx$ 
+\item $\int\frac{4\sin x}{(1+\cos x)^2}dx$ 
+\item $\int\sqrt{1+\frac1{3x}}\frac1{x^2}dx$ 
+\item $\int\sqrt{\frac1t-1}\frac1{t^2}dt$
+\item $\int2\sin x\sqrt[3]{1+\cos x}dx$ 
+\item $\int\sin2x\sqrt{2-\cos2x}dx$ 
+\item $\int\cos^2t\sin t\,dt$ 
+\item $\int\sin^3\theta\cos\theta\,d\theta$
+\item $\int(\tan2x+\cot2x)^2dx$ 
+\item $\int\frac{\sec^2(3\sqrt t)}{\sqrt t}dt$ 
+\item $\int\frac{x^2+2x}{\sqrt{x^3+3x^2+1}}dx$ 
+\item $\int x(x^2+1)\sqrt{4-2x^2-x^4}dx$
+\item $\int\frac{y+3}{(3-y)^{2/3}}dy$ 
+\item $\int\sqrt{3+s}(s+1)^2ds$ 
+\item $\int\frac{(r^{1/3}+2)^4}{\sqrt[3]{r^2}}dr$ 
+\item $\int(t+1/t)^{3/2}\frac{t^2-1}{t^2}dt$
+\item $\int\frac{x^3}{(x^2+4)^{3/2}}dx$ 
+\item $\int\frac{x^3}{\sqrt{1-2x^2}}dx$ 
+\item $\int\sin x\sin(\cos x)dx$ 
+\item $\int\sec x\tan x\cos(\sec x)dx$.
+\item $\displaystyle \int\frac{dx}{\sqrt{36-x^2}}$.
+\item $\displaystyle \int\frac{dx}{16+x^2}$.
+\item $\displaystyle \int\frac{dx}{\sqrt{9-x^2}}$.
+\item $\displaystyle \int\frac{dx}{25+x^2}$.
+
+\item $\displaystyle \int\frac{dx}{\sqrt{25-4x^2}}$.
+\item $\displaystyle \int\frac{dx}{9+16x^2}$.
+\item $\displaystyle \int\frac{5\,dx}{\sqrt{49-25x^2}}$.
+\item $\displaystyle \int\frac{6\,dx}{4+9x^2}$.
+\item $\displaystyle \int\frac{2x\,dx}{1+x^4}$.
+\item $\displaystyle \int\frac{3x^2\,dx}{\sqrt{1-x^6}}$.
+\item $\displaystyle \int\frac{e^x\,dx}{1+e^{2x}}$.
+\item $\displaystyle \int\frac{\cos x\,dx}{\sqrt{1-\sin^2x}}$,
+\item $\displaystyle \int\frac{dx}{x^2+4x+8}$.
+\item $\displaystyle \int\frac{dx}{x^2-6x+18}$.
+\item $\displaystyle \int\frac{dx}{2x^2+8x+10}$.
+\item $\displaystyle \int\frac{dx}{4x^2-8x+8}$.
+\item $\int\frac{dx}{\sqrt{1-4x^2}}$ 
+\item $\int\frac{dx}{x^2+25}$ 
+\item $\int\frac{dx}{9x^2+16}$ 
+\item $\int\frac{dt}{\sqrt{1-16t^2}}$
+\item $\int\frac{dx}{4x\sqrt{x^2-16}}$
+ \item $\int\frac{x}{x^4+16}dx$ 
+ \item $\int\frac{r}{\sqrt{16-9r^4}}dr$ 
+ \item $\int\frac{du}{u\sqrt{16u^2-9}}$
+\item $\int\frac{e^x}{7+e^{2x}}dx$ 
+\item $\int\frac{\sin x}{\sqrt{2-\cos^2x}}dx$ 
+\item $\int\frac{dx}{(1+x)\sqrt x}$ 
+\item $\int\frac{ds}{\sqrt{2s-s^2}}$
+\item $\int\frac{dx}{x^2-x+2}$ 
+\item $\int\frac{dx}{\sqrt{3x-x^2-2}}$ 
+\item $\int\frac{dx}{\sqrt{15+2x-x^2}}$ 
+\item $\int\frac{2dt}{(t-3)\sqrt{t^2-6t+5}}$.
+\item $\displaystyle \int\frac{x^2}{\sqrt{25-x^2}}\,dx$.
+\item $\displaystyle \int\frac{dx}{(x^2+9)^{3/2}}$.
+\item $\displaystyle \int\frac{\sqrt{x^2-16}}{x}\,dx$.
+\item $\displaystyle \int\frac{dx}{\sqrt{36-x^2}}$.
+\item $\displaystyle \int\sqrt{x^2+4}\,dx$.
+\item $\displaystyle \int\frac{x^2}{\sqrt{x^2-9}}\,dx$.
 \item $\int(3x^5-4x^2+1)dx$.
 \item $\int x(x^2+5)^6dx$.
 \item $\int\frac{x}{x^2+4}dx$.
@@ -3732,28 +4180,547 @@ En cada caso: (i) identifique la estructura; (ii) indique el método; (iii) resu
 \item $\int\sec^3x dx$.
 \item $\int e^x\cos xdx$.
 \end{enumerate}
+\end{multicols}
+\end{Ejer}
 
-\section{Uso de herramientas computacionales para verificar}
-Un sistema algebraico computacional puede utilizarse para comprobar resultados, pero no sustituye la selección y justificación del método. En R, por ejemplo, puede verificarse numéricamente una antiderivada comparando diferencias finitas con el integrando; en Python/SymPy puede derivarse simbólicamente el resultado. La práctica recomendada es: resolver primero a mano, derivar manualmente y utilizar software como tercera comprobación.
+%<<>>==<<>>==<<>>==<<>>==<<>>==<<>>==<<>>==<<>>==
+\section{Formulario b\'asico}
+%<<>>==<<>>==<<>>==<<>>==<<>>==<<>>==<<>>==<<>>==
 
-\section{Resumen de la unidad}
-La integral indefinida representa la familia de primitivas de una función. Las técnicas estudiadas pueden entenderse como reglas de derivación utilizadas en sentido inverso: sustitución invierte la regla de la cadena; partes invierte la regla del producto; las identidades trigonométricas transforman el integrando a formas básicas; la sustitución trigonométrica explota identidades pitagóricas; y las fracciones parciales reducen funciones racionales a piezas integrables. La competencia central no es sólo ejecutar algoritmos, sino reconocer estructuras y decidir una estrategia eficiente.
+%=========================================================
+%\section*{Formulario de propiedades y fórmulas fundamentales}
+%=========================================================
 
-\section*{Formulario de consulta rápida}
-\addcontentsline{toc}{section}{Formulario de consulta rápida}
+\subsection*{Integrales algebraicas fundamentales}
+
+\begin{formula}[Regla de las potencias]
+Para $n\in\mathbb{R}$, $n\neq -1$,
+\[
+\boxed{
+\int x^n\,dx=\frac{x^{n+1}}{n+1}+C
+}
+\]
+en cualquier intervalo donde la potencia esté definida.
+\end{formula}
+
+\begin{formula}[Integral logarítmica]
+\[
+\boxed{
+\int\frac{dx}{x}=\ln|x|+C
+}
+\]
+Más generalmente,
+\[
+\boxed{
+\int\frac{f'(x)}{f(x)}\,dx
+=\ln|f(x)|+C
+}
+\]
+en intervalos donde $f(x)\neq 0$.
+\end{formula}
+
+\begin{formula}[Linealidad de la integral]
+Para constantes $\alpha,\beta\in\mathbb{R}$,
+\[
+\int\left[\alpha f(x)+\beta g(x)\right]dx
+=
+\alpha\int f(x)\,dx+
+\beta\int g(x)\,dx.
+\]
+\end{formula}
+
+%=========================================================
+\subsection*{Integrales trigonométricas fundamentales}
+%=========================================================
+
+\begin{formula}[Seno y coseno]
 \begin{align*}
-\int x^n dx&=\frac{x^{n+1}}{n+1}+C\quad(n\neq-1),&
-\int\frac{dx}{x}&=\ln|x|+C,\\
-\int e^{ax}dx&=\frac{e^{ax}}a+C,&
-\int a^xdx&=\frac{a^x}{\ln a}+C,\\
-\int u\,dv&=uv-\int v\,du,&
-\int\frac{f'}f dx&=\ln|f|+C,\\
-\sin^2x&=\frac{1-\cos2x}{2},&
-\cos^2x&=\frac{1+\cos2x}{2},\\
-1+\tan^2x&=\sec^2x,&1+\cot^2x&=\csc^2x.
+\int\sin x\,dx&=-\cos x+C,\\
+\int\cos x\,dx&=\sin x+C.
 \end{align*}
-Sustituciones trigonométricas principales:
-\[x=a\sin\theta\;(a^2-x^2),\qquad x=a\tan\theta\;(a^2+x^2),\qquad x=a\sec\theta\;(x^2-a^2).\]
+\end{formula}
+
+\begin{formula}[Tangente y cotangente]
+\begin{align*}
+\int\sec^2x\,dx&=\tan x+C,\\
+\int\csc^2x\,dx&=-\cot x+C.
+\end{align*}
+\end{formula}
+
+\begin{formula}[Secante y cosecante]
+\begin{align*}
+\int\sec x\tan x\,dx&=\sec x+C,\\
+\int\csc x\cot x\,dx&=-\csc x+C.
+\end{align*}
+\end{formula}
+
+\begin{formula}[Integrales logarítmicas trigonométricas]
+\begin{align*}
+\int\tan x\,dx&=-\ln|\cos x|+C,\\
+\int\cot x\,dx&=\ln|\sin x|+C,\\
+\int\sec x\,dx&=\ln|\sec x+\tan x|+C,\\
+\int\csc x\,dx&=\ln|\csc x-\cot x|+C.
+\end{align*}
+\end{formula}
+
+%=========================================================
+\subsection*{Logaritmos y sus propiedades}
+%=========================================================
+
+\begin{nota}[Condiciones de definición]
+Para los logaritmos reales se requiere
+\[
+a>0,\qquad a\neq1,\qquad x>0.
+\]
+Las propiedades siguientes consideran $M,N>0$.
+\end{nota}
+
+\begin{formula}[Propiedades de los logaritmos]
+\begin{align*}
+\log_a1&=0,\\
+\log_a a&=1,\\
+\log_a(MN)&=\log_aM+\log_aN,\\
+\log_a\left(\frac MN\right)
+&=\log_aM-\log_aN,\\
+\log_a(M^r)&=r\log_aM,\\
+\log_a x&=\frac{\ln x}{\ln a}.
+\end{align*}
+\end{formula}
+
+\begin{formula}[Derivadas logarítmicas]
+\[
+\boxed{
+\frac{d}{dx}\ln|u(x)|
+=\frac{u'(x)}{u(x)}
+}
+\]
+\[
+\boxed{
+\frac{d}{dx}\log_a u(x)
+=\frac{u'(x)}{u(x)\ln a}
+}
+\]
+La segunda expresión requiere $u(x)>0$.
+\end{formula}
+
+\begin{formula}[Integrales logarítmicas]
+\[
+\int\frac{u'(x)}{u(x)}\,dx
+=\ln|u(x)|+C.
+\]
+\[
+\int\ln x\,dx=x\ln x-x+C,
+\qquad x>0.
+\]
+\end{formula}
+
+%=========================================================
+\subsection*{Funciones exponenciales}
+%=========================================================
+
+\begin{nota}[Base general]
+Para $a>0$, $a\neq1$,
+\[
+a^x=e^{x\ln a}.
+\]
+En consecuencia,
+\[
+\frac{d}{dx}a^x=a^x\ln a.
+\]
+\end{nota}
+
+\begin{formula}[Integrales exponenciales]
+\begin{align*}
+\int e^x\,dx&=e^x+C,\\
+\int e^{kx}\,dx&=\frac{e^{kx}}{k}+C,\\
+\int a^x\,dx&=\frac{a^x}{\ln a}+C,\\
+\int a^{kx}\,dx
+&=\frac{a^{kx}}{k\ln a}+C.
+\end{align*}
+En las expresiones con $k$ en el denominador,
+se supone $k\neq0$.
+\end{formula}
+
+\begin{formula}[Exponenciales con función compuesta]
+\[
+\boxed{
+\int e^{u(x)}u'(x)\,dx
+=e^{u(x)}+C
+}
+\]
+\[
+\boxed{
+\int a^{u(x)}u'(x)\,dx
+=\frac{a^{u(x)}}{\ln a}+C
+}
+\]
+\end{formula}
+
+%=========================================================
+\subsection*{Funciones trigonométricas inversas}
+%=========================================================
+
+\begin{nota}[Inversa y recíproco]
+La función inversa no debe confundirse
+con la función recíproca:
+\[
+\sin^{-1}x=\arcsin x,
+\qquad
+\frac1{\sin x}=\csc x.
+\]
+\end{nota}
+
+\begin{nota}[Ramas principales]
+\begin{align*}
+\arcsin &: [-1,1]\longrightarrow
+[-\pi/2,\pi/2],\\
+\arccos &: [-1,1]\longrightarrow[0,\pi],\\
+\arctan &: \mathbb{R}\longrightarrow
+(-\pi/2,\pi/2).
+\end{align*}
+Las restricciones permiten definir
+inversas univaluadas.
+\end{nota}
+
+\begin{formula}[Derivadas de las inversas trigonométricas]
+\begin{align*}
+\frac{d}{dx}\arcsin u
+&=\frac{u'}{\sqrt{1-u^2}},\\
+\frac{d}{dx}\arccos u
+&=-\frac{u'}{\sqrt{1-u^2}},\\
+\frac{d}{dx}\arctan u
+&=\frac{u'}{1+u^2},\\
+\frac{d}{dx}\operatorname{arccot}u
+&=-\frac{u'}{1+u^2},\\
+\frac{d}{dx}\operatorname{arcsec}u
+&=\frac{u'}{|u|\sqrt{u^2-1}},\\
+\frac{d}{dx}\operatorname{arccsc}u
+&=-\frac{u'}{|u|\sqrt{u^2-1}}.
+\end{align*}
+\end{formula}
+
+\begin{nota}[Dominios de las derivadas]
+Para arco seno y arco coseno se requiere
+$|u|<1$; para arco secante y arco cosecante,
+$|u|>1$. Se presupone que $u$ es derivable.
+\end{nota}
+
+\begin{formula}[Identidades de composición]
+\begin{align*}
+\sin(\arcsin x)&=x,\quad |x|\le1,\\
+\cos(\arccos x)&=x,\quad |x|\le1,\\
+\tan(\arctan x)&=x,\quad x\in\mathbb R.
+\end{align*}
+Además,
+\[
+\arccos x=\frac{\pi}{2}-\arcsin x.
+\]
+\end{formula}
+
+\begin{nota}[Composición en sentido contrario]
+\[
+\arcsin(\sin y)=y
+\quad\text{si}\quad
+y\in[-\pi/2,\pi/2],
+\]
+\[
+\arccos(\cos y)=y
+\quad\text{si}\quad y\in[0,\pi].
+\]
+Fuera de estos intervalos, las igualdades
+no son válidas en general.
+\end{nota}
+
+%=========================================================
+\subsection*{Integrales con funciones trigonométricas inversas}
+%=========================================================
+
+\begin{formula}[Formas normalizadas]
+\begin{align*}
+\int\frac{du}{\sqrt{1-u^2}}
+&=\arcsin u+C,\\
+\int\frac{du}{1+u^2}
+&=\arctan u+C,\\
+\int\frac{du}{|u|\sqrt{u^2-1}}
+&=\operatorname{arcsec}|u|+C.
+\end{align*}
+La primera fórmula requiere $|u|<1$
+y la tercera $|u|>1$.
+\end{formula}
+
+\begin{formula}[Formas con parámetro]
+Para $a>0$,
+\[
+\boxed{
+\int\frac{du}{\sqrt{a^2-u^2}}
+=\arcsin\left(\frac ua\right)+C
+}
+\]
+\[
+\boxed{
+\int\frac{du}{a^2+u^2}
+=\frac1a\arctan\left(\frac ua\right)+C
+}
+\]
+\[
+\boxed{
+\int\frac{du}{|u|\sqrt{u^2-a^2}}
+=\frac1a\operatorname{arcsec}
+\left(\frac{|u|}{a}\right)+C
+}
+\]
+La primera requiere $|u|<a$ y
+la tercera $|u|>a$.
+\end{formula}
+
+\begin{nota}[Reconocimiento de formas]
+\begin{align*}
+\sqrt{a^2-u^2}
+&\quad\longrightarrow\quad \arcsin,\\
+a^2+u^2
+&\quad\longrightarrow\quad \arctan,\\
+|u|\sqrt{u^2-a^2}
+&\quad\longrightarrow\quad \operatorname{arcsec}.
+\end{align*}
+Completar el cuadrado permite transformar
+numerosos denominadores cuadráticos
+en alguna de estas formas.
+\end{nota}
+
+\begin{nota}[Justificación de la fórmula arco seno]
+Sea
+\[
+F(u)=\arcsin\left(\frac ua\right).
+\]
+Por la regla de la cadena,
+\[
+F'(u)
+=\frac{1/a}{\sqrt{1-u^2/a^2}}
+=\frac1{\sqrt{a^2-u^2}},
+\]
+para $a>0$ y $|u|<a$.
+\end{nota}
+
+%=========================================================
+\subsection*{Identidades trigonométricas fundamentales}
+%=========================================================
+
+\begin{formula}[Identidades pitagóricas]
+\begin{align*}
+\sin^2x+\cos^2x&=1,\\
+1+\tan^2x&=\sec^2x,\\
+1+\cot^2x&=\csc^2x.
+\end{align*}
+\end{formula}
+
+\begin{formula}[Ángulo doble]
+\begin{align*}
+\sin(2x)&=2\sin x\cos x,\\
+\cos(2x)&=\cos^2x-\sin^2x,\\
+\cos(2x)&=1-2\sin^2x,\\
+\cos(2x)&=2\cos^2x-1.
+\end{align*}
+\end{formula}
+
+\begin{formula}[Reducción de potencias]
+\[
+\boxed{
+\sin^2x=\frac{1-\cos(2x)}2
+}
+\]
+\[
+\boxed{
+\cos^2x=\frac{1+\cos(2x)}2
+}
+\]
+\[
+\boxed{
+\sin x\cos x=\frac{\sin(2x)}2
+}
+\]
+\end{formula}
+
+%=========================================================
+\subsection*{Métodos fundamentales de integración}
+%=========================================================
+
+\begin{formula}[Integración por sustitución]
+Si $u=g(x)$, entonces $du=g'(x)\,dx$
+y
+\[
+\boxed{
+\int f(g(x))g'(x)\,dx
+=\int f(u)\,du
+}
+\]
+entendiendo que al final se sustituye
+$u=g(x)$ en la primitiva obtenida.
+\end{formula}
+
+\begin{formula}[Integración por partes]
+\[
+\boxed{
+\int u\,dv=uv-\int v\,du
+}
+\]
+Esta identidad se obtiene de
+la regla de derivación de un producto.
+\end{formula}
+
+\begin{formula}[Sustituciones trigonométricas]
+Para $a>0$,
+\begin{align*}
+\sqrt{a^2-x^2}:
+&\quad x=a\sin\theta,\\
+\sqrt{a^2+x^2}:
+&\quad x=a\tan\theta,\\
+\sqrt{x^2-a^2}:
+&\quad x=a\sec\theta.
+\end{align*}
+\end{formula}
+
+\begin{nota}[Diferenciales correspondientes]
+\begin{align*}
+x=a\sin\theta
+&\implies dx=a\cos\theta\,d\theta,\\
+x=a\tan\theta
+&\implies dx=a\sec^2\theta\,d\theta,\\
+x=a\sec\theta
+&\implies dx=a\sec\theta\tan\theta\,d\theta.
+\end{align*}
+Se deben elegir intervalos adecuados
+para $\theta$, respetando los signos
+de las raíces cuadradas.
+\end{nota}
+
+\begin{nota}[Criterio general de selección]
+Antes de integrar, conviene identificar
+la estructura del integrando:
+\begin{itemize}
+\item Potencias: regla algebraica.
+\item Composiciones con su derivada:
+sustitución.
+\item Productos apropiados:
+integración por partes.
+\item Cocientes $f'/f$:
+integral logarítmica.
+\item Cuadráticos irreducibles:
+completar el cuadrado.
+\item Radicales cuadráticos:
+sustitución trigonométrica.
+\item Cocientes racionales:
+considerar fracciones parciales.
+\end{itemize}
+\end{nota}
+
+
+
+% Insertar mediante \input{Formulario_Integrales_Para_Insertar.tex}
+% Compatible con el preambulo del documento maestro.
+\clearpage
+\begingroup
+\newgeometry{letterpaper,top=0.9cm,bottom=0.9cm,left=0.9cm,right=0.9cm}
+\pagestyle{empty}
+\definecolor{moradoFormulario}{RGB}{51,0,153}
+\definecolor{bordeFormulario}{RGB}{84,32,179}
+\definecolor{lilaFormulario}{RGB}{245,241,255}
+\newtcolorbox{formulario}[1]{enhanced,colback=lilaFormulario,colframe=bordeFormulario,
+ colbacktitle=moradoFormulario,coltitle=white,fonttitle=\bfseries\scriptsize,
+ title={#1},arc=2mm,boxrule=0.55pt,left=3pt,right=3pt,top=1pt,bottom=1pt,
+ toptitle=1pt,bottomtitle=1pt,before skip=2pt,after skip=2pt}
+\newcommand{\FormEq}[1]{\[\displaystyle #1\]}
+\setlength{\columnsep}{0.55cm}
+\setlength{\parskip}{0pt}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+\fontsize{8}{9.4}\selectfont
+\begin{center}
+{\large\bfseries Formulario de integración}\\[-1pt]
+{\scriptsize $C$ constante; $a>0$, $a\ne1$; $k\ne0$ cuando aparece en denominadores}
+\end{center}
+\vspace{-0.2cm}
+\begin{multicols}{2}
+\raggedcolumns
+
+\raggedcolumns
+\begin{formulario}{Algebraicas y logarítmicas}
+\FormEq{\int x^n\,dx=\frac{x^{n+1}}{n+1}+C\quad(n\ne-1)}
+\FormEq{\int\frac{dx}{x}=\ln|x|+C}
+\FormEq{\int\frac{u'}u\,dx=\ln|u|+C}
+\FormEq{\int\ln x\,dx=x\ln x-x+C}
+\FormEq{\int(\alpha f+\beta g)\,dx=\alpha\int f\,dx+\beta\int g\,dx}
+\end{formulario}
+\begin{formulario}{Exponenciales}
+\FormEq{a^x=e^{x\ln a}}
+\FormEq{\int e^{kx}\,dx=\frac{e^{kx}}k+C}
+\FormEq{\int a^{kx}\,dx=\frac{a^{kx}}{k\ln a}+C}
+\FormEq{\int e^u u'\,dx=e^u+C}
+\FormEq{\int a^u u'\,dx=\frac{a^u}{\ln a}+C}
+\end{formulario}
+\begin{formulario}{Trigonométricas}
+\FormEq{\int\sin x\,dx=-\cos x+C}
+\FormEq{\int\cos x\,dx=\sin x+C}
+\FormEq{\int\sec^2x\,dx=\tan x+C}
+\FormEq{\int\csc^2x\,dx=-\cot x+C}
+\FormEq{\int\sec x\tan x\,dx=\sec x+C}
+\FormEq{\int\csc x\cot x\,dx=-\csc x+C}
+\FormEq{\int\tan x\,dx=-\ln|\cos x|+C}
+\FormEq{\int\cot x\,dx=\ln|\sin x|+C}
+\FormEq{\int\sec x\,dx=\ln|\sec x+\tan x|+C}
+\FormEq{\int\csc x\,dx=\ln|\csc x-\cot x|+C}
+\end{formulario}
+\begin{formulario}{Identidades trigonométricas}
+\FormEq{\sin^2x+\cos^2x=1}
+\FormEq{1+\tan^2x=\sec^2x}
+\FormEq{1+\cot^2x=\csc^2x}
+\FormEq{\sin 2x=2\sin x\cos x}
+\FormEq{\cos 2x=\cos^2x-\sin^2x}
+\FormEq{\sin^2x=\frac{1-\cos 2x}{2}}
+\FormEq{\cos^2x=\frac{1+\cos 2x}{2}}
+\end{formulario}
+\columnbreak
+\begin{formulario}{Logaritmos}
+\FormEq{\log_a(MN)=\log_aM+\log_aN}
+\FormEq{\log_a\frac MN=\log_aM-\log_aN}
+\FormEq{\log_a(M^r)=r\log_aM}
+\FormEq{\log_a x=\frac{\ln x}{\ln a}}
+\end{formulario}
+\begin{formulario}{Inversas trigonométricas}
+\FormEq{\frac{d}{dx}\arcsin u=\frac{u'}{\sqrt{1-u^2}}}
+\FormEq{\frac{d}{dx}\arccos u=-\frac{u'}{\sqrt{1-u^2}}}
+\FormEq{\frac{d}{dx}\arctan u=\frac{u'}{1+u^2}}
+\FormEq{\frac{d}{dx}\operatorname{arccot}u=-\frac{u'}{1+u^2}}
+\FormEq{\frac{d}{dx}\operatorname{arcsec}u=\frac{u'}{|u|\sqrt{u^2-1}}}
+\FormEq{\frac{d}{dx}\operatorname{arccsc}u=-\frac{u'}{|u|\sqrt{u^2-1}}}
+\end{formulario}
+\begin{formulario}{Integrales con inversas}
+\FormEq{\int\frac{du}{\sqrt{1-u^2}}=\arcsin u+C}
+\FormEq{\int\frac{du}{1+u^2}=\arctan u+C}
+\FormEq{\int\frac{du}{|u|\sqrt{u^2-1}}=\operatorname{arcsec}|u|+C}
+\FormEq{\int\frac{du}{\sqrt{a^2-u^2}}=\arcsin\frac ua+C}
+\FormEq{\int\frac{du}{a^2+u^2}=\frac1a\arctan\frac ua+C}
+\FormEq{\int\frac{du}{|u|\sqrt{u^2-a^2}}=\frac1a\operatorname{arcsec}\frac{|u|}{a}+C}
+\end{formulario}
+\begin{formulario}{Métodos de integración}
+\FormEq{u=g(x),\qquad du=g'(x)\,dx}
+\FormEq{\int f(g(x))g'(x)\,dx=\int f(u)\,du}
+\FormEq{\int u\,dv=uv-\int v\,du}
+\end{formulario}
+\begin{formulario}{Sustituciones trigonométricas}
+\FormEq{\sqrt{a^2-x^2}:\quad x=a\sin\theta}
+\FormEq{dx=a\cos\theta\,d\theta}
+\FormEq{\sqrt{a^2+x^2}:\quad x=a\tan\theta}
+\FormEq{dx=a\sec^2\theta\,d\theta}
+\FormEq{\sqrt{x^2-a^2}:\quad x=a\sec\theta}
+\FormEq{dx=a\sec\theta\tan\theta\,d\theta}
+\end{formulario}
+\end{multicols}
+\restoregeometry
+\endgroup
+\clearpage
+
 
 %=========================================================
 \section{Ap\'endice: Funciones trigonom\'etricas inversas}
@@ -3778,7 +4745,7 @@ utilizar derivación implícita. Utilizaremos una propiedad fundamental de
 las funciones inversas.
 
 %---------------------------------------------------------
-\subsection{Recordatorio: funciones inversas}
+\subsection*{Recordatorio: funciones inversas}
 %---------------------------------------------------------
 
 Recordemos que, si una función $f$ es invertible, su función inversa,
@@ -3929,7 +4896,7 @@ y=\arctan x
 \]
 
 %---------------------------------------------------------
-\subsection{Derivada de una función inversa}
+\subsection*{Derivada de una función inversa}
 %---------------------------------------------------------
 
 Existe una relación muy importante entre la derivada de una función y
@@ -3999,7 +4966,7 @@ Esta propiedad nos permitirá calcular las derivadas del arcoseno y de
 la arcotangente sin recurrir a derivación implícita.
 
 %=========================================================
-\subsection{Derivada de la función arcoseno}
+\subsection*{Derivada de la función arcoseno}
 %=========================================================
 
 Queremos encontrar
@@ -4072,7 +5039,7 @@ en términos de $x$, por lo que debemos simplificar
 \]
 
 %---------------------------------------------------------
-\subsubsection{¿Cómo simplificamos $\cos(\arcsin x)$?}
+\subsubsection*{¿Cómo simplificamos $\cos(\arcsin x)$?}
 %---------------------------------------------------------
 
 Introduzcamos temporalmente el ángulo
@@ -4200,7 +5167,7 @@ en esos puntos. Por ello, la fórmula de la derivada se establece para
 \end{observacion}
 
 %---------------------------------------------------------
-\subsubsection{Interpretación geométrica mediante un triángulo}
+\subsubsection*{Interpretación geométrica mediante un triángulo}
 %---------------------------------------------------------
 
 También podemos recordar la identidad anterior mediante un triángulo
@@ -4246,7 +5213,7 @@ Esto vuelve a producir
 \]
 
 %=========================================================
-\subsection{De la derivada del arcoseno a una integral}
+\subsection*{Derivada del arcoseno a una integral}
 %=========================================================
 
 Una vez obtenida la derivada
@@ -4287,7 +5254,7 @@ Por consiguiente,
 que producen funciones trigonométricas inversas.
 
 %=========================================================
-\subsection{Derivada de la función arcotangente}
+\subsection*{Derivada de la función arcotangente}
 %=========================================================
 
 Procedamos ahora de manera análoga con
@@ -4356,7 +5323,7 @@ Nuevamente debemos simplificar la expresión para escribir la respuesta
 únicamente en términos de $x$.
 
 %---------------------------------------------------------
-\subsubsection{¿Cómo simplificamos $\sec^2(\arctan x)$?}
+\subsubsection*{ $\sec^2(\arctan x)$}
 %---------------------------------------------------------
 
 Sea
@@ -4437,7 +5404,7 @@ para todo número real $x$. Por ello,
 \]
 
 %---------------------------------------------------------
-\subsubsection{Interpretación geométrica mediante un triángulo}
+\subsubsection*{Interpretación geométrica mediante un triángulo}
 %---------------------------------------------------------
 
 También podemos visualizar la simplificación anterior mediante un
@@ -4486,7 +5453,7 @@ Como $\theta=\arctan x$,
 \]
 
 %=========================================================
-\subsection{De la derivada de la arcotangente a una integral}
+\subsection*{Derivada de la arcotangente a una integral}
 %=========================================================
 
 Ya hemos obtenido
@@ -4511,7 +5478,7 @@ Así aparece la segunda de las dos fórmulas fundamentales que
 utilizaremos en esta parte del curso.
 
 %=========================================================
-\subsection{Las dos relaciones fundamentales}
+\subsection*{Las dos relaciones fundamentales}
 %=========================================================
 
 Podemos resumir lo obtenido hasta ahora en las siguientes dos parejas:
@@ -4597,7 +5564,7 @@ y
 y cómo reconocerlas aun cuando la integral original no tenga
 inmediatamente una de estas formas.
 %---------------------------------------------------------
-\subsection{Punto de partida: leer una derivada en sentido inverso}
+\subsection*{Punto de partida: leer una derivada en sentido inverso}
 %---------------------------------------------------------
 
 Recordemos las dos derivadas fundamentales
@@ -4625,7 +5592,7 @@ y
 pueden reconstruir a partir de ellas.
 
 %---------------------------------------------------------
-\subsection{Forma de arcoseno: \texorpdfstring{$\sqrt{a^2-x^2}$}{sqrt(a2-x2)}}
+\subsection*{Arcoseno: \texorpdfstring{$\sqrt{a^2-x^2}$}{sqrt(a2-x2)}}
 %---------------------------------------------------------
 
 Queremos reconstruir
@@ -4735,7 +5702,7 @@ I=3\int\frac{du}{\sqrt{1-u^2}}
 \]
 
 %---------------------------------------------------------
-\subsection{Forma de arcotangente: \texorpdfstring{$a^2+x^2$}{a2+x2}}
+\subsection*{Arcotangente: \texorpdfstring{$a^2+x^2$}{a2+x2}}
 %---------------------------------------------------------
 
 Partimos de
@@ -4844,7 +5811,7 @@ I
 \end{align*}
 
 %---------------------------------------------------------
-\subsection{Arcocoseno: una forma equivalente}
+\subsection*{Arcocoseno: una forma equivalente}
 %---------------------------------------------------------
 
 También sabemos que
@@ -4873,7 +5840,7 @@ estructura $1/\sqrt{1-x^2}$.
 \end{observacion}
 
 %---------------------------------------------------------
-\subsection{Arcosecante y la importancia del valor absoluto}
+\subsection*{Arcosecante y la importancia del valor absoluto}
 %---------------------------------------------------------
 
 Otra fórmula que aparece en tablas de integración es
@@ -4902,7 +5869,7 @@ y arcotangente.
 \end{advertencia}
 
 %---------------------------------------------------------
-\subsection{Reconocimiento estructural: no basta con mirar la fórmula}
+\subsection*{Reconocimiento estructural: no basta con mirar la fórmula}
 %---------------------------------------------------------
 
 Las formas anteriores se vuelven realmente útiles cuando aparecen
@@ -4970,7 +5937,7 @@ I=\frac14\int\frac{du}{\sqrt{1-u^2}}
 \]
 
 %---------------------------------------------------------
-\subsection{Una estrategia de decisión}
+\subsection*{Una estrategia de decisión}
 %---------------------------------------------------------
 
 Cuando una integral parezca relacionada con funciones trigonométricas
@@ -4992,7 +5959,7 @@ a^2+u^2.
 \item \textbf{Verificar derivando} el resultado.
 \end{enumerate}
 
-\subsection{Tabla de reconocimiento rápido}
+\subsection*{Tabla de reconocimiento rápido}
 
 \begin{center}
 \renewcommand{\arraystretch}{1.6}
@@ -5025,7 +5992,7 @@ $\displaystyle \frac{f'(x)}{1+f(x)^2}$
 \end{center}
 
 %---------------------------------------------------------
-\subsection{Errores frecuentes}
+\subsection*{Errores frecuentes}
 %---------------------------------------------------------
 
 \begin{enumerate}
@@ -5058,76 +6025,16 @@ identidad expandiendo el resultado.
 aparezca en el integrando, al menos salvo un factor constante.
 \end{enumerate}
 
-%---------------------------------------------------------
-\subsection{Ejercicios propuestos}
-%---------------------------------------------------------
-
-\subsubsection*{Nivel 1: reconocimiento directo}
-Calcule:
-\begin{enumerate}[label=\arabic*.]
-\item $\displaystyle \int\frac{dx}{\sqrt{36-x^2}}$.
-\item $\displaystyle \int\frac{dx}{16+x^2}$.
-\item $\displaystyle \int\frac{dx}{\sqrt{9-x^2}}$.
-\item $\displaystyle \int\frac{dx}{25+x^2}$.
-\end{enumerate}
-
-\subsubsection*{Nivel 2: normalización y constantes}
-\begin{enumerate}[label=\arabic*.,resume]
-\item $\displaystyle \int\frac{dx}{\sqrt{25-4x^2}}$.
-\item $\displaystyle \int\frac{dx}{9+16x^2}$.
-\item $\displaystyle \int\frac{5\,dx}{\sqrt{49-25x^2}}$.
-\item $\displaystyle \int\frac{6\,dx}{4+9x^2}$.
-\end{enumerate}
-
-\subsubsection*{Nivel 3: composición}
-\begin{enumerate}[label=\arabic*.,resume]
-\item $\displaystyle \int\frac{2x\,dx}{1+x^4}$.
-\item $\displaystyle \int\frac{3x^2\,dx}{\sqrt{1-x^6}}$.
-\item $\displaystyle \int\frac{e^x\,dx}{1+e^{2x}}$.
-\item $\displaystyle \int\frac{\cos x\,dx}{\sqrt{1-\sin^2x}}$, indicando en qué intervalos se simplifica sin ambigüedad.
-\end{enumerate}
-
-\subsubsection*{Nivel 4: completar el cuadrado}
-\begin{enumerate}[label=\arabic*.,resume]
-\item $\displaystyle \int\frac{dx}{x^2+4x+8}$.
-\item $\displaystyle \int\frac{dx}{x^2-6x+18}$.
-\item $\displaystyle \int\frac{dx}{2x^2+8x+10}$.
-\item $\displaystyle \int\frac{dx}{4x^2-8x+8}$.
-\end{enumerate}
-
-%---------------------------------------------------------
-\subsection{Respuestas de los ejercicios}
-%---------------------------------------------------------
-
-\begin{enumerate}[label=\arabic*.]
-\item $\displaystyle \arcsin(x/6)+C$.
-\item $\displaystyle \frac14\arctan(x/4)+C$.
-\item $\displaystyle \arcsin(x/3)+C$.
-\item $\displaystyle \frac15\arctan(x/5)+C$.
-\item $\displaystyle \frac12\arcsin(2x/5)+C$.
-\item $\displaystyle \frac1{12}\arctan(4x/3)+C$.
-\item $\displaystyle \arcsin(5x/7)+C$.
-\item $\displaystyle \arctan(3x/2)+C$.
-\item $\displaystyle \arctan(x^2)+C$.
-\item $\displaystyle \arcsin(x^3)+C$.
-\item $\displaystyle \arctan(e^x)+C$.
-\item Requiere considerar $\sqrt{1-\sin^2x}=|\cos x|$; la respuesta depende del intervalo considerado.
-\item $\displaystyle \frac12\arctan\left(\frac{x+2}{2}\right)+C$.
-\item $\displaystyle \frac13\arctan\left(\frac{x-3}{3}\right)+C$.
-\item $\displaystyle \frac12\arctan(x+2)+C$.
-\item $\displaystyle \frac14\arctan(x-1)+C$.
-\end{enumerate}
-
 
 
 
 %=========================================================
-\section{Apéndice: desarrollo detallado de la sustitución trigonométrica}
+%\section{Apéndice: Desarrollo detallado de la sustitución trigonométrica}
 %=========================================================
 
 Este apéndice complementa la sección de sustituciones trigonométricas con un desarrollo más pausado. Su propósito no es añadir tres recetas aisladas, sino explicar \emph{por qué} aparecen las sustituciones, qué papel desempeñan las identidades pitagóricas, por qué deben controlarse los signos y los intervalos, y cómo regresar de la variable angular a la variable original.
 
-\subsection{Idea central: convertir un radical algebraico en una identidad trigonométrica}
+\subsection*{Idea central: convertir un radical algebraico en una identidad trigonométrica}
 
 Las tres expresiones que motivan la técnica son
 \[
@@ -5145,7 +6052,7 @@ x=a\sin\theta,\qquad x=a\tan\theta,\qquad x=a\sec\theta.
 \]
 La meta es que la raíz desaparezca y la integral resultante pueda resolverse con identidades e integrales trigonométricas conocidas.
 
-\subsection{Deducción del caso \texorpdfstring{$a^2-x^2$}{a2-x2}}
+\subsection*{Deducción del caso \texorpdfstring{$a^2-x^2$}{a2-x2}}
 
 Si aparece $\sqrt{a^2-x^2}$, factorizamos conceptualmente $a^2$:
 \[
@@ -5173,7 +6080,7 @@ Si elegimos $\theta\in[-\pi/2,\pi/2]$, entonces $\cos\theta\ge0$ y por tanto
 \]
 Esta elección de intervalo no es decorativa: justifica matemáticamente la eliminación del valor absoluto.
 
-\subsection{Deducción del caso \texorpdfstring{$a^2+x^2$}{a2+x2}}
+\subsection*{Deducción del caso \texorpdfstring{$a^2+x^2$}{a2+x2}}
 
 Para $\sqrt{a^2+x^2}$ escribimos
 \[
@@ -5197,7 +6104,7 @@ Con $\theta\in(-\pi/2,\pi/2)$ se tiene $\sec\theta>0$, de modo que
 \sqrt{a^2+x^2}=a\sec\theta.
 \]
 
-\subsection{Deducción del caso \texorpdfstring{$x^2-a^2$}{x2-a2}}
+\subsection*{Deducción del caso \texorpdfstring{$x^2-a^2$}{x2-a2}}
 
 Si aparece $\sqrt{x^2-a^2}$, queremos obtener $\sec^2\theta-1=\tan^2\theta$. Tomamos
 \[
@@ -5218,7 +6125,7 @@ Para trabajar, por ejemplo, con $x\ge a$, puede elegirse $0\le\theta<\pi/2$, don
 \]
 En otros intervalos debe conservarse el análisis de signos correspondiente.
 
-\subsection{El detalle que no debe ocultarse: \texorpdfstring{$\sqrt{u^2}=|u|$}{sqrt(u2)=abs(u)}}
+\subsection*{\texorpdfstring{$\sqrt{u^2}=|u|$}{sqrt(u2)=abs(u)}}
 
 Una simplificación frecuente pero incorrecta es escribir $\sqrt{u^2}=u$ sin condiciones. En realidad,
 \[
@@ -5226,7 +6133,7 @@ Una simplificación frecuente pero incorrecta es escribir $\sqrt{u^2}=u$ sin con
 \]
 Por ello, expresiones como $\sqrt{\cos^2\theta}$, $\sqrt{\sec^2\theta}$ o $\sqrt{\tan^2\theta}$ requieren controlar el signo de la función trigonométrica. La elección de un intervalo para $\theta$ permite convertir el valor absoluto en una expresión ordinaria de manera justificada.
 
-\subsection{El papel del triángulo rectángulo}
+\subsection*{El papel del triángulo rectángulo}
 
 Después de integrar en $\theta$ debemos volver a $x$. Aunque puede utilizarse directamente una función trigonométrica inversa, el triángulo rectángulo permite reconstruir varias razones trigonométricas a la vez.
 
@@ -5269,7 +6176,7 @@ Para $x>0$, podemos tomar hipotenusa $x$, cateto adyacente $a$ y cateto opuesto 
 \tan\theta=\frac{\sqrt{x^2-a^2}}{a}.
 \]
 
-\subsection{Algoritmo razonado}
+\subsection*{Algoritmo razonado}
 
 Ante una integral candidata a sustitución trigonométrica conviene seguir este orden:
 \begin{enumerate}
@@ -5285,7 +6192,7 @@ Ante una integral candidata a sustitución trigonométrica conviene seguir este 
 \item Verificar derivando cuando el resultado sea complejo.
 \end{enumerate}
 
-\subsection{Ejemplo detallado I: \texorpdfstring{$\int\sqrt{a^2-x^2}\,dx$}{integral sqrt(a2-x2)}}
+\subsection*{Ejemplo detallado I: \texorpdfstring{$\int\sqrt{a^2-x^2}\,dx$}{integral sqrt(a2-x2)}}
 
 Sea
 \[
@@ -5331,7 +6238,7 @@ Así,
 +\frac{a^2}{2}\arcsin\left(\frac{x}{a}\right)+C.}
 \]
 
-\subsection{Ejemplo detallado II: \texorpdfstring{$\int\sqrt{x^2+a^2}\,dx$}{integral sqrt(x2+a2)}}
+\subsection*{Ejemplo detallado II: \texorpdfstring{$\int\sqrt{x^2+a^2}\,dx$}{integral sqrt(x2+a2)}}
 
 Sea
 \[
@@ -5382,7 +6289,7 @@ Como $-(a^2/2)\ln a$ es constante, se absorbe en $C$. Finalmente,
 +\frac{a^2}{2}\ln|x+\sqrt{x^2+a^2}|+C.}
 \]
 
-\subsection{Ejemplo detallado III: \texorpdfstring{$\int\sqrt{x^2-a^2}\,dx$}{integral sqrt(x2-a2)}}
+\subsection*{Ejemplo detallado III: \texorpdfstring{$\int\sqrt{x^2-a^2}\,dx$}{integral sqrt(x2-a2)}}
 
 Para $x>a>0$, tomamos
 \[
@@ -5417,7 +6324,7 @@ se obtiene
 -\frac{a^2}{2}\ln|x+\sqrt{x^2-a^2}|+C.}
 \]
 
-\subsection{Comparación de los tres casos}
+\subsection*{Comparación de los tres casos}
 
 \begin{center}
 \begin{tabular}{lll}
@@ -5433,7 +6340,7 @@ $\sqrt{x^2-a^2}$ & $x=a\sec\theta$ & $\sec^2\theta-1=\tan^2\theta$\\
 
 La tabla debe entenderse como una síntesis de una deducción, no como una lista para memorizar sin explicación.
 
-\subsection{Conexión con las funciones trigonométricas inversas}
+\subsection*{Conexión con las funciones trigonométricas inversas}
 
 La sustitución trigonométrica y las primitivas que contienen funciones trigonométricas inversas están relacionadas, pero no son el mismo procedimiento. Por ejemplo,
 \[
@@ -5453,7 +6360,7 @@ Análogamente,
 \]
 es una forma directa de arcotangente, mientras que $\int\sqrt{x^2+a^2}\,dx$ conduce, mediante $x=a\tan\theta$, a una integral de $\sec^3\theta$.
 
-\subsection{Errores frecuentes}
+\subsection*{Errores frecuentes}
 
 \begin{enumerate}
 \item Elegir la sustitución por memoria sin identificar primero el signo del radicando.
@@ -5465,541 +6372,5 @@ es una forma directa de arcotangente, mientras que $\int\sqrt{x^2+a^2}\,dx$ cond
 \item Confundir una integral de reconocimiento directo de $\arcsin$ o $\arctan$ con una integral que realmente necesita sustitución trigonométrica.
 \item Olvidar que las constantes producidas al separar logaritmos se absorben en la constante general $C$.
 \end{enumerate}
-
-\subsection{Ejercicios de diagnóstico}
-
-Antes de calcular, indique qué sustitución utilizaría y por qué:
-\begin{enumerate}
-\item $\displaystyle \int\frac{x^2}{\sqrt{25-x^2}}\,dx$.
-\item $\displaystyle \int\frac{dx}{(x^2+9)^{3/2}}$.
-\item $\displaystyle \int\frac{\sqrt{x^2-16}}{x}\,dx$.
-\item $\displaystyle \int\frac{dx}{\sqrt{36-x^2}}$.
-\item $\displaystyle \int\sqrt{x^2+4}\,dx$.
-\item $\displaystyle \int\frac{x^2}{\sqrt{x^2-9}}\,dx$.
-\end{enumerate}
-
-
-%=========================================================
-\section{Apéndice: colección consolidada de integrales indefinidas}
-%=========================================================
-Este apéndice reúne en un solo lugar la colección de ejercicios utilizada en la presentación del curso. La intención es que el documento de notas sea autocontenido y que la numeración de la presentación pueda contrastarse con una lista completa de práctica.
-
-\textbf{Instrucción general.} Determine una primitiva y escriba la constante de integración $C$. Antes de elegir una técnica, simplifique el integrando cuando sea conveniente y justifique el método seleccionado.
-
-\subsection{Integración inmediata: regla de la potencia}
-\begin{enumerate}[label=\arabic*.,start=1]
-\item $\displaystyle \int x^7\,dx$
-\item $\displaystyle \int x^{12}\,dx$
-\item $\displaystyle \int x^{-3}\,dx$
-\item $\displaystyle \int x^{-5}\,dx$
-\item $\displaystyle \int x^{1/2}\,dx$
-\item $\displaystyle \int x^{3/2}\,dx$
-\item $\displaystyle \int x^{-1/2}\,dx$
-\item $\displaystyle \int x^{5/3}\,dx$
-\end{enumerate}
-
-\subsection{Polinomios y combinaciones lineales}
-\begin{enumerate}[label=\arabic*.,start=9]
-\item $\displaystyle \int(3x^2-4x+7)\,dx$
-\item $\displaystyle \int(5x^4-2x^3+x-6)\,dx$
-\item $\displaystyle \int(2x^5+7x^2-9)\,dx$
-\item $\displaystyle \int(8-3x+4x^3)\,dx$
-\item $\displaystyle \int\left(\frac{x^4}{2}-\frac{3x^2}{4}+5x\right)dx$
-\item $\displaystyle \int(6x^7-5x^5+2x^2-1)\,dx$
-\item $\displaystyle \int\left(\frac{2}{3}x^6-\frac{5}{2}x^3+4\right)dx$
-\item $\displaystyle \int(7x^8-3x^4+x^2-8x+11)\,dx$
-\end{enumerate}
-
-\subsection{Radicales y potencias fraccionarias}
-\begin{enumerate}[label=\arabic*.,start=17]
-\item $\displaystyle \int \sqrt{x}\,dx$
-\item $\displaystyle \int \sqrt[3]{x^2}\,dx$
-\item $\displaystyle \int \frac{1}{\sqrt{x}}\,dx$
-\item $\displaystyle \int \frac{1}{\sqrt[3]{x^2}}\,dx$
-\item $\displaystyle \int(2\sqrt{x}+3\sqrt[3]{x})\,dx$
-\item $\displaystyle \int\frac{x^2+\sqrt{x}}{x}\,dx$
-\item $\displaystyle \int\left(\sqrt[4]{x^3}+\frac{2}{\sqrt{x}}\right)dx$
-\item $\displaystyle \int\frac{x^3+2x}{\sqrt{x}}\,dx$
-\end{enumerate}
-
-\subsection{Simplificación algebraica antes de integrar}
-\begin{enumerate}[label=\arabic*.,start=25]
-\item $\displaystyle \int\frac{x^3+2x^2-x}{x}\,dx$
-\item $\displaystyle \int\frac{3x^4-2x^2+5x}{x^2}\,dx$
-\item $\displaystyle \int\frac{(x+1)^2}{x}\,dx$
-\item $\displaystyle \int\frac{x^4-1}{x^2}\,dx$
-\item $\displaystyle \int\frac{2x^3+5x^2-3x}{x}\,dx$
-\item $\displaystyle \int\frac{x^5+x^3+x}{x^2}\,dx$
-\item $\displaystyle \int\frac{(x-2)(x+3)}{x}\,dx$
-\item $\displaystyle \int\frac{x^6-2x^3+x}{x^2}\,dx$
-\end{enumerate}
-
-\subsection{La forma $1/x$ y logaritmos inmediatos}
-\begin{enumerate}[label=\arabic*.,start=33]
-\item $\displaystyle \int\frac{1}{x}\,dx$
-\item $\displaystyle \int\frac{5}{x}\,dx$
-\item $\displaystyle \int\left(3x^2+\frac{2}{x}\right)dx$
-\item $\displaystyle \int\left(\frac{4}{x}-x^3\right)dx$
-\item $\displaystyle \int\frac{7x^2+3}{x}\,dx$
-\item $\displaystyle \int\frac{x^3-4}{x}\,dx$
-\item $\displaystyle \int\left(\sqrt{x}+\frac{6}{x}\right)dx$
-\item $\displaystyle \int\frac{2x^4-x+5}{x}\,dx$
-\end{enumerate}
-
-\subsection{Funciones exponenciales}
-\begin{enumerate}[label=\arabic*.,start=41]
-\item $\displaystyle \int e^x\,dx$
-\item $\displaystyle \int e^{3x}\,dx$
-\item $\displaystyle \int e^{-2x}\,dx$
-\item $\displaystyle \int 4e^{5x}\,dx$
-\item $\displaystyle \int 2^x\,dx$
-\item $\displaystyle \int 5^{3x}\,dx$
-\item $\displaystyle \int 3^{-2x}\,dx$
-\item $\displaystyle \int(2e^{4x}-3\,7^x)\,dx$
-\end{enumerate}
-
-\subsection{Trigonométricas inmediatas}
-\begin{enumerate}[label=\arabic*.,start=49]
-\item $\displaystyle \int\sin x\,dx$
-\item $\displaystyle \int\cos x\,dx$
-\item $\displaystyle \int\sec^2x\,dx$
-\item $\displaystyle \int\csc^2x\,dx$
-\item $\displaystyle \int\sec x\tan x\,dx$
-\item $\displaystyle \int\csc x\cot x\,dx$
-\item $\displaystyle \int(3\cos x-2\sin x)\,dx$
-\item $\displaystyle \int(4\sec^2x+5\csc x\cot x)\,dx$
-\end{enumerate}
-
-\subsection{Trigonométricas con identidades elementales}
-\begin{enumerate}[label=\arabic*.,start=57]
-\item $\displaystyle \int\sin^2x\,dx$
-\item $\displaystyle \int\cos^2x\,dx$
-\item $\displaystyle \int(1+\cos 2x)\,dx$
-\item $\displaystyle \int(1-\cos 2x)\,dx$
-\item $\displaystyle \int\sin x\cos x\,dx$
-\item $\displaystyle \int\sin(2x)\,dx$
-\item $\displaystyle \int\cos(5x)\,dx$
-\item $\displaystyle \int(3\sin^2x+2\cos^2x)\,dx$
-\end{enumerate}
-
-\subsection{Sustitución: potencias de una función}
-\begin{enumerate}[label=\arabic*.,start=65]
-\item $\displaystyle \int 2x(x^2+1)^5\,dx$
-\item $\displaystyle \int 3x^2(x^3-4)^6\,dx$
-\item $\displaystyle \int(2x+1)(x^2+x+3)^4\,dx$
-\item $\displaystyle \int 4x^3(x^4+2)^7\,dx$
-\item $\displaystyle \int x(3x^2-1)^8\,dx$
-\item $\displaystyle \int(6x-5)(3x^2-5x+2)^3\,dx$
-\item $\displaystyle \int x^2(1-x^3)^5\,dx$
-\item $\displaystyle \int(5x^4+2)(x^5+2x-1)^6\,dx$
-\end{enumerate}
-
-\subsection{Sustitución con radicales}
-\begin{enumerate}[label=\arabic*.,start=73]
-\item $\displaystyle \int\frac{x}{\sqrt{x^2+4}}\,dx$
-\item $\displaystyle \int\frac{2x+1}{\sqrt{x^2+x+5}}\,dx$
-\item $\displaystyle \int x^2\sqrt{x^3+1}\,dx$
-\item $\displaystyle \int\frac{x^3}{\sqrt{x^4+7}}\,dx$
-\item $\displaystyle \int(3x^2-2)\sqrt{x^3-2x+4}\,dx$
-\item $\displaystyle \int\frac{4x}{\sqrt[3]{2x^2+1}}\,dx$
-\item $\displaystyle \int x^2\sqrt[4]{x^3+2}\,dx$
-\item $\displaystyle \int\frac{5x^4}{\sqrt{1+x^5}}\,dx$
-\end{enumerate}
-
-\subsection{Sustitución que conduce a logaritmos: $f'(x)/f(x)$}
-\begin{enumerate}[label=\arabic*.,start=81]
-\item $\displaystyle \int\frac{2x}{x^2+3}\,dx$
-\item $\displaystyle \int\frac{3x^2}{x^3+5}\,dx$
-\item $\displaystyle \int\frac{2x+1}{x^2+x+4}\,dx$
-\item $\displaystyle \int\frac{4x^3}{x^4-7}\,dx$
-\item $\displaystyle \int\frac{6x-2}{3x^2-2x+9}\,dx$
-\item $\displaystyle \int\frac{5x^4+1}{x^5+x+2}\,dx$
-\item $\displaystyle \int\frac{\cos x}{2+\sin x}\,dx$
-\item $\displaystyle \int\frac{e^x}{1+e^x}\,dx$
-\end{enumerate}
-
-\subsection{Sustitución con exponenciales}
-\begin{enumerate}[label=\arabic*.,start=89]
-\item $\displaystyle \int e^x(1+e^x)^4\,dx$
-\item $\displaystyle \int e^{2x}\sqrt{1+e^{2x}}\,dx$
-\item $\displaystyle \int\frac{e^x}{(3+e^x)^2}\,dx$
-\item $\displaystyle \int e^{-x}(2+e^{-x})^5\,dx$
-\item $\displaystyle \int\frac{3e^{3x}}{1+e^{3x}}\,dx$
-\item $\displaystyle \int e^{4x}(1-e^{4x})^3\,dx$
-\item $\displaystyle \int\frac{2^x}{1+2^x}\,dx$
-\item $\displaystyle \int 5^x(2+5^x)^6\,dx$
-\end{enumerate}
-
-\subsection{Sustitución con funciones trigonométricas}
-\begin{enumerate}[label=\arabic*.,start=97]
-\item $\displaystyle \int\sin x\cos^4x\,dx$
-\item $\displaystyle \int\cos x\sin^5x\,dx$
-\item $\displaystyle \int\sec^2x(1+\tan x)^3\,dx$
-\item $\displaystyle \int\csc^2x(2-\cot x)^4\,dx$
-\item $\displaystyle \int\sec x\tan x(3+\sec x)^5\,dx$
-\item $\displaystyle \int\csc x\cot x(1+\csc x)^2\,dx$
-\item $\displaystyle \int\frac{\cos x}{1+\sin x}\,dx$
-\item $\displaystyle \int\frac{\sec^2x}{2+\tan x}\,dx$
-\end{enumerate}
-
-\subsection{Integrales que conducen a funciones trigonométricas inversas}
-\begin{enumerate}[label=\arabic*.,start=105]
-\item $\displaystyle \int\frac{1}{1+x^2}\,dx$
-\item $\displaystyle \int\frac{1}{\sqrt{1-x^2}}\,dx$
-\item $\displaystyle \int\frac{1}{4+x^2}\,dx$
-\item $\displaystyle \int\frac{1}{\sqrt{9-x^2}}\,dx$
-\item $\displaystyle \int\frac{1}{1+4x^2}\,dx$
-\item $\displaystyle \int\frac{1}{\sqrt{16-9x^2}}\,dx$
-\item $\displaystyle \int\frac{3}{1+9x^2}\,dx$
-\item $\displaystyle \int\frac{2}{\sqrt{25-4x^2}}\,dx$
-\end{enumerate}
-
-\subsection{Integrales mixtas: identificar el método}
-\begin{enumerate}[label=\arabic*.,start=113]
-\item $\displaystyle \int(4x^3-2x+7)\,dx$
-\item $\displaystyle \int\frac{x^2+3x}{x}\,dx$
-\item $\displaystyle \int\frac{x}{x^2+9}\,dx$
-\item $\displaystyle \int x^2(x^3+4)^7\,dx$
-\item $\displaystyle \int\frac{x}{\sqrt{x^2+1}}\,dx$
-\item $\displaystyle \int e^{2x}(1+e^{2x})^3\,dx$
-\item $\displaystyle \int\cos x(2+\sin x)^5\,dx$
-\item $\displaystyle \int\frac{\sec^2x}{1+\tan x}\,dx$
-\item $\displaystyle \int\cos^2x\,dx$
-\item $\displaystyle \int\frac{1}{9+x^2}\,dx$
-\item $\displaystyle \int\frac{1}{\sqrt{25-x^2}}\,dx$
-\item $\displaystyle \int\left(x^{3/2}+x^{-1/2}\right)dx$
-\item $\displaystyle \int 7^{2x}\,dx$
-\item $\displaystyle \int\frac{4x^3}{2+x^4}\,dx$
-\item $\displaystyle \int\sin x\cos^6x\,dx$
-\item $\displaystyle \int\frac{e^x}{4+e^x}\,dx$
-\end{enumerate}
-
-\subsection{Retos de cierre}
-\begin{enumerate}[label=\arabic*.,start=129]
-\item $\displaystyle \int\frac{x^5+2x^3-x}{x^2}\,dx$
-\item $\displaystyle \int\frac{x^2}{\sqrt{1+x^3}}\,dx$
-\item $\displaystyle \int\frac{2x-3}{x^2-3x+10}\,dx$
-\item $\displaystyle \int e^{-3x}(1+e^{-3x})^7\,dx$
-\item $\displaystyle \int\frac{\cos(2x)}{3+\sin(2x)}\,dx$
-\item $\displaystyle \int\frac{1}{16+25x^2}\,dx$
-\item $\displaystyle \int\frac{1}{\sqrt{36-4x^2}}\,dx$
-\item $\displaystyle \int\left(2\sin^2x+3\cos^2x\right)dx$
-\end{enumerate}
-
-\subsection{Potencias de seno}
-\begin{enumerate}[label=\arabic*.,start=137]
-\item $\displaystyle \int \sin^3 x\,dx$
-\item $\displaystyle \int \sin^5 x\,dx$
-\item $\displaystyle \int \sin^7 x\,dx$
-\item $\displaystyle \int \sin^2 x\,dx$
-\item $\displaystyle \int \sin^4 x\,dx$
-\item $\displaystyle \int \sin^6 x\,dx$
-\item $\displaystyle \int \sin^3(2x)\,dx$
-\item $\displaystyle \int \sin^4(3x)\,dx$
-\end{enumerate}
-
-\subsection{Potencias de coseno}
-\begin{enumerate}[label=\arabic*.,start=145]
-\item $\displaystyle \int \cos^3 x\,dx$
-\item $\displaystyle \int \cos^5 x\,dx$
-\item $\displaystyle \int \cos^7 x\,dx$
-\item $\displaystyle \int \cos^2 x\,dx$
-\item $\displaystyle \int \cos^4 x\,dx$
-\item $\displaystyle \int \cos^6 x\,dx$
-\item $\displaystyle \int \cos^3(2x)\,dx$
-\item $\displaystyle \int \cos^4(3x)\,dx$
-\end{enumerate}
-
-\subsection{Productos de potencias de seno y coseno}
-\begin{enumerate}[label=\arabic*.,start=153]
-\item $\displaystyle \int \sin^3 x\cos^2 x\,dx$
-\item $\displaystyle \int \sin^2 x\cos^3 x\,dx$
-\item $\displaystyle \int \sin^5 x\cos^4 x\,dx$
-\item $\displaystyle \int \sin^4 x\cos^5 x\,dx$
-\item $\displaystyle \int \sin^2 x\cos^2 x\,dx$
-\item $\displaystyle \int \sin^4 x\cos^2 x\,dx$
-\item $\displaystyle \int \sin^2 x\cos^4 x\,dx$
-\item $\displaystyle \int \sin^4 x\cos^4 x\,dx$
-\end{enumerate}
-
-\subsection{Sustitución trigonométrica}
-\begin{enumerate}[label=\arabic*.,start=161]
-\item $\displaystyle \int \frac{dx}{\sqrt{9-x^2}}$
-\item $\displaystyle \int \sqrt{16-x^2}\,dx$
-\item $\displaystyle \int \frac{x^2}{\sqrt{25-x^2}}\,dx$
-\item $\displaystyle \int \frac{dx}{\sqrt{x^2+9}}$
-\item $\displaystyle \int \sqrt{x^2+4}\,dx$
-\item $\displaystyle \int \frac{x^2}{\sqrt{x^2+16}}\,dx$
-\item $\displaystyle \int \frac{dx}{\sqrt{x^2-9}}$
-\item $\displaystyle \int \frac{\sqrt{x^2-25}}{x}\,dx$
-\end{enumerate}
-
-\subsection{Integrales que conducen a $\arcsin$}
-\begin{enumerate}[label=\arabic*.,start=169]
-\item $\displaystyle \int \frac{dx}{\sqrt{1-x^2}}$
-\item $\displaystyle \int \frac{dx}{\sqrt{4-x^2}}$
-\item $\displaystyle \int \frac{dx}{\sqrt{25-4x^2}}$
-\item $\displaystyle \int \frac{3\,dx}{\sqrt{16-9x^2}}$
-\end{enumerate}
-
-\subsection{Integrales que conducen a $\arctan$}
-\begin{enumerate}[label=\arabic*.,start=173]
-\item $\displaystyle \int \frac{dx}{1+x^2}$
-\item $\displaystyle \int \frac{dx}{9+x^2}$
-\item $\displaystyle \int \frac{dx}{4+9x^2}$
-\item $\displaystyle \int \frac{5\,dx}{25+4x^2}$
-\end{enumerate}
-
-\subsection{Integración por partes}
-\begin{enumerate}[label=\arabic*.,start=177]
-\item $\displaystyle \int x e^x\,dx$
-\item $\displaystyle \int x\sin x\,dx$
-\item $\displaystyle \int x\cos x\,dx$
-\item $\displaystyle \int x\ln x\,dx$
-\item $\displaystyle \int x^2e^x\,dx$
-\item $\displaystyle \int x^2\sin x\,dx$
-\item $\displaystyle \int \ln x\,dx$
-\item $\displaystyle \int e^x\cos x\,dx$
-\end{enumerate}
-
-\subsection{Potencias de tangente y secante}
-\begin{enumerate}[label=\arabic*.,start=185]
-\item $\displaystyle \int \tan^3x\,dx$
-\item $\displaystyle \int \sec^3x\,dx$
-\item $\displaystyle \int \tan^2x\sec^2x\,dx$
-\item $\displaystyle \int \tan^4x\sec^2x\,dx$
-\item $\displaystyle \int \sec^4x\tan x\,dx$
-\item $\displaystyle \int \sec^2x\tan^3x\,dx$
-\item $\displaystyle \int \tan^4x\,dx$
-\item $\displaystyle \int \sec^5x\,dx$
-\end{enumerate}
-
-\subsection{Potencias de cotangente y cosecante}
-\begin{enumerate}[label=\arabic*.,start=193]
-\item $\displaystyle \int \cot^3x\,dx$
-\item $\displaystyle \int \csc^3x\,dx$
-\item $\displaystyle \int \cot^2x\csc^2x\,dx$
-\item $\displaystyle \int \cot^4x\csc^2x\,dx$
-\item $\displaystyle \int \csc^4x\cot x\,dx$
-\item $\displaystyle \int \csc^2x\cot^3x\,dx$
-\item $\displaystyle \int \cot^4x\,dx$
-\item $\displaystyle \int \csc^5x\,dx$
-\end{enumerate}
-
-\subsection{Productos trigonométricos con ángulos distintos}
-\begin{enumerate}[label=\arabic*.,start=201]
-\item $\displaystyle \int \sin(3x)\cos(5x)\,dx$
-\item $\displaystyle \int \cos(2x)\cos(7x)\,dx$
-\item $\displaystyle \int \sin(4x)\sin(2x)\,dx$
-\item $\displaystyle \int \sin x\cos(3x)\,dx$
-\item $\displaystyle \int \cos(5x)\cos x\,dx$
-\item $\displaystyle \int \sin(6x)\sin(3x)\,dx$
-\item $\displaystyle \int \sin(2x)\cos(4x)\,dx$
-\item $\displaystyle \int \cos(3x)\sin(7x)\,dx$
-\end{enumerate}
-
-\subsection{Funciones racionales y división de polinomios}
-\begin{enumerate}[label=\arabic*.,start=209]
-\item $\displaystyle \int \frac{x^3+2x^2-x+1}{x^2+1}\,dx$
-\item $\displaystyle \int \frac{x^2+3x+5}{x+1}\,dx$
-\item $\displaystyle \int \frac{2x^3-x+4}{x^2-1}\,dx$
-\item $\displaystyle \int \frac{x^4+1}{x^2+1}\,dx$
-\item $\displaystyle \int \frac{3x^3+2x^2+1}{x^2+x}\,dx$
-\item $\displaystyle \int \frac{x^3-1}{x-1}\,dx$
-\item $\displaystyle \int \frac{x^4-x^2+1}{x^2+1}\,dx$
-\item $\displaystyle \int \frac{2x^3+5x^2-3}{x+2}\,dx$
-\end{enumerate}
-
-\subsection{Fracciones parciales}
-\begin{enumerate}[label=\arabic*.,start=217]
-\item $\displaystyle \int \frac{dx}{(x-1)(x+2)}$
-\item $\displaystyle \int \frac{3x+5}{(x-1)(x+3)}\,dx$
-\item $\displaystyle \int \frac{dx}{x(x+1)^2}$
-\item $\displaystyle \int \frac{2x+1}{(x-2)^2(x+1)}\,dx$
-\item $\displaystyle \int \frac{dx}{(x^2+1)(x-1)}$
-\item $\displaystyle \int \frac{x^2+1}{x(x-1)(x+2)}\,dx$
-\item $\displaystyle \int \frac{dx}{(x^2+4)(x^2+1)}$
-\item $\displaystyle \int \frac{x+1}{(x^2+1)^2}\,dx$
-\end{enumerate}
-
-\subsection{Combinación de técnicas}
-\begin{enumerate}[label=\arabic*.,start=225]
-\item $\displaystyle \int x\arctan x\,dx$
-\item $\displaystyle \int x^2\ln x\,dx$
-\item $\displaystyle \int x e^{x^2}\cos(e^{x^2})\,dx$
-\item $\displaystyle \int \frac{x^3}{\sqrt{9-x^2}}\,dx$
-\item $\displaystyle \int \frac{x^2}{x^2+4}\,dx$
-\item $\displaystyle \int e^x\sin x\,dx$
-\item $\displaystyle \int \frac{x^2+1}{x^3+x}\,dx$
-\item $\displaystyle \int \sin^3x\cos^4x\,dx$
-\end{enumerate}
-
-\subsection{Cierre conceptual}
-La integración indefinida no consiste en memorizar una lista aislada de fórmulas. El objetivo es reconocer estructuras: linealidad, regla de la potencia, regla de la cadena invertida, regla del producto invertida, identidades trigonométricas, descomposición racional y sustituciones que transforman radicales. Una buena práctica es verificar siempre el resultado derivando la primitiva obtenida.
-
-%=========================================================
-% APÉNDICES
-%=========================================================
-
-\clearpage
-\appendix
-
-\section{Material complementario de integrales indefinidas}
-\section{Antiderivación inmediata}
-\begin{nota}[Idea fundamental]
-Una función $F$ es una antiderivada de $f$ si $F'(x)=f(x)$. La integral indefinida representa la familia $\int f(x)\,dx=F(x)+C$.
-\end{nota}
-\begin{formula}[Reglas básicas]
-\[\int x^n\,dx=\frac{x^{n+1}}{n+1}+C\quad(n\neq-1),\qquad \int \frac{dx}{x}=\ln|x|+C.\]
-\[\int\sin x\,dx=-\cos x+C,\quad \int\cos x\,dx=\sin x+C,\]
-\[\int\sec^2x\,dx=\tan x+C,\quad \int\csc^2x\,dx=-\cot x+C,\]
-\[\int\sec x\tan x\,dx=\sec x+C,\quad \int\csc x\cot x\,dx=-\csc x+C.\]
-\end{formula}
-\begin{ejemplo}[Ejemplos trigonométricos de las imágenes]
-\[\int(3\sec x\tan x-5\csc^2x)\,dx,\qquad
-\int\frac{2\cot x-3\sin^2x}{\sin x}\,dx,\qquad
-\int(\tan^2x+\cot^2x+4)\,dx.\]
-\end{ejemplo}
-\subsection*{Ejercicios 4.1}
-\begin{enumerate}[itemsep=3pt]
-\item $\int3x^4dx$ \item $\int2x^7dx$ \item $\int x^{-3}dx$ \item $\int3t^{-5}dt$
-\item $\int5u^{3/2}du$ \item $\int10\sqrt[3]{x^2}dx$ \item $\int\frac2{\sqrt[3]x}dx$ \item $\int\frac3{\sqrt y}dy$
-\item $\int6t^2\sqrt[3]t\,dt$ \item $\int(3u^5-2u^3)du$ \item $\int y^3(2y^2-3)dy$ \item $\int x^4(5-x^2)dx$
-\item $\int(8x^4+4x^3-6x^2-4x+5)dx$ \item $\int(2+3x^2-8x^3)dx$ \item $\int\sqrt{x}(x+1)dx$
-\item $\int(\sqrt x-1/\sqrt x)dx$ \item $\int(2/x^3+3/x^2+5)dx$ \item $\int(3-1/x^4+1/x^2)dx$
-\item $\int\frac{x^2+4x-4}{\sqrt x}dx$ \item $\int\frac{y^4+2y^2-1}{\sqrt y}dy$ \item $\int(\sqrt[3]x+1/\sqrt[3]x)dx$
-\item $\int\frac{27t^3-1}{\sqrt[3]t}dt$ \item $\int(3\sin t-2\cos t)dt$ \item $\int(5\cos x-4\sin x)dx$
-\item $\int\frac{\sin x}{\cos^2x}dx$ \item $\int\frac{\cos x}{\sin^2x}dx$ \item $\int(4\csc x\cot x+2\sec^2x)dx$ \item $\int(3\csc^2t-5\sec t\tan t)dt$.
-\end{enumerate}
-
-\section{Método de sustitución}
-\begin{nota}[Sustitución]
-Si el integrando contiene una composición y aparece (salvo una constante) la derivada de la función interior, se usa $u=g(x)$, $du=g'(x)dx$. La meta es transformar toda la integral a la variable $u$.
-\end{nota}
-\begin{ejemplo}[Ejemplos de las imágenes]
-\[\int\frac{\sin\sqrt{x}}{\sqrt{x}}dx,\qquad \int\sin x\sqrt{1-\cos x}\,dx.\]
-\end{ejemplo}
-\subsection*{Ejercicios 4.2: 1--44}
-\begin{enumerate}[itemsep=3pt]
-\item $\int\sqrt{1-4y}\,dy$ \item $\int\sqrt[3]{3x-4}\,dx$ \item $\int x\sqrt[3]{x^2-9}\,dx$ \item $\int x(2x^2+1)^6dx$
-\item $\int x^2(x^3-1)^{10}dx$ \item $\int3x\sqrt{4-x^2}dx$ \item $\int\frac{y^3}{(1-2y^4)^5}dy$ \item $\int\frac{s}{\sqrt{3s^2+1}}ds$
-\item $\int(x^2-4x+4)^{4/3}dx$ \item $\int x^4\sqrt{3x^5-5}dx$ \item $\int x\sqrt{x+2}dx$ \item $\int\frac{t}{\sqrt{t+3}}dt$
-\item $\int\frac{2r}{(1-r)^7}dr$ \item $\int x^3(2-x^2)^{12}dx$ \item $\int x^2\sqrt{3-2x}dx$ \item $\int(r^3+3)^{1/4}r^5dr$
-\item $\int\cos4\theta\,d\theta$ \item $\int\sin(x/3)dx$ \item $\int6x^2\sin(x^3)dx$ \item $\int\frac12t\cos(4t^2)dt$
-\item $\int\sec^2(5x)dx$ \item $\int\csc^2(2\theta)d\theta$ \item $\int y\csc(3y^2)\cot(3y^2)dy$ \item $\int r^2\sec^2(r^3)dr$
-\item $\int\cos x(2+\sin x)^4dx$ \item $\int\frac{4\sin x}{(1+\cos x)^2}dx$ \item $\int\sqrt{1+\frac1{3x}}\frac1{x^2}dx$ \item $\int\sqrt{\frac1t-1}\frac1{t^2}dt$
-\item $\int2\sin x\sqrt[3]{1+\cos x}dx$ \item $\int\sin2x\sqrt{2-\cos2x}dx$ \item $\int\cos^2t\sin t\,dt$ \item $\int\sin^3\theta\cos\theta\,d\theta$
-\item $\int(\tan2x+\cot2x)^2dx$ \item $\int\frac{\sec^2(3\sqrt t)}{\sqrt t}dt$ \item $\int\frac{x^2+2x}{\sqrt{x^3+3x^2+1}}dx$ \item $\int x(x^2+1)\sqrt{4-2x^2-x^4}dx$
-\item $\int\frac{y+3}{(3-y)^{2/3}}dy$ \item $\int\sqrt{3+s}(s+1)^2ds$ \item $\int\frac{(r^{1/3}+2)^4}{\sqrt[3]{r^2}}dr$ \item $\int(t+1/t)^{3/2}\frac{t^2-1}{t^2}dt$
-\item $\int\frac{x^3}{(x^2+4)^{3/2}}dx$ \item $\int\frac{x^3}{\sqrt{1-2x^2}}dx$ \item $\int\sin x\sin(\cos x)dx$ \item $\int\sec x\tan x\cos(\sec x)dx$.
-\end{enumerate}
-
-\section{Logaritmos e integrales logarítmicas}
-\begin{nota}[Propiedades]
-Para $a>0$, $a\ne1$, $M,N>0$:
-\[\log_a1=0,\quad \log_a(MN)=\log_aM+\log_aN,\quad \log_a(M/N)=\log_aM-\log_aN,\]
-\[\log_a(M^n)=n\log_aM,\qquad \log_a a=1,\qquad \log_a x=\frac{\ln x}{\ln a}.\]
-\end{nota}
-\begin{formula}[Derivadas]
-\[\frac{d}{dx}\ln|u|=\frac{u'}u,\qquad \frac{d}{dx}\log_a u=\frac{u'}{u\ln a}.\]
-\end{formula}
-\begin{ejemplo}[Ejemplo]
-\[\int\frac{\ln x}{x}dx=\frac{(\ln x)^2}{2}+C.\]
-\end{ejemplo}
-\subsection*{Ejercicios 5.3: integrales indefinidas 15--32}
-\begin{enumerate}[start=15,itemsep=3pt]
-\item $\int\frac1{3-2x}dx$ \item $\int\frac{x}{2-x^2}dx$ \item $\int\frac{3x^2}{5x^3-1}dx$ \item $\int\frac{2x-1}{x(x-1)}dx$
-\item $\int\frac1{y\ln y}dy$ \item $\int\frac{\sin3t}{\cos3t-1}dt$ \item $\int(\cot5x+\csc5x)dx$ \item $\int\frac{\cos3x+3}{\sin3x}dx$
-\item $\int\frac{2-3\sin2x}{\cos2x}dx$ \item $\int(\tan2x-\sec2x)dx$ \item $\int\frac{2x^3}{x^2-4}dx$ \item $\int\frac{5-4y^2}{3+2y}dy$
-\item $\int\frac{\ln^2(3x)}x dx$ \item $\int\frac{2+\ln^2x}{x(1-\ln x)}dx$ \item $\int\frac{2\ln x+1}{x[(\ln x)^2+\ln x]}dx$ \item $\int\frac{3x^5-2x^3+5x^2-2}{x^3+1}dx$
-\item $\int\frac{\tan(\ln x)}x dx$ \item $\int\frac{\cot\sqrt t}{\sqrt t}dt$.
-\end{enumerate}
-
-\section{Funciones exponenciales de base general}
-\begin{nota}[Definición y relación con $e$]
-Para $a>0$, $a\ne1$, $f(x)=a^x$ y $a^x=e^{x\ln a}$. De aquí se obtiene $\frac d{dx}a^x=a^x\ln a$.
-\end{nota}
-\begin{formula}[Integración exponencial]
-\[\boxed{\int a^x dx=\frac{a^x}{\ln a}+C},\qquad
-\boxed{\int a^{kx}dx=\frac{a^{kx}}{k\ln a}+C},\]
-\[\boxed{\int a^{u(x)}u'(x)dx=\frac{a^{u(x)}}{\ln a}+C}.\]
-\end{formula}
-\begin{ejemplo}[Ejemplo de la imagen]
-\[\int\sqrt{10^{3x}}dx=\int10^{3x/2}dx=\frac{2\,10^{3x/2}}{3\ln10}+C.\]
-\end{ejemplo}
-\subsection*{Ejercicios 5.5: integrales indefinidas 21--30}
-\begin{enumerate}[start=21,itemsep=4pt]
-\item $\int3^{2x}dx$ \item $\int a^{nx}dx$ \item $\int a^t e^t dt$ \item $\int5^{x^4+2x}(2x^3+1)dx$
-\item $\int x^2 10^{x^3}dx$ \item $\int a^z\ln z(\ln z+1)dz$ \item $\int e^{y^2}e^{3e^y}dy$ \item $\int\frac{4^{\ln(1/x)}}x dx$
-\item $\int\frac{\log_2x^2}{x}dx$ \item $\int\frac{(\log_3x)^2}{x}dx$.
-\end{enumerate}
-
-\section{Funciones trigonométricas inversas}
-\begin{nota}[Inversa no significa recíproco]
-$\sin^{-1}x=\arcsin x$ denota la función inversa del seno restringido; en cambio $(\sin x)^{-1}=1/\sin x=\csc x$ es el recíproco.
-\end{nota}
-\begin{nota}[Ramas principales]
-\[\arcsin:[-1,1]\to[-\pi/2,\pi/2],\quad \arccos:[-1,1]\to[0,\pi],\quad \arctan:\mathbb R\to(-\pi/2,\pi/2).\]
-La restricción del dominio de seno, coseno y tangente es necesaria para obtener funciones inyectivas y, por tanto, inversas.
-\end{nota}
-\begin{formula}[Derivadas fundamentales]
-\[\frac d{dx}\arcsin u=\frac{u'}{\sqrt{1-u^2}},\qquad \frac d{dx}\arccos u=-\frac{u'}{\sqrt{1-u^2}},\]
-\[\frac d{dx}\arctan u=\frac{u'}{1+u^2},\qquad \frac d{dx}\operatorname{arccot}u=-\frac{u'}{1+u^2},\]
-\[\frac d{dx}\operatorname{arcsec}u=\frac{u'}{|u|\sqrt{u^2-1}},\qquad \frac d{dx}\operatorname{arccsc}u=-\frac{u'}{|u|\sqrt{u^2-1}}.\]
-\end{formula}
-\begin{nota}[Identidades de composición]
-\[\sin(\arcsin x)=x\ (|x|\le1),\qquad \arcsin(\sin y)=y\ \text{si }y\in[-\pi/2,\pi/2].\]
-\[\cos(\arccos x)=x\ (|x|\le1),\qquad \arccos(\cos y)=y\ \text{si }y\in[0,\pi].\]
-\[\arccos x=\frac\pi2-\arcsin x.\]
-\end{nota}
-
-\section{Integrales que producen funciones trigonométricas inversas}
-\begin{formula}[Formas normalizadas]
-\[\int\frac{du}{\sqrt{1-u^2}}=\arcsin u+C,\qquad \int\frac{du}{1+u^2}=\arctan u+C,\]
-\[\int\frac{du}{|u|\sqrt{u^2-1}}=\operatorname{arcsec}|u|+C.\]
-\end{formula}
-\begin{formula}[Formas con parámetro]
-Para $a>0$,
-\[\int\frac{du}{\sqrt{a^2-u^2}}=\arcsin\left(\frac ua\right)+C,\]
-\[\int\frac{du}{a^2+u^2}=\frac1a\arctan\left(\frac ua\right)+C,\]
-\[\int\frac{du}{|u|\sqrt{u^2-a^2}}=\frac1a\operatorname{arcsec}\left(\frac{|u|}{a}\right)+C.\]
-\end{formula}
-\begin{nota}[Demostración del tipo arco seno]
-Si $F(u)=\arcsin(u/a)$, entonces
-\[F'(u)=\frac{1/a}{\sqrt{1-(u/a)^2}}=\frac1{\sqrt{a^2-u^2}},\quad a>0.\]
-Por ello la primera fórmula anterior es inmediata.
-\end{nota}
-\begin{ejemplo}[Ejemplo 1]
-\[\int\frac{dx}{\sqrt{4-9x^2}}=\frac13\arcsin\left(\frac{3x}{2}\right)+C.\]
-\end{ejemplo}
-\begin{ejemplo}[Ejemplo 2: completar el cuadrado]
-\[3x^2-2x+5=3\left(x-\frac13\right)^2+\frac{14}{3}
-=3\left[\left(x-\frac13\right)^2+\frac{14}{9}\right].\]
-Así,
-\[\int\frac{dx}{3x^2-2x+5}=\frac1{\sqrt{14}}\arctan\left(\frac{3x-1}{\sqrt{14}}\right)+C.\]
-\end{ejemplo}
-\begin{nota}[Reconocimiento]
-$\sqrt{a^2-u^2}$ sugiere arco seno; $a^2+u^2$ sugiere arco tangente; $|u|\sqrt{u^2-a^2}$ sugiere arco secante. Cuando aparece un cuadrático irreducible, completar el cuadrado suele producir la forma $u^2+a^2$.
-\end{nota}
-\subsection*{Ejercicios 5.8: integrales indefinidas 1--16}
-\begin{enumerate}[itemsep=4pt]
-\item $\int\frac{dx}{\sqrt{1-4x^2}}$ \item $\int\frac{dx}{x^2+25}$ \item $\int\frac{dx}{9x^2+16}$ \item $\int\frac{dt}{\sqrt{1-16t^2}}$
-\item $\int\frac{dx}{4x\sqrt{x^2-16}}$ \item $\int\frac{x}{x^4+16}dx$ \item $\int\frac{r}{\sqrt{16-9r^4}}dr$ \item $\int\frac{du}{u\sqrt{16u^2-9}}$
-\item $\int\frac{e^x}{7+e^{2x}}dx$ \item $\int\frac{\sin x}{\sqrt{2-\cos^2x}}dx$ \item $\int\frac{dx}{(1+x)\sqrt x}$ \item $\int\frac{ds}{\sqrt{2s-s^2}}$
-\item $\int\frac{dx}{x^2-x+2}$ \item $\int\frac{dx}{\sqrt{3x-x^2-2}}$ \item $\int\frac{dx}{\sqrt{15+2x-x^2}}$ \item $\int\frac{2dt}{(t-3)\sqrt{t^2-6t+5}}$.
-\end{enumerate}
-\subsection*{Ejercicios teóricos 32--36}
-\begin{enumerate}[start=32]
-\item Verifique por diferenciación $\int\frac{du}{a^2+u^2}=\frac1a\arctan(u/a)+C$.
-\item Verifique por diferenciación la fórmula de tipo arco secante.
-\item Deduzca por cambio de variable la fórmula $\int du/\sqrt{a^2-u^2}$.
-\item Deduzca por cambio de variable la fórmula $\int du/(a^2+u^2)$.
-\item Deduzca por cambio de variable la fórmula de tipo arco secante.
-\end{enumerate}
-
-\section*{Alcance del documento}
-Este documento reúne únicamente el material de las imágenes pertinente a \textbf{integrales indefinidas}: teoría necesaria, ejemplos y bancos de ejercicios. Se omitieron deliberadamente integrales definidas, áreas, volúmenes, valor promedio y problemas de aplicación, conforme al criterio establecido para esta unidad.
-
-\label{ap:integrales-indefinidas}
 
 \end{document}
