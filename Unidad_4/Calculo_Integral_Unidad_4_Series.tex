@@ -1,0 +1,762 @@
+%=========================================================
+% Notas para el curso de Calculo Integral - TNM
+% Formato conservado de Unidad2_Calculo_Integral_TNM
+%=========================================================
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,mexico]{babel}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[most]{tcolorbox}
+\usepackage{multicol}
+\usepackage{needspace}
+\usepackage{geometry,enumitem,booktabs,array,xcolor,graphicx,hyperref,fancyhdr,microtype,longtable}
+\geometry{letterpaper,top=2.3cm,bottom=2.3cm,left=2.5cm,right=2.5cm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em}
+\setlength{\headheight}{15pt}
+\setlength{\emergencystretch}{2em}
+\definecolor{azul}{RGB}{25,70,120}
+\hypersetup{colorlinks=true,linkcolor=azul,urlcolor=azul,citecolor=azul,pdftitle={Calculo Integral - Unidad 4: Series},pdfauthor={Carlos Ernesto Martinez Rodriguez}}
+\newtheorem{teorema}{Teorema}[section]
+\newtheorem{proposicion}[teorema]{Proposición}
+\newtheorem{corolario}[teorema]{Corolario}
+\theoremstyle{definition}
+\newtheorem{definicion}[teorema]{Definición}
+\newtheorem{ejemplo}[teorema]{Ejemplo}
+\newtheorem{Ejer}[teorema]{Ejercicio}
+\newtheorem{nota}[teorema]{Nota}
+\theoremstyle{remark}
+\newtheorem*{observacion}{Observación}
+\newtheorem*{advertencia}{Advertencia}
+\newtheorem*{estrategia}{Estrategia}
+\newtcolorbox{notateorica}[1][]{enhanced,breakable,colback=gray!5,colframe=black!65,fonttitle=\bfseries,title=#1,boxrule=0.7pt,arc=2mm,left=2mm,right=2mm,top=2mm,bottom=2mm}
+\newtcolorbox{formula}[1][]{enhanced,breakable,colback=blue!3,colframe=blue!55!black,fonttitle=\bfseries,title=#1,boxrule=0.8pt,arc=2mm,left=2mm,right=2mm,top=2mm,bottom=2mm}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\dd}{\,dx}
+\newcommand{\dt}{\,dt}
+\newcommand{\du}{\,du}
+\newcommand{\diff}{\mathop{}\!\mathrm{d}}
+\newcommand{\F}[1]{\[\displaystyle #1\]}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Tecnológico Nacional de México}
+\fancyhead[R]{\small Cálculo Integral}
+\fancyfoot[L]{\footnotesize Carlos Ernesto Martínez Rodríguez}
+\fancyfoot[C]{\footnotesize\thepage}
+\fancyfoot[R]{\footnotesize mrdgzcarlose@gmail.com}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\title{\textbf{Notas para el curso de Cálculo Integral}\\[0.3cm]\Large Unidad 4: Series}
+\author{Carlos Ernesto Martínez Rodríguez\\Tecnológico Nacional de México}
+\date{Agosto--Diciembre 2026}
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+%=========================================================
+\section*{Presentación}
+%=========================================================
+En la Unidad 3 estudiamos magnitudes que pueden construirse como límites de sumas. En esta unidad invertimos la perspectiva: primero estudiaremos el comportamiento de \emph{sucesiones} y de \emph{sumas parciales}; después utilizaremos series de potencias para representar funciones y aproximar cantidades que no siempre pueden expresarse mediante operaciones elementales.
+
+La metodología es progresiva, en el estilo de Stewart: motivar mediante un ejemplo, definir con precisión, estudiar un criterio de convergencia, observar sus hipótesis y practicar con ejercicios de estructura similar antes de combinar técnicas. Las series y los polinomios de Taylor sólo sirven como aproximaciones fiables si entendemos sus condiciones de convergencia y el error restante.
+
+\textbf{Alcance del temario:} sucesiones; series finitas e infinitas; convergencia y divergencia; pruebas de convergencia; series de potencias y su intervalo/radio; derivación e integración; Taylor y Maclaurin; aproximación de funciones e integrales; visualización con software. Planeación: 20 horas (12 teóricas y 8 prácticas).
+
+%=========================================================
+\section{Sucesiones y su límite}
+%=========================================================
+Una sucesión es una función cuyo dominio son los números naturales (o los enteros a partir de algún índice $n_0$). Escribimos $a_n$ para designar su término de índice $n$ y $\{a_n\}$ para designar toda la sucesión.
+\begin{definicion}[Convergencia de una sucesión]
+Decimos que $\{a_n\}$ converge a $L\in\R$ cuando para todo $\varepsilon>0$ existe $N\in\mathbb N$ tal que
+\[\boxed{n\ge N\implies |a_n-L|<\varepsilon.}\]
+Escribimos $\lim_{n\to\infty}a_n=L$. Si no existe ningún límite real, la sucesión diverge.
+\end{definicion}
+Esta definición enfatiza que, a partir de cierto índice, \emph{todos} los términos permanecen arbitrariamente cerca de $L$. No basta observar que algunos términos se aproximan.
+\begin{ejemplo}[Un límite de sucesión desde la definición]
+Sea $a_n=(2n+1)/n=2+1/n$. Queremos probar que $a_n\to2$. Dado $\varepsilon>0$, basta exigir
+\[|a_n-2|=\frac1n<\varepsilon.\]
+Podemos elegir cualquier entero $N>1/\varepsilon$. Si $n\ge N$, se verifica la desigualdad requerida, luego $\boxed{\lim a_n=2}$.
+\end{ejemplo}
+\begin{ejemplo}[Una sucesión oscilante]
+La sucesión $a_n=(-1)^n$ toma alternadamente los valores $-1$ y $1$. No converge: los términos pares permanecen en $1$ y los impares en $-1$. En cambio, $b_n=(-1)^n/n$ satisface $|b_n|=1/n\to0$; por el teorema de compresión, $b_n\to0$.
+\end{ejemplo}
+\begin{proposicion}[Álgebra y orden de límites]
+Si $a_n\to A$, $b_n\to B$ y $c\in\R$, entonces $a_n\pm b_n\to A\pm B$, $ca_n\to cA$, $a_nb_n\to AB$ y, si $B\ne0$, $a_n/b_n\to A/B$ (para índices suficientemente grandes). Si $a_n\le b_n\le c_n$ y los extremos convergen al mismo límite $L$, entonces $b_n\to L$.
+\end{proposicion}
+\begin{ejemplo}[Dividir por la mayor potencia]
+Para $a_n=(3n^2-n+1)/(2n^2+5)$, dividimos numerador y denominador entre $n^2$:
+\[a_n=\frac{3-1/n+1/n^2}{2+5/n^2}
+\longrightarrow\boxed{\frac32}.\]
+Esta misma técnica aparece en límites al infinito de funciones racionales.
+\end{ejemplo}
+\begin{teorema}[Sucesión monótona acotada]
+Toda sucesión creciente y acotada superiormente converge. Toda sucesión decreciente y acotada inferiormente converge.
+\end{teorema}
+\begin{proof}
+Si $a_n$ es creciente y está acotada superiormente, el conjunto $\{a_n:n\in\mathbb N\}$ tiene supremo $L$ por completitud de $\R$. Para cada $\varepsilon>0$, existe algún $N$ con $a_N>L-\varepsilon$, pues si no $L-\varepsilon$ sería cota superior. Por monotonía, $L-\varepsilon<a_N\le a_n\le L$ para $n\ge N$, así que $|a_n-L|<\varepsilon$. El argumento decreciente es análogo, utilizando el ínfimo.
+\end{proof}
+\begin{ejemplo}[Una sucesión definida recursivamente]
+Defina $a_1=1$ y $a_{n+1}=\sqrt{2+a_n}$. Si $a_n\le2$, entonces $a_{n+1}\le2$; por inducción todos los términos están acotados superiormente por $2$. Además, para $1\le a_n\le2$ se cumple $a_{n+1}\ge a_n$, pues $2+a_n\ge a_n^2$ en dicho intervalo. Así la sucesión es creciente y acotada, por lo que converge a un límite $L\in[1,2]$. Pasando al límite en la recurrencia,
+\[L=\sqrt{2+L}\implies L^2-L-2=0\implies L=2\text{ o }L=-1.\]
+La condición $L\in[1,2]$ elimina $-1$, de modo que $\boxed{L=2}$.
+\end{ejemplo}
+
+%=========================================================
+\section{Series finitas e infinitas}
+%=========================================================
+Una serie infinita no es una suma realizada instantáneamente: se define como el límite de una sucesión de \emph{sumas parciales}.
+\begin{definicion}[Serie y suma parcial]
+Dada una sucesión $\{a_n\}_{n\ge1}$, su suma parcial $N$-ésima es
+\[S_N=\sum_{n=1}^N a_n=a_1+\cdots+a_N.\]
+La serie $\sum_{n=1}^{\infty}a_n$ converge a $S$ cuando $S_N\to S$; en ese caso escribimos
+\[\boxed{\sum_{n=1}^{\infty}a_n=\lim_{N\to\infty}S_N=S.}\]
+Si las sumas parciales no convergen a un número real, la serie diverge.
+\end{definicion}
+\begin{teorema}[Condición necesaria de convergencia]
+Si $\sum_{n=1}^{\infty}a_n$ converge, entonces $a_n\to0$.
+\end{teorema}
+\begin{proof}
+Sea $S_N=\sum_{n=1}^N a_n$ y supongamos $S_N\to S$. Como $a_n=S_n-S_{n-1}$, al tomar el límite obtenemos $a_n\to S-S=0$.
+\end{proof}
+\begin{advertencia}
+El recíproco es falso: $a_n\to0$ \emph{no garantiza} que $\sum a_n$ converja. Éste es uno de los errores más frecuentes al estudiar series.
+\end{advertencia}
+
+\subsection*{Serie geométrica}
+Para $r\ne1$,
+\[1+r+\cdots+r^N=\frac{1-r^{N+1}}{1-r}.\]
+Esta igualdad se demuestra multiplicando la suma por $r$ y restando: casi todos los términos se cancelan. Al tomar el límite,
+\begin{teorema}[Serie geométrica]
+\[\boxed{\sum_{n=0}^{\infty}ar^n=\frac{a}{1-r}\qquad\text{si }|r|<1.}\]
+Si $a\ne0$ y $|r|\ge1$, los términos no tienden a cero (o las sumas parciales no convergen), por lo que diverge.
+\end{teorema}
+\begin{ejemplo}[Una suma geométrica]
+\[\sum_{n=0}^\infty\frac{3}{2^n}
+=3\sum_{n=0}^\infty\left(\frac12\right)^n
+=\frac3{1-1/2}=\boxed6.\]
+El primer término corresponde a $n=0$, no a $n=1$; distinguir el índice inicial evita factores faltantes.
+\end{ejemplo}
+\begin{ejemplo}[Una serie geométrica alternante]
+\[\sum_{n=1}^\infty\frac{(-1)^{n-1}}{3^n}
+=\frac13\sum_{k=0}^\infty\left(-\frac13\right)^k
+=\frac{1/3}{1+1/3}=\boxed{\frac14}.\]
+Antes de aplicar la fórmula identificamos primer término y razón.
+\end{ejemplo}
+
+\subsection*{Series telescópicas}
+\begin{ejemplo}[Cancelación de términos]
+Utilizando fracciones parciales,
+\[\frac1{n(n+1)}=\frac1n-\frac1{n+1}.\]
+Entonces
+\begin{align*}
+S_N&=\sum_{n=1}^N\left(\frac1n-\frac1{n+1}\right)\\
+&=\left(1-\frac12\right)+\left(\frac12-\frac13\right)+\cdots+\left(\frac1N-\frac1{N+1}\right)\\
+&=1-\frac1{N+1}\longrightarrow\boxed1.
+\end{align*}
+\end{ejemplo}
+
+\subsection*{La serie armónica}
+Aunque $1/n\to0$, la serie $\sum_{n=1}^{\infty}1/n$ diverge. Agrupando términos,
+\[1+\frac12+\left(\frac13+\frac14\right)
++\left(\frac15+\frac16+\frac17+\frac18\right)+\cdots,\]
+cada nuevo grupo, con el doble de términos, suma al menos $1/2$. Hay infinitos grupos, de modo que las sumas parciales crecen sin cota. Por eso $\sum1/n$ diverge.
+
+%=========================================================
+\section{Criterios de convergencia para series positivas}
+%=========================================================
+Ningún criterio resuelve todos los problemas; se elige examinando la estructura del término general. Para series con $a_n\ge0$, las sumas parciales son crecientes: la convergencia equivale a que estén acotadas.
+
+\subsection*{Prueba de la integral y series $p$}
+\begin{teorema}[Criterio integral]
+Sea $f:[1,\infty)\to(0,\infty)$ continua y decreciente, y sea $a_n=f(n)$. Entonces
+\[\sum_{n=1}^\infty a_n\quad\text{y}\quad\int_1^\infty f(x)\dd\]
+convergen o divergen simultáneamente.
+\end{teorema}
+\begin{proof}
+La monotonía permite encerrar las áreas de los rectángulos: para $n\ge1$,
+\[\int_1^{N+1}f(x)\dd\le\sum_{n=1}^N f(n)
+\le f(1)+\int_1^N f(x)\dd.\]
+Si la integral converge, las sumas parciales positivas están acotadas superiormente y por tanto convergen. Si la integral diverge, la cota inferior obliga a que también diverjan las sumas parciales.
+\end{proof}
+\begin{teorema}[Serie $p$]
+\[\boxed{\sum_{n=1}^\infty\frac1{n^p}\text{ converge si y sólo si }p>1.}\]
+\end{teorema}
+\begin{proof}
+Para $p>0$, $f(x)=x^{-p}$ es positiva, continua y decreciente; la integral $\int_1^\infty x^{-p}\dd$ converge exactamente cuando $p>1$. Si $p\le0$, los términos $n^{-p}$ no tienden a cero y la serie diverge también. Por tanto la equivalencia es válida para todos los valores reales de $p$.
+\end{proof}
+\begin{ejemplo}[Una serie $p$]
+La serie $\sum_{n=1}^\infty n^{-3/2}$ converge, pues $3/2>1$. No necesitamos conocer su suma exacta para decidirlo. En cambio, $\sum1/\sqrt n$ diverge porque $p=1/2\le1$.
+\end{ejemplo}
+
+\subsection*{Comparación directa}
+\begin{teorema}[Comparación]
+Si $0\le a_n\le b_n$ para índices suficientemente grandes, entonces:
+\begin{enumerate}[label=(\roman*)]
+\item Si $\sum b_n$ converge, también $\sum a_n$ converge.
+\item Si $\sum a_n$ diverge, también $\sum b_n$ diverge.
+\end{enumerate}
+\end{teorema}
+\begin{ejemplo}[Comparación con una serie $p$]
+Como $n^2+1\ge n^2$ para $n\ge1$,
+\[0<\frac{1}{n^2+1}\le\frac1{n^2}.\]
+La serie $\sum1/n^2$ converge, luego $\sum1/(n^2+1)$ también converge.
+\end{ejemplo}
+\begin{ejemplo}[Probar divergencia]
+Para $n\ge1$, se verifica $n+1\le2n$, y por ello
+\[\frac1{n+1}\ge\frac1{2n}.\]
+Como $\sum1/(2n)$ diverge, se deduce que $\sum1/(n+1)$ diverge.
+\end{ejemplo}
+
+\subsection*{Comparación por el límite}
+\begin{teorema}[Comparación por el límite]
+Supongamos $a_n>0$, $b_n>0$ y
+\[\lim_{n\to\infty}\frac{a_n}{b_n}=L,\qquad0<L<\infty.\]
+Entonces $\sum a_n$ y $\sum b_n$ tienen el mismo carácter de convergencia.
+\end{teorema}
+\begin{ejemplo}[Reconocer el comportamiento dominante]
+Estudiemos
+\[\sum_{n=1}^\infty\frac{3n+1}{n^3+2}.\]
+Para $n$ grande, el término es comparable con $3/n^2$. Tomamos $b_n=1/n^2$:
+\[\lim_{n\to\infty}\frac{(3n+1)/(n^3+2)}{1/n^2}
+=\lim_{n\to\infty}\frac{3n^3+n^2}{n^3+2}=3.\]
+Puesto que el límite es positivo y finito y $\sum1/n^2$ converge, la serie original también converge.
+\end{ejemplo}
+\begin{observacion}
+Los criterios de comparación exigen términos no negativos (al menos a partir de un índice). Si los signos alternan, puede ser útil estudiar primero la serie de valores absolutos.
+\end{observacion}
+
+%=========================================================
+\section{Series alternantes, convergencia absoluta y pruebas de razón y raíz}
+%=========================================================
+Una serie alternante cambia de signo; por ejemplo, $1-1/2+1/3-1/4+\cdots$. La cancelación puede producir convergencia incluso cuando los valores absolutos no son sumables.
+\begin{teorema}[Criterio de Leibniz]
+Si $b_n\ge0$, $b_{n+1}\le b_n$ para todos los índices suficientemente grandes y $b_n\to0$, entonces
+\[\sum_{n=1}^\infty(-1)^{n-1}b_n\]
+converge. Si $S_N$ es una suma parcial, el error satisface
+\[\boxed{|S-S_N|\le b_{N+1}}\]
+y su signo coincide con el del primer término omitido.
+\end{teorema}
+\begin{proof}
+Las sumas parciales pares cumplen $S_{2n+2}-S_{2n}=b_{2n+1}-b_{2n+2}\ge0$, por lo que forman una sucesión creciente. Las impares cumplen $S_{2n+3}-S_{2n+1}=-b_{2n+2}+b_{2n+3}\le0$; son decrecientes. Además $S_{2n}\le S_{2n+1}$ y su diferencia es $b_{2n+1}\to0$. Ambas subsecuencias convergen al mismo límite $S$. Como $S$ queda entre $S_N$ y $S_{N+1}$, su distancia a $S_N$ no supera $b_{N+1}$.
+\end{proof}
+\begin{ejemplo}[Convergencia de la armónica alternante]
+La serie
+\[1-\frac12+\frac13-\frac14+\cdots\]
+converge por Leibniz, pues $b_n=1/n$ decrece a cero. Sin embargo, la serie de valores absolutos es la armónica, que diverge. Es un ejemplo de \emph{convergencia condicional}.
+\end{ejemplo}
+\begin{definicion}
+Una serie $\sum a_n$ converge \emph{absolutamente} si $\sum|a_n|$ converge. Converge \emph{condicionalmente} si $\sum a_n$ converge, pero $\sum|a_n|$ diverge.
+\end{definicion}
+\begin{teorema}
+La convergencia absoluta implica convergencia de la serie original.
+\end{teorema}
+\begin{proof}
+Para las sumas finitas se tiene $|\sum_{k=n}^m a_k|\le\sum_{k=n}^m|a_k|$. Si $\sum|a_n|$ converge, sus colas pueden hacerse arbitrariamente pequeñas. La desigualdad muestra que también las colas de $\sum a_n$ son pequeñas; por el criterio de Cauchy, $\sum a_n$ converge.
+\end{proof}
+
+\subsection*{Criterio de la razón}
+\begin{teorema}[Razón de d'Alembert]
+Para términos no nulos, si existe
+\[L=\lim_{n\to\infty}\left|\frac{a_{n+1}}{a_n}\right|,\]
+entonces $\sum a_n$ converge absolutamente si $L<1$, diverge si $L>1$ (o el límite es infinito) y el criterio \emph{no decide} cuando $L=1$.
+\end{teorema}
+\begin{ejemplo}[Factoriales]
+Para $\sum_{n=1}^{\infty}n/2^n$, tomamos $a_n=n/2^n$. Así,
+\[\left|\frac{a_{n+1}}{a_n}\right|
+=\frac{n+1}{2^{n+1}}\frac{2^n}{n}
+=\frac{n+1}{2n}\longrightarrow\boxed{\frac12}.\]
+Como $L<1$, la serie converge.
+\end{ejemplo}
+\begin{ejemplo}[Un criterio inconcluso]
+Para $\sum1/n^2$,
+\[\left|\frac{a_{n+1}}{a_n}\right|=\frac{n^2}{(n+1)^2}\longrightarrow1.\]
+La serie \emph{sí converge} por el criterio $p$, pero la prueba de la razón, cuando da $1$, no demuestra ni convergencia ni divergencia.
+\end{ejemplo}
+
+\subsection*{Criterio de la raíz}
+\begin{teorema}[Raíz de Cauchy]
+Sea $L=\lim_{n\to\infty}\sqrt[n]{|a_n|}$, si existe. Entonces $\sum a_n$ converge absolutamente si $L<1$, diverge si $L>1$ (o $L=\infty$), y el criterio no decide cuando $L=1$.
+\end{teorema}
+\begin{ejemplo}[Potencias de expresiones racionales]
+Estudie
+\[\sum_{n=1}^\infty\left(\frac{2n}{3n+1}\right)^n.\]
+La raíz $n$-ésima del término es $2n/(3n+1)\to2/3<1$. La serie converge, y no fue necesario desarrollar las potencias.
+\end{ejemplo}
+\begin{estrategia}
+Usualmente conviene probar la \emph{razón} si aparecen factoriales o productos de muchos factores sucesivos, y la \emph{raíz} cuando todo el término está elevado a la potencia $n$. Si se obtiene $1$, cambie de criterio; no concluya que la serie diverge.
+\end{estrategia}
+
+%=========================================================
+\section{Series de potencias: centro, radio e intervalo}
+%=========================================================
+Una serie de potencias permite representar funciones utilizando polinomios de grado creciente alrededor de un centro $c$.
+\begin{definicion}
+Una serie de potencias centrada en $c$ tiene la forma
+\[\boxed{\sum_{n=0}^\infty a_n(x-c)^n.}\]
+Su \emph{radio de convergencia} $R$ puede ser $0$, un número positivo finito o $\infty$. Si $0<R<\infty$, la serie converge absolutamente cuando $|x-c|<R$ y diverge cuando $|x-c|>R$. En los extremos $x=c\pm R$ debe analizarse por separado.
+\end{definicion}
+\begin{ejemplo}[Radio e intervalo de convergencia]
+Determine el intervalo de convergencia de
+\[\sum_{n=1}^\infty\frac{(x-2)^n}{n3^n}.\]
+Para un $x$ fijo, el término es $a_n=(x-2)^n/(n3^n)$. Por razón,
+\[\left|\frac{a_{n+1}}{a_n}\right|
+=\frac{|x-2|}{3}\frac{n}{n+1}
+\longrightarrow\frac{|x-2|}{3}.\]
+Hay convergencia absoluta si $|x-2|<3$, equivalente a $-1<x<5$. Esto identifica el radio $R=3$, pero \emph{no} decide los extremos.
+
+En $x=5$ se obtiene $\sum_{n=1}^\infty1/n$, divergente. En $x=-1$ se obtiene $\sum_{n=1}^\infty(-1)^n/n$, convergente por Leibniz, aunque no absolutamente. En consecuencia,
+\[\boxed{R=3,\qquad I=[-1,5).}\]
+\end{ejemplo}
+\begin{ejemplo}[Extremos de una serie geométrica]
+Para
+\[\sum_{n=0}^\infty\frac{(x+1)^n}{4^n}\]
+la razón geométrica es $r=(x+1)/4$. Se requiere $|x+1|<4$, es decir $-5<x<3$. En los extremos, los términos son $(-1)^n$ o $1$, respectivamente, y \emph{no} tienden a cero. Por tanto,
+\[\boxed{R=4,\qquad I=(-5,3).}\]
+\end{ejemplo}
+\begin{observacion}
+El radio de convergencia determina el intervalo \emph{abierto} central. La inclusión o exclusión de los extremos depende de la serie concreta. Por eso la respuesta ``$R=3$'' no sustituye la petición de encontrar el intervalo.
+\end{observacion}
+
+%=========================================================
+\section{Derivación e integración de series de potencias}
+%=========================================================
+Los polinomios se derivan e integran término a término. Para series de potencias esto también es válido \emph{dentro del radio de convergencia}, y las series resultantes conservan el mismo radio. En los extremos se requiere un estudio independiente.
+\begin{teorema}[Operaciones término a término]
+Si $\sum_{n=0}^\infty a_n(x-c)^n$ tiene radio $R>0$ y define $f(x)$ para $|x-c|<R$, entonces
+\[\boxed{f'(x)=\sum_{n=1}^\infty n a_n(x-c)^{n-1}}\]
+y
+\[\boxed{\int f(x)\dd=C+\sum_{n=0}^\infty\frac{a_n}{n+1}(x-c)^{n+1}.}\]
+Ambas series poseen radio $R$.
+\end{teorema}
+\begin{ejemplo}[De la geométrica al logaritmo]
+Para $|x|<1$ conocemos la identidad
+\[\frac1{1+x}=\sum_{n=0}^\infty(-1)^n x^n.\]
+Integrando entre $0$ y $x$,
+\begin{align*}
+\ln(1+x)&=\int_0^x\frac1{1+t}\,dt
+=\sum_{n=0}^\infty(-1)^n\int_0^x t^n\,dt\\
+&=\sum_{n=0}^\infty\frac{(-1)^n x^{n+1}}{n+1}
+=\boxed{x-\frac{x^2}{2}+\frac{x^3}{3}-\cdots}.
+\end{align*}
+Esta construcción explica la forma de la serie; no es una fórmula aislada de memorización. En $x=1$ la serie converge por Leibniz. Además su suma es $\ln2$: la identidad geométrica finita produce
+\[\frac1{1+t}=\sum_{n=0}^{N-1}(-t)^n+\frac{(-t)^N}{1+t},\qquad 0\le t\le1.\]
+Al integrar entre $0$ y $1$, el resto tiene valor absoluto no mayor que $\int_0^1 t^N\,dt=1/(N+1)\to0$. Por ello $\sum_{n=1}^\infty(-1)^{n-1}/n=\ln2$. En $x=-1$ la serie diverge. La representación es válida en $(-1,1]$.
+\end{ejemplo}
+\begin{ejemplo}[De la geométrica a la arctangente]
+Al sustituir $x$ por $-x^2$ en la geométrica,
+\[\frac1{1+x^2}=\sum_{n=0}^\infty(-1)^n x^{2n},\qquad |x|<1.\]
+Integrando desde $0$,
+\[\arctan x=\boxed{\sum_{n=0}^\infty\frac{(-1)^n x^{2n+1}}{2n+1}}
+=x-\frac{x^3}{3}+\frac{x^5}{5}-\cdots.\]
+En $x=\pm1$ la serie converge condicionalmente por Leibniz y coincide con $\arctan(\pm1)=\pm\pi/4$.
+\end{ejemplo}
+\begin{ejemplo}[Derivar una serie de potencias]
+Partimos de $\sum_{n=0}^\infty x^n=1/(1-x)$ para $|x|<1$. La derivada término a término ofrece
+\[\sum_{n=1}^\infty nx^{n-1}=\frac1{(1-x)^2}.\]
+Multiplicando por $x$,
+\[\boxed{\sum_{n=1}^\infty nx^n=\frac{x}{(1-x)^2}},\qquad |x|<1.\]
+En este intervalo está justificada la derivación; no es lícito extender la igualdad a $x=1$.
+\end{ejemplo}
+
+%=========================================================
+\section{Polinomios de Taylor y de Maclaurin}
+%=========================================================
+La aproximación lineal $f(x)\approx f(a)+f'(a)(x-a)$ usa la posición y la pendiente de $f$ en $a$. Para lograr mayor precisión podemos exigir que un polinomio tenga, además, las mismas derivadas segunda, tercera, etc. que la función en el punto de referencia.
+
+Sea
+\[P_n(x)=c_0+c_1(x-a)+c_2(x-a)^2+\cdots+c_n(x-a)^n.\]
+Si pedimos $P_n^{(k)}(a)=f^{(k)}(a)$ para $0\le k\le n$, obtenemos sucesivamente
+\[c_0=f(a),\quad c_1=f'(a),\quad c_2=\frac{f''(a)}{2!},\quad\ldots,\quad c_n=\frac{f^{(n)}(a)}{n!}.\]
+Esta construcción conduce a una definición natural.
+\begin{definicion}[Polinomio de Taylor]
+Si $f$ posee $n$ derivadas en $a$, su polinomio de Taylor de grado $n$ alrededor de $a$ es
+\[\boxed{P_n(x)=\sum_{k=0}^n\frac{f^{(k)}(a)}{k!}(x-a)^k.}\]
+Cuando $a=0$ se denomina \emph{polinomio de Maclaurin}.
+\end{definicion}
+\begin{ejemplo}[Maclaurin de $e^x$]
+Como todas las derivadas de $f(x)=e^x$ son $e^x$ y $f^{(k)}(0)=1$,
+\[P_0(x)=1,\qquad P_1(x)=1+x,\qquad
+P_2(x)=1+x+\frac{x^2}{2},\]
+\[\boxed{P_4(x)=1+x+\frac{x^2}{2}+\frac{x^3}{6}+\frac{x^4}{24}}.\]
+La sucesión de polinomios aproxima cada vez mejor la función cerca de $0$; más adelante precisaremos hasta dónde puede garantizarse la convergencia.
+\end{ejemplo}
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=.78\linewidth,height=6.0cm,axis lines=middle,xmin=-1.4,xmax=1.4,ymin=-.1,ymax=4.25,domain=-1.35:1.35,samples=150,xlabel={$x$},ylabel={$y$},legend style={at={(.02,.98)},anchor=north west,font=\footnotesize,draw=none}]
+\addplot[very thick,black] {exp(x)}; \addlegendentry{$e^x$}
+\addplot[thick,red!80!black,dashed] {1+x+x^2/2};\addlegendentry{$P_2(x)$}
+\addplot[thick,blue!80!black,dotted] {1+x+x^2/2+x^3/6+x^4/24};\addlegendentry{$P_4(x)$}
+\end{axis}
+\end{tikzpicture}
+
+{\small Aproximaciones de Maclaurin de grados $2$ y $4$ a $e^x$ cerca de $x=0$.}
+\end{center}
+
+\begin{ejemplo}[Maclaurin de $\sin x$ y $\cos x$]
+Las derivadas de $\sin x$ se repiten cada cuatro pasos: $\sin x,\cos x,-\sin x,-\cos x$. En $0$ las derivadas pares son cero y las impares alternan signos. Resulta
+\[\boxed{\sin x=x-\frac{x^3}{3!}+\frac{x^5}{5!}-\frac{x^7}{7!}+\cdots}.\]
+De forma análoga,
+\[\boxed{\cos x=1-\frac{x^2}{2!}+\frac{x^4}{4!}-\frac{x^6}{6!}+\cdots}.\]
+Estas series convergen para todo $x\in\R$, como se puede verificar mediante el criterio de la razón.
+\end{ejemplo}
+
+\subsection*{El término residual: una aproximación no es una identidad exacta}
+Es crucial distinguir
+\[f(x)=P_n(x)+R_n(x),\]
+donde $R_n(x)$ representa el error de truncamiento. Conocer solamente el polinomio no determina el tamaño del error.
+\begin{teorema}[Resto de Taylor en forma de Lagrange]
+Supongamos que $f$ posee derivadas continuas hasta orden $n+1$ entre $a$ y $x$. Existe un punto $\xi$ estrictamente entre $a$ y $x$ tal que
+\[\boxed{R_n(x)=\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-a)^{n+1}.}\]
+Si $|f^{(n+1)}(t)|\le M$ en todo el intervalo que une $a$ con $x$, entonces
+\[\boxed{|R_n(x)|\le\frac{M}{(n+1)!}|x-a|^{n+1}.}\]
+\end{teorema}
+\begin{proof}[Justificación a partir del Teorema de Rolle]
+Para $x\ne a$ escriba $f(x)-P_n(x)=K(x-a)^{n+1}$, donde $K$ es un número fijo determinado por $x$. Defina
+\[G(t)=f(t)-P_n(t)-K(t-a)^{n+1}.\]
+Por construcción, $G(a)=0$, $G(x)=0$ y, además, $G'(a)=\cdots=G^{(n)}(a)=0$, porque $P_n$ comparte las primeras $n$ derivadas de $f$ en $a$. Aplicando Rolle sucesivamente a $G$ y sus derivadas, existe un $\xi$ entre $a$ y $x$ tal que $G^{(n+1)}(\xi)=0$. Pero
+\[G^{(n+1)}(\xi)=f^{(n+1)}(\xi)-(n+1)!K.\]
+Por tanto, $K=f^{(n+1)}(\xi)/(n+1)!$. Sustituyendo en $f(x)-P_n(x)=K(x-a)^{n+1}$ queda la expresión del resto. La cota se obtiene tomando valores absolutos.
+\end{proof}
+\begin{ejemplo}[Aproximar $e^{1/2}$ y acotar el error]
+Utilicemos el polinomio de Maclaurin de grado $3$:
+\[P_3(1/2)=1+\frac12+\frac{(1/2)^2}{2}+\frac{(1/2)^3}{6}
+=\boxed{\frac{79}{48}\approx1.6458333}.\]
+Como la cuarta derivada de $e^x$ sigue siendo $e^x$, para $0\le t\le1/2$ se tiene $e^t\le e^{1/2}<2$. Por Lagrange,
+\[|R_3(1/2)|\le\frac{2}{4!}\left(\frac12\right)^4
+=\boxed{\frac1{192}\approx0.00521}.\]
+Así tenemos una aproximación \emph{con garantía}: el verdadero valor difiere de $79/48$ en menos de $0.00521$.
+\end{ejemplo}
+\begin{ejemplo}[Aproximación de $\sin(0.2)$]
+El polinomio $P_3(x)=x-x^3/6$ da
+\[\sin(0.2)\approx0.2-\frac{0.2^3}{6}=\boxed{0.1986667}.\]
+Si usamos el desarrollo hasta grado $4$ (cuyo coeficiente de $x^4$ es cero), el resto de Lagrange involucra la quinta derivada $\cos \xi$, de valor absoluto a lo más $1$. Por tanto,
+\[|\sin(0.2)-P_4(0.2)|\le\frac{0.2^5}{5!}<2.7\times10^{-6}.\]
+Esta cota muestra cuantitativamente por qué el procedimiento funciona cerca del centro.
+\end{ejemplo}
+
+%=========================================================
+\section{Representaciones mediante series de Taylor y Maclaurin}
+%=========================================================
+Si el resto $R_n(x)$ tiende a cero cuando $n\to\infty$, la función coincide con la suma de su serie de Taylor:
+\[f(x)=\sum_{n=0}^\infty\frac{f^{(n)}(a)}{n!}(x-a)^n.\]
+Esta igualdad requiere justificar que el resto desaparece: la existencia de derivadas de todos los órdenes, por sí sola, no garantiza que la serie represente la función.
+\begin{proposicion}
+Las series de Maclaurin de $e^x$, $\sin x$ y $\cos x$ representan esas funciones para todo $x\in\R$.
+\end{proposicion}
+\begin{proof}
+Fijado $x$, las derivadas de $e^t$ están acotadas por $e^{|x|}$ en el intervalo con extremos $0$ y $x$. Las de $\sin t$ y $\cos t$ están acotadas por $1$. Por la estimación de Lagrange, en los tres casos
+\[|R_n(x)|\le M\frac{|x|^{n+1}}{(n+1)!},\]
+con una constante $M$ independiente de $n$ (para ese $x$ fijo). La sucesión $|x|^{n+1}/(n+1)!$ tiende a cero por el criterio de la razón, de modo que $R_n(x)\to0$. Por ello la función coincide con su serie de Taylor.
+\end{proof}
+
+\begin{formula}[Series fundamentales]
+\begin{align*}
+\frac1{1-x}&=\sum_{n=0}^\infty x^n, &&|x|<1,\\
+e^x&=\sum_{n=0}^\infty\frac{x^n}{n!}, &&x\in\R,\\
+\sin x&=\sum_{n=0}^\infty\frac{(-1)^n x^{2n+1}}{(2n+1)!}, &&x\in\R,\\
+\cos x&=\sum_{n=0}^\infty\frac{(-1)^n x^{2n}}{(2n)!}, &&x\in\R,\\
+\ln(1+x)&=\sum_{n=1}^\infty\frac{(-1)^{n-1}x^n}{n}, &&-1<x\le1,\\
+\arctan x&=\sum_{n=0}^\infty\frac{(-1)^n x^{2n+1}}{2n+1}, &&|x|\le1.
+\end{align*}
+En los extremos de las dos últimas series debe entenderse la convergencia puntual, examinada separadamente.
+\end{formula}
+\begin{ejemplo}[Centrar Taylor fuera del origen]
+Encuentre el polinomio de Taylor de grado $2$ de $f(x)=\ln x$ alrededor de $a=1$. Dado que $f(1)=0$, $f'(x)=1/x$ y $f''(x)=-1/x^2$, se tiene
+\[\boxed{P_2(x)=(x-1)-\frac12(x-1)^2}.\]
+Por ejemplo, $\ln(1.1)\approx0.1-0.005=0.095$. Cambiar el centro puede mejorar considerablemente las aproximaciones cerca del valor de interés.
+\end{ejemplo}
+\begin{ejemplo}[Una función compuesta]
+Para representar $e^{-x^2}$, sustituimos $t=-x^2$ en la serie de $e^t$:
+\[e^{-x^2}=\sum_{n=0}^\infty\frac{(-1)^n x^{2n}}{n!}
+=1-x^2+\frac{x^4}{2!}-\frac{x^6}{3!}+\cdots.\]
+El criterio de la razón garantiza convergencia para todo $x\in\R$.
+\end{ejemplo}
+
+%=========================================================
+\section{Aproximación de integrales mediante series}
+%=========================================================
+Hay integrales definidas cuyo integrando no tiene antiderivada elemental conocida, aunque puedan aproximarse con sumas, cuadraturas o series. El procedimiento de Taylor consiste en expandir el integrando, integrar un polinomio y acotar la contribución del resto.
+\begin{ejemplo}[Una integral de tipo gaussiano]
+Aproximemos
+\[I=\int_0^{1/2}e^{-x^2}\dd.\]
+De la serie anterior truncamos después del término de grado $6$:
+\[e^{-x^2}\approx1-x^2+\frac{x^4}{2}-\frac{x^6}{6}.\]
+Integramos término a término el polinomio:
+\begin{align*}
+I&\approx\left[x-\frac{x^3}{3}+\frac{x^5}{10}-\frac{x^7}{42}\right]_0^{1/2}\\
+&=\frac12-\frac1{24}+\frac1{320}-\frac1{5376}
+\approx\boxed{0.4612723}.
+\end{align*}
+En $0\le x\le1/2$, los términos de $e^{-x^2}$ son alternantes y sus magnitudes decrecen. El error puntual no supera el término siguiente $x^8/24$, por lo que el error de la integral está acotado por
+\[|I-I_{\mathrm{aprox}}|\le\int_0^{1/2}\frac{x^8}{24}\dd
+=\boxed{\frac{(1/2)^9}{216}<10^{-5}}.\]
+Así no sólo encontramos una aproximación, sino una estimación cuantitativa de su precisión.
+\end{ejemplo}
+\begin{ejemplo}[Aproximar $\int_0^{0.2}\sin(x^2)\dd$]
+Al sustituir $t=x^2$ en la serie de $\sin t$,
+\[\sin(x^2)=x^2-\frac{x^6}{3!}+\frac{x^{10}}{5!}-\cdots.\]
+Integrando los dos primeros términos,
+\[I\approx\int_0^{0.2}\left(x^2-\frac{x^6}{6}\right)\dd
+=\left[\frac{x^3}{3}-\frac{x^7}{42}\right]_0^{0.2}.\]
+El resultado es aproximadamente $0.00266636$. El siguiente término integrado acota el error por
+\[\int_0^{0.2}\frac{x^{10}}{120}\dd
+=\frac{0.2^{11}}{1320}<2\times10^{-11}.\]
+El propósito no es obtener una expresión elemental, sino aproximar de manera controlada.
+\end{ejemplo}
+\begin{observacion}
+En un intervalo cerrado contenido estrictamente dentro del radio de convergencia de una serie de potencias, la convergencia es uniforme, lo cual justifica intercambiar integral y suma. Si el intervalo toca un extremo de convergencia, deben revisarse condiciones adicionales.
+\end{observacion}
+
+%=========================================================
+\section{Visualización y verificación con R}
+%=========================================================
+Estas herramientas sirven para examinar tendencias y confirmar cálculos, no para reemplazar las pruebas de convergencia.
+\begin{ejemplo}[Sucesión de sumas parciales]
+Para la armónica y para la geométrica $\sum_{n=1}^\infty2^{-n}$:
+\par\medskip
+\begin{verbatim}
+n <- 1:100
+H <- cumsum(1/n)
+G <- cumsum((1/2)^n)
+par(mfrow = c(1, 2))
+plot(n, H, type = "l", main = "Serie armonica",
+     xlab = "N", ylab = "S_N")
+plot(n, G, type = "l", main = "Serie geometrica",
+     xlab = "N", ylab = "S_N")
+abline(h = 1, lty = 2)
+par(mfrow = c(1, 1))
+\end{verbatim}
+La primera suma crece sin cota (lentamente), mientras que la segunda se aproxima a $1$. Una gráfica no demuestra la convergencia, pero hace visible la diferencia.
+\end{ejemplo}
+\begin{ejemplo}[Comparación entre $e^x$ y sus polinomios]
+El siguiente código grafica la función exponencial y dos polinomios:
+
+\par\medskip
+\begin{verbatim}
+x <- seq(-1.5,1.5,.01)
+P2 <- 1 + x + x^2/2
+P4 <- P2 + x^3/6 + x^4/24
+plot(x, exp(x), type = "l", lwd = 2,
+     xlab = "x", ylab = "y", main = "Maclaurin de exp(x)")
+lines(x, P2, lty = 2)
+lines(x, P4, lty = 3)
+legend("topleft", legend = c("exp(x)", "P2", "P4"),
+       lty = c(1, 2, 3), bty = "n")
+\end{verbatim}
+La coincidencia es más cercana alrededor de $x=0$, que es el centro de los desarrollos.
+\end{ejemplo}
+\Needspace{15\baselineskip}
+\begin{ejemplo}[Verificar una integral aproximada]
+La cuadratura numérica proporciona una verificación independiente:
+
+\par\medskip
+\begin{verbatim}
+I_aprox <- 1/2 - 1/24
+I_aprox <- I_aprox + 1/320 - 1/5376
+I_num <- integrate(function(x) exp(-x^2), 0, 0.5)$value
+cat("Taylor:", I_aprox, "\n")
+cat("R:", I_num, "\n")
+cat("Error:", abs(I_num - I_aprox), "\n")
+\end{verbatim}
+El error numérico debe satisfacer la cota del ejemplo anterior. Conviene confrontar siempre un cálculo numérico con una estimación teórica de error.
+\end{ejemplo}
+
+%=========================================================
+\section{Banco de ejercicios}
+%=========================================================
+Resuelva primero sin software. Para cada serie, elija y justifique un criterio: no basta escribir ``converge'' o ``diverge''. Si aplica razón o raíz y obtiene límite $1$, cambie de herramienta. Si se pide intervalo de convergencia, examine ambos extremos por separado. Los ejercicios de Taylor deben acompañarse de una estimación del error cuando así se indique.
+
+\begin{Ejer}\textbf{Sucesiones: cálculo y demostración de límites.}
+\begin{enumerate}[series=banco4]
+\item Determine $\lim_{n\to\infty}(4n+1)/(2n-3)$.
+\item Determine $\lim_{n\to\infty}(n^2+3n)/(3n^2+1)$.
+\item Determine $\lim_{n\to\infty}\sqrt{n^2+1}/n$.
+\item Determine $\lim_{n\to\infty}(-1)^n/n$.
+\item Analice la convergencia de $a_n=(-1)^n$.
+\item Demuestre desde la definición que $a_n=3+2/n$ tiende a $3$.
+\item Determine $\lim_{n\to\infty}n/(n+1)$ y proponga una elección de $N$ dado $\varepsilon>0$.
+\item Determine $\lim_{n\to\infty}(2n^3-1)/(n^3+n)$.
+\item Sea $a_1=1$ y $a_{n+1}=(a_n+2)/2$. Demuestre que $a_n$ es creciente, está acotada y encuentre su límite.
+\item Explique por qué una sucesión acotada no necesariamente converge, y dé un ejemplo concreto.
+\end{enumerate}
+\end{Ejer}
+
+\begin{Ejer}\textbf{Series geométricas y telescópicas.} Calcule la suma cuando exista.
+\begin{enumerate}[resume=banco4]
+\item $\displaystyle\sum_{n=0}^\infty (1/2)^n$.
+\item $\displaystyle\sum_{n=0}^\infty 3(1/4)^n$.
+\item $\displaystyle\sum_{n=1}^\infty 2/3^n$.
+\item $\displaystyle\sum_{n=0}^\infty (-1/2)^n$.
+\item $\displaystyle\sum_{n=1}^\infty (-1)^{n-1}/2^n$.
+\item $\displaystyle\sum_{n=1}^\infty 1/[n(n+1)]$.
+\item $\displaystyle\sum_{n=1}^\infty 1/[(n+1)(n+2)]$.
+\item $\displaystyle\sum_{n=1}^\infty [1/n-1/(n+2)]$.
+\item $\displaystyle\sum_{n=0}^\infty 2^n/3^{n+1}$.
+\item $\displaystyle\sum_{n=1}^\infty (4/3)^n$: indique por qué no converge.
+\end{enumerate}
+\end{Ejer}
+
+\begin{Ejer}\textbf{Prueba del término general y series $p$.} Decida convergencia o divergencia.
+\begin{enumerate}[resume=banco4]
+\item $\displaystyle\sum_{n=1}^\infty 1/n^2$.
+\item $\displaystyle\sum_{n=1}^\infty 1/n$.
+\item $\displaystyle\sum_{n=1}^\infty 1/\sqrt n$.
+\item $\displaystyle\sum_{n=1}^\infty 1/n^{3/2}$.
+\item $\displaystyle\sum_{n=1}^\infty n/(n+1)$.
+\item $\displaystyle\sum_{n=1}^\infty (2n+1)/(3n-1)$.
+\item $\displaystyle\sum_{n=1}^\infty (-1)^n$.
+\item $\displaystyle\sum_{n=1}^\infty n^{-5/4}$.
+\item $\displaystyle\sum_{n=1}^\infty (n+2)^{-1}$.
+\item Para qué valores de $p$ converge $\displaystyle\sum_{n=1}^\infty 1/n^p$? Explique su relación con una integral impropia.
+\end{enumerate}
+\end{Ejer}
+
+\begin{Ejer}\textbf{Comparación directa y por el límite.} Declare una serie de referencia.
+\begin{enumerate}[resume=banco4]
+\item $\displaystyle\sum_{n=1}^\infty 1/(n^2+4)$.
+\item $\displaystyle\sum_{n=1}^\infty 1/(n+3)$.
+\item $\displaystyle\sum_{n=1}^\infty (2n+1)/(n^3+1)$.
+\item $\displaystyle\sum_{n=1}^\infty (n+2)/(n^2+1)$.
+\item $\displaystyle\sum_{n=1}^\infty 1/\sqrt{n^2+1}$.
+\item $\displaystyle\sum_{n=1}^\infty 1/\sqrt{n^3+1}$.
+\item $\displaystyle\sum_{n=1}^\infty (3n^2+1)/(n^4+2)$.
+\item $\displaystyle\sum_{n=1}^\infty (n^2+1)/(n^3+3)$.
+\item $\displaystyle\sum_{n=1}^\infty 1/(n^2+\sqrt n)$.
+\item Justifique que la serie $\sum_{n=1}^\infty (n^2+n)/(n^4+1)$ converge.
+\end{enumerate}
+\end{Ejer}
+
+\begin{Ejer}\textbf{Series alternantes y convergencia absoluta.}
+\begin{enumerate}[resume=banco4]
+\item $\displaystyle\sum_{n=1}^\infty (-1)^{n-1}/n$.
+\item $\displaystyle\sum_{n=1}^\infty (-1)^{n-1}/n^2$.
+\item $\displaystyle\sum_{n=1}^\infty (-1)^n/\sqrt n$.
+\item $\displaystyle\sum_{n=1}^\infty (-1)^n n/(n+1)$.
+\item $\displaystyle\sum_{n=1}^\infty (-1)^{n-1}/(2n+1)$.
+\item Para $\sum_{n=1}^\infty(-1)^{n-1}/n$, ¿cuántos términos garantizan un error no mayor que $10^{-2}$?
+\item Determine si $\sum_{n=1}^\infty(-1)^n/(n+2)^{3/2}$ converge absolutamente o condicionalmente.
+\item Explique por qué la serie alternante $\sum_{n=1}^\infty(-1)^n$ no cumple Leibniz.
+\end{enumerate}
+\end{Ejer}
+
+\begin{Ejer}\textbf{Criterio de la razón.} Calcule el límite y explique si el criterio decide.
+\begin{enumerate}[resume=banco4]
+\item $\displaystyle\sum_{n=1}^\infty n/2^n$.
+\item $\displaystyle\sum_{n=1}^\infty n!/4^n$.
+\item $\displaystyle\sum_{n=1}^\infty 3^n/n!$.
+\item $\displaystyle\sum_{n=1}^\infty n^2/5^n$.
+\item $\displaystyle\sum_{n=1}^\infty (n!)^2/(2n)!$.
+\item $\displaystyle\sum_{n=1}^\infty n!/n^n$.
+\item $\displaystyle\sum_{n=1}^\infty 1/n^2$ (explique por qué $L=1$ es inconcluso).
+\item $\displaystyle\sum_{n=1}^\infty 2^n/n^3$.
+\end{enumerate}
+\end{Ejer}
+
+\begin{Ejer}\textbf{Criterio de la raíz.} Aplíquelo a potencias completas del término general.
+\begin{enumerate}[resume=banco4]
+\item $\displaystyle\sum_{n=1}^\infty (2/3)^n$.
+\item $\displaystyle\sum_{n=1}^\infty [n/(2n+1)]^n$.
+\item $\displaystyle\sum_{n=1}^\infty [(3n+1)/(2n+1)]^n$.
+\item $\displaystyle\sum_{n=1}^\infty [(n+1)/(2n)]^n$.
+\item $\displaystyle\sum_{n=1}^\infty [(n+1)/n]^n$.
+\item $\displaystyle\sum_{n=1}^\infty [1/(n+1)]^n$.
+\item Explique por qué la raíz da $L=1$ para $\sum1/n^2$ y qué otro criterio es apropiado.
+\item Compare raíz y razón para $\sum_{n=1}^\infty(1/4)^n$.
+\end{enumerate}
+\end{Ejer}
+
+\begin{Ejer}\textbf{Radio e intervalo de convergencia.} Analice siempre los dos extremos.
+\begin{enumerate}[resume=banco4]
+\item $\displaystyle\sum_{n=0}^\infty x^n$.
+\item $\displaystyle\sum_{n=0}^\infty (x-2)^n/3^n$.
+\item $\displaystyle\sum_{n=1}^\infty x^n/n$.
+\item $\displaystyle\sum_{n=1}^\infty (-1)^{n-1}x^n/n$.
+\item $\displaystyle\sum_{n=1}^\infty (x-1)^n/(n2^n)$.
+\item $\displaystyle\sum_{n=1}^\infty (x+2)^n/(n3^n)$.
+\item $\displaystyle\sum_{n=0}^\infty n!x^n$.
+\item $\displaystyle\sum_{n=0}^\infty x^n/n!$.
+\item $\displaystyle\sum_{n=1}^\infty x^n/n^2$.
+\item $\displaystyle\sum_{n=1}^\infty n(x-2)^n/4^n$.
+\end{enumerate}
+\end{Ejer}
+
+\begin{Ejer}\textbf{Derivar e integrar series de potencias.} Indique el intervalo en que la operación es válida.
+\begin{enumerate}[resume=banco4]
+\item Derive $\sum_{n=0}^\infty x^n$ para $|x|<1$ y obtenga una fórmula para $\sum_{n=1}^\infty nx^{n-1}$.
+\item Utilice el resultado anterior para calcular $\sum_{n=1}^\infty nx^n$ cuando $|x|<1$.
+\item Integre $\sum_{n=0}^\infty x^n$ entre $0$ y $x$ para deducir una serie de $-\ln(1-x)$.
+\item Integre la serie de $1/(1+x)$ entre $0$ y $x$ para obtener $\ln(1+x)$.
+\item Encuentre la serie de potencias de $1/(1+x^2)$ alrededor de $0$.
+\item Integre la serie anterior para obtener la representación de $\arctan x$.
+\item Derive término a término $\sum_{n=1}^\infty x^n/n$ dentro de su intervalo de convergencia.
+\item Explique por qué no es válido derivar la serie geométrica en $x=1$.
+\end{enumerate}
+\end{Ejer}
+
+\begin{Ejer}\textbf{Polinomios de Taylor y Maclaurin.} Muestre las derivadas utilizadas.
+\begin{enumerate}[resume=banco4]
+\item Obtenga el polinomio de Maclaurin de grado $3$ para $e^x$.
+\item Obtenga el polinomio de Maclaurin de grado $5$ para $\sin x$.
+\item Obtenga el polinomio de Maclaurin de grado $4$ para $\cos x$.
+\item Obtenga el polinomio de Maclaurin de grado $3$ para $\ln(1+x)$.
+\item Obtenga el polinomio de Taylor de grado $2$ para $\ln x$ alrededor de $a=1$.
+\item Obtenga el polinomio de Taylor de grado $3$ para $e^x$ alrededor de $a=1$.
+\item Obtenga el polinomio de Taylor de grado $2$ de $f(x)=1/x$ alrededor de $a=1$.
+\item Obtenga el polinomio de Maclaurin de grado $4$ para $e^{-x^2}$.
+\item Obtenga el polinomio de Maclaurin de grado $6$ para $\cos(2x)$.
+\item Obtenga el polinomio de Maclaurin de grado $5$ para $\sin(x^2)$ (aclare qué grados aparecen realmente).
+\end{enumerate}
+\end{Ejer}
+
+\begin{Ejer}\textbf{Aproximaciones y cotas de error.} Identifique la derivada que controla el resto.
+\begin{enumerate}[resume=banco4]
+\item Aproximar $e^{0.1}$ con Maclaurin de grado $2$ y acotar el error por Lagrange.
+\item Aproximar $e^{0.5}$ con Maclaurin de grado $3$ y justificar una cota numérica.
+\item Aproximar $\sin(0.2)$ con un polinomio de grado $3$ y controlar el resto.
+\item Aproximar $\cos(0.1)$ con un polinomio de grado $4$ y controlar el resto.
+\item Aproximar $\ln(1.1)$ mediante Taylor de grado $2$ centrado en $1$.
+\item Aproximar $\sqrt{1.1}$ mediante Taylor de grado $2$ de $\sqrt{1+x}$ centrado en $x=0$.
+\item ¿Cuántos términos de la serie de $e^x$ bastan para aproximar $e^{0.2}$ con un error menor que $10^{-4}$? Justifique.
+\item Explique por qué el tamaño de $|x-a|$ influye en la cota de Lagrange.
+\end{enumerate}
+\end{Ejer}
+
+\begin{Ejer}\textbf{Integrales mediante series.} Desarrolle el integrando, integre y estime el error.
+\begin{enumerate}[resume=banco4]
+\item Aproximar $\displaystyle\int_0^{0.5}e^{-x^2}\dd$ usando cuatro términos de Maclaurin.
+\item Aproximar $\displaystyle\int_0^{0.2}\sin(x^2)\dd$ usando dos términos de su serie.
+\item Aproximar $\displaystyle\int_0^{0.5}\cos(x^2)\dd$ usando tres términos de su serie.
+\item Aproximar $\displaystyle\int_0^{0.3}\frac1{1+x^2}\dd$ integrando la serie geométrica apropiada.
+\item Usar la serie de $e^x$ para aproximar $\displaystyle\int_0^{0.2}e^x\dd$ con tres términos.
+\item Usar la serie de $\sin x$ para aproximar $\displaystyle\int_0^{0.4}\sin x\dd$ con tres términos.
+\item Deducir una serie de potencias para $\displaystyle\int_0^x\frac1{1+t^2}\,dt$ y reconocer la función obtenida.
+\item Justificar por qué integrar término a término una serie de potencias es válido en un intervalo cerrado situado dentro de su radio de convergencia.
+\end{enumerate}
+\end{Ejer}
+
+\section*{Formulario breve y guía para seleccionar el criterio}
+\begin{formula}[Reglas de decisión]
+\begin{tabular}{@{}p{.37\linewidth}p{.53\linewidth}@{}}
+\toprule
+\textbf{Estructura} & \textbf{Prueba inicial sugerida}\\
+\midrule
+$\sum ar^n$ & Geométrica: $|r|<1$\\
+$\sum n^{-p}$ & Serie $p$: $p>1$\\
+$a_n\not\to0$ & Divergencia inmediata\\
+Términos positivos semejantes a $n^{-p}$ & Comparación directa o por límite\\
+Signos alternantes & Leibniz; después estudiar $\sum|a_n|$\\
+Factoriales o exponenciales & Razón\\
+Todo el término elevado a $n$ & Raíz\\
+Potencias de $(x-c)$ & Razón/raíz para $R$ y prueba independiente de extremos\\
+Aproximación local de $f(x)$ & Taylor con cota de $R_n$\\
+\bottomrule
+\end{tabular}
+\end{formula}
+
+\end{document}

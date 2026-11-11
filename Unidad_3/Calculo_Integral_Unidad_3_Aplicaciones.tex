@@ -1,0 +1,702 @@
+%=========================================================
+% Notas para el curso de Calculo Integral - TNM
+% Formato conservado de Unidad2_Calculo_Integral_TNM
+%=========================================================
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,mexico]{babel}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usepackage[most]{tcolorbox}
+\usepackage{multicol}
+\usepackage{needspace}
+\usepackage{geometry,enumitem,booktabs,array,xcolor,graphicx,hyperref,fancyhdr,microtype,longtable}
+\geometry{letterpaper,top=2.3cm,bottom=2.3cm,left=2.5cm,right=2.5cm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em}
+\setlength{\headheight}{15pt}
+\setlength{\emergencystretch}{2em}
+\definecolor{azul}{RGB}{25,70,120}
+\hypersetup{colorlinks=true,linkcolor=azul,urlcolor=azul,citecolor=azul,pdftitle={Calculo Integral - Unidad 3: Aplicaciones de la integral},pdfauthor={Carlos Ernesto Martinez Rodriguez}}
+\newtheorem{teorema}{Teorema}[section]
+\newtheorem{proposicion}[teorema]{Proposición}
+\newtheorem{corolario}[teorema]{Corolario}
+\theoremstyle{definition}
+\newtheorem{definicion}[teorema]{Definición}
+\newtheorem{ejemplo}[teorema]{Ejemplo}
+\newtheorem{Ejer}[teorema]{Ejercicio}
+\newtheorem{nota}[teorema]{Nota}
+\theoremstyle{remark}
+\newtheorem*{observacion}{Observación}
+\newtheorem*{advertencia}{Advertencia}
+\newtheorem*{estrategia}{Estrategia}
+\newtcolorbox{notateorica}[1][]{enhanced,breakable,colback=gray!5,colframe=black!65,fonttitle=\bfseries,title=#1,boxrule=0.7pt,arc=2mm,left=2mm,right=2mm,top=2mm,bottom=2mm}
+\newtcolorbox{formula}[1][]{enhanced,breakable,colback=blue!3,colframe=blue!55!black,fonttitle=\bfseries,title=#1,boxrule=0.8pt,arc=2mm,left=2mm,right=2mm,top=2mm,bottom=2mm}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\dd}{\,dx}
+\newcommand{\dt}{\,dt}
+\newcommand{\du}{\,du}
+\newcommand{\diff}{\mathop{}\!\mathrm{d}}
+\newcommand{\F}[1]{\[\displaystyle #1\]}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Tecnológico Nacional de México}
+\fancyhead[R]{\small Cálculo Integral}
+\fancyfoot[L]{\footnotesize Carlos Ernesto Martínez Rodríguez}
+\fancyfoot[C]{\footnotesize\thepage}
+\fancyfoot[R]{\footnotesize mrdgzcarlose@gmail.com}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\title{\textbf{Notas para el curso de Cálculo Integral}\\[0.3cm]\Large Unidad 3: Aplicaciones de la integral}
+\author{Carlos Ernesto Martínez Rodríguez\\Tecnológico Nacional de México}
+\date{Agosto--Diciembre 2026}
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+%=========================================================
+\section*{Presentación}
+%=========================================================
+En la Unidad 1 construimos la integral definida como límite de sumas de Riemann y demostramos el Teorema Fundamental del Cálculo. En la Unidad 2 desarrollamos técnicas de integración. Ahora utilizaremos esas herramientas para \emph{plantear} y resolver problemas: el primer paso no será integrar, sino determinar qué se está acumulando y respecto de qué variable.
+
+Seguiremos una metodología de construcción geométrica, habitual en el enfoque de Stewart: identificar una cantidad elemental, escribir una suma aproximante y pasar al límite. Siempre que sea posible, una misma región o sólido será estudiado por dos métodos, para comprender por qué aparecen fórmulas diferentes y cuándo conviene cada una.
+
+\textbf{Propósito del temario:} calcular áreas, volúmenes de revolución, longitudes, superficies, trabajo, centros de masa e integrales impropias; interpretar y verificar aplicaciones en ingeniería. La planeación prevista para esta unidad es de 20 horas (12 teóricas y 8 prácticas).
+
+%=========================================================
+\section{Área bajo una curva y área entre curvas}
+%=========================================================
+\subsection*{De la acumulación con signo al área geométrica}
+Sea $f:[a,b]\to\R$ continua. La integral $\int_a^b f(x)\dd$ registra acumulación con signo: los sectores bajo el eje $x$ contribuyen negativamente. El \emph{área geométrica} nunca es negativa.
+\begin{proposicion}
+Si $f$ es continua, el área entre $y=f(x)$ y el eje $x$ sobre $[a,b]$ es
+\[\boxed{A=\int_a^b |f(x)|\dd.}\]
+Si $f\geq0$ sobre el intervalo, se simplifica a $A=\int_a^b f(x)\dd$.
+\end{proposicion}
+La razón es la misma que en la construcción de Riemann: un rectángulo de anchura $\Delta x$ y altura geométrica $|f(x_i^*)|$ tiene área $|f(x_i^*)|\Delta x$. Al sumar y refinar la partición aparece la integral del valor absoluto.
+
+\begin{ejemplo}[Cuando una integral no es un área]
+Calcular el área entre $y=x-1$ y el eje $x$ para $0\leq x\leq3$. La función cambia de signo en $x=1$, de manera que el área debe dividirse:
+\begin{align*}
+A&=\int_0^1(1-x)\dd+\int_1^3(x-1)\dd\\
+ &=\left[x-\frac{x^2}{2}\right]_0^1+\left[\frac{x^2}{2}-x\right]_1^3
+ =\frac12+2=\boxed{\frac52}.
+\end{align*}
+En cambio, $\int_0^3(x-1)\dd=3/2$ mide acumulación \emph{neta}, no área geométrica.
+\end{ejemplo}
+
+\subsection*{Área entre dos gráficas: rebanadas verticales}
+Supongamos que en $[a,b]$ las funciones continuas $f$ y $g$ satisfacen $f(x)\geq g(x)$. Al fijar una abscisa $x$, una tira vertical de espesor $\Delta x$ tiene altura aproximada $f(x)-g(x)$; así,
+\[A\approx\sum_{i=1}^n\bigl[f(x_i^*)-g(x_i^*)\bigr]\Delta x.\]
+Al tomar el límite obtenemos la regla fundamental:
+\begin{formula}[Área mediante rebanadas verticales]
+\[\boxed{A=\int_a^b\bigl[f(x)-g(x)\bigr]\dd
+=\int_a^b(\text{superior}-\text{inferior})\dd.}\]
+Si las gráficas se cruzan, se localizan primero los puntos de intersección y se divide el intervalo cuando cambia cuál función queda arriba.
+\end{formula}
+
+\begin{ejemplo}[Una región limitada por dos parábolas]
+Calcular el área encerrada por $y=x$ y $y=x^2$. Las intersecciones satisfacen $x=x^2$, es decir $x=0$ o $x=1$. En $0<x<1$ se cumple $x>x^2$. Por tanto
+\[A=\int_0^1(x-x^2)\dd
+=\left[\frac{x^2}{2}-\frac{x^3}{3}\right]_0^1
+=\boxed{\frac16}.\]
+La integral es positiva porque restamos la altura inferior a la superior.
+\end{ejemplo}
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=.70\linewidth,height=5.4cm,axis lines=middle,xmin=-.12,xmax=1.22,ymin=-.08,ymax=1.27,xtick={0,1},ytick={0,1},xlabel={$x$},ylabel={$y$},legend style={at={(.03,.97)},anchor=north west,font=\small,draw=none}]
+\addplot[name path=recta,domain=0:1.1,samples=80,very thick,blue] {x};
+\addlegendentry{$y=x$}
+\addplot[name path=parabola,domain=0:1.1,samples=80,thick,red!75!black] {x^2};
+\addlegendentry{$y=x^2$}
+\addplot[blue!15] fill between[of=recta and parabola,soft clip={domain=0:1}];
+\end{axis}
+\end{tikzpicture}
+
+{\small Región entre $y=x$ (arriba) y $y=x^2$ (abajo) para $0\leq x\leq1$.}
+\end{center}
+
+\begin{ejemplo}[El papel de los puntos de cruce]
+Calcular el área entre $f(x)=x$ y $g(x)=x^3$ para $-1\leq x\leq1$. Las curvas se cortan en $-1,0,1$. En $(-1,0)$ se tiene $x^3>x$, mientras que en $(0,1)$ ocurre $x>x^3$. Así,
+\begin{align*}
+A&=\int_{-1}^0(x^3-x)\dd+\int_0^1(x-x^3)\dd\\
+&=\left[\frac{x^4}{4}-\frac{x^2}{2}\right]_{-1}^0
++\left[\frac{x^2}{2}-\frac{x^4}{4}\right]_0^1
+=\frac14+\frac14=\boxed{\frac12}.
+\end{align*}
+Una única integral de $x-x^3$ entre $-1$ y $1$ daría cero por cancelación.
+\end{ejemplo}
+
+\subsection*{Rebanadas horizontales e integración respecto de $y$}
+Una región puede describirse mejor por funciones $x=r(y)$ y $x=\ell(y)$ para $c\le y\le d$, con $r(y)\ge\ell(y)$. Entonces cada tira horizontal tiene longitud $r(y)-\ell(y)$ y espesor $\Delta y$.
+\begin{formula}[Área mediante rebanadas horizontales]
+\[\boxed{A=\int_c^d\bigl[r(y)-\ell(y)\bigr]\,dy
+=\int_c^d(\text{derecha}-\text{izquierda})\,dy.}\]
+\end{formula}
+\begin{ejemplo}[Elegir la variable más conveniente]
+La región está limitada por $x=y^2$ y $x=2y$ en el primer cuadrante. Sus cruces cumplen $y^2=2y$, luego $y=0$ y $y=2$. En ese intervalo la frontera derecha es $x=2y$ y la izquierda $x=y^2$. Entonces
+\[A=\int_0^2(2y-y^2)\,dy
+=\left[y^2-\frac{y^3}{3}\right]_0^2
+=\boxed{\frac43}.\]
+Despejar $y$ para integrar respecto de $x$ también es posible, pero exigiría tener en cuenta ramas de la raíz. La elección de $dy$ simplifica el planteamiento.
+\end{ejemplo}
+
+\begin{estrategia}
+Antes de integrar un área: (1) bosqueje las curvas; (2) calcule intersecciones; (3) elija tiras verticales u horizontales; (4) identifique arriba/abajo o derecha/izquierda; (5) divida si cambia el orden; (6) verifique que el resultado sea no negativo.
+\end{estrategia}
+
+%=========================================================
+\section{Volúmenes de sólidos de revolución}
+%=========================================================
+\subsection*{Por qué integrar áreas transversales}
+Imaginemos un sólido cortado por planos perpendiculares al eje $x$. Si la sección a la altura $x$ tiene área $S(x)$, una lámina delgada de espesor $\Delta x$ tiene volumen aproximado $S(x)\Delta x$. La suma y el límite de Riemann conducen a
+\begin{teorema}[Volumen por secciones transversales]
+Si $S$ es continua en $[a,b]$,
+\[\boxed{V=\int_a^b S(x)\dd.}\]
+La misma expresión es válida respecto de $y$ cuando las secciones son horizontales.
+\end{teorema}
+No se debe comenzar con $\pi\int f(x)^2\dd$ sin justificar primero la forma de la sección: esa fórmula sólo corresponde a discos de radio $f(x)$ respecto del eje de giro elegido.
+
+\subsection*{Método de discos}
+Al girar la región comprendida entre $y=f(x)\geq0$ y el eje $x$ alrededor de este último, cada sección perpendicular al eje es un disco de radio $R(x)=f(x)$; por tanto $S(x)=\pi R(x)^2$.
+\begin{formula}[Discos]
+\[\boxed{V=\pi\int_a^b [R(x)]^2\dd.}\]
+Para un giro alrededor del eje $y$ con cortes perpendiculares al eje de giro se integra respecto de $y$.
+\end{formula}
+\begin{ejemplo}[Rotación de una parábola]
+La región bajo $y=x^2$ para $0\leq x\leq2$ gira alrededor del eje $x$. El radio exterior en la abscisa $x$ es $R(x)=x^2$ y no existe hueco central. Por eso
+\[V=\pi\int_0^2(x^2)^2\dd
+=\pi\left[\frac{x^5}{5}\right]_0^2=\boxed{\frac{32\pi}{5}}.\]
+La unidad resultante es cúbica, a diferencia de la integral utilizada para área.
+\end{ejemplo}
+\begin{ejemplo}[Discos alrededor del eje $y$]
+Considere la región del primer cuadrante comprendida entre $x=\sqrt y$, el eje $y$ y $0\le y\le4$. Gira alrededor del eje $y$. Una sección horizontal es un disco de radio $R(y)=\sqrt y$:
+\[V=\pi\int_0^4(\sqrt y)^2\,dy
+=\pi\left[\frac{y^2}{2}\right]_0^4=\boxed{8\pi}.\]
+\end{ejemplo}
+
+\subsection*{Método de arandelas}
+Cuando la región no toca el eje de giro, la sección transversal tiene un agujero: es una arandela. Su área es la diferencia entre las áreas de dos discos, \emph{no} el cuadrado de la diferencia de radios.
+\begin{formula}[Arandelas]
+\[\boxed{V=\pi\int_a^b\bigl(R(x)^2-r(x)^2\bigr)\dd,\qquad R(x)\ge r(x)\ge0.}\]
+Los radios son distancias al eje de rotación. Si el eje es $y=k$, deben medirse como $|f(x)-k|$ y $|g(x)-k|$, escogiendo correctamente el mayor y el menor.
+\end{formula}
+\begin{ejemplo}[Arandelas alrededor del eje $x$]
+La región entre $y=2$ y $y=x$ para $0\leq x\leq2$ gira alrededor del eje $x$. Para cada $x$, el radio exterior es $R(x)=2$ y el interior $r(x)=x$. Por tanto,
+\begin{align*}
+V&=\pi\int_0^2(2^2-x^2)\dd
+=\pi\left[4x-\frac{x^3}{3}\right]_0^2\\
+&=\boxed{\frac{16\pi}{3}}.
+\end{align*}
+La expresión incorrecta $\pi\int_0^2(2-x)^2\dd$ confundiría el grosor de la arandela con su área.
+\end{ejemplo}
+\begin{ejemplo}[El eje de giro está desplazado]
+Considere la región entre $y=x$ y $y=x^2$ para $0\le x\le1$, girada alrededor de $y=-1$. Ambos radios se miden \emph{desde} esa recta: $R(x)=x+1$ y $r(x)=x^2+1$. De aquí,
+\begin{align*}
+V&=\pi\int_0^1\bigl[(x+1)^2-(x^2+1)^2\bigr]\dd\\
+&=\pi\int_0^1(-x^4-x^2+2x)\dd
+=\pi\left(-\frac15-\frac13+1\right)
+=\boxed{\frac{7\pi}{15}}.
+\end{align*}
+\end{ejemplo}
+\begin{observacion}
+Si la región cruza el eje de giro, los radios requieren una inspección geométrica adicional: las secciones pueden ser discos, arandelas o cambiar de tipo. El procedimiento de radios ``superior menos inferior'' no es universal cuando el eje atraviesa la región.
+\end{observacion}
+
+\subsection*{Método de cascarones cilíndricos}
+En lugar de cortar perpendicularmente al eje de giro, tomamos una tira \emph{paralela} a ese eje. Al girarla se forma un cascarón cilíndrico de radio $r$, altura $h$ y espesor $\Delta r$. La diferencia de volúmenes de cilindros es
+\[\pi(r+\Delta r)^2h-\pi r^2h=2\pi rh\Delta r+\pi h(\Delta r)^2.\]
+En el límite, el término cuadrático en el espesor deja de contribuir y obtenemos
+\begin{formula}[Cascarones cilíndricos]
+\[\boxed{V=2\pi\int_a^b (\text{radio})(\text{altura})\dd.}\]
+Para girar alrededor del eje $y$ usando tiras verticales, $r=x$ y $h=f(x)-g(x)$ cuando la región está a la derecha del eje. Para girar alrededor del eje $x$ usando tiras horizontales, la integración es en $dy$.
+\end{formula}
+\begin{center}
+\begin{tikzpicture}[scale=1.22]
+\fill[blue!9] (0,0) -- plot[domain=0:2,samples=50] (\x,{0.45*\x*\x}) -- (2,0) -- cycle;
+\draw[->] (-.18,0) -- (2.6,0) node[right] {$x$};
+\draw[->] (0,-.12) -- (0,2.2) node[above] {$y$};
+\draw[blue!75!black,very thick] plot[domain=0:2,samples=45] (\x,{0.45*\x*\x});
+\fill[red!30] (1.32,0) rectangle (1.44,.87);
+\draw[red!70!black,thick] (1.32,0) rectangle (1.44,.87);
+\draw[<->] (.02,-.22) -- (1.38,-.22) node[midway,below] {$r=x$};
+\draw[<->] (1.60,0) -- (1.60,.87) node[midway,right] {$h=f(x)$};
+\node[anchor=west,align=left] at (2.60,1.48) {\small Tira paralela\\\small al eje $y$\\$\Downarrow$ cascarón};
+\draw[->,red!70!black] (2.58,1.08) -- (1.42,.62);
+\end{tikzpicture}
+
+{\small Esquema de la tira vertical utilizada al girar una región alrededor del eje $y$.}
+\end{center}
+
+\begin{ejemplo}[Cascarones: región bajo una parábola]
+Gire alrededor del eje $y$ la región delimitada por $y=x^2$, $y=0$ y $x=2$. Una tira vertical en $x$ recorre una altura $h=x^2$ y describe un cascarón de radio $r=x$:
+\[V=2\pi\int_0^2 x(x^2)\dd
+=2\pi\left[\frac{x^4}{4}\right]_0^2
+=\boxed{8\pi}.\]
+Si usáramos arandelas horizontales habría que describir la región de otra forma: para $0\le y\le4$, el radio exterior es $2$ y el interior es $\sqrt y$. Así,
+\[V=\pi\int_0^4(4-y)\,dy
+=\pi[4y-y^2/2]_0^4=8\pi.\]
+La coincidencia de resultados valida ambos planteamientos.
+\end{ejemplo}
+\begin{ejemplo}[Cascarones alrededor de una recta vertical]
+La región bajo $y=x$ entre $x=0$ y $x=2$ gira alrededor de $x=3$. El radio de una tira es $r(x)=3-x$, y su altura $h(x)=x$. Por tanto
+\[V=2\pi\int_0^2(3-x)x\dd
+=2\pi\left[\frac{3x^2}{2}-\frac{x^3}{3}\right]_0^2
+=\boxed{\frac{20\pi}{3}}.\]
+La distancia al eje no es $x$: el eje de rotación se encuentra en $x=3$.
+\end{ejemplo}
+\begin{estrategia}
+\textbf{Elección del método.} Para cada dibujo trace una tira de integración. Si la tira es perpendicular al eje de giro, use discos o arandelas. Si es paralela, use cascarones. La forma de la tira determina la fórmula, no una preferencia previa por $dx$ o $dy$.
+\end{estrategia}
+
+%=========================================================
+\section{Longitud de arco}
+%=========================================================
+Una curva no puede medirse sumando distancias horizontales: debe considerarse simultáneamente su desplazamiento en $x$ y en $y$. Aproximemos un arco de $y=f(x)$, con $f'$ continua en $[a,b]$, mediante segmentos rectos entre puntos consecutivos de una partición. Por Pitágoras, su longitud es
+\[\Delta s_i=\sqrt{(\Delta x_i)^2+(\Delta y_i)^2}
+=\sqrt{1+\left(\frac{\Delta y_i}{\Delta x_i}\right)^2}\,\Delta x_i.\]
+El Teorema del Valor Medio garantiza la existencia de $c_i$ entre $x_{i-1}$ y $x_i$ tal que $\Delta y_i/\Delta x_i=f'(c_i)$. Las longitudes poligonales se aproximan a
+\[\sum_i\sqrt{1+[f'(c_i)]^2}\,\Delta x_i,\]
+una suma de Riemann.
+\begin{teorema}[Longitud de arco]
+Si $f'$ es continua sobre $[a,b]$, la longitud del arco de $y=f(x)$ entre $x=a$ y $x=b$ es
+\[\boxed{L=\int_a^b\sqrt{1+[f'(x)]^2}\dd.}\]
+Si se expresa $x=g(y)$ con $g'$ continua en $[c,d]$, entonces $L=\int_c^d\sqrt{1+[g'(y)]^2}\,dy$.
+\end{teorema}
+\begin{ejemplo}[Una recta como comprobación geométrica]
+Encontrar la longitud de $y=2x+1$ sobre $0\le x\le3$. Como $f'(x)=2$,
+\[L=\int_0^3\sqrt{1+4}\dd=3\sqrt5.\]
+Por la fórmula de distancia, los extremos son $(0,1)$ y $(3,7)$, cuya distancia es $\sqrt{3^2+6^2}=3\sqrt5$. Ambos métodos coinciden.
+\end{ejemplo}
+\begin{ejemplo}[Una curva con integral elemental]
+Calcule la longitud de $y=\frac23 x^{3/2}$ para $0\le x\le3$. La derivada es $f'(x)=\sqrt x$, de modo que
+\[L=\int_0^3\sqrt{1+x}\dd
+=\left[\frac23(1+x)^{3/2}\right]_0^3
+=\boxed{\frac{14}{3}}.\]
+La elección de esta función permitió que el integrando de longitud tuviera primitiva elemental; no todas las curvas poseen esa propiedad.
+\end{ejemplo}
+\begin{ejemplo}[Longitud de un cuarto de circunferencia]
+La semicircunferencia superior de radio $r$ satisface $y=\sqrt{r^2-x^2}$. En $0\le x<r$,
+\[y'=-\frac{x}{\sqrt{r^2-x^2}},\qquad
+\sqrt{1+(y')^2}=\frac{r}{\sqrt{r^2-x^2}}.\]
+Aunque la derivada crece sin cota al aproximarse $x$ a $r$, la longitud puede obtenerse mediante un límite:
+\[L=\lim_{b\uparrow r}r\int_0^b\frac{dx}{\sqrt{r^2-x^2}}
+=r\left[\arcsin\frac{x}{r}\right]_0^r
+=\boxed{\frac{\pi r}{2}}.\]
+La fórmula conocida de longitud de una circunferencia resulta así consistente con el cálculo integral.
+\end{ejemplo}
+\begin{observacion}
+No debe confundirse $\int_a^b\sqrt{1+[f'(x)]^2}\dd$ con $\sqrt{1+\left[\int_a^b f'(x)\dd\right]^2}$. La raíz se aplica \emph{antes} de integrar: mide el incremento local de longitud.
+\end{observacion}
+
+%=========================================================
+\section{Área de una superficie de revolución}
+%=========================================================
+Un segmento recto de longitud $\Delta s$, al rotar alrededor del eje $x$, genera aproximadamente la superficie lateral de un tronco de cono. Su área es $2\pi\bar r\,\Delta s$, donde $\bar r$ es el radio medio. Al refinar la partición, $\Delta s\approx\sqrt{1+[f'(x)]^2}\Delta x$ y $r=f(x)$ para $f\geq0$.
+\begin{teorema}[Superficie de revolución]
+Para una curva suave $y=f(x)\ge0$ sobre $[a,b]$, el área de superficie generada al girar alrededor del eje $x$ es
+\[\boxed{S=2\pi\int_a^b f(x)\sqrt{1+[f'(x)]^2}\dd.}\]
+Si la curva gira alrededor del eje $y$, la distancia al eje es $x$ (para $x\ge0$):
+\[\boxed{S=2\pi\int_a^b x\sqrt{1+[f'(x)]^2}\dd.}\]
+Con un eje desplazado debe sustituirse el radio por la distancia correspondiente.
+\end{teorema}
+\begin{ejemplo}[Superficie lateral de un cono]
+Al girar $y=x$ para $0\le x\le2$ alrededor del eje $x$ se forma un cono de radio y altura $2$. Puesto que $f'=1$,
+\[S=2\pi\int_0^2 x\sqrt2\dd
+=2\pi\sqrt2\left[\frac{x^2}{2}\right]_0^2
+=\boxed{4\pi\sqrt2}.\]
+Geométricamente, $S=\pi r\ell=\pi(2)(2\sqrt2)$, pues la generatriz mide $\ell=2\sqrt2$. Esto verifica la fórmula.
+\end{ejemplo}
+\begin{ejemplo}[Rotación de $y=\sqrt x$]
+Girar $y=\sqrt x$, para $1\le x\le4$, alrededor del eje $x$. Aquí $f'(x)=1/(2\sqrt x)$, de modo que
+\begin{align*}
+S&=2\pi\int_1^4\sqrt x\sqrt{1+\frac{1}{4x}}\dd
+=\pi\int_1^4\sqrt{4x+1}\dd\\
+&=\frac{\pi}{6}\left[(4x+1)^{3/2}\right]_1^4
+=\boxed{\frac{\pi}{6}(17^{3/2}-5^{3/2})}.
+\end{align*}
+\end{ejemplo}
+\begin{advertencia}
+$S$ mide \emph{área superficial} y $V$ mide \emph{volumen}. Aunque ambos se obtienen por integración, no son magnitudes intercambiables. En un problema físico compruebe siempre las unidades: $S$ tiene unidades cuadradas y $V$ cúbicas.
+\end{advertencia}
+
+%=========================================================
+\section{Trabajo realizado por una fuerza variable}
+%=========================================================
+Para una fuerza constante $F$ paralela al desplazamiento $d$, el trabajo es $W=Fd$. Cuando la fuerza varía con la posición, se parte el desplazamiento en intervalos cortos. En cada uno, el trabajo se aproxima por $F(x_i^*)\Delta x_i$. El límite de las sumas da:
+\begin{definicion}[Trabajo unidimensional]
+Para una fuerza continua $F(x)$ en la dirección del eje $x$, el trabajo al desplazarse de $x=a$ a $x=b$ es
+\[\boxed{W=\int_a^b F(x)\dd.}\]
+Una fuerza opuesta al desplazamiento produce trabajo negativo; si sólo interesa el esfuerzo realizado, se debe interpretar el signo según el contexto.
+\end{definicion}
+\begin{ejemplo}[Resorte y ley de Hooke]
+La fuerza necesaria para estirar un resorte ideal una distancia $x$ desde su longitud natural es $F(x)=kx$, donde $k>0$ es la constante elástica. Por ello,
+\[W=\int_0^d kx\dd=\boxed{\frac12kd^2}.\]
+Si $k=50\,\mathrm{N/m}$ y $d=0.20\,\mathrm m$,
+\[W=\tfrac12(50)(0.20)^2=\boxed{1\,\mathrm J}.\]
+El trabajo no es $F(d)d$, porque la fuerza comienza en cero y aumenta gradualmente.
+\end{ejemplo}
+\begin{ejemplo}[Trabajo para levantar un cable]
+Un cable uniforme de longitud $L=4\,\mathrm m$ tiene peso por unidad de longitud $w=10\,\mathrm{N/m}$ y cuelga verticalmente desde un borde. Para subirlo completamente, una sección situada a distancia $y$ bajo el borde debe elevarse $y$ metros. Una tira de longitud $dy$ pesa $w\,dy$, por lo que
+\[dW=w\,y\,dy.\]
+Al sumar todas las tiras se obtiene
+\[W=\int_0^4 10y\,dy=10\left[\frac{y^2}{2}\right]_0^4
+=\boxed{80\,\mathrm J}.\]
+\end{ejemplo}
+\begin{ejemplo}[Bombeo de agua de un depósito]
+Un depósito vertical tiene sección horizontal constante de $1\,\mathrm{m}^2$ y altura $2\,\mathrm m$; está lleno de agua. Tomemos $y$ como altura desde el fondo. Una lámina de espesor $dy$ tiene volumen $1\,\mathrm{m}^2\,dy$ y peso aproximado $1000(9.8)(1)\,dy$ newtons. Para llegar al borde superior debe subir $2-y$ metros. Entonces
+\begin{align*}
+W&=9800\int_0^2(2-y)\,dy\\
+&=9800\left[2y-\frac{y^2}{2}\right]_0^2
+=\boxed{19600\,\mathrm J}.
+\end{align*}
+Suponer que toda el agua sube $2$ metros duplicaría incorrectamente el resultado.
+\end{ejemplo}
+
+%=========================================================
+\section{Centro de masa y momentos}
+%=========================================================
+La posición del centro de masa es un \emph{promedio ponderado}: las partes con más masa influyen más. Para partículas puntuales con masas $m_i$ en posiciones $x_i$, la coordenada horizontal es
+\[\bar x=\frac{\sum_i m_i x_i}{\sum_i m_i}.\]
+En una distribución continua las sumas se convierten en integrales.
+\begin{definicion}[Varilla de densidad variable]
+Una varilla delgada ocupa $a\le x\le b$ y posee densidad lineal $\rho(x)\ge0$. Su masa y primer momento respecto del origen son
+\[m=\int_a^b\rho(x)\dd,\qquad M=\int_a^b x\rho(x)\dd.\]
+Si $m>0$, su centro de masa se encuentra en
+\[\boxed{\bar x=\frac{M}{m}.}\]
+\end{definicion}
+\begin{ejemplo}[Varilla no uniforme]
+Una varilla ocupa $[0,2]$ y tiene densidad lineal $\rho(x)=1+x$ (unidades compatibles). Entonces
+\[m=\int_0^2(1+x)\dd=\left[x+\frac{x^2}{2}\right]_0^2=4,\]
+\[M=\int_0^2x(1+x)\dd
+=\left[\frac{x^2}{2}+\frac{x^3}{3}\right]_0^2=\frac{14}{3}.\]
+Su centro de masa es $\boxed{\bar x=\frac76}$. Está a la derecha del punto medio $x=1$ porque la densidad crece con $x$.
+\end{ejemplo}
+
+\subsection*{Láminas entre gráficas: momentos respecto de los ejes}
+Una lámina homogénea de densidad superficial constante $\rho$ está situada entre $y=f(x)$ (arriba) y $y=g(x)$ (abajo), para $a\le x\le b$. Una tira vertical de anchura $dx$ tiene área $[f(x)-g(x)]dx$ y masa $dm=\rho[f-g]dx$. Su centro vertical está aproximadamente en $(f+g)/2$. Así,
+\begin{formula}[Centroide de una región plana homogénea]
+\begin{align*}
+A&=\int_a^b[f(x)-g(x)]\dd,\\
+M_y&=\rho\int_a^b x[f(x)-g(x)]\dd,\\
+M_x&=\frac\rho2\int_a^b[f(x)^2-g(x)^2]\dd,\\
+\bar x&=\frac{M_y}{\rho A},\qquad
+\bar y=\frac{M_x}{\rho A}.
+\end{align*}
+Para densidad uniforme, el factor $\rho$ se cancela al calcular las coordenadas del centroide.
+\end{formula}
+\begin{ejemplo}[Centroide bajo la recta $y=x$]
+La región triangular comprendida entre $y=x$, el eje $x$ y $0\le x\le2$ tiene área
+\[A=\int_0^2 x\dd=2.\]
+Sus momentos para $\rho=1$ son
+\[M_y=\int_0^2x^2\dd=\frac83,\qquad
+M_x=\frac12\int_0^2x^2\dd=\frac43.\]
+Por tanto,
+\[\boxed{(\bar x,\bar y)=\left(\frac43,\frac23\right)}.\]
+El centroide corresponde al promedio de los tres vértices $(0,0)$, $(2,0)$ y $(2,2)$.
+\end{ejemplo}
+\begin{ejemplo}[Centroide entre dos curvas]
+Considere la región entre $y=x$ y $y=x^2$ para $0\le x\le1$. Su área ya fue calculada: $A=1/6$. Los momentos con densidad unitaria son
+\begin{align*}
+M_y&=\int_0^1 x(x-x^2)\dd
+=\left[\frac{x^3}{3}-\frac{x^4}{4}\right]_0^1=\frac1{12},\\
+M_x&=\frac12\int_0^1(x^2-x^4)\dd
+=\frac12\left(\frac13-\frac15\right)=\frac1{15}.
+\end{align*}
+Así,
+\[\boxed{\bar x=\frac{1/12}{1/6}=\frac12,\qquad
+\bar y=\frac{1/15}{1/6}=\frac25}.\]
+La ordenada $\bar y$ queda entre las dos curvas, como exige la interpretación geométrica.
+\end{ejemplo}
+
+%=========================================================
+\section{Integrales impropias}
+%=========================================================
+La integral de Riemann estudiada inicialmente se refiere a funciones acotadas en intervalos cerrados. Una integral se denomina \emph{impropia} cuando el intervalo es infinito o el integrando no está acotado cerca de algún extremo o punto interior. En estos casos no basta aplicar una primitiva: hay que \emph{formular y evaluar el límite} correspondiente.
+\subsection*{Intervalos infinitos}
+\begin{definicion}
+Si $f$ es integrable en todo intervalo $[a,b]$ con $b>a$,
+\[\boxed{\int_a^{\infty} f(x)\dd:=\lim_{b\to\infty}\int_a^b f(x)\dd,}\]
+si el límite existe y es finito. Si no es finito, la integral diverge. De manera semejante se define $\int_{-\infty}^{b}f(x)\dd$.
+\end{definicion}
+\begin{ejemplo}[Convergencia en un intervalo infinito]
+Evaluemos
+\[I=\int_1^\infty\frac{1}{x^2}\dd.
+\]
+Por definición,
+\[I=\lim_{b\to\infty}\int_1^b x^{-2}\dd
+=\lim_{b\to\infty}\left[-\frac1x\right]_1^b
+=\lim_{b\to\infty}\left(1-\frac1b\right)=\boxed{1}.\]
+La región bajo $1/x^2$ se extiende sin fin, pero su área total es finita.
+\end{ejemplo}
+\begin{ejemplo}[Divergencia de la integral armónica]
+Para $\int_1^\infty\frac1x\dd$, 
+\[\lim_{b\to\infty}\int_1^b\frac1x\dd
+=\lim_{b\to\infty}\ln b=+\infty.\]
+La integral \emph{diverge}; escribir simplemente $\ln\infty$ no constituye una evaluación matemática.
+\end{ejemplo}
+\begin{teorema}[Integral $p$ en el infinito]
+Para $p\in\R$,
+\[\boxed{\int_1^\infty\frac{1}{x^p}\dd\text{ converge si y sólo si }p>1.}\]
+\end{teorema}
+\begin{proof}
+Si $p\ne1$, para $b>1$,
+\[\int_1^b x^{-p}\dd=\frac{b^{1-p}-1}{1-p}.\]
+Si $p>1$, entonces $1-p<0$ y $b^{1-p}\to0$, con valor límite $1/(p-1)$. Si $p<1$, el término $b^{1-p}$ crece sin cota. Para $p=1$ ya se observó que $\ln b\to\infty$.
+\end{proof}
+
+\subsection*{Integrandos no acotados}
+Cuando la función diverge cerca de $a$ pero es continua para $a<x\le b$, definimos
+\[\int_a^b f(x)\dd:=\lim_{t\downarrow a}\int_t^b f(x)\dd,\]
+si el límite es finito. Para una singularidad en el interior $c\in(a,b)$ se deben evaluar \emph{separadamente} las dos integrales laterales.
+\begin{ejemplo}[Una singularidad integrable]
+\[\int_0^1\frac1{\sqrt{x}}\dd
+=\lim_{t\downarrow0}\left[2\sqrt x\right]_t^1
+=\lim_{t\downarrow0}(2-2\sqrt t)=\boxed{2}.\]
+Aunque $1/\sqrt x$ crece sin cota en $0$, su integral converge.
+\end{ejemplo}
+\begin{ejemplo}[La integral impropia no admite cancelación artificial]
+Examinemos $\int_{-1}^1\frac1x\dd$. La función tiene una singularidad interior en $x=0$. Se requiere que converjan tanto $\int_{-1}^0\frac1x\dd$ como $\int_0^1\frac1x\dd$; sin embargo ambas divergen (a $-\infty$ y $+\infty$). Por tanto, la integral impropia \textbf{diverge}.
+
+El valor principal de Cauchy $\lim_{\varepsilon\downarrow0}\bigl[\int_{-1}^{-\varepsilon}\!dx/x+\int_{\varepsilon}^1\!dx/x\bigr]=0$ es un concepto distinto y no convierte la integral impropia ordinaria en convergente.
+\end{ejemplo}
+\begin{teorema}[Integral $p$ cerca del origen]
+Para $p\in\R$,
+\[\boxed{\int_0^1\frac{1}{x^p}\dd\text{ converge si y sólo si }p<1.}\]
+\end{teorema}
+\begin{proof}
+Para $p\ne1$, $\int_t^1x^{-p}\dd=[x^{1-p}/(1-p)]_t^1=(1-t^{1-p})/(1-p)$. Al tomar $t\downarrow0$, este límite es finito precisamente si $1-p>0$. Para $p=1$ surge $-\ln t\to\infty$.
+\end{proof}
+\begin{ejemplo}[Comparación de integrales impropias]
+En $x\ge1$ tenemos $0<\frac1{x^2+1}\le\frac1{x^2}$. Como $\int_1^\infty x^{-2}\dd=1$, el criterio de comparación para integrales no negativas prueba que
+\[\int_1^\infty\frac{1}{x^2+1}\dd\]
+converge, incluso sin calcular primero su primitiva. Como comprobación adicional, por $\arctan x$ su valor es $\pi/4$.
+\end{ejemplo}
+\begin{observacion}
+La convergencia es una pregunta independiente de la posibilidad de encontrar una antiderivada elemental. Una integral impropia puede converger aunque su primitiva no se exprese mediante funciones elementales.
+\end{observacion}
+
+%=========================================================
+\section{Modelación y verificación con R}
+%=========================================================
+El software no sustituye el planteamiento. Primero se definen región, variable, límites, radios y unidades; después se verifica la integral. Utilizamos funciones de \texttt{R} base, sin bibliotecas auxiliares.
+\begin{ejemplo}[Verificación de un área y de un volumen]
+Para el área entre $y=x$ y $y=x^2$ y el volumen de cascarones al girar $y=x^2$ sobre $0\le x\le2$ alrededor del eje $y$, el código es:
+\par\medskip
+\begin{verbatim}
+# Area entre dos graficas
+f <- function(x) x - x^2
+integrate(f, lower = 0, upper = 1)
+
+# Volumen por cascarones
+h <- function(x) 2*pi*x*(x^2)
+integrate(h, lower = 0, upper = 2)
+
+# Grafica de la region plana
+x <- seq(0, 1, length.out = 200)
+plot(x, x, type = "l", xlab = "x", ylab = "y")
+lines(x, x^2, lty = 2)
+legend("topleft", legend = c("y=x", "y=x^2"), lty = 1:2)
+\end{verbatim}
+Los resultados deben aproximarse a $1/6$ y $8\pi$, respectivamente. Una discrepancia importante suele indicar un error de planteamiento, no una deficiencia de la herramienta de integración.
+\end{ejemplo}
+\begin{ejemplo}[Una comprobación de longitud por cuadratura]
+Para $y=(2/3)x^{3/2}$ en $[0,3]$:
+\par\medskip
+\begin{verbatim}
+fprima <- function(x) sqrt(x)
+L <- integrate(function(x) sqrt(1 + fprima(x)^2), 0, 3)
+print(L$value)
+print(14/3)
+\end{verbatim}
+La aproximación numérica coincide con el valor exacto $14/3$.
+\end{ejemplo}
+
+%=========================================================
+\section{Banco de ejercicios}
+%=========================================================
+Los reactivos están agrupados por técnica y ordenados de menor a mayor dificultad. Conviene dibujar cada región o sólido antes de integrar. En los problemas físicos, declare unidades y especifique qué representa cada diferencial. Todas las expresiones son originales, de nivel y progresión semejantes a los problemas de práctica de un curso introductorio de cálculo tipo Stewart.
+
+\begin{Ejer}\textbf{Área bajo curvas y cambio de signo.} Calcule el área geométrica, no sólo la integral con signo.
+\begin{enumerate}[series=banco3]
+\item Determine el área entre $y=2x$ y el eje $x$ para $0\le x\le3$.
+\item Determine el área entre $y=x^2$ y el eje $x$ para $-1\le x\le2$.
+\item Determine el área entre $y=x-2$ y el eje $x$ para $0\le x\le4$.
+\item Determine el área entre $y=3-x$ y el eje $x$ para $1\le x\le5$.
+\item Determine el área entre $y=x^2-1$ y el eje $x$ para $-2\le x\le2$.
+\item Determine el área entre $y=\sin x$ y el eje $x$ para $0\le x\le2\pi$.
+\item Determine el área entre $y=x(x-2)$ y el eje $x$ para $0\le x\le3$.
+\item Compare $\int_{-1}^1x^3\dd$ con el área entre $y=x^3$ y el eje $x$.
+\end{enumerate}
+\end{Ejer}
+
+\begin{Ejer}\textbf{Áreas entre dos gráficas.} Halle todas las intersecciones y determine cuál curva está arriba.
+\begin{enumerate}[resume=banco3]
+\item $y=2x$ y $y=x^2$.
+\item $y=4-x^2$ y $y=0$.
+\item $y=x+2$ y $y=x^2$.
+\item $y=2-x^2$ y $y=x$.
+\item $y=x^3$ y $y=x$ sobre $[-1,1]$.
+\item $y=\sqrt x$ y $y=x$ sobre $[0,1]$.
+\item $y=\sin x$ y $y=\cos x$ en $[0,\pi/2]$.
+\item $y=x^2-2$ y $y=-x$ sobre sus intersecciones.
+\item $y=|x|$ y $y=x^2$ entre sus puntos de corte.
+\item $y=x^2-4$ y $y=0$ sobre $[-3,3]$.
+\end{enumerate}
+\end{Ejer}
+
+\begin{Ejer}\textbf{Integración respecto de $y$.} Exprese el área como $\int(\text{derecha}-\text{izquierda})\,dy$.
+\begin{enumerate}[resume=banco3]
+\item $x=y^2$ y $x=2y$, $0\le y\le2$.
+\item $x=4-y^2$ y $x=0$, $-2\le y\le2$.
+\item $x=1+y$ y $x=y^2+1$ sobre sus intersecciones.
+\item $x=y^2$ y $x=y+2$ sobre sus intersecciones.
+\item $x=\sqrt y$ y $x=y$, $0\le y\le1$.
+\item $x=3$ y $x=y^2$, $-\sqrt3\le y\le\sqrt3$.
+\item $x=2-y$ y $x=0$, $0\le y\le2$.
+\item $x=1-y^2$ y $x=y^2-1$ sobre sus intersecciones.
+\end{enumerate}
+\end{Ejer}
+
+\begin{Ejer}\textbf{Volúmenes de revolución: discos.} Dibuje el eje de giro, identifique el radio y deduzca la integral del volumen.
+\begin{enumerate}[resume=banco3]
+\item Gire la región bajo $y=x$ sobre $[0,2]$ alrededor del eje $x$.
+\item Gire la región bajo $y=x^2$ sobre $[0,1]$ alrededor del eje $x$.
+\item Gire la región bajo $y=\sqrt x$ sobre $[0,4]$ alrededor del eje $x$.
+\item Gire la región bajo $y=2-x$ sobre $[0,2]$ alrededor del eje $x$.
+\item Gire la región comprendida entre $x=y^2$ y el eje $y$, para $0\le y\le2$, alrededor del eje $y$.
+\item Gire la región comprendida entre $x=\sqrt y$ y el eje $y$, para $0\le y\le4$, alrededor del eje $y$.
+\item Gire la región bajo $y=\sin x$, $0\le x\le\pi$, alrededor del eje $x$.
+\item Gire la región bajo $y=1+x$, $0\le x\le2$, alrededor del eje $x$.
+\end{enumerate}
+\end{Ejer}
+
+\begin{Ejer}\textbf{Volúmenes de revolución: arandelas y ejes desplazados.} Indique explícitamente $R$ y $r$.
+\begin{enumerate}[resume=banco3]
+\item Gire la región entre $y=2$ y $y=x$, $0\le x\le2$, alrededor del eje $x$.
+\item Gire la región entre $y=3$ y $y=x^2$, $0\le x\le1$, alrededor del eje $x$.
+\item Gire la región entre $y=x$ y $y=x^2$, $0\le x\le1$, alrededor del eje $x$.
+\item Gire la región entre $y=x$ y $y=x^2$, $0\le x\le1$, alrededor de $y=-1$.
+\item Gire la región bajo $y=x$, $0\le x\le2$, alrededor de $y=3$.
+\item Gire la región entre $x=3$ y $x=y$, $0\le y\le2$, alrededor del eje $y$.
+\item Gire la región entre $x=y+1$ y $x=1$, $0\le y\le2$, alrededor del eje $y$.
+\item Gire la región entre $y=2x$ y $y=x^2$, $0\le x\le2$, alrededor del eje $x$.
+\end{enumerate}
+\end{Ejer}
+
+\begin{Ejer}\textbf{Cascarones cilíndricos.} Especifique radio, altura y espesor de cada cascarón.
+\begin{enumerate}[resume=banco3]
+\item Gire la región bajo $y=x$, $0\le x\le2$, alrededor del eje $y$.
+\item Gire la región bajo $y=x^2$, $0\le x\le2$, alrededor del eje $y$.
+\item Gire la región bajo $y=4-x^2$, $0\le x\le2$, alrededor del eje $y$.
+\item Gire la región entre $y=x$ y $y=x^2$, $0\le x\le1$, alrededor del eje $y$.
+\item Gire la región bajo $y=2x$, $0\le x\le1$, alrededor de la recta $x=2$.
+\item Gire la región bajo $y=3-x$, $0\le x\le3$, alrededor de la recta $x=4$.
+\item Gire la región limitada por $x=y^2$, $x=0$, $0\le y\le2$, alrededor del eje $x$, usando cascarones horizontales.
+\item Resuelva el volumen del reactivo anterior por discos e indique por qué ambos resultados son iguales.
+\end{enumerate}
+\end{Ejer}
+
+\begin{Ejer}\textbf{Longitud de arco.} Comience encontrando la derivada antes de sustituir en la fórmula.
+\begin{enumerate}[resume=banco3]
+\item $y=x$, $0\le x\le3$.
+\item $y=3x-1$, $0\le x\le2$.
+\item $y=\frac23x^{3/2}$, $0\le x\le3$.
+\item $y=\frac13(1+x^2)^{3/2}$, $0\le x\le1$.
+\item $y=\ln(\cos x)$, $0\le x\le\pi/4$.
+\item $x=\frac23y^{3/2}$, $0\le y\le3$.
+\item Halle la longitud de un cuarto de circunferencia de radio $2$ por integración.
+\item Plantee, sin exigir primitiva elemental, la longitud de $y=x^2$ en $[0,1]$ y aproxime con \texttt{integrate} de R.
+\end{enumerate}
+\end{Ejer}
+
+\begin{Ejer}\textbf{Superficie de revolución.} Distinga la fórmula de superficie de la de volumen.
+\begin{enumerate}[resume=banco3]
+\item Gire $y=x$, $0\le x\le2$, alrededor del eje $x$.
+\item Gire $y=2$, $0\le x\le3$, alrededor del eje $x$.
+\item Gire $y=\sqrt x$, $1\le x\le4$, alrededor del eje $x$.
+\item Gire $y=x$, $0\le x\le2$, alrededor del eje $y$.
+\item Gire $y=3x$, $0\le x\le1$, alrededor del eje $x$.
+\item Gire $y=1+x$, $0\le x\le2$, alrededor del eje $x$.
+\item Gire el segmento $y=\sqrt{4-x^2}$, $0\le x\le2$, alrededor del eje $x$ e interprete la superficie.
+\item Formule el área de superficie obtenida al girar $y=x^2$ en $[0,1]$ alrededor del eje $x$ y evalúe numéricamente.
+\end{enumerate}
+\end{Ejer}
+
+\begin{Ejer}\textbf{Trabajo.} Construya el trabajo elemental $dW$ y explique las unidades.
+\begin{enumerate}[resume=banco3]
+\item Un resorte con $k=80\,\mathrm{N/m}$ se estira $0.10\,\mathrm m$ desde su longitud natural. Calcule el trabajo.
+\item Un resorte con $k=100\,\mathrm{N/m}$ se estira desde $x=0.10$ hasta $x=0.30\,\mathrm m$. Calcule el trabajo.
+\item Se aplica $F(x)=3x^2+2$ newtons entre $x=0$ y $x=2\,\mathrm m$. Calcule el trabajo.
+\item Se aplica $F(x)=10-x$ newtons entre $x=0$ y $x=4\,\mathrm m$. Calcule el trabajo.
+\item Un cable pesa $8\,\mathrm{N/m}$ y tiene $5\,\mathrm m$ de longitud. Halle el trabajo para elevarlo completamente hasta su extremo superior.
+\item Una cadena de $3\,\mathrm m$ pesa $12\,\mathrm{N/m}$. Halle el trabajo necesario para subirla completamente.
+\item Un depósito de sección constante $2\,\mathrm{m}^2$ está lleno de agua hasta $3\,\mathrm m$. Calcule el trabajo para bombearla al borde (use $\rho=1000\,\mathrm{kg/m^3}$ y $g=9.8\,\mathrm{m/s^2}$).
+\item Un depósito de profundidad $2\,\mathrm m$ tiene sección horizontal $A(y)=1+y\,\mathrm{m}^2$ a la altura $y$ medida desde el fondo. Formule el trabajo para bombear el agua al borde.
+\end{enumerate}
+\end{Ejer}
+
+\begin{Ejer}\textbf{Centro de masa.} Identifique masa, momentos y coordenadas del centroide.
+\begin{enumerate}[resume=banco3]
+\item Una varilla uniforme ocupa $[0,4]$ y tiene densidad $3$. Encuentre su masa y centro.
+\item Una varilla ocupa $[0,2]$ y tiene densidad $\rho(x)=1+x$. Encuentre $m$ y $\bar x$.
+\item Una varilla ocupa $[0,1]$ y tiene densidad $\rho(x)=2x+1$. Encuentre $m$ y $\bar x$.
+\item Una varilla ocupa $[1,3]$ y tiene densidad $\rho(x)=x$. Encuentre $m$ y $\bar x$.
+\item Encuentre el centroide del triángulo bajo $y=x$, $0\le x\le2$.
+\item Encuentre el centroide de la región bajo $y=x^2$, $0\le x\le1$.
+\item Encuentre el centroide de la región entre $y=x$ y $y=x^2$, $0\le x\le1$.
+\item Encuentre el centroide de la región bajo $y=2-x$, $0\le x\le2$.
+\end{enumerate}
+\end{Ejer}
+
+\begin{Ejer}\textbf{Integrales impropias y criterios de convergencia.} Escriba el límite que define la integral antes de evaluarla.
+\begin{enumerate}[resume=banco3]
+\item $\displaystyle\int_1^\infty x^{-2}\dd$.
+\item $\displaystyle\int_1^\infty x^{-1}\dd$.
+\item $\displaystyle\int_1^\infty x^{-3/2}\dd$.
+\item $\displaystyle\int_2^\infty e^{-x}\dd$.
+\item $\displaystyle\int_0^1x^{-1/2}\dd$.
+\item $\displaystyle\int_0^1x^{-3/2}\dd$.
+\item $\displaystyle\int_0^1\ln x\dd$.
+\item $\displaystyle\int_{-1}^1\frac1x\dd$.
+\item $\displaystyle\int_1^\infty\frac{1}{x^2+1}\dd$.
+\item $\displaystyle\int_0^\infty e^{-2x}\dd$.
+\item Determine para qué $p$ converge $\displaystyle\int_2^\infty x^{-p}\dd$.
+\item Determine para qué $q$ converge $\displaystyle\int_0^2x^{-q}\dd$.
+\end{enumerate}
+\end{Ejer}
+
+\begin{Ejer}\textbf{Integradores y selección del modelo.} En cada caso entregue planteamiento, solución e interpretación.
+\begin{enumerate}[resume=banco3]
+\item Una región entre $y=x$ y $y=x^2$ en $[0,1]$ gira alrededor del eje $x$. Calcule el volumen por arandelas y luego por cascarones horizontales.
+\item La misma región gira alrededor del eje $y$. Resuelva por cascarones y compruebe por arandelas horizontales.
+\item Una fuerza $F(x)=4x$ newtons se opone al desplazamiento de $x=0$ a $x=3$. Halle el trabajo realizado \emph{por la fuerza} y el trabajo que debe suministrar un agente externo para movimiento cuasiestático.
+\item Una región bajo $y=2-x$, en $0\le x\le2$, gira alrededor del eje $x$. Halle volumen y superficie del sólido, y explique la diferencia física.
+\item Calcule la longitud de $y=x$ entre $0$ y $1$, y la superficie que produce al girar alrededor del eje $x$.
+\item Sea $f(x)=x^{-2}$ en $[1,\infty)$. Compare el área bajo la gráfica con el volumen obtenido al girar alrededor del eje $x$ (demuestre la convergencia de ambos).
+\item Esboce el modelo de trabajo para extraer agua de un tanque cuya sección horizontal es $A(y)=y+1$ entre $0\le y\le2$ y verifique las unidades del integrando.
+\item Explique por qué $\int_{-1}^1dx/x$ no es cero como integral impropia, aunque la función sea impar.
+\end{enumerate}
+\end{Ejer}
+
+\clearpage
+\section*{Síntesis para el planteamiento}
+\begin{formula}[Qué se acumula en cada aplicación]
+\begin{align*}
+\text{Área entre curvas: }& A=\int(\text{altura de tira})\,dx,\\
+\text{Volumen por secciones: }&V=\int(\text{área de sección})\,dx,\\
+\text{Cascarones: }&V=2\pi\int(\text{radio})(\text{altura})\,dx,\\
+\text{Longitud: }&L=\int\sqrt{1+[f'(x)]^2}\,dx,\\
+\text{Superficie: }&S=2\pi\int(\text{radio})\,ds,\\
+\text{Trabajo: }&W=\int(\text{fuerza})\,dx,\\
+\text{Momento: }&M=\int(\text{posición})\,dm.
+\end{align*}
+Estas expresiones son un recordatorio de la \emph{construcción}. Los límites, signos, radios y dimensiones se determinan en cada problema antes de integrarlos.
+\end{formula}
+
+\end{document}
